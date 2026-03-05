@@ -224,7 +224,7 @@
     margin-bottom: 4px;
   }
 
-  .menu-item-name-es {
+  .menu-item-name-en {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 400;
@@ -232,7 +232,7 @@
     line-height: 1.1;
   }
 
-  .menu-item-name-en {
+  .menu-item-name-es {
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -303,50 +303,73 @@
   .info-block {
     background: var(--charcoal);
     color: var(--warm-white);
-    padding: 36px 36px 36px 32px;
-    border-left: 3px solid var(--sand);
+    padding: 48px 52px;
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
   }
 
   .info-block .label {
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--sand);
-    font-weight: 400;
-    margin-bottom: 24px;
-    display: block;
+    display: none;
   }
 
-  .info-block .info-item { margin-bottom: 22px; }
-  .info-block .info-item:last-child { margin-bottom: 0; }
+  .info-block .info-item {
+    padding: 0 32px 0 0;
+    border-right: 1px solid rgba(201,185,154,0.12);
+    margin-bottom: 0;
+    padding-right: 40px;
+  }
+
+  .info-block .info-item:first-child { padding-left: 0; }
+  .info-block .info-item:last-child { border-right: none; padding-left: 40px; padding-right: 0; }
+  .info-block .info-item:nth-child(2) { padding-left: 40px; }
 
   .info-block .info-item span {
     display: block;
-    font-size: 10px;
-    letter-spacing: 0.25em;
+    font-size: 9px;
+    letter-spacing: 0.38em;
     text-transform: uppercase;
-    color: rgba(201,185,154,0.55);
-    margin-bottom: 5px;
+    color: var(--moss);
+    margin-bottom: 10px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
   }
 
   .info-block .info-item strong {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 21px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: 300;
     color: var(--warm-white);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     display: block;
+    line-height: 1.1;
+    margin-bottom: 10px;
   }
 
   .info-block .info-item .sub {
     font-size: 12px;
-    color: rgba(201,185,154,0.45);
-    line-height: 1.6;
-    margin-top: 4px;
+    color: rgba(201,185,154,0.4);
+    line-height: 1.65;
     display: block;
     font-style: italic;
     letter-spacing: 0;
     text-transform: none;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  @media (max-width: 640px) {
+    .info-block {
+      grid-template-columns: 1fr;
+      padding: 36px 24px;
+      gap: 32px;
+    }
+    .info-block .info-item {
+      border-right: none;
+      border-bottom: 1px solid rgba(201,185,154,0.12);
+      padding: 0 0 32px 0 !important;
+    }
+    .info-block .info-item:last-child { border-bottom: none; padding-bottom: 0 !important; }
   }
 
   /* ── TWO COL ── */
@@ -830,8 +853,8 @@
   }
   .csvc-item.selected .csvc-price { color: var(--moss); }
   .csvc-text { flex: 1; }
-  .csvc-name-es { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--bark); }
-  .csvc-name-en { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; margin-top: 2px; }
+  .csvc-name-en { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--bark); }
+  .csvc-name-es { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; margin-top: 2px; }
   .csvc-desc { font-size: 12px; color: #8a8a7a; margin-top: 3px; line-height: 1.5; font-family: 'Jost', sans-serif; font-weight: 300; }
   #cleaning-form {
     background: var(--charcoal); padding: 36px 52px;
@@ -869,8 +892,8 @@
     <span class="tab-en">Breakfast & Drinks</span>
   </button>
   <button class="tab-btn" onclick="switchTab('cleaning')" id="tab-btn-cleaning">
-    <span class="tab-es">Limpieza</span>
-    <span class="tab-en">Housekeeping</span>
+    <span class="tab-es">Housekeeping</span>
+    <span class="tab-en">Limpieza</span>
   </button>
 </div>
 
@@ -880,7 +903,7 @@
 <div class="cover">
   <div class="cover-ornament"></div>
   <div class="cover-inner">
-    <p class="cover-label">Costa Blanca &nbsp;·&nbsp; Andalucía &nbsp;·&nbsp; España</p>
+    <p class="cover-label">Villajoyosa &nbsp;·&nbsp; Costa Blanca &nbsp;·&nbsp; Spain</p>
 
     <svg class="cover-olive" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M40 60 Q40 34 22 20" stroke="#C9B99A" stroke-width="1.3" fill="none"/>
@@ -893,13 +916,13 @@
     </svg>
 
     <h1 class="cover-title">
-      Desayuno
-      <em>con Champán</em>
+      Breakfast
+      <em>with Champagne</em>
     </h1>
     <div class="cover-divider"></div>
     <p class="cover-subtitle">
-      Una celebración al amanecer.<br>
-      A morning celebration at the table.
+      A morning celebration at the table.<br>
+      <span style="font-size:0.75em;opacity:0.6">Una celebración al amanecer.</span>
     </p>
   </div>
   <div class="cover-footer">
@@ -910,44 +933,44 @@
 
 <!-- ═══════════ 01 — EL DESAYUNO ═══════════ -->
 <div class="page">
-  <span class="section-number">01 — El Desayuno · The Breakfast</span>
-  <h2 class="section-title">La<br><em>Mesa</em></h2>
+  <span class="section-number">01 — The Breakfast · El Desayuno</span>
+  <h2 class="section-title">The<br><em>Table</em></h2>
 
   <p class="intro-text">
-    Cada mañana ponemos la mesa con productos frescos de la tierra andaluza. El desayuno se sirve completo — los precios se indican cuando aplican por separado.<br>
-    <span style="font-size:0.85em; opacity:0.7">Each morning we set the table with fresh Andalusian produce. Breakfast is served as a complete experience — prices noted where individually available.</span>
+    Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.<br>
+    <span style="font-size:0.85em; opacity:0.7">Cada mañana ponemos la mesa con productos frescos de la costa valenciana. El desayuno se sirve completo.</span>
   </p>
 
   <div class="menu-grid">
-    <div class="menu-item orderable" data-id="ostras" data-name="Ostras Frescas" data-sub="Fresh Oysters" data-price="0">
+    <div class="menu-item orderable" data-id="ostras" data-name="Ostras Frescas" data-sub="Fresh Oysters" data-price="12">
       <div class="add-hint">+ Añadir</div>
       <div class="menu-item-num">I</div>
       <div class="menu-item-body">
         <div class="menu-item-header">
           <div>
-            <div class="menu-item-name-es">Ostras Frescas</div>
             <div class="menu-item-name-en">Fresh Oysters</div>
+            <div class="menu-item-name-es">Ostras Frescas</div>
           </div>
-          <div class="menu-item-price">15.</div>
+          <div class="menu-item-price">—,—</div>
         </div>
         <div class="menu-item-desc">
           Gallegas Nº 3 · 2 piezas por persona · Vinagreta de chalotas · Limón de Murcia<br>
           <em style="opacity:0.65">2 pieces per person · Shallot vinaigrette · Murcia lemon</em>
         </div>
-        <span class="menu-item-note">Abiertas al momento, servidas sobre hielo picado · Opened to order, on crushed ice</span>
+        <span class="menu-item-note">Opened to order, served on crushed ice · Abiertas al momento sobre hielo picado</span>
       </div>
     </div>
 
-    <div class="menu-item orderable" data-id="pan" data-name="Pan Artesano" data-sub="Artisan Oven Bread" data-price="0">
+    <div class="menu-item orderable" data-id="pan" data-name="Pan Artesano" data-sub="Artisan Oven Bread" data-price="4">
       <div class="add-hint">+ Añadir</div>
       <div class="menu-item-num">II</div>
       <div class="menu-item-body">
         <div class="menu-item-header">
           <div>
-            <div class="menu-item-name-es">Pan Artesano del Horno</div>
             <div class="menu-item-name-en">Artisan Oven Bread</div>
+            <div class="menu-item-name-es">Pan Artesano del Horno</div>
           </div>
-          <div class="menu-item-price">7,5.</div>
+          <div class="menu-item-price">—,—</div>
         </div>
         <div class="menu-item-desc">
           Pan de masa madre · Barra andaluza · Coca de aceite de oliva virgen extra · Horneado cada mañana<br>
@@ -956,39 +979,39 @@
       </div>
     </div>
 
-    <div class="menu-item orderable" data-id="acomp" data-name="Acompañamientos & Untables" data-sub="Accompaniments & Spreads" data-price="0">
+    <div class="menu-item orderable" data-id="acomp" data-name="Acompañamientos & Untables" data-sub="Accompaniments & Spreads" data-price="8">
       <div class="add-hint">+ Añadir</div>
       <div class="menu-item-num">III</div>
       <div class="menu-item-body">
         <div class="menu-item-header">
           <div>
-            <div class="menu-item-name-es">Acompañamientos & Untables</div>
             <div class="menu-item-name-en">Accompaniments & Spreads</div>
+            <div class="menu-item-name-es">Acompañamientos & Untables</div>
           </div>
-          <div class="menu-item-price">8,5.</div>
+          <div class="menu-item-price">—,—</div>
         </div>
         <div class="menu-item-desc">
-          Tomate rallado con aceite virgen extra · Mantequilla de hierbas · Miel de azahar · Mermeladas de temporada<br>
-          Jamón ibérico de bellota · Queso manchego curado · Salmón ahumado del Cantábrico<br>
-          Crema de aguacate · Sobrasada mallorquina · Queso fresco con cebollino<br>
-          <em style="opacity:0.6">Grated tomato with extra virgin olive oil · Herb butter · Orange blossom honey · Seasonal jams · Iberian acorn ham · Aged manchego · Cantabrian smoked salmon · Avocado cream · Sobrasada · Fresh cheese with chives</em>
+          Grated tomato with extra virgin olive oil · Herb butter · Orange blossom honey · Seasonal jams<br>
+          Iberian acorn ham · Aged manchego · Cantabrian smoked salmon · Avocado cream · Sobrasada<br>
+          <em style="font-style:normal; color:var(--bark);">Pérez dark chocolate bar</em> — from Villajoyosa's own chocolate tradition · Served on the side<br>
+          <em style="opacity:0.6">Tomate rallado · Mantequilla de hierbas · Miel de azahar · Mermeladas · Jamón ibérico · Manchego · Salmón · Crema de aguacate · Sobrasada · Tableta de chocolate negro Pérez</em>
         </div>
       </div>
     </div>
 
-    <div class="menu-item orderable" data-id="temp" data-name="De Temporada" data-sub="Seasonal Selection" data-price="0">
+    <div class="menu-item orderable" data-id="temp" data-name="De Temporada" data-sub="Seasonal Selection" data-price="6">
       <div class="add-hint">+ Añadir</div>
       <div class="menu-item-num">IV</div>
       <div class="menu-item-body">
         <div class="menu-item-header">
           <div>
-            <div class="menu-item-name-es">De Temporada</div>
             <div class="menu-item-name-en">Seasonal Selection</div>
+            <div class="menu-item-name-es">De Temporada</div>
           </div>
-          <div class="menu-item-price">22.</div>
+          <div class="menu-item-price">—,—</div>
         </div>
         <div class="menu-item-desc">
-          Frutas del mercado local · Zumos recién exprimidos · Granola de frutos secos de espana<br>
+          Frutas del mercado local · Zumos recién exprimidos · Granola de frutos secos andaluces<br>
           <em style="opacity:0.65">Local market fruits · Freshly pressed juices · Andalusian nut granola</em>
         </div>
       </div>
@@ -998,10 +1021,8 @@
 
 <!-- ═══════════ 02 — TÉ & CAFÉ ═══════════ -->
 <div class="page">
-  <div class="two-col">
-    <div>
-      <span class="section-number">02 — Té & Café · Tea & Coffee</span>
-      <h2 class="section-title">Infusiones<br><em>& Café</em></h2>
+      <span class="section-number">02 — Tea & Coffee · Té y Café</span>
+      <h2 class="section-title">Teas<br><em>&amp; Coffee</em></h2>
 
       <div class="menu-grid">
         <div class="menu-item orderable" data-id="tea-hierbas" data-name="Té Andaluz de Hierbas" data-sub="Andalusian Herbal Tea" data-price="5.50">
@@ -1010,13 +1031,13 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Té Andaluz de Hierbas</div>
                 <div class="menu-item-name-en">Andalusian Herbal Tea</div>
+                <div class="menu-item-name-es">Té Andaluz de Hierbas</div>
               </div>
               <div class="menu-item-price">5,50</div>
             </div>
             <div class="menu-item-desc">Manzanilla · Poleo · Cantueso · Menta fresca · Ecológico</div>
-            <span class="menu-item-note">Hierbas de nuestra huerta · From our kitchen garden</span>
+            <span class="menu-item-note">From our kitchen garden · Hierbas de nuestra huerta</span>
           </div>
         </div>
 
@@ -1026,8 +1047,8 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Té Verde Sencha</div>
                 <div class="menu-item-name-en">Sencha Green Tea</div>
+                <div class="menu-item-name-es">Té Verde Sencha</div>
               </div>
               <div class="menu-item-price">6,50</div>
             </div>
@@ -1041,8 +1062,8 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Earl Grey Imperial</div>
                 <div class="menu-item-name-en">Earl Grey Imperial</div>
+                <div class="menu-item-name-es">Earl Grey Imperial</div>
               </div>
               <div class="menu-item-price">6,—</div>
             </div>
@@ -1056,8 +1077,8 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Café de Especialidad</div>
                 <div class="menu-item-name-en">Specialty Coffee</div>
+                <div class="menu-item-name-es">Café de Especialidad</div>
               </div>
               <div class="menu-item-price">4,50</div>
             </div>
@@ -1071,8 +1092,8 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Flat White · Cappuccino</div>
                 <div class="menu-item-name-en">Flat White · Cappuccino</div>
+                <div class="menu-item-name-es">Flat White · Cappuccino</div>
               </div>
               <div class="menu-item-price">5,50</div>
             </div>
@@ -1080,43 +1101,38 @@
           </div>
         </div>
       </div>
-    </div>
+</div>
 
-    <!-- right col: note -->
-    <div>
-      <div class="info-block" style="margin-top: 72px;">
-        <span class="label">Nota de la Casa · House Note</span>
-        <div class="info-item">
-          <span>Servicio</span>
-          <strong>Todos los días</strong>
-          <span class="sub">Every morning · 8:00 – 11:30</span>
-        </div>
-        <div class="info-item">
-          <span>Alergias e intolerancias</span>
-          <strong>Infórmenos</strong>
-          <span class="sub">Please inform us of any allergies or dietary requirements before ordering.</span>
-        </div>
-        <div class="info-item">
-          <span>Pedidos especiales</span>
-          <strong>Con gusto</strong>
-          <span class="sub">We are happy to accommodate special requests wherever possible.</span>
-        </div>
-      </div>
-    </div>
+<!-- House Note Band -->
+<div class="info-block">
+  <div class="info-item">
+    <span>Service Hours</span>
+    <strong>Every morning<br>8:00 – 11:30</strong>
+    <span class="sub">Todos los días · Daily without exception</span>
+  </div>
+  <div class="info-item">
+    <span>Allergies &amp; Dietary</span>
+    <strong>Please inform us</strong>
+    <span class="sub">Tell us of any allergies or dietary requirements before ordering. We will take care of the rest.</span>
+  </div>
+  <div class="info-item">
+    <span>Special Requests</span>
+    <strong>With pleasure</strong>
+    <span class="sub">We are happy to accommodate special requests wherever possible. · Con mucho gusto.</span>
   </div>
 </div>
 
 <!-- ═══════════ 03 — CHAMPÁN · COPAS ═══════════ -->
 <div class="page">
-  <span class="section-number">03 — Carta de Bebidas · Drinks Menu · Disponible por Separado · Separately Available</span>
+  <span class="section-number">03 — Drinks Menu · Carta de Bebidas · Separately Available · Disponible por Separado</span>
   <h2 class="section-title">Champán<br><em>& Cava</em></h2>
 
   <p class="intro-text">
-    Nuestra selección de champanes y cavas se sirve por separado — por copa o botella. Recomendamos comenzar con nuestra selección de la casa.<br>
-    <span style="font-size:0.85em; opacity:0.7">Our champagne and cava selection is available separately — by the glass or bottle. We recommend beginning with our house selection.</span>
+    Our champagne and cava selection is available separately — by the glass or bottle. We recommend beginning with our house selection.<br>
+    <span style="font-size:0.85em; opacity:0.7">Nuestra selección de champanes y cavas se sirve por separado — por copa o botella.</span>
   </p>
 
-  <div class="price-note">Precios por copa 0,1 l · Prices per glass 0.1 l</div>
+  <div class="price-note">Prices per glass 0.1 l · Precios por copa 0,1 l</div>
 
   <div class="bottle-grid">
     <div class="bottle-card orderable" data-id="ruinart" data-name="Ruinart Blanc de Blancs" data-sub="Copa 0,1 l" data-price="22">
@@ -1167,8 +1183,8 @@
   </div>
 
   <div class="highlight">
-    <strong>Prestige —</strong> Krug Grande Cuvée · 0,75 l · Para momentos únicos · For singular moments.<br>
-    <span style="opacity:0.7; font-size:0.9em">320,— · Se ruega reserva previa · Available upon prior request.</span>
+    <strong>Prestige —</strong> Krug Grande Cuvée · 0,75 l · For singular moments · Para momentos únicos.<br>
+    <span style="opacity:0.7; font-size:0.9em">320,— · Available upon prior request · Se ruega reserva previa.</span>
   </div>
 </div>
 
@@ -1176,8 +1192,8 @@
 <div class="page">
   <div class="two-col">
     <div>
-      <span class="section-number">04 — Sin Alcohol · Non-Alcoholic</span>
-      <h2 class="section-title">Bebidas<br><em>Frescas</em></h2>
+      <span class="section-number">04 — Non-Alcoholic · Sin Alcohol</span>
+      <h2 class="section-title">Fresh<br><em>Drinks</em></h2>
 
       <div class="menu-grid">
         <div class="menu-item orderable" data-id="zumo" data-name="Zumo de Naranja de Valencia" data-sub="Valencia Orange Juice" data-price="6.50">
@@ -1186,8 +1202,8 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Zumo de Naranja de Valencia</div>
                 <div class="menu-item-name-en">Valencia Orange Juice</div>
+                <div class="menu-item-name-es">Zumo de Naranja de Valencia</div>
               </div>
               <div class="menu-item-price">6,50</div>
             </div>
@@ -1201,8 +1217,8 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Agua Mineral Solán de Cabras</div>
                 <div class="menu-item-name-en">Mineral Water</div>
+                <div class="menu-item-name-es">Agua Mineral Solán de Cabras</div>
               </div>
               <div class="menu-item-price">4,—</div>
             </div>
@@ -1216,16 +1232,16 @@
           <div class="menu-item-body">
             <div class="menu-item-header">
               <div>
-                <div class="menu-item-name-es">Bellini Andaluz 0,0%</div>
                 <div class="menu-item-name-en">Andalusian Non-Alcoholic Bellini</div>
+                <div class="menu-item-name-es">Bellini Andaluz 0,0%</div>
               </div>
               <div class="menu-item-price">9,—</div>
             </div>
             <div class="menu-item-desc">
-              Melocotón blanco de Jaén · Agua de azahar · Cava 0,0% · Receta de la casa<br>
-              <em style="opacity:0.65">White peach from Jaén · Orange blossom water · 0% cava · House recipe</em>
+              White peach from Jaén · Orange blossom water · 0% cava · House recipe<br>
+              <em style="opacity:0.65">Melocotón blanco de Jaén · Agua de azahar · Cava 0,0% · Receta de la casa</em>
             </div>
-            <span class="menu-item-note">Recomendación para no bebedores de alcohol · Recommended for non-drinkers</span>
+            <span class="menu-item-note">Recommended for non-drinkers · Recomendación para no bebedores de alcohol</span>
           </div>
         </div>
       </div>
@@ -1237,18 +1253,18 @@
         <div class="steps" style="grid-template-columns: 1fr; gap: 16px;">
           <div class="step">
             <div class="step-num">01</div>
-            <div class="step-label">Maridaje · Pairing</div>
-            <div class="step-desc">Las ostras maridan perfectamente con el Ruinart Blanc de Blancs — nuestra recomendación de la casa.<br><em style="opacity:0.65">Oysters pair perfectly with Ruinart Blanc de Blancs — our house recommendation.</em></div>
+            <div class="step-label">Pairing · Maridaje</div>
+            <div class="step-desc">Oysters pair perfectly with Ruinart Blanc de Blancs — our house recommendation.<br><em style="opacity:0.65">Las ostras maridan perfectamente con el Ruinart Blanc de Blancs.</em></div>
           </div>
           <div class="step">
             <div class="step-num">02</div>
-            <div class="step-label">Cava Español · Spanish Cava</div>
-            <div class="step-desc">El Gramona Imperial es nuestro orgullo local — 60 meses de crianza en Penedès.<br><em style="opacity:0.65">Gramona Imperial is our local pride — 60 months aged in Penedès.</em></div>
+            <div class="step-label">Spanish Cava · Cava Español</div>
+            <div class="step-desc">Gramona Imperial is our local pride — 60 months aged in Penedès.<br><em style="opacity:0.65">El Gramona Imperial es nuestro orgullo local — 60 meses de crianza en Penedès.</em></div>
           </div>
           <div class="step">
             <div class="step-num">03</div>
-            <div class="step-label">Reservas · Reservations</div>
-            <div class="step-desc">Para botellas de prestigio o solicitudes especiales, rogamos aviso previo.<br><em style="opacity:0.65">For prestige bottles or special requests, please notify us in advance.</em></div>
+            <div class="step-label">Reservations · Reservas</div>
+            <div class="step-desc">For prestige bottles or special requests, please notify us in advance.<br><em style="opacity:0.65">Para botellas de prestigio o solicitudes especiales, rogamos aviso previo.</em></div>
           </div>
         </div>
       </div>
@@ -1256,11 +1272,90 @@
   </div>
 </div>
 
+<!-- ═══════════ 05 — PICNIC ═══════════ -->
+<div class="page">
+  <span class="section-number">05 — Special Experience · Experiencia Especial</span>
+  <h2 class="section-title">Beach Picnic<br><em>Basket</em></h2>
+
+  <p class="intro-text">
+    A hand-prepared basket to enjoy on the beach or in the garden — ready to take at any time.<br>
+    <span style="font-size:0.85em; opacity:0.7">Una cesta preparada para disfrutar en la playa o en el jardín.</span>
+  </p>
+
+  <div class="menu-grid">
+
+    <div class="menu-item orderable" data-id="picnic-light" data-name="Beach Picnic — The Light" data-sub="Cesta Ligera · 25 €" data-price="25">
+      <div class="add-hint">+ Add</div>
+      <div class="menu-item-num">I</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">The Light</div>
+            <div class="menu-item-name-es">Cesta Ligera</div>
+          </div>
+          <div class="menu-item-price">25,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Sourdough roll · Manchego · Cherry tomatoes · Gordal olives · Peach, nectarine &amp; watermelon · Pérez chocolate bar · Sparkling mineral water<br>
+          <em style="opacity:0.65">Panecillo de masa madre · Manchego · Tomates cherry · Aceitunas gordal · Melocotón, nectarina y sandía · Tableta de chocolate Pérez · Agua mineral con gas</em>
+        </div>
+        <span class="menu-item-note">Includes basket, linen napkin &amp; cutlery · Incluye cesta, servilleta y cubiertos</span>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="picnic-classic" data-name="Beach Picnic — The Classic" data-sub="Cesta Clásica · 35 €" data-price="35">
+      <div class="add-hint">+ Add</div>
+      <div class="menu-item-num">II</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">The Classic</div>
+            <div class="menu-item-name-es">Cesta Clásica</div>
+          </div>
+          <div class="menu-item-price">35,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Artisan bread · Manchego &amp; Tetilla cheese · Jamón serrano · Smoked salmon · Marinated olives · Cold gazpacho 200ml · Seasonal fruit · Fresh Valencia orange juice · Mineral water · Pérez chocolate bar<br>
+          <em style="opacity:0.65">Pan artesano · Manchego y Tetilla · Jamón serrano · Salmón ahumado · Aceitunas marinadas · Gazpacho frío 200ml · Fruta de temporada · Zumo de naranja valenciana · Agua mineral · Tableta de chocolate Pérez</em>
+        </div>
+        <span class="menu-item-note">Includes basket, blanket &amp; cutlery · Incluye cesta, manta y cubiertos</span>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="picnic-deluxe" data-name="Beach Picnic — The Deluxe" data-sub="Cesta Deluxe · 55 €" data-price="55">
+      <div class="add-hint">+ Add</div>
+      <div class="menu-item-num">III</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">The Deluxe</div>
+            <div class="menu-item-name-es">Cesta Deluxe</div>
+          </div>
+          <div class="menu-item-price">55,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Everything in The Classic · Fresh Galician oysters (2 p.p.) · Fuet &amp; lomo ibérico · Burrata with heirloom tomatoes &amp; basil oil · Chilled salmorejo · Pérez single-origin chocolate bar · Glass of Gramona Cava<br>
+          <em style="opacity:0.65">Todo lo anterior · Ostras gallegas frescas (2 p.p.) · Fuet y lomo ibérico · Burrata con tomates y aceite de albahaca · Salmorejo frío · Tableta de chocolate negro Pérez · Copa de cava Gramona</em>
+        </div>
+        <span class="menu-item-note">2 hours advance notice appreciated · Se agradece reserva con 2 horas de antelación</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="highlight">
+    <strong>Note —</strong> Baskets are prepared fresh to order — packed for the beach, the garden, or wherever the morning takes you. Please indicate your desired collection time in the notes field when ordering.<br>
+    <span style="opacity:0.7; font-size:0.9em">Las cestas se preparan al momento para la playa, el jardín o donde la mañana les lleve. Indique la hora deseada en el campo de notas.</span><br><br>
+    <strong>On chocolate —</strong> Every basket includes a bar from Pérez, one of Villajoyosa's celebrated local chocolatiers. Our town has been crafting fine chocolate since the 18th century — we think it deserves a place at every table.<br>
+    <span style="opacity:0.7; font-size:0.9em">Cada cesta incluye una tableta de Pérez — Villajoyosa lleva elaborando chocolate de calidad desde el siglo XVIII.</span>
+  </div>
+</div>
+
 <!-- ═══════════ FOOTER ═══════════ -->
 <div class="page-footer">
-  <span>Costa Blanca · España</span>
-  <span>Todos los precios incluyen IVA · All prices include VAT</span>
-  <span>Temporada 2025</span>
+  <span>Villajoyosa · Costa Blanca · España</span>
+  <span>All prices include VAT · Todos los precios incluyen IVA</span>
+  <span>Season 2025 · Temporada 2025</span>
 </div>
 
 </div><!-- /tab-menu -->
@@ -1269,53 +1364,44 @@
 <div id="tab-cleaning" class="tab-page">
 
   <div style="background:var(--charcoal);padding:52px 52px 40px;border-bottom:1px solid rgba(201,185,154,0.15);">
-    <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Servicio de Limpieza &nbsp;·&nbsp; Housekeeping</span>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Limpieza<br><em>& Confort</em></h2>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Seleccione lo que necesita y le atendemos enseguida.<br>Select what you need and we will be with you shortly.</p>
+    <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Housekeeping &nbsp;·&nbsp; Servicio de Limpieza</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Housekeeping<br><em>&amp; Comfort</em></h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Select what you need and we will be with you shortly.<br><span style="opacity:0.6">Seleccione lo que necesita y le atendemos enseguida.</span></p>
   </div>
 
   <div style="background:var(--cream);">
-    <button class="csvc-item" data-cid="towels" data-cname="Toallas Frescas" data-csub="Fresh Towels" data-cprice="55" onclick="toggleCleaning(this)">
+    <button class="csvc-item" data-cid="towels" data-cname="Toallas Frescas" data-csub="Fresh Towels" data-cprice="0" onclick="toggleCleaning(this)">
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
-        <div class="csvc-name-es">Toallas Frescas</div>
         <div class="csvc-name-en">Fresh Towels</div>
-        <div class="csvc-desc">Toallas de ba&ntilde;o &middot; Toallas de mano &middot; Bath &amp; hand towels</div>
+        <div class="csvc-name-es">Toallas Frescas</div>
+        <div class="csvc-desc">Bath &amp; hand towels &middot; Toallas de ba&ntilde;o y mano</div>
       </div>
-      <div class="csvc-price">45</div>
+      <div class="csvc-price">—,—</div>
     </button>
-    <button class="csvc-item" data-cid="room-clean" data-cname="Limpieza de Habitacion" data-csub="Room Cleaning" data-cprice="150" onclick="toggleCleaning(this)">
+    <button class="csvc-item" data-cid="room-clean" data-cname="Limpieza de Habitacion" data-csub="Room Cleaning" data-cprice="0" onclick="toggleCleaning(this)">
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
-        <div class="csvc-name-es">Limpieza de Habitaci&oacute;n</div>
         <div class="csvc-name-en">Room Cleaning</div>
-        <div class="csvc-desc">Limpieza completa &middot; Cambio de ropa de cama &middot; Full clean &amp; linen change</div>
+        <div class="csvc-name-es">Limpieza de Habitaci&oacute;n</div>
+        <div class="csvc-desc">Full clean &amp; linen change &middot; Limpieza completa y cambio de ropa de cama</div>
       </div>
-      <div class="csvc-price">150</div>
+      <div class="csvc-price">—,—</div>
     </button>
-    <button class="csvc-item" data-cid="amenities" data-cname="Amenities Frescos" data-csub="Fresh Amenities" data-cprice="30" onclick="toggleCleaning(this)">
+    <button class="csvc-item" data-cid="amenities" data-cname="Amenities Frescos" data-csub="Fresh Amenities" data-cprice="0" onclick="toggleCleaning(this)">
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
-        <div class="csvc-name-es">Amenities Frescos</div>
         <div class="csvc-name-en">Fresh Amenities</div>
-        <div class="csvc-desc">Jab&oacute;n &middot; Champ&uacute; &middot; Gel de ducha &middot; Papel higi&eacute;nico</div>
+        <div class="csvc-name-es">Amenities Frescos</div>
+        <div class="csvc-desc">Soap · Shampoo · Shower gel · Toilet paper &middot; Jab&oacute;n, champ&uacute;, gel de ducha, papel</div>
       </div>
-      <div class="csvc-price">35</div>
-    </button>
-    <button class="csvc-item" data-cid="trash" data-cname="Retirada de Basura" data-csub="Waste removal" data-cprice="56" onclick="toggleCleaning(this)">
-      <div class="csvc-check">&#10003;</div>
-      <div class="csvc-text">
-        <div class="csvc-name-es">Retirada de Basura</div>
-        <div class="csvc-name-en">Trash Removal</div>
-        <div class="csvc-desc">Recogida de residuos &middot; Room waste collection</div>
-      </div>
-      <div class="csvc-price">30</div>
+      <div class="csvc-price">—,—</div>
     </button>
   </div>
 
   <div id="cleaning-form">
-    <span class="cf-label">Su Solicitud &nbsp;&middot;&nbsp; Your Request</span>
-    <div class="cf-title">Confirmar Pedido</div>
+    <span class="cf-label">Your Request &nbsp;&middot;&nbsp; Su Solicitud</span>
+    <div class="cf-title">Confirm Order · Confirmar Pedido</div>
     <div class="cf-tags" id="cf-tags"></div>
     <div class="cf-total-row" id="cf-total-row" style="display:none; justify-content:space-between; align-items:baseline; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid rgba(201,185,154,0.15);">
       <span style="font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(201,185,154,0.45); font-family:'Jost',sans-serif;">Total</span>
@@ -1323,24 +1409,24 @@
     </div>
     <div class="cf-row">
       <div class="cf-group">
-        <label>Habitaci&oacute;n &middot; Room</label>
+        <label>Room &middot; Habitaci&oacute;n</label>
         <input type="text" id="cf-room" placeholder="Ej: 3, Suite A..." maxlength="20" />
       </div>
       <div class="cf-group">
-        <label>Notas &middot; Notes</label>
+        <label>Notes &middot; Notas</label>
         <input type="text" id="cf-notes" placeholder="Special instructions..." maxlength="120" />
       </div>
     </div>
     <div id="cf-status"></div>
     <div class="cf-btns">
-      <button class="cf-btn-send" id="cf-send-btn" onclick="sendCleaning()">Solicitar &middot; Request</button>
+      <button class="cf-btn-send" id="cf-send-btn" onclick="sendCleaning()">Request &middot; Solicitar</button>
       <button class="cf-btn-clear" onclick="clearCleaning()">Limpiar</button>
     </div>
   </div>
 
   <div class="page-footer">
-    <span>Costa Blanca &middot; Espa&ntilde;a</span>
-    <span>Servicio disponible &middot; 8:00 &ndash; 20:00</span>
+    <span>Costa de la Luz &middot; Espa&ntilde;a</span>
+    <span>Service available &middot; 8:00 &ndash; 20:00</span>
     <span>Temporada 2025</span>
   </div>
 
@@ -1479,14 +1565,13 @@
   // ══════════════════════════════════════════════
   // 🔧 PASTE YOUR TELEGRAM CREDENTIALS HERE
   // ══════════════════════════════════════════════
-  const TELEGRAM_TOKEN   = '8584786620:AAHELt19ROqLag6kcRR8tBV78DB46eZysxg';
-  const TELEGRAM_CHAT_ID = '5573110692';
+  const TELEGRAM_TOKEN   = 'PASTE_YOUR_BOT_TOKEN_HERE';
+  const TELEGRAM_CHAT_ID = 'PASTE_YOUR_CHAT_ID_HERE';
   // ══════════════════════════════════════════════
 
   const order = {};
 
   function formatPrice(p) {
-    if (p === 0) return 'incl.';
     return p.toFixed(2).replace('.', ',') + ' €';
   }
 
@@ -1533,7 +1618,7 @@
           <span class="qty-num">${item.qty}</span>
           <button class="qty-btn" onclick="changeQty('${id}', 1)">+</button>
         </div>
-        <div class="order-row-price">${item.price === 0 ? 'incl.' : formatPrice(item.price * item.qty)}</div>
+        <div class="order-row-price">${formatPrice(item.price * item.qty)}</div>
       `;
       container.insertBefore(row, container.querySelector('.order-empty'));
     });
@@ -1604,7 +1689,7 @@
     const total = getTotal();
 
     const lines = Object.values(order).map(item => {
-      const priceStr = item.price === 0 ? 'incl.' : formatPrice(item.price * item.qty);
+      const priceStr = formatPrice(item.price * item.qty);
       return `  • ${item.name} × ${item.qty}   ${priceStr}`;
     }).join('\n');
 
@@ -1617,7 +1702,7 @@
     msg += `─────────────────────\n`;
     if (total > 0) msg += `💶 *Total: ${total.toFixed(2).replace('.', ',')} €*\n`;
     if (notes) msg += `\n📝 Notas: _${notes}_\n`;
-    msg += `\n_Costa Blanca · Room Service_`;
+    msg += `\n_Costa de la Luz · Room Service_`;
     return msg;
   }
 
@@ -1743,7 +1828,7 @@
     form.classList.add('visible');
     tags.innerHTML = keys.map(id => {
       const p = cleaningItems[id].price;
-      const priceLabel = p === 0 ? '150' : p.toFixed(2).replace('.', ',') + ' \u20AC';
+      const priceLabel = p.toFixed(2).replace('.', ',') + ' \u20AC';
       return '<span class="cf-tag">' + cleaningItems[id].name + ' &nbsp;&middot;&nbsp; ' + priceLabel + '</span>';
     }).join('');
     const total = getCleaningTotal();
@@ -1789,7 +1874,7 @@
     const total = getCleaningTotal();
     const lines = keys.map(id => {
       const p = cleaningItems[id].price;
-      const priceStr = p === 0 ? '150' : p.toFixed(2).replace('.', ',') + ' \u20AC';
+      const priceStr = p.toFixed(2).replace('.', ',') + ' \u20AC';
       return '  - ' + cleaningItems[id].name + '   ' + priceStr;
     }).join('\n');
     let msg = '*LIMPIEZA - HOUSEKEEPING*\n';
@@ -1800,9 +1885,9 @@
     msg += lines + '\n';
     msg += '---------------------\n';
     if (total > 0) msg += '*Total: ' + total.toFixed(2).replace('.', ',') + ' \u20AC*\n';
-    else msg += '*Total: Gratis*\n';
+    else msg += '*Total: 0,00 \u20AC*\n';
     if (notes) msg += '\nNotas: _' + notes + '_\n';
-    msg += '\n_Costa Blanca - Housekeeping_';
+    msg += '\n_Costa de la Luz - Housekeeping_';
 
     try {
       const res = await fetch('https://api.telegram.org/bot' + TELEGRAM_TOKEN + '/sendMessage', {
@@ -1926,7 +2011,7 @@
     msg += `${lines}\n`;
     msg += `─────────────────────\n`;
     if (notes) msg += `\n📝 Notas: _${notes}_\n`;
-    msg += `\n_Costa Blanca · Housekeeping_`;
+    msg += `\n_Costa de la Luz · Housekeeping_`;
 
     try {
       const res  = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
