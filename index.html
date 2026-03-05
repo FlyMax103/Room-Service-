@@ -771,9 +771,110 @@
     }
   }
   #print-order { display: none; }
+  /* TAB BAR */
+  #tab-bar {
+    position: sticky; top: 0; z-index: 500;
+    background: var(--charcoal);
+    display: flex;
+    border-bottom: 1px solid rgba(201,185,154,0.15);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+  }
+  .tab-btn {
+    flex: 1; padding: 14px 12px;
+    background: none; border: none; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    border-bottom: 2px solid transparent; transition: all 0.2s;
+  }
+  .tab-btn .tab-es {
+    font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 500;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(201,185,154,0.38); transition: color 0.2s;
+  }
+  .tab-btn .tab-en {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 11px; color: rgba(201,185,154,0.22); transition: color 0.2s;
+  }
+  .tab-btn.active { border-bottom-color: var(--sand); }
+  .tab-btn.active .tab-es { color: var(--sand); }
+  .tab-btn.active .tab-en { color: rgba(201,185,154,0.55); }
+  .tab-btn:hover .tab-es { color: rgba(201,185,154,0.65); }
+  .tab-page { display: none; }
+  .tab-page.active { display: block; }
+
+  /* CLEANING PAGE */
+  .csvc-item {
+    background: var(--warm-white); border: none; width: 100%; text-align: left;
+    padding: 24px 52px; cursor: pointer;
+    display: flex; align-items: center; gap: 20px;
+    border-bottom: 1px solid var(--light-line);
+    transition: background 0.15s, box-shadow 0.15s; user-select: none;
+  }
+  .csvc-item:last-child { border-bottom: none; }
+  .csvc-item:hover { background: #f5f0e8; box-shadow: inset 3px 0 0 var(--moss); }
+  .csvc-item.selected { background: rgba(122,139,106,0.08); box-shadow: inset 3px 0 0 var(--moss); }
+  .csvc-check {
+    width: 22px; height: 22px; border: 1px solid #d4c9b8; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 13px; color: transparent; transition: all 0.15s;
+  }
+  .csvc-item.selected .csvc-check { background: var(--moss); border-color: var(--moss); color: white; }
+  .csvc-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--bark);
+    white-space: nowrap;
+    min-width: 52px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .csvc-item.selected .csvc-price { color: var(--moss); }
+  .csvc-text { flex: 1; }
+  .csvc-name-es { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--bark); }
+  .csvc-name-en { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; margin-top: 2px; }
+  .csvc-desc { font-size: 12px; color: #8a8a7a; margin-top: 3px; line-height: 1.5; font-family: 'Jost', sans-serif; font-weight: 300; }
+  #cleaning-form {
+    background: var(--charcoal); padding: 36px 52px;
+    border-top: 1px solid rgba(201,185,154,0.15); display: none;
+  }
+  #cleaning-form.visible { display: block; }
+  .cf-label { font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--sand); font-family: 'Jost', sans-serif; margin-bottom: 8px; display: block; }
+  .cf-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--warm-white); margin-bottom: 20px; }
+  .cf-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .cf-tag { background: rgba(122,139,106,0.18); border: 1px solid rgba(122,139,106,0.3); color: #a8c8a0; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 12px; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .cf-group { display: flex; flex-direction: column; gap: 5px; }
+  .cf-group label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(201,185,154,0.45); font-family: 'Jost', sans-serif; }
+  .cf-group input { background: rgba(201,185,154,0.07); border: 1px solid rgba(201,185,154,0.15); color: var(--warm-white); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; padding: 9px 12px; outline: none; width: 100%; }
+  .cf-group input::placeholder { color: rgba(201,185,154,0.2); }
+  .cf-group input:focus { border-color: rgba(201,185,154,0.45); }
+  #cf-status { font-size: 11px; font-family: 'Jost', sans-serif; font-weight: 300; min-height: 18px; margin-bottom: 12px; text-align: center; }
+  .cf-btns { display: flex; gap: 10px; }
+  .cf-btn-send { flex: 1; background: var(--moss); border: none; color: var(--warm-white); font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; padding: 13px 16px; cursor: pointer; }
+  .cf-btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+  .cf-btn-clear { background: rgba(201,185,154,0.08); border: 1px solid rgba(201,185,154,0.18); color: rgba(201,185,154,0.45); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 13px 16px; cursor: pointer; }
+  @media (max-width: 640px) {
+    #cleaning-form { padding: 28px 24px; }
+    .cf-row { grid-template-columns: 1fr; }
+    .csvc-item { padding: 20px 24px; }
+  }
+
 </style>
 </head>
 <body>
+<!-- TAB BAR -->
+<div id="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('menu')" id="tab-btn-menu">
+    <span class="tab-es">Room Service</span>
+    <span class="tab-en">Breakfast & Drinks</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('cleaning')" id="tab-btn-cleaning">
+    <span class="tab-es">Limpieza</span>
+    <span class="tab-en">Housekeeping</span>
+  </button>
+</div>
+
+<div id="tab-menu" class="tab-page active">
 
 <!-- ═══════════ COVER ═══════════ -->
 <div class="cover">
@@ -813,8 +914,8 @@
   <h2 class="section-title">La<br><em>Mesa</em></h2>
 
   <p class="intro-text">
-    Cada mañana ponemos la mesa con productos frescos de la tierra costa blanca. El desayuno se sirve completo — los precios se indican cuando aplican por separado.<br>
-    <span style="font-size:0.85em; opacity:0.7">Each morning we set the table with fresh costa blanca produce. Breakfast is served as a complete experience — prices noted where individually available.</span>
+    Cada mañana ponemos la mesa con productos frescos de la tierra andaluza. El desayuno se sirve completo — los precios se indican cuando aplican por separado.<br>
+    <span style="font-size:0.85em; opacity:0.7">Each morning we set the table with fresh Andalusian produce. Breakfast is served as a complete experience — prices noted where individually available.</span>
   </p>
 
   <div class="menu-grid">
@@ -827,7 +928,7 @@
             <div class="menu-item-name-es">Ostras Frescas</div>
             <div class="menu-item-name-en">Fresh Oysters</div>
           </div>
-          <div class="menu-item-price">10 p.p.</div>
+          <div class="menu-item-price">incl.</div>
         </div>
         <div class="menu-item-desc">
           Gallegas Nº 3 · 2 piezas por persona · Vinagreta de chalotas · Limón de Murcia<br>
@@ -849,8 +950,8 @@
           <div class="menu-item-price">incl.</div>
         </div>
         <div class="menu-item-desc">
-          Pan de masa madre · Barra de pan · Coca de aceite de oliva virgen extra · Horneado cada mañana<br>
-          <em style="opacity:0.65">Sourdough · barra de pan · Olive oil flatbread · Baked fresh daily</em>
+          Pan de masa madre · Barra andaluza · Coca de aceite de oliva virgen extra · Horneado cada mañana<br>
+          <em style="opacity:0.65">Sourdough · Andalusian barra · Olive oil flatbread · Baked fresh daily</em>
         </div>
       </div>
     </div>
@@ -884,7 +985,7 @@
             <div class="menu-item-name-es">De Temporada</div>
             <div class="menu-item-name-en">Seasonal Selection</div>
           </div>
-          <div class="menu-item-price">9,5 .</div>
+          <div class="menu-item-price">incl.</div>
         </div>
         <div class="menu-item-desc">
           Frutas del mercado local · Zumos recién exprimidos · Granola de frutos secos andaluces<br>
@@ -960,11 +1061,11 @@
               </div>
               <div class="menu-item-price">4,50</div>
             </div>
-            <div class="menu-item-desc">Espresso · Cortado · Café con leche · Tueste propio<br><em style="opacity:0.65">House roast</em></div>
+            <div class="menu-item-desc">Espresso · Cortado · Café con leche · Tueste propio, Etiopía Yirgacheffe<br><em style="opacity:0.65">House roast, Ethiopia Yirgacheffe</em></div>
           </div>
         </div>
 
-        <div class="menu-item orderable" data-id="flat-white" data-name="Flat White / Cappuccino" data-sub="Flat White · Cappuccino" data-price="4.50">
+        <div class="menu-item orderable" data-id="flat-white" data-name="Flat White / Cappuccino" data-sub="Flat White · Cappuccino" data-price="5.50">
           <div class="add-hint">+ Añadir</div>
           <div class="menu-item-num">V</div>
           <div class="menu-item-body">
@@ -973,7 +1074,7 @@
                 <div class="menu-item-name-es">Flat White · Cappuccino</div>
                 <div class="menu-item-name-en">Flat White · Cappuccino</div>
               </div>
-              <div class="menu-item-price">4,50</div>
+              <div class="menu-item-price">5,50</div>
             </div>
             <div class="menu-item-desc">Leche fresca de granja · Técnica de microespuma · Fresh farm milk, microfoam</div>
           </div>
@@ -988,7 +1089,7 @@
         <div class="info-item">
           <span>Servicio</span>
           <strong>Todos los días</strong>
-          <span class="sub">Every morning · 8:00 – 14:30</span>
+          <span class="sub">Every morning · 8:00 – 11:30</span>
         </div>
         <div class="info-item">
           <span>Alergias e intolerancias</span>
@@ -1023,10 +1124,10 @@
       <span class="badge">Casa · House</span>
       <span class="region">Reims · Francia</span>
       <div class="name">Ruinart<br>Blanc de Blancs</div>
-      <div class="desc">Chardonnay 100% · dry, vivo, elegante · floral, crisp & elegant</div>
+      <div class="desc">Chardonnay 100% · Floral, vivo, elegante · Floral, crisp & elegant</div>
       <div class="price-row">
-        <span class="glass-price">15,—</span>
-        <span class="bottle-price">Botella · 130,—</span>
+        <span class="glass-price">22,—</span>
+        <span class="bottle-price">Botella · 145,—</span>
       </div>
     </div>
 
@@ -1157,10 +1258,93 @@
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <div class="page-footer">
-  <span>Costa blanca Villajoyosa · España</span>
-  <span>Todos los precios incluyen IVA · All prices include VAT · Terms and conditons apply</span>
+  <span>Costa de la Luz · España</span>
+  <span>Todos los precios incluyen IVA · All prices include VAT</span>
   <span>Temporada 2025</span>
 </div>
+
+</div><!-- /tab-menu -->
+
+<!-- TAB: CLEANING -->
+<div id="tab-cleaning" class="tab-page">
+
+  <div style="background:var(--charcoal);padding:52px 52px 40px;border-bottom:1px solid rgba(201,185,154,0.15);">
+    <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Servicio de Limpieza &nbsp;·&nbsp; Housekeeping</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Limpieza<br><em>& Confort</em></h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Seleccione lo que necesita y le atendemos enseguida.<br>Select what you need and we will be with you shortly.</p>
+  </div>
+
+  <div style="background:var(--cream);">
+    <button class="csvc-item" data-cid="towels" data-cname="Toallas Frescas" data-csub="Fresh Towels" data-cprice="0" onclick="toggleCleaning(this)">
+      <div class="csvc-check">&#10003;</div>
+      <div class="csvc-text">
+        <div class="csvc-name-es">Toallas Frescas</div>
+        <div class="csvc-name-en">Fresh Towels</div>
+        <div class="csvc-desc">Toallas de ba&ntilde;o &middot; Toallas de mano &middot; Bath &amp; hand towels</div>
+      </div>
+      <div class="csvc-price">Gratis</div>
+    </button>
+    <button class="csvc-item" data-cid="room-clean" data-cname="Limpieza de Habitacion" data-csub="Room Cleaning" data-cprice="0" onclick="toggleCleaning(this)">
+      <div class="csvc-check">&#10003;</div>
+      <div class="csvc-text">
+        <div class="csvc-name-es">Limpieza de Habitaci&oacute;n</div>
+        <div class="csvc-name-en">Room Cleaning</div>
+        <div class="csvc-desc">Limpieza completa &middot; Cambio de ropa de cama &middot; Full clean &amp; linen change</div>
+      </div>
+      <div class="csvc-price">Gratis</div>
+    </button>
+    <button class="csvc-item" data-cid="amenities" data-cname="Amenities Frescos" data-csub="Fresh Amenities" data-cprice="0" onclick="toggleCleaning(this)">
+      <div class="csvc-check">&#10003;</div>
+      <div class="csvc-text">
+        <div class="csvc-name-es">Amenities Frescos</div>
+        <div class="csvc-name-en">Fresh Amenities</div>
+        <div class="csvc-desc">Jab&oacute;n &middot; Champ&uacute; &middot; Gel de ducha &middot; Papel higi&eacute;nico</div>
+      </div>
+      <div class="csvc-price">Gratis</div>
+    </button>
+    <button class="csvc-item" data-cid="trash" data-cname="Retirada de Basura" data-csub="Trash Removal" data-cprice="0" onclick="toggleCleaning(this)">
+      <div class="csvc-check">&#10003;</div>
+      <div class="csvc-text">
+        <div class="csvc-name-es">Retirada de Basura</div>
+        <div class="csvc-name-en">Trash Removal</div>
+        <div class="csvc-desc">Recogida de residuos &middot; Room waste collection</div>
+      </div>
+      <div class="csvc-price">Gratis</div>
+    </button>
+  </div>
+
+  <div id="cleaning-form">
+    <span class="cf-label">Su Solicitud &nbsp;&middot;&nbsp; Your Request</span>
+    <div class="cf-title">Confirmar Pedido</div>
+    <div class="cf-tags" id="cf-tags"></div>
+    <div class="cf-total-row" id="cf-total-row" style="display:none; justify-content:space-between; align-items:baseline; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid rgba(201,185,154,0.15);">
+      <span style="font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(201,185,154,0.45); font-family:'Jost',sans-serif;">Total</span>
+      <span id="cf-total-amount" style="font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--warm-white);">—</span>
+    </div>
+    <div class="cf-row">
+      <div class="cf-group">
+        <label>Habitaci&oacute;n &middot; Room</label>
+        <input type="text" id="cf-room" placeholder="Ej: 3, Suite A..." maxlength="20" />
+      </div>
+      <div class="cf-group">
+        <label>Notas &middot; Notes</label>
+        <input type="text" id="cf-notes" placeholder="Special instructions..." maxlength="120" />
+      </div>
+    </div>
+    <div id="cf-status"></div>
+    <div class="cf-btns">
+      <button class="cf-btn-send" id="cf-send-btn" onclick="sendCleaning()">Solicitar &middot; Request</button>
+      <button class="cf-btn-clear" onclick="clearCleaning()">Limpiar</button>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Costa de la Luz &middot; Espa&ntilde;a</span>
+    <span>Servicio disponible &middot; 8:00 &ndash; 20:00</span>
+    <span>Temporada 2025</span>
+  </div>
+
+</div><!-- /tab-cleaning -->
 
 <!-- ═══════════ ORDER PANEL ═══════════ -->
 <div id="order-panel">
@@ -1295,8 +1479,8 @@
   // ══════════════════════════════════════════════
   // 🔧 PASTE YOUR TELEGRAM CREDENTIALS HERE
   // ══════════════════════════════════════════════
-  const TELEGRAM_TOKEN   = '8584786620:AAHELt19ROqLag6kcRR8tBV78DB46eZysxg';
-  const TELEGRAM_CHAT_ID = '5573110692';
+  const TELEGRAM_TOKEN   = 'PASTE_YOUR_BOT_TOKEN_HERE';
+  const TELEGRAM_CHAT_ID = 'PASTE_YOUR_CHAT_ID_HERE';
   // ══════════════════════════════════════════════
 
   const order = {};
@@ -1516,13 +1700,267 @@
     }
   }
 
-  // Wire up all orderable elements
-  document.querySelectorAll('.orderable').forEach(el => {
+
+  // TAB SWITCHING
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('tab-btn-' + tab).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // CLEANING SERVICE
+  const cleaningItems = {};
+
+  function toggleCleaning(el) {
+    const id = el.dataset.cid;
+    if (cleaningItems[id]) {
+      delete cleaningItems[id];
+      el.classList.remove('selected');
+    } else {
+      cleaningItems[id] = {
+        name: el.dataset.cname,
+        sub: el.dataset.csub,
+        price: parseFloat(el.dataset.cprice) || 0
+      };
+      el.classList.add('selected');
+    }
+    updateCleaningForm();
+  }
+
+  function getCleaningTotal() {
+    return Object.values(cleaningItems).reduce((sum, i) => sum + i.price, 0);
+  }
+
+  function updateCleaningForm() {
+    const form      = document.getElementById('cleaning-form');
+    const tags      = document.getElementById('cf-tags');
+    const totalRow  = document.getElementById('cf-total-row');
+    const totalAmt  = document.getElementById('cf-total-amount');
+    const keys      = Object.keys(cleaningItems);
+    if (keys.length === 0) { form.classList.remove('visible'); return; }
+    form.classList.add('visible');
+    tags.innerHTML = keys.map(id => {
+      const p = cleaningItems[id].price;
+      const priceLabel = p === 0 ? 'Gratis' : p.toFixed(2).replace('.', ',') + ' \u20AC';
+      return '<span class="cf-tag">' + cleaningItems[id].name + ' &nbsp;&middot;&nbsp; ' + priceLabel + '</span>';
+    }).join('');
+    const total = getCleaningTotal();
+    if (total > 0) {
+      totalRow.style.display = 'flex';
+      totalAmt.textContent = total.toFixed(2).replace('.', ',') + ' \u20AC';
+    } else {
+      totalRow.style.display = 'none';
+    }
+  }
+
+  function clearCleaning() {
+    Object.keys(cleaningItems).forEach(id => {
+      delete cleaningItems[id];
+      const el = document.querySelector('[data-cid="' + id + '"]');
+      if (el) el.classList.remove('selected');
+    });
+    const r = document.getElementById('cf-room'); if(r) r.value = '';
+    const n = document.getElementById('cf-notes'); if(n) n.value = '';
+    setCfStatus('', '');
+    updateCleaningForm();
+  }
+
+  function setCfStatus(msg, color) {
+    const el = document.getElementById('cf-status');
+    if (!el) return;
+    el.textContent = msg;
+    el.style.color = color || '';
+  }
+
+  async function sendCleaning() {
+    const keys = Object.keys(cleaningItems);
+    if (keys.length === 0) { setCfStatus('Seleccione al menos un servicio', '#c88a8a'); return; }
+    const room = document.getElementById('cf-room').value.trim();
+    if (!room) { setCfStatus('Por favor indique su habitacion - Please enter your room number', '#c88a8a'); document.getElementById('cf-room').focus(); return; }
+    if (TELEGRAM_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE') { setCfStatus('Telegram not configured', '#c88a8a'); return; }
+
+    const btn = document.getElementById('cf-send-btn');
+    btn.disabled = true; btn.style.background = '#6a7b5a'; btn.textContent = 'Enviando...';
+
+    const notes = document.getElementById('cf-notes').value.trim();
+    const now = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
+    const total = getCleaningTotal();
+    const lines = keys.map(id => {
+      const p = cleaningItems[id].price;
+      const priceStr = p === 0 ? 'Gratis' : p.toFixed(2).replace('.', ',') + ' \u20AC';
+      return '  - ' + cleaningItems[id].name + '   ' + priceStr;
+    }).join('\n');
+    let msg = '*LIMPIEZA - HOUSEKEEPING*\n';
+    msg += '---------------------\n';
+    msg += 'Habitacion: *' + room + '*\n';
+    msg += now + '\n';
+    msg += '---------------------\n';
+    msg += lines + '\n';
+    msg += '---------------------\n';
+    if (total > 0) msg += '*Total: ' + total.toFixed(2).replace('.', ',') + ' \u20AC*\n';
+    else msg += '*Total: Gratis*\n';
+    if (notes) msg += '\nNotas: _' + notes + '_\n';
+    msg += '\n_Costa de la Luz - Housekeeping_';
+
+    try {
+      const res = await fetch('https://api.telegram.org/bot' + TELEGRAM_TOKEN + '/sendMessage', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg, parse_mode: 'Markdown' })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        btn.style.background = '#4a6a3a'; btn.textContent = 'Enviado - Sent';
+        setCfStatus('Le atendemos cuanto antes - We will be with you shortly', '#8ac88a');
+        setTimeout(() => { clearCleaning(); btn.disabled = false; btn.style.background = 'var(--moss)'; btn.textContent = 'Solicitar - Request'; }, 5000);
+      } else { throw new Error(data.description); }
+    } catch(err) {
+      btn.disabled = false; btn.style.background = '#8a3a2a'; btn.textContent = 'Error - Reintentar';
+      setCfStatus('No se pudo enviar. Por favor llame a recepcion.', '#c88a8a');
+      setTimeout(() => { btn.style.background = 'var(--moss)'; btn.textContent = 'Solicitar - Request'; }, 4000);
+    }
+  }
+
+  // Wire up food/drink orderable elements
+  document.querySelectorAll('.orderable:not(.cleaning-item)').forEach(el => {
     el.addEventListener('click', function(e) {
       if (e.target.classList.contains('qty-btn')) return;
       addItem(this);
     });
   });
+
+  // ── CLEANING SERVICE ──
+  const cleaningSelected = {};
+
+  document.querySelectorAll('.cleaning-item').forEach(el => {
+    el.addEventListener('click', function() {
+      const id   = this.dataset.cid;
+      const name = this.dataset.cname;
+      const sub  = this.dataset.csub;
+
+      if (cleaningSelected[id]) {
+        delete cleaningSelected[id];
+        this.classList.remove('in-order');
+      } else {
+        cleaningSelected[id] = { name, sub };
+        this.classList.add('in-order');
+      }
+      renderCleaning();
+    });
+  });
+
+  function renderCleaning() {
+    const panel = document.getElementById('cleaning-panel');
+    const list  = document.getElementById('cleaning-selected-list');
+    const keys  = Object.keys(cleaningSelected);
+
+    if (keys.length === 0) {
+      panel.style.display = 'none';
+      return;
+    }
+
+    panel.style.display = 'block';
+    list.innerHTML = keys.map(id => `
+      <div style="display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid rgba(201,185,154,0.1);">
+        <span style="color:var(--moss); font-size:14px;">✓</span>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--warm-white);">${cleaningSelected[id].name}</div>
+          <div style="font-size:10px; letter-spacing:0.15em; color:rgba(201,185,154,0.4); text-transform:uppercase;">${cleaningSelected[id].sub}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function clearCleaning() {
+    Object.keys(cleaningSelected).forEach(id => {
+      delete cleaningSelected[id];
+      const el = document.querySelector(`[data-cid="${id}"]`);
+      if (el) el.classList.remove('in-order');
+    });
+    document.getElementById('cleaning-room').value  = '';
+    document.getElementById('cleaning-notes').value = '';
+    setCleaningStatus('', '');
+    renderCleaning();
+  }
+
+  function setCleaningStatus(msg, color) {
+    const el = document.getElementById('cleaning-status');
+    el.textContent  = msg;
+    el.style.color  = color;
+  }
+
+  async function sendCleaningRequest() {
+    const keys = Object.keys(cleaningSelected);
+    if (keys.length === 0) {
+      setCleaningStatus('Seleccione al menos un servicio · Select at least one service', '#c88a8a');
+      return;
+    }
+
+    const room = document.getElementById('cleaning-room').value.trim();
+    if (!room) {
+      setCleaningStatus('Por favor, indique su habitación · Please enter your room number', '#c88a8a');
+      document.getElementById('cleaning-room').focus();
+      return;
+    }
+
+    if (TELEGRAM_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE') {
+      setCleaningStatus('⚠️ Telegram not configured', '#c88a8a');
+      return;
+    }
+
+    const btn = document.getElementById('btn-cleaning-send');
+    btn.disabled    = true;
+    btn.style.background = '#6a7b5a';
+    btn.textContent = 'Enviando…';
+
+    const notes = document.getElementById('cleaning-notes').value.trim();
+    const now   = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
+    const lines = keys.map(id => `  🧹 ${cleaningSelected[id].name}`).join('\n');
+
+    let msg = `🧹 *LIMPIEZA · HOUSEKEEPING REQUEST*\n`;
+    msg += `─────────────────────\n`;
+    msg += `🏠 Habitación: *${room}*\n`;
+    msg += `🕐 ${now}\n`;
+    msg += `─────────────────────\n`;
+    msg += `${lines}\n`;
+    msg += `─────────────────────\n`;
+    if (notes) msg += `\n📝 Notas: _${notes}_\n`;
+    msg += `\n_Costa de la Luz · Housekeeping_`;
+
+    try {
+      const res  = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg, parse_mode: 'Markdown' })
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        btn.style.background = '#4a6a3a';
+        btn.textContent      = '✓ Solicitud Enviada · Sent';
+        setCleaningStatus('Le atendemos cuanto antes. We will be with you shortly.', '#8ac88a');
+
+        setTimeout(() => {
+          clearCleaning();
+          btn.disabled         = false;
+          btn.style.background = 'var(--moss)';
+          btn.textContent      = 'Solicitar · Request';
+        }, 5000);
+      } else {
+        throw new Error(data.description);
+      }
+    } catch(err) {
+      btn.disabled         = false;
+      btn.style.background = '#8a3a2a';
+      btn.textContent      = 'Error — Reintentar · Retry';
+      setCleaningStatus('No se pudo enviar. Por favor llame a recepción.\nCould not send. Please call reception.', '#c88a8a');
+      setTimeout(() => {
+        btn.style.background = 'var(--moss)';
+        btn.textContent      = 'Solicitar · Request';
+      }, 4000);
+    }
+  }
 </script>
 </body>
 </html>
