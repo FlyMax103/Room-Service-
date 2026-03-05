@@ -1743,7 +1743,7 @@
     form.classList.add('visible');
     tags.innerHTML = keys.map(id => {
       const p = cleaningItems[id].price;
-      const priceLabel = p === 0 ? 'Gratis' : p.toFixed(2).replace('.', ',') + ' \u20AC';
+      const priceLabel = p === 0 ? '55' : p.toFixed(2).replace('.', ',') + ' \u20AC';
       return '<span class="cf-tag">' + cleaningItems[id].name + ' &nbsp;&middot;&nbsp; ' + priceLabel + '</span>';
     }).join('');
     const total = getCleaningTotal();
@@ -1789,7 +1789,7 @@
     const total = getCleaningTotal();
     const lines = keys.map(id => {
       const p = cleaningItems[id].price;
-      const priceStr = p === 0 ? 'Gratis' : p.toFixed(2).replace('.', ',') + ' \u20AC';
+      const priceStr = p === 0 ? '150' : p.toFixed(2).replace('.', ',') + ' \u20AC';
       return '  - ' + cleaningItems[id].name + '   ' + priceStr;
     }).join('\n');
     let msg = '*LIMPIEZA - HOUSEKEEPING*\n';
