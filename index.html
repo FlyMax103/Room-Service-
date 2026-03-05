@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desayuno con Champán</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FDFAF7;
+    --bark: #5C4A35;
+    --moss: #7A8B6A;
+    --sand: #C9B99A;
+    --charcoal: #2A2520;
+    --light-line: #E2D9CE;
+    --accent: #8B6E4E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 40px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(90,70,50,0.45) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(122,139,106,0.18) 0%, transparent 50%);
+  }
+
+  .cover-ornament {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+  .cover-ornament::before {
+    content: '';
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px;
+    border: 1px solid rgba(201,185,154,0.25);
+  }
+  .cover-ornament::after {
+    content: '';
+    position: absolute;
+    top: 38px; left: 38px; right: 38px; bottom: 38px;
+    border: 1px solid rgba(201,185,154,0.1);
+  }
+
+  .cover-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 560px;
+  }
+
+  .cover-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 52px;
+  }
+
+  /* olive branch SVG in cover */
+  .cover-olive {
+    margin: 0 auto 28px;
+    opacity: 0.28;
+    display: block;
+    width: 62px;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(60px, 10vw, 92px);
+    color: var(--warm-white);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--sand);
+    display: block;
+    font-size: 0.52em;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    margin-top: 10px;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--sand);
+    margin: 40px auto;
+    opacity: 0.55;
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 19px;
+    color: rgba(253,250,247,0.6);
+    line-height: 1.65;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 48px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 60px;
+    z-index: 2;
+  }
+  .cover-footer span {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.45);
+  }
+
+  /* ── PAGES ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--light-line);
+  }
+  .page:last-of-type { border-bottom: none; }
+
+  .section-number {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 400;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 42px;
+    color: var(--bark);
+    line-height: 1.1;
+    margin-bottom: 36px;
+    letter-spacing: -0.01em;
+  }
+  .section-title em { font-style: italic; }
+
+  .intro-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--charcoal);
+    max-width: 600px;
+    margin-bottom: 48px;
+    padding-left: 24px;
+    border-left: 2px solid var(--sand);
+  }
+
+  /* ── MENU ITEMS GRID ── */
+  .menu-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--light-line);
+    border: 1px solid var(--light-line);
+    margin-bottom: 40px;
+  }
+
+  .menu-item {
+    background: var(--warm-white);
+    padding: 26px 32px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .menu-item-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  .menu-item-body { flex: 1; }
+
+  .menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+
+  .menu-item-name-es {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--bark);
+    line-height: 1.1;
+  }
+
+  .menu-item-name-en {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .menu-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--bark);
+    white-space: nowrap;
+  }
+
+  .menu-item-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #5a5048;
+    margin-top: 4px;
+  }
+
+  .menu-item-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--accent);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── STEPS GRID ── */
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .step {
+    background: var(--warm-white);
+    padding: 28px 28px 28px 24px;
+    border-top: 2px solid var(--bark);
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 46px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .step-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .step-desc { font-size: 14px; color: var(--charcoal); line-height: 1.6; }
+
+  /* ── INFO BLOCK (dark) ── */
+  .info-block {
+    background: var(--charcoal);
+    color: var(--warm-white);
+    padding: 36px 36px 36px 32px;
+    border-left: 3px solid var(--sand);
+  }
+
+  .info-block .label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sand);
+    font-weight: 400;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .info-block .info-item { margin-bottom: 22px; }
+  .info-block .info-item:last-child { margin-bottom: 0; }
+
+  .info-block .info-item span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.55);
+    margin-bottom: 5px;
+  }
+
+  .info-block .info-item strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--warm-white);
+    letter-spacing: 0.04em;
+    display: block;
+  }
+
+  .info-block .info-item .sub {
+    font-size: 12px;
+    color: rgba(201,185,154,0.45);
+    line-height: 1.6;
+    margin-top: 4px;
+    display: block;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* ── RULE ── */
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 44px 0;
+  }
+  .rule::before, .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--light-line);
+  }
+  .rule-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--sand);
+    transform: rotate(45deg);
+  }
+
+  /* ── HIGHLIGHT ── */
+  .highlight {
+    background: rgba(122,139,106,0.1);
+    border-left: 3px solid var(--moss);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+  .highlight strong { color: var(--bark); }
+
+  /* ── PRICE TAG STRIP ── */
+  .price-note {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 400;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--light-line);
+  }
+
+  /* ── BOTTLE CARDS ── */
+  .bottle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .bottle-card {
+    background: var(--charcoal);
+    padding: 28px 26px;
+    position: relative;
+    border-bottom: 2px solid var(--sand);
+  }
+
+  .bottle-card .region {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.5);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .bottle-card .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .bottle-card .desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(201,185,154,0.5);
+    margin-bottom: 14px;
+  }
+
+  .bottle-card .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .bottle-card .glass-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--sand);
+  }
+
+  .bottle-card .bottle-price {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.4);
+  }
+
+  .bottle-card .badge {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    text-align: center;
+    padding: 36px 60px;
+    background: var(--charcoal);
+    color: rgba(201,185,154,0.45);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 48px 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; gap: 36px; }
+    .bottle-grid { grid-template-columns: 1fr; }
+    .cover-footer { padding: 0 24px; }
+    .cover-title { font-size: 52px; }
+    .menu-item-header { flex-wrap: wrap; }
+  }
+
+  /* ── ORDER SYSTEM ── */
+  .orderable {
+    cursor: pointer;
+    transition: background 0.18s ease, box-shadow 0.18s ease;
+    position: relative;
+    user-select: none;
+  }
+  .orderable:hover {
+    background: #f5f0e8;
+    box-shadow: inset 3px 0 0 var(--sand);
+  }
+  .orderable.in-order {
+    background: rgba(201,185,154,0.12);
+    box-shadow: inset 3px 0 0 var(--bark);
+  }
+  .orderable .add-hint {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+  }
+  .orderable:hover .add-hint { opacity: 1; }
+  .orderable.in-order .add-hint { opacity: 0; }
+
+  /* bottle cards orderable */
+  .bottle-card.orderable:hover {
+    box-shadow: inset 0 -3px 0 var(--sand), 0 0 0 1px rgba(201,185,154,0.3);
+    background: #2f2b26;
+  }
+  .bottle-card.orderable.in-order {
+    box-shadow: inset 0 -3px 0 var(--sand), 0 0 0 1px rgba(201,185,154,0.5);
+    background: #35302a;
+  }
+  .bottle-card .add-hint { color: rgba(201,185,154,0.6); }
+
+  /* ── ORDER PANEL ── */
+  #order-panel {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 340px;
+    background: var(--charcoal);
+    border-left: 3px solid var(--sand);
+    box-shadow: 0 8px 48px rgba(0,0,0,0.35);
+    z-index: 1000;
+    transform: translateY(calc(100% + 40px));
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+  #order-panel.visible {
+    transform: translateY(0);
+  }
+
+  .order-panel-head {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid rgba(201,185,154,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .order-panel-head .title {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sand);
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+  }
+  .order-panel-head .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-white);
+    display: block;
+    margin-top: 2px;
+  }
+  .order-close {
+    background: none;
+    border: none;
+    color: rgba(201,185,154,0.5);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .order-close:hover { color: var(--sand); }
+
+  .order-items {
+    overflow-y: auto;
+    flex: 1;
+    padding: 8px 0;
+  }
+
+  .order-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    border-bottom: 1px solid rgba(201,185,154,0.08);
+  }
+  .order-row:last-child { border-bottom: none; }
+
+  .order-row-name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--warm-white);
+    line-height: 1.3;
+  }
+  .order-row-name .sub {
+    display: block;
+    font-size: 10px;
+    color: rgba(201,185,154,0.4);
+    margin-top: 1px;
+    letter-spacing: 0.05em;
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .qty-btn {
+    background: rgba(201,185,154,0.12);
+    border: none;
+    color: var(--sand);
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.12s;
+    font-family: 'Jost', sans-serif;
+  }
+  .qty-btn:hover { background: rgba(201,185,154,0.25); }
+  .qty-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--warm-white);
+    min-width: 16px;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .order-row-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--sand);
+    min-width: 48px;
+    text-align: right;
+  }
+
+  .order-empty {
+    padding: 28px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(201,185,154,0.35);
+    text-align: center;
+  }
+
+  .order-footer {
+    border-top: 1px solid rgba(201,185,154,0.2);
+    padding: 16px 24px 20px;
+    flex-shrink: 0;
+  }
+  .order-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .order-total-label {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.5);
+    font-family: 'Jost', sans-serif;
+  }
+  .order-total-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--warm-white);
+  }
+  .order-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-print {
+    flex: 1;
+    background: var(--sand);
+    border: none;
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-print:hover { background: #d4c4a4; }
+  .btn-clear {
+    background: rgba(201,185,154,0.1);
+    border: 1px solid rgba(201,185,154,0.2);
+    color: rgba(201,185,154,0.5);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-clear:hover { color: var(--sand); border-color: rgba(201,185,154,0.4); }
+
+  /* ── ORDER TRIGGER BUBBLE ── */
+  #order-bubble {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bark);
+    border: 1px solid var(--sand);
+    color: var(--warm-white);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.2s ease, background 0.15s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    flex-direction: column;
+    gap: 2px;
+  }
+  #order-bubble:hover { transform: scale(1.08); background: #6b5840; }
+  #order-bubble .bubble-icon { font-size: 20px; line-height: 1; }
+  #order-bubble .bubble-count {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--sand);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+  }
+  #order-bubble.hidden { display: none; }
+  #order-panel.visible ~ #order-bubble { display: none; }
+
+  /* ── PRINT ORDER ── */
+  @media print {
+    body > *:not(#print-order) { display: none !important; }
+    #print-order {
+      display: block !important;
+      padding: 40px;
+      font-family: 'Jost', sans-serif;
+    }
+  }
+  #print-order { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+  <div class="cover-ornament"></div>
+  <div class="cover-inner">
+    <p class="cover-label">Costa de la Luz &nbsp;·&nbsp; Andalucía &nbsp;·&nbsp; España</p>
+
+    <svg class="cover-olive" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 60 Q40 34 22 20" stroke="#C9B99A" stroke-width="1.3" fill="none"/>
+      <path d="M40 60 Q40 34 58 20" stroke="#C9B99A" stroke-width="1.3" fill="none"/>
+      <ellipse cx="19" cy="16" rx="6" ry="9" fill="#C9B99A" transform="rotate(-22 19 16)"/>
+      <ellipse cx="28" cy="8" rx="5" ry="8" fill="#C9B99A" transform="rotate(-10 28 8)"/>
+      <ellipse cx="61" cy="16" rx="6" ry="9" fill="#C9B99A" transform="rotate(22 61 16)"/>
+      <ellipse cx="52" cy="8" rx="5" ry="8" fill="#C9B99A" transform="rotate(10 52 8)"/>
+      <ellipse cx="40" cy="4" rx="5" ry="8" fill="#C9B99A"/>
+    </svg>
+
+    <h1 class="cover-title">
+      Desayuno
+      <em>con Champán</em>
+    </h1>
+    <div class="cover-divider"></div>
+    <p class="cover-subtitle">
+      Una celebración al amanecer.<br>
+      A morning celebration at the table.
+    </p>
+  </div>
+  <div class="cover-footer">
+    <span>Menú · Menu</span>
+    <span>Temporada 2025</span>
+  </div>
+</div>
+
+<!-- ═══════════ 01 — EL DESAYUNO ═══════════ -->
+<div class="page">
+  <span class="section-number">01 — El Desayuno · The Breakfast</span>
+  <h2 class="section-title">La<br><em>Mesa</em></h2>
+
+  <p class="intro-text">
+    Cada mañana ponemos la mesa con productos frescos de la tierra andaluza. El desayuno se sirve completo — los precios se indican cuando aplican por separado.<br>
+    <span style="font-size:0.85em; opacity:0.7">Each morning we set the table with fresh Andalusian produce. Breakfast is served as a complete experience — prices noted where individually available.</span>
+  </p>
+
+  <div class="menu-grid">
+    <div class="menu-item orderable" data-id="ostras" data-name="Ostras Frescas" data-sub="Fresh Oysters" data-price="0">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">I</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-es">Ostras Frescas</div>
+            <div class="menu-item-name-en">Fresh Oysters</div>
+          </div>
+          <div class="menu-item-price">incl.</div>
+        </div>
+        <div class="menu-item-desc">
+          Gallegas Nº 3 · 2 piezas por persona · Vinagreta de chalotas · Limón de Murcia<br>
+          <em style="opacity:0.65">2 pieces per person · Shallot vinaigrette · Murcia lemon</em>
+        </div>
+        <span class="menu-item-note">Abiertas al momento, servidas sobre hielo picado · Opened to order, on crushed ice</span>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="pan" data-name="Pan Artesano" data-sub="Artisan Oven Bread" data-price="0">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">II</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-es">Pan Artesano del Horno</div>
+            <div class="menu-item-name-en">Artisan Oven Bread</div>
+          </div>
+          <div class="menu-item-price">incl.</div>
+        </div>
+        <div class="menu-item-desc">
+          Pan de masa madre · Barra andaluza · Coca de aceite de oliva virgen extra · Horneado cada mañana<br>
+          <em style="opacity:0.65">Sourdough · Andalusian barra · Olive oil flatbread · Baked fresh daily</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="acomp" data-name="Acompañamientos & Untables" data-sub="Accompaniments & Spreads" data-price="0">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">III</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-es">Acompañamientos & Untables</div>
+            <div class="menu-item-name-en">Accompaniments & Spreads</div>
+          </div>
+          <div class="menu-item-price">incl.</div>
+        </div>
+        <div class="menu-item-desc">
+          Tomate rallado con aceite virgen extra · Mantequilla de hierbas · Miel de azahar · Mermeladas de temporada<br>
+          Jamón ibérico de bellota · Queso manchego curado · Salmón ahumado del Cantábrico<br>
+          Crema de aguacate · Sobrasada mallorquina · Queso fresco con cebollino<br>
+          <em style="opacity:0.6">Grated tomato with extra virgin olive oil · Herb butter · Orange blossom honey · Seasonal jams · Iberian acorn ham · Aged manchego · Cantabrian smoked salmon · Avocado cream · Sobrasada · Fresh cheese with chives</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="temp" data-name="De Temporada" data-sub="Seasonal Selection" data-price="0">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">IV</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-es">De Temporada</div>
+            <div class="menu-item-name-en">Seasonal Selection</div>
+          </div>
+          <div class="menu-item-price">incl.</div>
+        </div>
+        <div class="menu-item-desc">
+          Frutas del mercado local · Zumos recién exprimidos · Granola de frutos secos andaluces<br>
+          <em style="opacity:0.65">Local market fruits · Freshly pressed juices · Andalusian nut granola</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 02 — TÉ & CAFÉ ═══════════ -->
+<div class="page">
+  <div class="two-col">
+    <div>
+      <span class="section-number">02 — Té & Café · Tea & Coffee</span>
+      <h2 class="section-title">Infusiones<br><em>& Café</em></h2>
+
+      <div class="menu-grid">
+        <div class="menu-item orderable" data-id="tea-hierbas" data-name="Té Andaluz de Hierbas" data-sub="Andalusian Herbal Tea" data-price="5.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">I</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Té Andaluz de Hierbas</div>
+                <div class="menu-item-name-en">Andalusian Herbal Tea</div>
+              </div>
+              <div class="menu-item-price">5,50</div>
+            </div>
+            <div class="menu-item-desc">Manzanilla · Poleo · Cantueso · Menta fresca · Ecológico</div>
+            <span class="menu-item-note">Hierbas de nuestra huerta · From our kitchen garden</span>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="tea-sencha" data-name="Té Verde Sencha" data-sub="Sencha Green Tea" data-price="6.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">II</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Té Verde Sencha</div>
+                <div class="menu-item-name-en">Sencha Green Tea</div>
+              </div>
+              <div class="menu-item-price">6,50</div>
+            </div>
+            <div class="menu-item-desc">Uji, Japón · Origen único · Vegetal y fresco · Single origin, vegetal & fresh</div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="tea-earl" data-name="Earl Grey Imperial" data-sub="Earl Grey Imperial" data-price="6">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">III</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Earl Grey Imperial</div>
+                <div class="menu-item-name-en">Earl Grey Imperial</div>
+              </div>
+              <div class="menu-item-price">6,—</div>
+            </div>
+            <div class="menu-item-desc">Bergamota · Té negro · Con limón y leche fría · Bergamot, black tea, lemon & cold milk</div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="cafe-esp" data-name="Café de Especialidad" data-sub="Specialty Coffee" data-price="4.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">IV</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Café de Especialidad</div>
+                <div class="menu-item-name-en">Specialty Coffee</div>
+              </div>
+              <div class="menu-item-price">4,50</div>
+            </div>
+            <div class="menu-item-desc">Espresso · Cortado · Café con leche · Tueste propio, Etiopía Yirgacheffe<br><em style="opacity:0.65">House roast, Ethiopia Yirgacheffe</em></div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="flat-white" data-name="Flat White / Cappuccino" data-sub="Flat White · Cappuccino" data-price="5.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">V</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Flat White · Cappuccino</div>
+                <div class="menu-item-name-en">Flat White · Cappuccino</div>
+              </div>
+              <div class="menu-item-price">5,50</div>
+            </div>
+            <div class="menu-item-desc">Leche fresca de granja · Técnica de microespuma · Fresh farm milk, microfoam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right col: note -->
+    <div>
+      <div class="info-block" style="margin-top: 72px;">
+        <span class="label">Nota de la Casa · House Note</span>
+        <div class="info-item">
+          <span>Servicio</span>
+          <strong>Todos los días</strong>
+          <span class="sub">Every morning · 8:00 – 11:30</span>
+        </div>
+        <div class="info-item">
+          <span>Alergias e intolerancias</span>
+          <strong>Infórmenos</strong>
+          <span class="sub">Please inform us of any allergies or dietary requirements before ordering.</span>
+        </div>
+        <div class="info-item">
+          <span>Pedidos especiales</span>
+          <strong>Con gusto</strong>
+          <span class="sub">We are happy to accommodate special requests wherever possible.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 03 — CHAMPÁN · COPAS ═══════════ -->
+<div class="page">
+  <span class="section-number">03 — Carta de Bebidas · Drinks Menu · Disponible por Separado · Separately Available</span>
+  <h2 class="section-title">Champán<br><em>& Cava</em></h2>
+
+  <p class="intro-text">
+    Nuestra selección de champanes y cavas se sirve por separado — por copa o botella. Recomendamos comenzar con nuestra selección de la casa.<br>
+    <span style="font-size:0.85em; opacity:0.7">Our champagne and cava selection is available separately — by the glass or bottle. We recommend beginning with our house selection.</span>
+  </p>
+
+  <div class="price-note">Precios por copa 0,1 l · Prices per glass 0.1 l</div>
+
+  <div class="bottle-grid">
+    <div class="bottle-card orderable" data-id="ruinart" data-name="Ruinart Blanc de Blancs" data-sub="Copa 0,1 l" data-price="22">
+      <div class="add-hint">+ Añadir</div>
+      <span class="badge">Casa · House</span>
+      <span class="region">Reims · Francia</span>
+      <div class="name">Ruinart<br>Blanc de Blancs</div>
+      <div class="desc">Chardonnay 100% · Floral, vivo, elegante · Floral, crisp & elegant</div>
+      <div class="price-row">
+        <span class="glass-price">22,—</span>
+        <span class="bottle-price">Botella · 145,—</span>
+      </div>
+    </div>
+
+    <div class="bottle-card orderable" data-id="moet" data-name="Moët & Chandon Impérial" data-sub="Copa 0,1 l" data-price="18">
+      <div class="add-hint">+ Añadir</div>
+      <span class="region">Épernay · Francia</span>
+      <div class="name">Moët & Chandon<br>Impérial Brut</div>
+      <div class="desc">Pinot Noir, Chardonnay, Meunier · Tostado y clásico · Toasty & classic</div>
+      <div class="price-row">
+        <span class="glass-price">18,—</span>
+        <span class="bottle-price">Botella · 118,—</span>
+      </div>
+    </div>
+
+    <div class="bottle-card orderable" data-id="gramona" data-name="Gramona Imperial Gran Reserva" data-sub="Copa 0,1 l" data-price="16">
+      <div class="add-hint">+ Añadir</div>
+      <span class="badge">España</span>
+      <span class="region">Penedès · Cataluña</span>
+      <div class="name">Gramona Imperial<br>Gran Reserva</div>
+      <div class="desc">Xarel·lo, Macabeo, Parellada · 60 meses de crianza · 60 months aged</div>
+      <div class="price-row">
+        <span class="glass-price">16,—</span>
+        <span class="bottle-price">Botella · 95,—</span>
+      </div>
+    </div>
+
+    <div class="bottle-card orderable" data-id="polroger" data-name="Pol Roger Rosé Vintage" data-sub="Copa 0,1 l" data-price="26">
+      <div class="add-hint">+ Añadir</div>
+      <span class="region">Champagne · Francia</span>
+      <div class="name">Pol Roger<br>Rosé Vintage</div>
+      <div class="desc">Fresa delicada · Burbuja muy fina · Delicate strawberry, fine bubbles</div>
+      <div class="price-row">
+        <span class="glass-price">26,—</span>
+        <span class="bottle-price">Bajo pedido</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Prestige —</strong> Krug Grande Cuvée · 0,75 l · Para momentos únicos · For singular moments.<br>
+    <span style="opacity:0.7; font-size:0.9em">320,— · Se ruega reserva previa · Available upon prior request.</span>
+  </div>
+</div>
+
+<!-- ═══════════ 04 — SIN ALCOHOL ═══════════ -->
+<div class="page">
+  <div class="two-col">
+    <div>
+      <span class="section-number">04 — Sin Alcohol · Non-Alcoholic</span>
+      <h2 class="section-title">Bebidas<br><em>Frescas</em></h2>
+
+      <div class="menu-grid">
+        <div class="menu-item orderable" data-id="zumo" data-name="Zumo de Naranja de Valencia" data-sub="Valencia Orange Juice" data-price="6.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">I</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Zumo de Naranja de Valencia</div>
+                <div class="menu-item-name-en">Valencia Orange Juice</div>
+              </div>
+              <div class="menu-item-price">6,50</div>
+            </div>
+            <div class="menu-item-desc">Exprimido al momento · 0,2 l · Freshly squeezed</div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="agua" data-name="Agua Mineral Solán de Cabras" data-sub="Mineral Water" data-price="4">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">II</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Agua Mineral Solán de Cabras</div>
+                <div class="menu-item-name-en">Mineral Water</div>
+              </div>
+              <div class="menu-item-price">4,—</div>
+            </div>
+            <div class="menu-item-desc">Sin gas o con gas · 0,33 l · Still or sparkling</div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="bellini" data-name="Bellini Andaluz 0,0%" data-sub="Non-Alcoholic Bellini" data-price="9">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">III</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-es">Bellini Andaluz 0,0%</div>
+                <div class="menu-item-name-en">Andalusian Non-Alcoholic Bellini</div>
+              </div>
+              <div class="menu-item-price">9,—</div>
+            </div>
+            <div class="menu-item-desc">
+              Melocotón blanco de Jaén · Agua de azahar · Cava 0,0% · Receta de la casa<br>
+              <em style="opacity:0.65">White peach from Jaén · Orange blossom water · 0% cava · House recipe</em>
+            </div>
+            <span class="menu-item-note">Recomendación para no bebedores de alcohol · Recommended for non-drinkers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Champagne pairing note -->
+    <div>
+      <div style="margin-top: 72px;">
+        <div class="steps" style="grid-template-columns: 1fr; gap: 16px;">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-label">Maridaje · Pairing</div>
+            <div class="step-desc">Las ostras maridan perfectamente con el Ruinart Blanc de Blancs — nuestra recomendación de la casa.<br><em style="opacity:0.65">Oysters pair perfectly with Ruinart Blanc de Blancs — our house recommendation.</em></div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-label">Cava Español · Spanish Cava</div>
+            <div class="step-desc">El Gramona Imperial es nuestro orgullo local — 60 meses de crianza en Penedès.<br><em style="opacity:0.65">Gramona Imperial is our local pride — 60 months aged in Penedès.</em></div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-label">Reservas · Reservations</div>
+            <div class="step-desc">Para botellas de prestigio o solicitudes especiales, rogamos aviso previo.<br><em style="opacity:0.65">For prestige bottles or special requests, please notify us in advance.</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="page-footer">
+  <span>Costa de la Luz · España</span>
+  <span>Todos los precios incluyen IVA · All prices include VAT</span>
+  <span>Temporada 2025</span>
+</div>
+
+<!-- ═══════════ ORDER PANEL ═══════════ -->
+<div id="order-panel">
+  <div class="order-panel-head">
+    <div>
+      <span class="title">Su Pedido · Your Order</span>
+      <span class="subtitle">Room Service</span>
+    </div>
+    <button class="order-close" onclick="closePanel()" title="Minimizar">✕</button>
+  </div>
+
+  <!-- Room number + notes -->
+  <div class="order-meta">
+    <div class="order-meta-field">
+      <label for="room-number">🏠 Habitación · Room</label>
+      <input type="text" id="room-number" placeholder="Ej: 3, Suite A…" maxlength="20" />
+    </div>
+    <div class="order-meta-field">
+      <label for="order-notes">📝 Notas · Notes</label>
+      <input type="text" id="order-notes" placeholder="Allergies, special requests…" maxlength="120" />
+    </div>
+  </div>
+
+  <div class="order-items" id="order-items">
+    <div class="order-empty" id="order-empty">Seleccione artículos del menú<br><span style="font-size:0.85em; opacity:0.6">Click any item to add it here</span></div>
+  </div>
+
+  <div class="order-footer">
+    <div class="order-total-row">
+      <span class="order-total-label">Total</span>
+      <span class="order-total-amount" id="order-total">0,00 €</span>
+    </div>
+    <!-- Status message -->
+    <div id="send-status"></div>
+    <div class="order-actions">
+      <button class="btn-send" id="btn-send" onclick="sendOrder()">
+        <span id="btn-send-text">Enviar Pedido · Send Order</span>
+      </button>
+      <button class="btn-clear" onclick="clearOrder()">Limpiar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating bubble -->
+<div id="order-bubble" class="hidden" onclick="openPanel()">
+  <span class="bubble-icon">🛎</span>
+  <span class="bubble-count" id="bubble-count">0 items</span>
+</div>
+
+<!-- Print-only fallback -->
+<div id="print-order"></div>
+
+<style>
+  /* ── META FIELDS (room + notes) ── */
+  .order-meta {
+    padding: 12px 24px 4px;
+    border-bottom: 1px solid rgba(201,185,154,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .order-meta-field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .order-meta-field label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.5);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+  }
+  .order-meta-field input {
+    background: rgba(201,185,154,0.08);
+    border: 1px solid rgba(201,185,154,0.18);
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 7px 10px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+  .order-meta-field input::placeholder { color: rgba(201,185,154,0.25); }
+  .order-meta-field input:focus { border-color: rgba(201,185,154,0.5); }
+
+  /* ── SEND BUTTON ── */
+  .btn-send {
+    flex: 1;
+    background: var(--moss);
+    border: none;
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .btn-send:hover { background: #8a9b7a; }
+  .btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-send.sending { background: #6a7b5a; }
+  .btn-send.success { background: #4a6a3a; }
+  .btn-send.error { background: #8a3a2a; }
+
+  /* ── STATUS ── */
+  #send-status {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    min-height: 0;
+    transition: all 0.2s;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+  #send-status.success { color: #8ac88a; }
+  #send-status.error { color: #c88a8a; }
+  #send-status.info { color: rgba(201,185,154,0.6); font-style: italic; }
+</style>
+
+<script>
+  // ══════════════════════════════════════════════
+  // 🔧 PASTE YOUR TELEGRAM CREDENTIALS HERE
+  // ══════════════════════════════════════════════
+  const TELEGRAM_TOKEN   = 'PASTE_YOUR_BOT_TOKEN_HERE';
+  const TELEGRAM_CHAT_ID = 'PASTE_YOUR_CHAT_ID_HERE';
+  // ══════════════════════════════════════════════
+
+  const order = {};
+
+  function formatPrice(p) {
+    if (p === 0) return 'incl.';
+    return p.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function getTotal() {
+    return Object.values(order).reduce((sum, i) => sum + i.price * i.qty, 0);
+  }
+
+  function getTotalCount() {
+    return Object.values(order).reduce((sum, i) => sum + i.qty, 0);
+  }
+
+  function renderOrder() {
+    const container   = document.getElementById('order-items');
+    const empty       = document.getElementById('order-empty');
+    const totalEl     = document.getElementById('order-total');
+    const bubbleCount = document.getElementById('bubble-count');
+    const keys        = Object.keys(order);
+
+    bubbleCount.textContent = getTotalCount() + ' item' + (getTotalCount() !== 1 ? 's' : '');
+
+    if (keys.length === 0) {
+      empty.style.display = 'block';
+      totalEl.textContent = '0,00 €';
+      document.getElementById('order-bubble').classList.add('hidden');
+      return;
+    }
+
+    empty.style.display = 'none';
+    document.getElementById('order-bubble').classList.remove('hidden');
+
+    Array.from(container.querySelectorAll('.order-row')).forEach(r => r.remove());
+
+    keys.forEach(id => {
+      const item = order[id];
+      const row = document.createElement('div');
+      row.className = 'order-row';
+      row.innerHTML = `
+        <div class="order-row-name">
+          ${item.name}
+          <span class="sub">${item.sub}</span>
+        </div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('${id}', -1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${id}', 1)">+</button>
+        </div>
+        <div class="order-row-price">${item.price === 0 ? 'incl.' : formatPrice(item.price * item.qty)}</div>
+      `;
+      container.insertBefore(row, container.querySelector('.order-empty'));
+    });
+
+    const total = getTotal();
+    totalEl.textContent = total === 0 ? '—' : total.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function addItem(el) {
+    const { id, name, sub, price: priceStr } = el.dataset;
+    const price = parseFloat(priceStr);
+    if (order[id]) {
+      order[id].qty += 1;
+    } else {
+      order[id] = { name, sub, price, qty: 1 };
+      el.classList.add('in-order');
+    }
+    openPanel();
+    renderOrder();
+  }
+
+  function changeQty(id, delta) {
+    if (!order[id]) return;
+    order[id].qty += delta;
+    if (order[id].qty <= 0) {
+      delete order[id];
+      const el = document.querySelector(`[data-id="${id}"]`);
+      if (el) el.classList.remove('in-order');
+    }
+    renderOrder();
+    if (Object.keys(order).length === 0) closePanel();
+  }
+
+  function clearOrder() {
+    Object.keys(order).forEach(id => {
+      delete order[id];
+      const el = document.querySelector(`[data-id="${id}"]`);
+      if (el) el.classList.remove('in-order');
+    });
+    renderOrder();
+    setStatus('', '');
+    closePanel();
+  }
+
+  function openPanel() {
+    document.getElementById('order-panel').classList.add('visible');
+    document.getElementById('order-bubble').style.display = 'none';
+  }
+
+  function closePanel() {
+    document.getElementById('order-panel').classList.remove('visible');
+    if (Object.keys(order).length > 0) {
+      document.getElementById('order-bubble').style.display = 'flex';
+    }
+  }
+
+  function setStatus(msg, type) {
+    const el = document.getElementById('send-status');
+    el.textContent = msg;
+    el.className = type;
+  }
+
+  // ── BUILD TELEGRAM MESSAGE ──
+  function buildMessage() {
+    const room  = document.getElementById('room-number').value.trim() || '—';
+    const notes = document.getElementById('order-notes').value.trim();
+    const now   = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
+    const total = getTotal();
+
+    const lines = Object.values(order).map(item => {
+      const priceStr = item.price === 0 ? 'incl.' : formatPrice(item.price * item.qty);
+      return `  • ${item.name} × ${item.qty}   ${priceStr}`;
+    }).join('\n');
+
+    let msg = `🛎 *NUEVO PEDIDO · NEW ORDER*\n`;
+    msg += `─────────────────────\n`;
+    msg += `🏠 Habitación: *${room}*\n`;
+    msg += `🕐 ${now}\n`;
+    msg += `─────────────────────\n`;
+    msg += `${lines}\n`;
+    msg += `─────────────────────\n`;
+    if (total > 0) msg += `💶 *Total: ${total.toFixed(2).replace('.', ',')} €*\n`;
+    if (notes) msg += `\n📝 Notas: _${notes}_\n`;
+    msg += `\n_Costa de la Luz · Room Service_`;
+    return msg;
+  }
+
+  // ── SEND TO TELEGRAM ──
+  async function sendOrder() {
+    if (Object.keys(order).length === 0) {
+      setStatus('Añada artículos antes de enviar · Add items first', 'info');
+      return;
+    }
+
+    const room = document.getElementById('room-number').value.trim();
+    if (!room) {
+      setStatus('Por favor, indique su número de habitación · Please enter your room number', 'error');
+      document.getElementById('room-number').focus();
+      return;
+    }
+
+    // Check credentials are filled in
+    if (TELEGRAM_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'PASTE_YOUR_CHAT_ID_HERE') {
+      setStatus('⚠️ Telegram not configured yet — see setup instructions', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('btn-send');
+    const btnText = document.getElementById('btn-send-text');
+    btn.disabled = true;
+    btn.classList.add('sending');
+    btnText.textContent = 'Enviando…';
+    setStatus('', '');
+
+    const message = buildMessage();
+    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message,
+          parse_mode: 'Markdown'
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.ok) {
+        btn.classList.remove('sending');
+        btn.classList.add('success');
+        btnText.textContent = '✓ Pedido Enviado · Order Sent';
+        setStatus('Su pedido ha sido recibido. Le atendemos enseguida.\nYour order has been received. We will be with you shortly.', 'success');
+
+        // Reset after 6 seconds
+        setTimeout(() => {
+          clearOrder();
+          document.getElementById('room-number').value = '';
+          document.getElementById('order-notes').value = '';
+          btn.disabled = false;
+          btn.classList.remove('success');
+          btnText.textContent = 'Enviar Pedido · Send Order';
+          setStatus('', '');
+        }, 6000);
+
+      } else {
+        throw new Error(data.description || 'Telegram error');
+      }
+
+    } catch (err) {
+      btn.disabled = false;
+      btn.classList.remove('sending');
+      btn.classList.add('error');
+      btnText.textContent = 'Error — Reintentar · Retry';
+      setStatus('No se pudo enviar. Compruebe la conexión o llame a recepción.\nCould not send. Please check your connection or call reception.', 'error');
+      console.error('Telegram error:', err);
+
+      setTimeout(() => {
+        btn.classList.remove('error');
+        btnText.textContent = 'Enviar Pedido · Send Order';
+      }, 4000);
+    }
+  }
+
+  // Wire up all orderable elements
+  document.querySelectorAll('.orderable').forEach(el => {
+    el.addEventListener('click', function(e) {
+      if (e.target.classList.contains('qty-btn')) return;
+      addItem(this);
+    });
+  });
+</script>
+</body>
+</html>
