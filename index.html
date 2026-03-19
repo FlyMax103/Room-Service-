@@ -1710,12 +1710,19 @@
 
 
   /* ══ LANGUAGE SWITCHER ══ */
+  /* ── LANGUAGE SWITCHER — matches nav design ── */
   #lang-switcher {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 0 20px;
+    height: 56px;
+    padding: 0 24px;
     flex-shrink: 0;
+    border-left: 1px solid transparent;
+    transition: border-color 0.4s;
+  }
+  #tab-bar.nav-scrolled #lang-switcher {
+    border-left-color: var(--light-line);
   }
   #lang-btn {
     background: none;
@@ -1723,66 +1730,109 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 4px 0;
+    gap: 7px;
+    padding: 0;
     font-family: 'Jost', sans-serif;
-    font-size: 9px;
+    font-size: 8.5px;
     font-weight: 500;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-    transition: color 0.4s;
+    /* Over cover: white like tab labels */
+    color: rgba(255,255,255,0.8);
+    transition: color 0.4s, opacity 0.4s;
+    opacity: 0.55;
   }
-  #tab-bar.nav-scrolled #lang-btn { color: var(--charcoal); opacity: 0.7; }
-  #lang-btn:hover { color: rgba(255,255,255,0.95); }
-  #tab-bar.nav-scrolled #lang-btn:hover { opacity: 1; }
+  #tab-bar.nav-scrolled #lang-btn {
+    color: var(--charcoal);
+    opacity: 0.55;
+  }
+  #lang-switcher:hover #lang-btn { opacity: 0.9; }
   #lang-arrow {
     display: inline-block;
     width: 0; height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 5px solid currentColor;
-    transition: transform 0.2s ease;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid currentColor;
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
     flex-shrink: 0;
+    margin-top: 1px;
   }
-  #lang-switcher.open #lang-arrow { transform: rotate(180deg); }
+  #lang-switcher:hover #lang-arrow { transform: rotate(180deg); }
   #lang-dropdown {
-    display: none;
-    position: absolute;
-    top: calc(100% + 4px);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 56px;
     right: 0;
-    background: var(--cream);
-    border: 1px solid var(--light-line);
-    box-shadow: 0 8px 32px rgba(90,74,53,0.12);
-    min-width: 160px;
-    z-index: 600;
+    /* Over cover: dark charcoal matching the nav */
+    background: rgba(42,37,32,0.97);
+    border: none;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    min-width: 120px;
+    z-index: 9999;
+    transform: translateY(-4px);
+    transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0.22s;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
-  #lang-switcher.open #lang-dropdown { display: block; }
+  /* When nav is scrolled — match the cream nav */
+  #tab-bar.nav-scrolled ~ * #lang-dropdown,
+  #lang-dropdown.scrolled {
+    background: rgba(247,243,238,0.97);
+    border-color: var(--light-line);
+  }
+  /* Show on hover */
+  #lang-switcher:hover #lang-dropdown,
+  #lang-switcher:focus-within #lang-dropdown {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0s;
+  }
   .lang-option {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 20px;
+    gap: 10px;
+    padding: 13px 22px;
     background: none;
     border: none;
-    border-bottom: 1px solid var(--light-line);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     width: 100%;
     text-align: left;
     cursor: pointer;
     font-family: 'Jost', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.28em;
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--charcoal);
-    opacity: 0.6;
-    transition: background 0.15s, opacity 0.15s;
+    color: rgba(255,255,255,0.45);
+    transition: color 0.15s, background 0.15s;
   }
   .lang-option:last-child { border-bottom: none; }
-  .lang-option:hover { background: rgba(201,185,154,0.1); opacity: 1; }
-  .lang-option.active { opacity: 1; color: var(--bark); font-weight: 600; }
-  .lang-option-flag { font-size: 16px; line-height: 1; }
-  .lang-option-name { flex: 1; }
-  .lang-option-check { color: var(--moss); font-size: 12px; }
+  .lang-option:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
+  .lang-option.lang-active { color: var(--sand); border-bottom-color: rgba(201,185,154,0.12); }
+  .lang-option-code { flex: 1; }
+  .lang-option-name {
+    font-size: 10px; font-weight: 300;
+    letter-spacing: 0.05em; text-transform: none;
+    color: rgba(255,255,255,0.2);
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+  }
+  .lang-option-check { color: var(--moss); font-size: 9px; flex-shrink: 0; }
+  /* Stagger in */
+  #lang-switcher:hover .lang-option:nth-child(1) { animation: optionIn 0.2s ease 0.04s both; }
+  #lang-switcher:hover .lang-option:nth-child(2) { animation: optionIn 0.2s ease 0.08s both; }
+  #lang-switcher:hover .lang-option:nth-child(3) { animation: optionIn 0.2s ease 0.12s both; }
+  #lang-switcher:hover .lang-option:nth-child(4) { animation: optionIn 0.2s ease 0.16s both; }
+  #lang-switcher:hover .lang-option:nth-child(5) { animation: optionIn 0.2s ease 0.20s both; }
+  @keyframes optionIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
 
   /* ── REUSABLE SCROLL CUE ── */
@@ -1823,6 +1873,27 @@
   /* Dark version (on charcoal bg) */
   .scroll-cue.dark .scroll-cue-label { color: rgba(201,185,154,0.35); }
   .scroll-cue.dark .scroll-cue-line { background: rgba(201,185,154,0.12); }
+
+  /* Scrolled nav dropdown — light theme */
+  #lang-dropdown[data-scrolled] {
+    background: rgba(247,243,238,0.97) !important;
+    border-color: var(--light-line) !important;
+    box-shadow: 0 8px 28px rgba(90,74,53,0.1) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option {
+    color: rgba(42,37,32,0.5) !important;
+    border-bottom-color: var(--light-line) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option:hover {
+    color: var(--bark) !important;
+    background: rgba(201,185,154,0.08) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option.lang-active {
+    color: var(--bark) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option-name {
+    color: rgba(42,37,32,0.3) !important;
+  }
 </style>
 </head>
 <body>
@@ -1866,32 +1937,32 @@
   <!-- RIGHT: language switcher only -->
   <div id="tab-nav-right">
     <div id="lang-switcher">
-      <button id="lang-btn" onmousedown="toggleLangDropdown(event)" aria-label="Language">
+      <button id="lang-btn" onclick="toggleLangDropdown(event)" aria-label="Language">
         <span id="lang-current">EN</span>
         <span id="lang-arrow"></span>
       </button>
       <div id="lang-dropdown">
-        <button class="lang-option lang-active" onmousedown="setLang('en', event)" id="lang-opt-en">
+        <button class="lang-option lang-active" onclick="setLang('en', event)" id="lang-opt-en">
           <span class="lang-option-code">EN</span>
           <span class="lang-option-name">English</span>
           <span class="lang-option-check" id="check-en">✓</span>
         </button>
-        <button class="lang-option" onmousedown="setLang('de', event)" id="lang-opt-de">
+        <button class="lang-option" onclick="setLang('de', event)" id="lang-opt-de">
           <span class="lang-option-code">DE</span>
           <span class="lang-option-name">Deutsch</span>
           <span class="lang-option-check" id="check-de" style="display:none">✓</span>
         </button>
-        <button class="lang-option" onmousedown="setLang('es', event)" id="lang-opt-es">
+        <button class="lang-option" onclick="setLang('es', event)" id="lang-opt-es">
           <span class="lang-option-code">ES</span>
           <span class="lang-option-name">Español</span>
           <span class="lang-option-check" id="check-es" style="display:none">✓</span>
         </button>
-        <button class="lang-option" onmousedown="setLang('fr', event)" id="lang-opt-fr">
+        <button class="lang-option" onclick="setLang('fr', event)" id="lang-opt-fr">
           <span class="lang-option-code">FR</span>
           <span class="lang-option-name">Français</span>
           <span class="lang-option-check" id="check-fr" style="display:none">✓</span>
         </button>
-        <button class="lang-option" onmousedown="setLang('no', event)" id="lang-opt-no">
+        <button class="lang-option" onclick="setLang('no', event)" id="lang-opt-no">
           <span class="lang-option-code">NO</span>
           <span class="lang-option-name">Norsk</span>
           <span class="lang-option-check" id="check-no" style="display:none">✓</span>
@@ -3869,18 +3940,36 @@
 function selectTip(id) {
   document.querySelectorAll('.tips-pill').forEach(function(p) { p.classList.remove('active'); });
   document.querySelectorAll('.tips-panel').forEach(function(p) { p.classList.remove('active'); });
-  var pill = document.getElementById('tip-pill-' + id);
+  var pill  = document.getElementById('tip-pill-' + id);
   var panel = document.getElementById('tip-panel-' + id);
-  if (pill) pill.classList.add('active');
-  if (panel) {
-    panel.classList.add('active');
-    setTimeout(function() {
-      document.querySelectorAll('#tip-panel-' + id + ' .reveal, #tip-panel-' + id + ' .reveal-left, #tip-panel-' + id + ' .reveal-right, #tip-panel-' + id + ' .reveal-scale, #tip-panel-' + id + ' .reveal-stagger').forEach(function(el) {
-        el.classList.remove('visible');
+  if (pill)  pill.classList.add('active');
+  if (!panel) return;
+  panel.classList.add('active');
+
+  var sel = '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title';
+
+  // Reset all first
+  panel.querySelectorAll(sel).forEach(function(el) {
+    el.classList.remove('visible');
+    el.style.transitionDelay = '';
+  });
+
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      panel.querySelectorAll(sel).forEach(function(el) {
+        var rect   = el.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight - 40 && rect.bottom > 0;
+        if (inView) {
+          var delay = Math.max(0, rect.top / window.innerHeight * 0.25);
+          el.style.transitionDelay = delay + 's';
+          el.classList.add('visible');
+          setTimeout(function() { el.style.transitionDelay = ''; }, 800);
+        } else {
+          try { ioGlobal.observe(el); } catch(e) {}
+        }
       });
-      setTimeout(observeAllGlobal, 60);
-    }, 20);
-  }
+    });
+  });
 }
 
 function observeAllGlobal() {
@@ -3950,8 +4039,28 @@ var ioGlobal;
     if (!tabBar) return;
     var coverH = coverEl ? coverEl.offsetHeight : window.innerHeight;
     var st = window.scrollY || document.documentElement.scrollTop;
-    if (st > coverH * 0.72) { tabBar.classList.add('nav-scrolled'); }
-    else { tabBar.classList.remove('nav-scrolled'); }
+    var isScrolled = st > coverH * 0.72;
+    tabBar.classList.toggle('nav-scrolled', isScrolled);
+    // Dropdown adapts to nav state
+    var dd = document.getElementById('lang-dropdown');
+    if (dd) {
+      if (isScrolled) {
+        dd.style.background = 'rgba(247,243,238,0.97)';
+        dd.style.borderColor = 'var(--light-line)';
+        dd.querySelectorAll('.lang-option').forEach(function(o) {
+          o.style.color = '';
+          o.style.borderBottomColor = '';
+        });
+        dd.querySelectorAll('.lang-option').forEach(function(o) {
+          o.style.setProperty('--opt-color', 'rgba(42,37,32,0.55)');
+        });
+        dd.setAttribute('data-scrolled', '1');
+      } else {
+        dd.style.background = 'rgba(42,37,32,0.97)';
+        dd.style.borderColor = 'rgba(255,255,255,0.08)';
+        dd.removeAttribute('data-scrolled');
+      }
+    }
   }
   window.addEventListener('scroll', updateNav, { passive: true });
 
@@ -3969,7 +4078,39 @@ var ioGlobal;
     } else {
       setTimeout(updateNav, 50);
     }
-    setTimeout(observeAllGlobal, 60);
+
+    // After tab content is visible, reveal everything already in viewport
+    // AND re-observe the rest — fixes tips/surrounding not animating on first load
+    setTimeout(function() {
+      var sel = '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title';
+      var tabEl = document.getElementById('tab-' + tab);
+      if (!tabEl) return;
+
+      tabEl.querySelectorAll(sel).forEach(function(el) {
+        // Reset so animation replays on tab switch
+        el.classList.remove('visible');
+      });
+
+      // Small delay so browser paints the reset first
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          tabEl.querySelectorAll(sel).forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            var inView = rect.top < window.innerHeight - 40 && rect.bottom > 0;
+            if (inView) {
+              // Already visible — animate with a staggered delay based on position
+              var delay = Math.max(0, rect.top / window.innerHeight * 0.3);
+              el.style.transitionDelay = delay + 's';
+              el.classList.add('visible');
+              setTimeout(function() { el.style.transitionDelay = ''; }, 800);
+            } else {
+              // Off-screen — let IntersectionObserver handle it
+              try { ioGlobal.observe(el); } catch(e) {}
+            }
+          });
+        });
+      });
+    }, 30);
   };
 
 })();
@@ -4207,18 +4348,8 @@ function setLang(lang, e) {
 }
 
 function toggleLangDropdown(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  var sw = document.getElementById('lang-switcher');
-  sw.classList.toggle('open');
+  // Hover handles open/close via CSS — this is a no-op fallback
 }
-
-document.addEventListener('mousedown', function(e) {
-  var sw = document.getElementById('lang-switcher');
-  if (sw && sw.classList.contains('open') && !sw.contains(e.target)) {
-    sw.classList.remove('open');
-  }
-});
 
 // Run on page load
 document.addEventListener('DOMContentLoaded', applyLang);
