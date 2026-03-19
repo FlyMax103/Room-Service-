@@ -29,120 +29,217 @@
   }
 
   /* ── COVER ── */
+  /* ══ FORSTHOFGUT FULL-BLEED COVER ══ */
   .cover {
-    min-height: 100vh;
-    background: var(--charcoal);
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+
+  /* Full-bleed video */
+  .cover-video {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  /* Full-bleed photo fallback */
+  .cover-photo {
+    position: absolute;
+    inset: 0;
+  }
+  .cover-photo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    transform: scale(1.06);
+    animation: photoPanIn 2.4s cubic-bezier(0.16,1,0.3,1) 0s both;
+    will-change: transform;
+    z-index: 0;
+  }
+  @keyframes photoPanIn {
+    from { transform: scale(1.12); opacity: 0.7; }
+    to   { transform: scale(1.0);  opacity: 1; }
+  }
+  /* Dark gradient — lighter at top for nav, heavier at bottom for text */
+  .cover-photo-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.38) 0%,
+        rgba(0,0,0,0.0)  30%,
+        rgba(0,0,0,0.0)  55%,
+        rgba(0,0,0,0.55) 100%
+      );
+    pointer-events: none;
+  }
+
+  /* Logo — centred, over photo */
+  .cover-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    animation: fadeIn 1s ease 0.6s both;
+    z-index: 2;
+  }
+  .cover-logo svg { width: auto; }
+  .cover-logo-house { height: 90px; filter: drop-shadow(0 2px 16px rgba(0,0,0,0.4)); }
+  .cover-logo-wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.65em;
+    text-transform: uppercase;
+    color: rgba(253,250,247,0.95);
+    white-space: nowrap;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+  }
+
+  /* Tagline — bottom centre, above nav strip */
+  .cover-tagline {
+    z-index: 2;
+    position: absolute;
+    bottom: 96px;
+    left: 0; right: 0;
+    text-align: center;
+    animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 1.0s both;
+  }
+  .cover-tagline-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .cover-tagline-main em {
+    font-style: italic;
+    color: var(--sand);
+  }
+  .cover-tagline-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: rgba(253,250,247,0.55);
+    text-align: center;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    display: block;
+  }
+  .cover-scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .cover-scroll-indicator span {
+    font-family: 'Jost', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+  }
+  .cover-scroll-indicator-line {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.15);
     position: relative;
     overflow: hidden;
-    padding: 60px 40px;
   }
-
-  .cover::before {
+  .cover-scroll-indicator-line::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 20% 80%, rgba(90,70,50,0.45) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(122,139,106,0.18) 0%, transparent 50%);
+    top: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.7), transparent);
+    animation: scrollDrop 2s ease-in-out 2s infinite;
   }
 
-  .cover-ornament {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-  }
-  .cover-ornament::before {
-    content: '';
-    position: absolute;
-    top: 30px; left: 30px; right: 30px; bottom: 30px;
-    border: 1px solid rgba(201,185,154,0.25);
-  }
-  .cover-ornament::after {
-    content: '';
-    position: absolute;
-    top: 38px; left: 38px; right: 38px; bottom: 38px;
-    border: 1px solid rgba(201,185,154,0.1);
-  }
-
-  .cover-inner {
-    position: relative;
+  /* Sub-nav — bottom strip */
+  .cover-nav {
     z-index: 2;
-    text-align: center;
-    max-width: 560px;
-  }
-
-  .cover-label {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    font-size: 10px;
-    letter-spacing: 0.38em;
-    text-transform: uppercase;
-    color: var(--sand);
-    margin-bottom: 52px;
-  }
-
-  /* olive branch SVG in cover */
-  .cover-olive {
-    margin: 0 auto 28px;
-    opacity: 0.28;
-    display: block;
-    width: 62px;
-  }
-
-  .cover-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(60px, 10vw, 92px);
-    color: var(--warm-white);
-    line-height: 1;
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
-  }
-  .cover-title em {
-    font-style: italic;
-    color: var(--sand);
-    display: block;
-    font-size: 0.52em;
-    letter-spacing: 0.1em;
-    font-weight: 300;
-    margin-top: 10px;
-  }
-
-  .cover-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--sand);
-    margin: 40px auto;
-    opacity: 0.55;
-  }
-
-  .cover-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 19px;
-    color: rgba(253,250,247,0.6);
-    line-height: 1.65;
-  }
-
-  .cover-footer {
     position: absolute;
-    bottom: 48px;
+    bottom: 0;
     left: 0; right: 0;
     display: flex;
-    justify-content: space-between;
-    padding: 0 60px;
+    justify-content: center;
     z-index: 2;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    animation: fadeIn 0.8s ease 1.4s both;
   }
-  .cover-footer span {
-    font-size: 10px;
-    letter-spacing: 0.25em;
+  .cover-nav-btn {
+    padding: 16px 24px;
+    background: none;
+    border: none;
+    border-top: 2px solid transparent;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(201,185,154,0.45);
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .cover-nav-btn:hover {
+    color: rgba(255,255,255,0.9);
+    border-top-color: rgba(255,255,255,0.5);
+  }
+
+  /* Scroll cue — hidden, merged into tagline area */
+  .cover-scroll-cue { display: none; }
+  .cover-scroll-cue span {
+    font-family: 'Jost', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .cover-scroll-line {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0; width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    animation: scrollSweep 2s ease-in-out 2.2s infinite;
+  }
+  @keyframes scrollSweep {
+    0%   { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    .cover-tagline { bottom: 56px; }
+    .cover-tagline-main { font-size: 32px; }
+    .cover-nav-btn { font-size: 7px; padding: 14px 12px; letter-spacing: 0.18em; }
+    .cover-logo { transform: translate(-50%, -70%); }
+    .cover-logo-house { height: 40px; }
+    .cover-scroll-cue { right: 24px; }
   }
 
   /* ── PAGES ── */
@@ -590,8 +687,6 @@
     .steps { grid-template-columns: 1fr; }
     .two-col { grid-template-columns: 1fr; gap: 36px; }
     .bottle-grid { grid-template-columns: 1fr; }
-    .cover-footer { padding: 0 24px; }
-    .cover-title { font-size: 52px; }
     .menu-item-header { flex-wrap: wrap; }
   }
 
@@ -871,33 +966,93 @@
     }
   }
   #print-order { display: none; }
-  /* TAB BAR */
+  /* ══ TAB BAR ══ */
   #tab-bar {
-    position: sticky; top: 0; z-index: 500;
-    background: var(--charcoal);
-    display: flex;
-    border-bottom: 1px solid rgba(201,185,154,0.15);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    height: 56px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
   }
+  #tab-bar.nav-scrolled {
+    background: rgba(247,243,238,0.97);
+    border-bottom: 1px solid var(--light-line);
+    box-shadow: 0 1px 18px rgba(90,74,53,0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Left: logo only */
+  #tab-nav-left {
+    display: flex; align-items: center;
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+  /* Centre: all nav tabs */
+  #tab-nav-centre {
+    display: flex; align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  /* Right: language switcher only */
+  #tab-nav-right {
+    display: flex; align-items: center;
+    justify-content: flex-end;
+    padding-right: 0;
+  }
+
+  /* Logo — hidden over cover, fades in on scroll */
+  #tab-logo {
+    display: flex; align-items: center; justify-content: flex-start;
+    cursor: pointer;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    padding: 0 20px;
+  }
+  #tab-bar.nav-scrolled #tab-logo {
+    opacity: 1; transform: translateY(0);
+    pointer-events: auto;
+  }
+  #tab-logo svg { height: 26px; width: auto; }
+
+  /* Buttons */
   .tab-btn {
-    flex: 1; padding: 14px 12px;
+    height: 56px; padding: 0 20px;
     background: none; border: none; cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
-    border-bottom: 2px solid transparent; transition: all 0.2s;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+    opacity: 0.55; flex-shrink: 0;
   }
   .tab-btn .tab-es {
-    font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 500;
-    letter-spacing: 0.32em; text-transform: uppercase;
-    color: rgba(201,185,154,0.38); transition: color 0.2s;
+    font-family: 'Jost', sans-serif;
+    font-size: 8.5px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.8);
+    transition: color 0.4s;
   }
+  #tab-bar.nav-scrolled .tab-btn .tab-es { color: var(--charcoal); opacity: 0.7; }
   .tab-btn .tab-en {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 11px; color: rgba(201,185,154,0.22); transition: color 0.2s;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 10px;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.3);
+    transition: color 0.4s;
   }
-  .tab-btn.active { border-bottom-color: var(--sand); }
-  .tab-btn.active .tab-es { color: var(--sand); }
-  .tab-btn.active .tab-en { color: rgba(201,185,154,0.55); }
-  .tab-btn:hover .tab-es { color: rgba(201,185,154,0.65); }
+  #tab-bar.nav-scrolled .tab-btn .tab-en { color: rgba(90,74,53,0.38); }
+  .tab-btn.active { opacity: 1; border-bottom-color: rgba(255,255,255,0.6); }
+  #tab-bar.nav-scrolled .tab-btn.active { border-bottom-color: var(--bark); }
+  #tab-bar.nav-scrolled .tab-btn.active .tab-es { color: var(--bark); opacity: 1; }
+  .tab-btn:hover { opacity: 0.9; }
+
   .tab-page { display: none; }
   .tab-page.active { display: block; }
 
@@ -909,7 +1064,7 @@
     border-bottom: 1px solid var(--light-line);
     transition: background 0.15s, box-shadow 0.15s; user-select: none;
   }
-  .csvc-item:last-child { border-bottom: none; }
+  .csvc-item:last-child { border-bottom: 1px solid var(--light-line); }
   .csvc-item:hover { background: #f5f0e8; box-shadow: inset 3px 0 0 var(--moss); }
   .csvc-item.selected { background: rgba(122,139,106,0.08); box-shadow: inset 3px 0 0 var(--moss); }
   .csvc-check {
@@ -934,8 +1089,9 @@
   .csvc-name-es { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; margin-top: 2px; }
   .csvc-desc { font-size: 12px; color: #8a8a7a; margin-top: 3px; line-height: 1.5; font-family: 'Jost', sans-serif; font-weight: 300; }
   #cleaning-form {
-    background: var(--charcoal); padding: 36px 52px;
+    background: var(--charcoal); padding: 40px 52px;
     border-top: 1px solid rgba(201,185,154,0.15); display: none;
+    margin: 0;
   }
   #cleaning-form.visible { display: block; }
   .cf-label { font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--sand); font-family: 'Jost', sans-serif; margin-bottom: 8px; display: block; }
@@ -998,12 +1154,6 @@
   }
 
   /* Cover elements — cascade */
-  .cover-label    { animation: fadeIn 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s both; }
-  .cover-olive    { animation: scaleIn 1.1s cubic-bezier(0.34,1.4,0.64,1) 0.35s both; }
-  .cover-title    { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
-  .cover-divider  { animation: splitReveal 0.7s cubic-bezier(0.4,0,0.2,1) 0.9s both; }
-  .cover-subtitle { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.0s both; }
-  .cover-footer   { animation: fadeIn 0.7s ease 1.3s both; }
 
   /* Scroll-triggered reveal */
   .reveal {
@@ -1205,57 +1355,642 @@
   /* ── PARALLAX COVER ── */
   .cover { will-change: transform; }
 
+
+  /* ══════════ TIPS & TRICKS TAB ══════════ */
+
+  /* Product selector — Apple-style pill row */
+  .tips-selector {
+    position: sticky;
+    top: 56px; /* below tab bar */
+    z-index: 100;
+    background: var(--charcoal);
+    border-bottom: 1px solid rgba(201,185,154,0.12);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tips-selector::-webkit-scrollbar { display: none; }
+
+  .tips-pill {
+    flex-shrink: 0;
+    padding: 18px 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+    opacity: 0.45;
+    position: relative;
+  }
+  .tips-pill.active { border-bottom-color: var(--sand); opacity: 1; }
+  .tips-pill:hover { opacity: 0.75; }
+
+  .tips-pill-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(201,185,154,0.55);
+    background: rgba(201,185,154,0.06);
+    border: 1px solid rgba(201,185,154,0.12);
+    border-radius: 9px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .tips-pill.active .tips-pill-icon { background: rgba(201,185,154,0.14); border-color: rgba(201,185,154,0.3); color: var(--sand); }
+
+  .tips-pill-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sand);
+    white-space: nowrap;
+  }
+  .tips-pill-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    font-style: italic;
+    color: rgba(201,185,154,0.4);
+  }
+
+  /* Coming soon pill */
+  .tips-pill.coming-soon { cursor: default; }
+  .tips-pill.coming-soon .tips-pill-icon { opacity: 0.4; }
+  .tips-pill-soon {
+    position: absolute;
+    top: 10px; right: 8px;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    color: var(--moss);
+    background: rgba(122,139,106,0.15);
+    padding: 2px 5px;
+    border-radius: 2px;
+  }
+
+  /* Guide panels */
+  .tips-panel { display: none; }
+  .tips-panel.active { display: block; }
+
+  /* Hero header — dark, generous, Forsthofgut */
+  .tips-hero {
+    background: var(--charcoal);
+    padding: 72px 64px 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(201,185,154,0.1);
+  }
+  .tips-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(122,139,106,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tips-hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-family: 'Jost', sans-serif;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .tips-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5.5vw, 68px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.0;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .tips-hero-title em { color: var(--sand); }
+  .tips-hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(253,250,247,0.4);
+    line-height: 1.8;
+    max-width: 480px;
+  }
+  .tips-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(201,185,154,0.08);
+    border: 1px solid rgba(201,185,154,0.2);
+    padding: 7px 14px;
+    margin-bottom: 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.6);
+  }
+  .tips-badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--moss);
+    flex-shrink: 0;
+  }
+
+  /* Step method block */
+  .tips-method {
+    background: var(--cream);
+    border-bottom: 1px solid var(--light-line);
+  }
+  .tips-method-header {
+    padding: 40px 64px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--light-line);
+  }
+  .tips-method-letter {
+    width: 40px; height: 40px;
+    background: var(--bark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--warm-white);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .tips-method-letter.green { background: #3a7d44; }
+  .tips-method-title-wrap {}
+  .tips-method-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--bark);
+    line-height: 1.1;
+  }
+  .tips-method-sub {
+    font-size: 11px;
+    color: var(--moss);
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* Step rows */
+  .tips-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--light-line);
+    min-height: 80px;
+    align-items: stretch;
+    background: var(--warm-white);
+  }
+  .tips-step:nth-child(even) { background: var(--cream); }
+  .tips-step-num {
+    display: flex; align-items: center; justify-content: center;
+    border-right: 1px solid var(--light-line);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--moss);
+    letter-spacing: 0.1em;
+  }
+  .tips-step-body { padding: 24px 64px 24px 32px; }
+  .tips-step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--bark);
+    margin-bottom: 6px;
+  }
+  .tips-step-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--charcoal);
+    opacity: 0.6;
+    line-height: 1.7;
+  }
+  .tips-step-desc strong {
+    font-weight: 600;
+    color: var(--bark);
+    opacity: 1;
+  }
+  .tips-step-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #b8860b;
+    background: rgba(184,134,11,0.08);
+    border: 1px solid rgba(184,134,11,0.2);
+    padding: 3px 10px;
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* Warning notice */
+  .tips-notice {
+    margin: 0;
+    padding: 18px 64px;
+    background: rgba(201,185,154,0.06);
+    border-left: 3px solid var(--sand);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--light-line);
+  }
+  .tips-notice-icon { font-size: 16px; flex-shrink: 0; }
+  .tips-notice-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+  .tips-notice-text strong { color: var(--bark); font-weight: 600; }
+  .tips-notice-text a { color: var(--bark); }
+
+  /* Divider between methods */
+  .tips-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 64px;
+    background: var(--cream);
+  }
+  .tips-divider::before, .tips-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--light-line);
+  }
+  .tips-divider span {
+    font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase;
+    color: rgba(90,74,53,0.35); font-family: 'Jost', sans-serif; white-space: nowrap;
+  }
+
+  /* Video slot — Forsthofgut inset style */
+  .tips-video-slot {
+    position: relative;
+    margin: 0;
+    background: var(--charcoal);
+    aspect-ratio: 16/9;
+    max-height: 52vh;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tips-video-slot video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .tips-video-ph {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 16px; width: 100%; height: 100%;
+    border: 1px dashed rgba(201,185,154,0.12);
+    min-height: 260px;
+  }
+  .tips-video-ph-ring {
+    width: 56px; height: 56px;
+    border: 1.5px solid rgba(201,185,154,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tips-video-ph-ring::after {
+    content: '';
+    width: 0; height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 18px solid rgba(201,185,154,0.35);
+    margin-left: 4px;
+  }
+  .tips-video-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px 48px;
+    background: linear-gradient(to top, rgba(42,37,32,0.8), transparent);
+  }
+
+  /* Success / done banner */
+  .tips-success {
+    margin: 0;
+    padding: 24px 64px;
+    background: rgba(58,125,68,0.08);
+    border-left: 3px solid #3a7d44;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .tips-success-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; color: var(--charcoal); line-height: 1.6;
+  }
+
+  /* Arrival guide — coming soon state */
+  .tips-coming-soon {
+    background: var(--cream);
+    min-height: 60vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 20px; padding: 80px 64px; text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .tips-hero { padding: 48px 24px 40px; }
+    .tips-method-header { padding: 28px 24px 22px; }
+    .tips-step-body { padding: 20px 24px 20px 20px; }
+    .tips-notice { padding: 16px 24px; }
+    .tips-divider { padding: 16px 24px; }
+    .tips-success { padding: 20px 24px; }
+    .tips-selector { top: 52px; }
+    .tab-btn .tab-es { font-size: 7px; letter-spacing: 0.15em; }
+    .tab-btn .tab-en { display: none; }
+    .tab-btn { padding: 0 10px; }
+    #tab-logo svg { height: 24px; }
+  }
+
+
+  /* ══ LANGUAGE SWITCHER ══ */
+  #lang-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    flex-shrink: 0;
+  }
+  #lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    transition: color 0.4s;
+  }
+  #tab-bar.nav-scrolled #lang-btn { color: var(--charcoal); opacity: 0.7; }
+  #lang-btn:hover { color: rgba(255,255,255,0.95); }
+  #tab-bar.nav-scrolled #lang-btn:hover { opacity: 1; }
+  #lang-arrow {
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  #lang-switcher.open #lang-arrow { transform: rotate(180deg); }
+  #lang-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: var(--cream);
+    border: 1px solid var(--light-line);
+    box-shadow: 0 8px 32px rgba(90,74,53,0.12);
+    min-width: 160px;
+    z-index: 600;
+  }
+  #lang-switcher.open #lang-dropdown { display: block; }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--light-line);
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.6;
+    transition: background 0.15s, opacity 0.15s;
+  }
+  .lang-option:last-child { border-bottom: none; }
+  .lang-option:hover { background: rgba(201,185,154,0.1); opacity: 1; }
+  .lang-option.active { opacity: 1; color: var(--bark); font-weight: 600; }
+  .lang-option-flag { font-size: 16px; line-height: 1; }
+  .lang-option-name { flex: 1; }
+  .lang-option-check { color: var(--moss); font-size: 12px; }
+
+
+  /* ── REUSABLE SCROLL CUE ── */
+  .scroll-cue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+  }
+  .scroll-cue-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.4);
+  }
+  .scroll-cue-line {
+    width: 1px;
+    height: 36px;
+    background: rgba(201,185,154,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-cue-line::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--sand), transparent);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop {
+    0%   { top: -100%; opacity: 0; }
+    30%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  /* Dark version (on charcoal bg) */
+  .scroll-cue.dark .scroll-cue-label { color: rgba(201,185,154,0.35); }
+  .scroll-cue.dark .scroll-cue-line { background: rgba(201,185,154,0.12); }
 </style>
 </head>
 <body>
 <div id="scroll-progress"></div>
 <!-- TAB BAR -->
 <div id="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('menu')" id="tab-btn-menu">
-    <span class="tab-es">Room Service</span>
-    <span class="tab-en">Breakfast & Drinks</span>
-  </button>
-  <button class="tab-btn" onclick="switchTab('cleaning')" id="tab-btn-cleaning">
-    <span class="tab-es">Housekeeping</span>
-    <span class="tab-en">Limpieza</span>
-  </button>
+
+  <!-- LEFT: logo only (appears on scroll) -->
+  <div id="tab-nav-left">
+    <div id="tab-logo" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" title="Home">
+      <svg viewBox="0 0 200 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="28,4 48,16 48,38 8,38 8,16" stroke="#5C4A35" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+        <polyline points="28,4 28,15" stroke="#5C4A35" stroke-width="1.2" fill="none"/>
+        <text x="11" y="32" font-family="Georgia,serif" font-size="16" font-weight="700" fill="none" stroke="#5C4A35" stroke-width="1.1">MB</text>
+        <text x="58" y="19" font-family="Georgia,serif" font-size="10" fill="#5C4A35" letter-spacing="3.5" opacity="0.9">LUXURY</text>
+        <text x="58" y="33" font-family="Georgia,serif" font-size="10" fill="#5C4A35" letter-spacing="3.5" opacity="0.55">LIVING</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- CENTRE: all nav tabs -->
+  <div id="tab-nav-centre">
+    <button class="tab-btn active" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" id="tab-btn-menu">
+      <span class="tab-es" data-i18n="tab-menu-primary">Room Service</span>
+      <span class="tab-en" data-i18n="tab-menu-sub">Breakfast & Drinks</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('cleaning')" id="tab-btn-cleaning">
+      <span class="tab-es">Housekeeping</span>
+      <span class="tab-en">Limpieza</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('surrounding')" id="tab-btn-surrounding">
+      <span class="tab-es">Surrounding</span>
+      <span class="tab-en">Explore</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('tips')" id="tab-btn-tips">
+      <span class="tab-es">Tips & Tricks</span>
+      <span class="tab-en">Guides</span>
+    </button>
+  </div>
+
+  <!-- RIGHT: language switcher only -->
+  <div id="tab-nav-right">
+    <div id="lang-switcher">
+      <button id="lang-btn" onmousedown="toggleLangDropdown(event)" aria-label="Language">
+        <span id="lang-current">EN</span>
+        <span id="lang-arrow"></span>
+      </button>
+      <div id="lang-dropdown">
+        <button class="lang-option lang-active" onmousedown="setLang('en', event)" id="lang-opt-en">
+          <span class="lang-option-code">EN</span>
+          <span class="lang-option-name">English</span>
+          <span class="lang-option-check" id="check-en">✓</span>
+        </button>
+        <button class="lang-option" onmousedown="setLang('de', event)" id="lang-opt-de">
+          <span class="lang-option-code">DE</span>
+          <span class="lang-option-name">Deutsch</span>
+          <span class="lang-option-check" id="check-de" style="display:none">✓</span>
+        </button>
+        <button class="lang-option" onmousedown="setLang('es', event)" id="lang-opt-es">
+          <span class="lang-option-code">ES</span>
+          <span class="lang-option-name">Español</span>
+          <span class="lang-option-check" id="check-es" style="display:none">✓</span>
+        </button>
+        <button class="lang-option" onmousedown="setLang('fr', event)" id="lang-opt-fr">
+          <span class="lang-option-code">FR</span>
+          <span class="lang-option-name">Français</span>
+          <span class="lang-option-check" id="check-fr" style="display:none">✓</span>
+        </button>
+        <button class="lang-option" onmousedown="setLang('no', event)" id="lang-opt-no">
+          <span class="lang-option-code">NO</span>
+          <span class="lang-option-name">Norsk</span>
+          <span class="lang-option-check" id="check-no" style="display:none">✓</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 <div id="tab-menu" class="tab-page active">
 
 <!-- ═══════════ COVER ═══════════ -->
-<div class="cover">
-  <div class="cover-ornament"></div>
-  <div class="cover-inner">
-    <p class="cover-label">Villajoyosa &nbsp;·&nbsp; Costa Blanca &nbsp;·&nbsp; Spain</p>
+<div class="cover" id="cover-split">
 
-    <svg class="cover-olive" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M40 60 Q40 34 22 20" stroke="#C9B99A" stroke-width="1.3" fill="none"/>
-      <path d="M40 60 Q40 34 58 20" stroke="#C9B99A" stroke-width="1.3" fill="none"/>
-      <ellipse cx="19" cy="16" rx="6" ry="9" fill="#C9B99A" transform="rotate(-22 19 16)"/>
-      <ellipse cx="28" cy="8" rx="5" ry="8" fill="#C9B99A" transform="rotate(-10 28 8)"/>
-      <ellipse cx="61" cy="16" rx="6" ry="9" fill="#C9B99A" transform="rotate(22 61 16)"/>
-      <ellipse cx="52" cy="8" rx="5" ry="8" fill="#C9B99A" transform="rotate(10 52 8)"/>
-      <ellipse cx="40" cy="4" rx="5" ry="8" fill="#C9B99A"/>
+  <!-- Video background (loops silently) -->
+  <!-- ▶ Upload video.mp4 to GitHub alongside index.html to activate -->
+  <!-- Once uploaded, delete the <img> fallback and uncomment the video tag -->
+  <!-- <video class="cover-video" autoplay muted loop playsinline src="video.mp4"></video> -->
+
+  <!-- Photo fallback until video is added -->
+  <img class="cover-photo-img"
+       src="IMG_5900.jpeg"
+       alt="Calle Pou · Villajoyosa"
+       onerror="this.style.display='none'" />
+
+  <!-- Dark overlay -->
+  <div class="cover-photo-overlay"></div>
+
+  <!-- MB Luxury Living Logo — centred, Forsthofgut style -->
+  <div class="cover-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});" title="Home">
+    <!-- Faithful recreation of uploaded MB Luxury Living logo -->
+    <svg class="cover-logo-house" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer house shape -->
+      <polygon points="110,12 202,68 202,188 18,188 18,68"
+        stroke="rgba(253,250,247,0.92)" stroke-width="3.5" fill="none" stroke-linejoin="miter"/>
+      <!-- Roof ridge line -->
+      <line x1="110" y1="12" x2="110" y2="52"
+        stroke="rgba(253,250,247,0.5)" stroke-width="2"/>
+      <!-- Inner house frame lines -->
+      <polyline points="18,68 110,12 202,68"
+        stroke="rgba(253,250,247,0.3)" stroke-width="1.5" fill="none"/>
+      <!-- M letterform -->
+      <polyline points="42,158 42,98 76,138 110,98 110,158"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"
+        stroke-linejoin="miter" stroke-linecap="square"/>
+      <!-- B letterform -->
+      <polyline points="118,98 118,158"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none" stroke-linecap="square"/>
+      <path d="M118,98 L148,98 Q168,98 168,118 Q168,138 148,138 L118,138"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"/>
+      <path d="M118,138 L150,138 Q172,138 172,158 Q172,178 150,178 L118,178"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"/>
     </svg>
+    <div class="cover-logo-wordmark">MB &nbsp;Luxury Living</div>
+  </div>
 
-    <h1 class="cover-title">
-      Breakfast
-      <em>with Champagne</em>
-    </h1>
-    <div class="cover-divider"></div>
-    <p class="cover-subtitle">
-      A morning celebration at the table.<br>
-      <span style="font-size:0.75em;opacity:0.6">Una celebración al amanecer.</span>
-    </p>
+  <!-- Location + scroll indicator — bottom centre -->
+  <div class="cover-tagline">
+    <div class="cover-tagline-sub" data-i18n-html="cover-location">Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca</div>
+    <div class="cover-scroll-indicator">
+      <span data-i18n="cover-scroll">scroll</span>
+      <div class="cover-scroll-indicator-line"></div>
+    </div>
   </div>
-  <div class="cover-footer">
-    <span>Menú · Menu</span>
-    <span>Temporada 2025</span>
-  </div>
+
+  <!-- Sub-nav — bottom strip -->
+  <nav class="cover-nav">
+    <button class="cover-nav-btn" onclick="document.getElementById('cover-intro').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-welcome">Welcome</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-01').scrollIntoView({behavior:'smooth'})">Breakfast</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-02').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-tea">Tea & Coffee</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-03').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-champagne">Champagne</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-05').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-picnic">Picnic</button>
+  </nav>
+
 </div>
 
+<!-- ═══════════ INTRO PAGE — Breakfast with Champagne ═══════════ -->
+<div id="cover-intro" style="
+  background: var(--charcoal);
+  padding: 100px 64px 90px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  border-bottom: 1px solid rgba(201,185,154,0.1);
+  min-height: 60vh;
+">
+  <span class="reveal" style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.48em;text-transform:uppercase;color:var(--moss);display:block;margin-bottom:24px;">
+    Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca
+  </span>
+  <h1 class="reveal split-title" data-i18n-html="intro-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,88px);font-weight:300;color:var(--warm-white);line-height:0.95;letter-spacing:-0.02em;margin:0 0 28px;">
+    <span class="word">Breakfast&nbsp;</span><span class="word"><br></span><span class="word"><em style="color:var(--sand);">with Champagne</em></span>
+  </h1>
+  <div class="reveal" style="width:40px;height:1px;background:rgba(201,185,154,0.3);margin:0 auto 28px;"></div>
+  <p class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.85;max-width:480px;margin:0;">
+    A morning celebration at the table.<br>
+    <span style="font-size:0.88em;opacity:0.7">Una celebración al amanecer.</span>
+  </p>
+</div>
 
 <!-- ═══════════ VIDEO SECTION ═══════════ -->
 <div class="video-wrapper" id="video-wrapper">
@@ -1287,11 +2022,11 @@
 </div>
 
 <!-- ═══════════ 01 — EL DESAYUNO ═══════════ -->
-<div class="page">
-  <span class="section-number reveal-left">01 — The Breakfast · El Desayuno</span>
+<div class="page" id="section-01">
+  <span class="section-number reveal-left" data-i18n="s01-num">01 — The Breakfast · El Desayuno</span>
   <h2 class="section-title reveal split-title"><span class="word">The&nbsp;</span><span class="word"><br></span><span class="word"><em>Table</em></span></h2>
 
-  <p class="intro-text reveal">
+  <p class="intro-text reveal" data-i18n-html="s01-intro">
     Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.<br>
     <span style="font-size:0.85em; opacity:0.7">Cada mañana ponemos la mesa con productos frescos de la costa valenciana. El desayuno se sirve completo.</span>
   </p>
@@ -1374,22 +2109,8 @@
   </div>
 </div>
 
-<!-- ── Newsletter inline invite ── -->
-<div style="padding: 28px 52px; background: var(--warm-white); border-top: 1px solid var(--light-line); border-bottom: 1px solid var(--light-line); display: flex; align-items: center; justify-content: space-between; gap: 24px;">
-  <div>
-    <span style="font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; display: block; margin-bottom: 5px;">Stay Updated</span>
-    <span style="font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: var(--bark);">Seasonal menus, local stories &amp; special offers from Villajoyosa — straight to your inbox.</span>
-  </div>
-  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank"
-    style="display:inline-block; flex-shrink:0; border: 1px solid var(--sand); color: var(--bark); font-family:'Jost',sans-serif; font-size:9px; font-weight:500; letter-spacing:0.38em; text-transform:uppercase; padding:12px 26px; text-decoration:none; white-space:nowrap; transition: background 0.2s;"
-    onmouseover="this.style.background='var(--sand)';this.style.color='white'"
-    onmouseout="this.style.background='transparent';this.style.color='var(--bark)'">
-    Subscribe
-  </a>
-</div>
-
 <!-- ═══════════ 02 — TÉ & CAFÉ ═══════════ -->
-<div class="page">
+<div class="page" id="section-02">
       <span class="section-number reveal-right">02 — Tea & Coffee · Té y Café</span>
       <h2 class="section-title reveal split-title"><span class="word">Teas&nbsp;</span><span class="word"><br></span><span class="word"><em>&amp; Coffee</em></span></h2>
 
@@ -1492,7 +2213,7 @@
 </div>
 
 <!-- ═══════════ 03 — CHAMPÁN · COPAS ═══════════ -->
-<div class="page">
+<div class="page" id="section-03">
   <span class="section-number reveal-left">03 — Drinks Menu · Carta de Bebidas · Separately Available · Disponible por Separado</span>
   <h2 class="section-title reveal split-title"><span class="word">Champán&nbsp;</span><span class="word"><br></span><span class="word"><em>& Cava</em></span></h2>
 
@@ -1628,7 +2349,7 @@
 </div>
 
 <!-- ═══════════ 05 — PICNIC ═══════════ -->
-<div class="page">
+<div class="page" id="section-05">
   <span class="section-number reveal-left">05 — Special Experience · Experiencia Especial</span>
   <h2 class="section-title reveal split-title"><span class="word">Beach&nbsp;</span><span class="word">Picnic&nbsp;</span><span class="word"><br></span><span class="word"><em>Basket</em></span></h2>
 
@@ -1713,7 +2434,7 @@
     <div class="nl-strip-title">Letters from Calle Pou</div>
     <div class="nl-strip-sub">Seasonal menus, local stories from Villajoyosa &amp; early access to special offers — delivered quietly to your inbox.<br>Menús de temporada, historias locales y acceso anticipado a ofertas especiales.</div>
   </div>
-  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank" class="nl-btn">Subscribe &nbsp;·&nbsp; Suscribirse</a>
+  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank" class="nl-btn">Subscribe</a>
 </div>
 
 <!-- ═══════════ FOOTER ═══════════ -->
@@ -1729,36 +2450,36 @@
 <div id="tab-cleaning" class="tab-page">
 
   <div style="background:var(--charcoal);padding:52px 52px 40px;border-bottom:1px solid rgba(201,185,154,0.15);">
-    <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Housekeeping &nbsp;·&nbsp; Servicio de Limpieza</span>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Housekeeping<br><em>&amp; Comfort</em></h2>
-    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Select what you need and we will be with you shortly.<br><span style="opacity:0.6">Seleccione lo que necesita y le atendemos enseguida.</span></p>
+    <span data-i18n="hk-eyebrow" style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Housekeeping &nbsp;·&nbsp; Servicio de Limpieza</span>
+    <h2 data-i18n-html="hk-title" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Housekeeping<br><em>&amp; Comfort</em></h2>
+    <p data-i18n="hk-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Select what you need and we will be with you shortly.<br><span style="opacity:0.6">Seleccione lo que necesita y le atendemos enseguida.</span></p>
   </div>
 
   <div style="background:var(--cream);">
     <button class="csvc-item" data-cid="towels" data-cname="Toallas Frescas" data-csub="Fresh Towels" data-cprice="0" onclick="toggleCleaning(this)">
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
-        <div class="csvc-name-en">Fresh Towels</div>
+        <div class="csvc-name-en" data-i18n="hk-towels">Fresh Towels</div>
         <div class="csvc-name-es">Toallas Frescas</div>
-        <div class="csvc-desc">Bath &amp; hand towels &middot; Toallas de ba&ntilde;o y mano</div>
+        <div class="csvc-desc" data-i18n="hk-towels-desc">Bath &amp; hand towels · Toallas de baño y mano</div>
       </div>
       <div class="csvc-price">—,—</div>
     </button>
     <button class="csvc-item" data-cid="room-clean" data-cname="Limpieza de Habitacion" data-csub="Room Cleaning" data-cprice="0" onclick="toggleCleaning(this)">
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
-        <div class="csvc-name-en">Room Cleaning</div>
+        <div class="csvc-name-en" data-i18n="hk-room">Room Cleaning</div>
         <div class="csvc-name-es">Limpieza de Habitaci&oacute;n</div>
-        <div class="csvc-desc">Full clean &amp; linen change &middot; Limpieza completa y cambio de ropa de cama</div>
+        <div class="csvc-desc" data-i18n="hk-room-desc">Full clean &amp; linen change · Limpieza completa y cambio de ropa</div>
       </div>
       <div class="csvc-price">—,—</div>
     </button>
     <button class="csvc-item" data-cid="amenities" data-cname="Amenities Frescos" data-csub="Fresh Amenities" data-cprice="0" onclick="toggleCleaning(this)">
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
-        <div class="csvc-name-en">Fresh Amenities</div>
+        <div class="csvc-name-en" data-i18n="hk-amenities">Fresh Amenities</div>
         <div class="csvc-name-es">Amenities Frescos</div>
-        <div class="csvc-desc">Soap · Shampoo · Shower gel · Toilet paper &middot; Jab&oacute;n, champ&uacute;, gel de ducha, papel</div>
+        <div class="csvc-desc" data-i18n="hk-amenities-desc">Soap · Shampoo · Shower gel · Toilet paper</div>
       </div>
       <div class="csvc-price">—,—</div>
     </button>
@@ -1774,32 +2495,759 @@
     </div>
     <div class="cf-row">
       <div class="cf-group">
-        <label>Room &middot; Habitaci&oacute;n</label>
+        <label data-i18n="hk-room-label">Room</label>
         <input type="text" id="cf-room" placeholder="Ej: 3, Suite A..." maxlength="20" />
       </div>
       <div class="cf-group">
-        <label>Notes &middot; Notas</label>
+        <label data-i18n="hk-notes-label">Notes</label>
         <input type="text" id="cf-notes" placeholder="Special instructions..." maxlength="120" />
       </div>
     </div>
     <div id="cf-status"></div>
     <div class="cf-btns">
-      <button class="cf-btn-send" id="cf-send-btn" onclick="sendCleaning()">Request &middot; Solicitar</button>
+      <button class="cf-btn-send" id="cf-send-btn" data-i18n="hk-request" onclick="sendCleaning()">Request</button>
       <button class="cf-btn-clear" onclick="clearCleaning()">Limpiar</button>
     </div>
   </div>
 
   <div class="page-footer">
     <span>Villajoyosa &middot; Costa Blanca</span>
-    <span>Service available &middot; 8:00 &ndash; 20:00</span>
+    <span data-i18n="hk-footer-service">Service available · 8:00 – 20:00</span>
     <span>Temporada 2025</span>
   </div>
 
 </div><!-- /tab-cleaning -->
 
+<!-- TAB: TIPS & TRICKS -->
+<div id="tab-tips" class="tab-page">
 
+  <!-- Apple-style product selector -->
+  <div class="tips-selector" id="tips-selector">
 
-<!-- ═══════════ ORDER PANEL ═══════════ -->
+    <button class="tips-pill active" onclick="selectTip('sonos')" id="tip-pill-sonos">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="3"/>
+          <line x1="12" y1="3" x2="12" y2="5"/>
+          <line x1="12" y1="19" x2="12" y2="21"/>
+          <line x1="3" y1="12" x2="5" y2="12"/>
+          <line x1="19" y1="12" x2="21" y2="12"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label">Sonos</div>
+      <div class="tips-pill-sub">Speaker</div>
+    </button>
+
+    <button class="tips-pill" onclick="selectTip('arrival')" id="tip-pill-arrival">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label">Arrival</div>
+      <div class="tips-pill-sub">Guide</div>
+    </button>
+
+  </div>
+
+  <!-- ══ PANEL: SONOS SPEAKER ══ -->
+  <div class="tips-panel active" id="tip-panel-sonos">
+
+    <!-- Hero -->
+    <div class="tips-hero">
+      <div class="tips-badge"><span class="tips-badge-dot"></span>Kitchen Area · Sonos Speaker</div>
+      <div class="tips-hero-title reveal">Play music on<br><em>Sonos Speaker</em></div>
+      <div class="tips-hero-desc reveal">Quick setup guide &nbsp;·&nbsp; Two methods available. Connect any device to the kitchen speaker in under a minute.</div>
+      <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+        <span class="scroll-cue-label">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </div>
+
+    <!-- Before you begin notice -->
+    <div class="tips-notice reveal">
+      <span class="tips-notice-icon">⚡</span>
+      <div class="tips-notice-text">
+        <strong>Before you begin —</strong> Make sure your iPhone or iPad and the Sonos speaker are connected to the <strong>same Wi-Fi network</strong>.
+      </div>
+    </div>
+
+    <!-- Video slot — between notice and methods, Forsthofgut inset -->
+    <div class="tips-video-slot reveal-scale">
+      <!-- To add video: delete .tips-video-ph block, uncomment:
+           <video autoplay muted loop playsinline src="sonos-guide.mp4"></video> -->
+      <div class="tips-video-ph">
+        <div class="tips-video-ph-ring"></div>
+        <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(201,185,154,0.3);">Upload sonos-guide.mp4 to activate</span>
+      </div>
+      <div class="tips-video-caption">
+        <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(253,250,247,0.4);">Quick visual guide</span>
+      </div>
+    </div>
+
+    <!-- ── Method A: AirPlay ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter">A</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Via AirPlay</div>
+          <div class="tips-method-sub">Works with any app — Apple Music, Podcasts, Videos & more</div>
+        </div>
+      </div>
+
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Open Control Center</div>
+            <div class="tips-step-desc">On iPhone X or later, <strong>swipe down from the top-right corner</strong> of your screen to open Control Center.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Tap the AirPlay button</div>
+            <div class="tips-step-desc">In the Now Playing widget (top-right of Control Center), tap the <strong>AirPlay icon</strong> — it looks like a triangle with concentric rings.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Select the Sonos Speaker</div>
+            <div class="tips-step-desc">A list of available speakers will appear. Tap <strong>Living Room</strong> (the Sonos speaker in the kitchen area) to connect.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="tips-divider reveal"><span>or use Spotify</span></div>
+
+    <!-- ── Method B: Spotify ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter green">B</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Via Spotify</div>
+          <div class="tips-method-sub">Stream from the Spotify app using Spotify Connect</div>
+        </div>
+      </div>
+
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Open Spotify</div>
+            <div class="tips-step-desc">Launch the <strong>Spotify app</strong> on your iPhone or iPad and select a song or playlist.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Tap the Connect icon</div>
+            <div class="tips-step-desc">In the Now Playing screen, tap the <strong>speaker/device icon</strong> in the bottom-left corner (highlighted in yellow in the image).</div>
+            <span class="tips-step-tag">⊙ It's the small icon with a screen and sound waves</span>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Select the Sonos Speaker</div>
+            <div class="tips-step-desc">From the device list, choose the <strong>Living Room Sonos Speaker</strong>. Spotify will instantly start playing through it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success banner -->
+    <div class="tips-success reveal">
+      <span style="font-size:20px;">✓</span>
+      <div class="tips-success-text"><strong style="color:#3a7d44;">Enjoy your music.</strong> Music is now playing through the Sonos speaker in the kitchen area.</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="page-footer">
+      <span>Calle Pou · Villajoyosa</span>
+      <span>Tips &amp; Tricks</span>
+      <span>Need help? Ask us.</span>
+    </div>
+
+  </div><!-- /tip-panel-sonos -->
+
+  <!-- ══ PANEL: ARRIVAL GUIDE ══ -->
+  <div class="tips-panel" id="tip-panel-arrival">
+
+    <!-- Hero -->
+    <div class="tips-hero">
+      <div class="tips-badge"><span class="tips-badge-dot"></span>Calle Pou · Villajoyosa</div>
+      <div class="tips-hero-title reveal">Welcome to<br><em>Calle Pou</em></div>
+      <div class="tips-hero-desc reveal">
+        Welcome to our beautifully renovated apartment. We hope you had a pleasant journey. Everything you need to feel at home — from your first step through the door.
+      </div>
+      <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+        <span class="scroll-cue-label">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </div>
+
+    <!-- ── Enter the apartment ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="background:var(--bark); font-size:11px; letter-spacing:0.05em;">KEY</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Enter the Apartment</div>
+          <div class="tips-method-sub">Key box · Left of the wooden door</div>
+        </div>
+      </div>
+      <div class="tips-notice reveal">
+        <span class="tips-notice-icon" style="font-size:13px; font-family:'Cormorant Garamond',serif; color:var(--sand);">◉</span>
+        <div class="tips-notice-text">When you approach the wooden door, find the <strong>small box on your left</strong>. It has a lid that hides a panel with numbers.</div>
+      </div>
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Press Reset</div>
+            <div class="tips-step-desc">Press the reset button to clear any previous entry.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Enter the code</div>
+            <div class="tips-step-desc">Press <strong>1 · 3 · 5</strong> in sequence.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Press Open</div>
+            <div class="tips-step-desc">The box will unlock. Take out the keys and open the door.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WiFi ── -->
+    <div style="background:var(--charcoal); padding:48px 64px; border-top:1px solid rgba(201,185,154,0.1); border-bottom:1px solid rgba(201,185,154,0.1);" class="reveal">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+        <div>
+          <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:16px;">Wi-Fi · Unlimited High Speed</span>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--warm-white);line-height:1.0;margin-bottom:6px;">Pou_Wifi</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.25em;color:rgba(201,185,154,0.4);margin-bottom:28px;">Network name</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--sand);letter-spacing:0.04em;">Villajoyosa123</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.25em;color:rgba(201,185,154,0.4);margin-top:6px;">Password</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.8;">
+            The apartment is equipped with <span style="color:rgba(201,185,154,0.6);font-style:normal;">unlimited</span> high-speed Wi-Fi throughout both floors.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Air Conditioning ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">AC</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Air Conditioning</div>
+          <div class="tips-method-sub">Two Daikin units · Upper floor & downstairs</div>
+        </div>
+      </div>
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num" style="font-size:9px; letter-spacing:0.06em;">UP</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Upstairs Unit</div>
+            <div class="tips-step-desc">The <strong>remote control</strong> is located directly below the unit on the upper floor.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num" style="font-size:9px; letter-spacing:0.04em;">DN</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Downstairs Unit</div>
+            <div class="tips-step-desc">The <strong>remote</strong> is mounted next to the bed. Press <strong>COOL</strong> to reduce temperature, <strong>HEAT</strong> to increase. If it feels humid, press <strong>DRY</strong>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tips-notice reveal" style="border-left-color: #c0392b; background:rgba(192,57,43,0.05);">
+        <span class="tips-notice-icon" style="font-size:12px; color:#c0392b; font-family:'Jost',sans-serif; font-weight:700;">!</span>
+        <div class="tips-notice-text"><strong>Please switch off the AC if any windows are open.</strong> This saves energy and preserves the environment.</div>
+      </div>
+    </div>
+
+    <!-- ── Television ── -->
+    <div class="tips-method" style="background:var(--warm-white);">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">TV</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Television</div>
+          <div class="tips-method-sub">Two Samsung Smart TVs · Upper floor</div>
+        </div>
+      </div>
+      <div class="reveal-stagger">
+        <div class="tips-step" style="background:var(--warm-white);">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Living Room Remote</div>
+            <div class="tips-step-desc">Located in the living room <strong>on the table</strong> in front of the couch.</div>
+          </div>
+        </div>
+        <div class="tips-step" style="background:#f5f0e8;">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Master Bedroom Remote</div>
+            <div class="tips-step-desc">Located <strong>on the cupboard</strong> below the TV in the master bedroom.</div>
+          </div>
+        </div>
+        <div class="tips-step" style="background:var(--warm-white);">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Smart Streaming</div>
+            <div class="tips-step-desc">Both TVs are <strong>smart TVs</strong> — you can connect your mobile device to stream your favourite movies and shows.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Useful Tips ── -->
+    <div style="background:var(--charcoal); padding:52px 64px; border-top:1px solid rgba(201,185,154,0.1);" class="reveal-stagger">
+      <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:32px;">Good to Know · Useful Tips</span>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px;">
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 01</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">No insects</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Do not leave any food waste on the kitchen counter. This prevents ants and similar insects.</div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 02</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Keep doors closed</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Do not leave doors open unattended to avoid cockroaches flying into the apartment.</div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 03</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Red-dot switch</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Next to the main entrance on the left. The switch with the <span style="color:var(--sand);">red dot</span> turns off all electronics except the fridge. Use it when leaving.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Waste Removal ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="font-size:10px; background:var(--moss);">♻</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Waste Removal</div>
+          <div class="tips-method-sub">Bins across the main street · Separate daily</div>
+        </div>
+      </div>
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Separate your waste</div>
+            <div class="tips-step-desc"><strong>Glass, cardboard, paper and general trash are separated</strong> in Spain. Use the appropriate bins.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Find the bins</div>
+            <div class="tips-step-desc">Bins are on the <strong>opposite side of the main street</strong> from the apartment — a short walk, marked on the map above the apartment.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Bring waste daily</div>
+            <div class="tips-step-desc">We recommend bringing your trash <strong>daily</strong> to avoid insects inside the apartment.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Calle Pou · Villajoyosa</span>
+      <span>MB Luxury Living · Family Bucksch</span>
+      <span>V1.0 · 2024</span>
+    </div>
+
+  </div><!-- /tip-panel-arrival -->
+
+</div><!-- /tab-tips -->
+
+<!-- TAB: SURROUNDING -->
+<div id="tab-surrounding" class="tab-page">
+
+<!-- ── Surrounding CSS ── -->
+<style>
+  .surr-hero {
+    position: relative;
+    height: 70vh; min-height: 500px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+  }
+  .surr-hero-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 55%;
+    transform: scale(1.05);
+    animation: photoPanIn 2s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .surr-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, transparent 35%, rgba(0,0,0,0.55) 100%);
+  }
+  .surr-hero-content {
+    position: relative; z-index: 2;
+    padding: 0 64px 52px;
+  }
+  /* Photo cards grid */
+  .surr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .surr-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: default;
+  }
+  .surr-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    transform: scale(1.04);
+  }
+  .surr-card:hover .surr-card-img { transform: scale(1.0); }
+  .surr-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(42,37,32,0.88) 0%, rgba(42,37,32,0.2) 45%, transparent 100%);
+    transition: opacity 0.4s;
+  }
+  .surr-card-body {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 28px 32px;
+    z-index: 2;
+  }
+  .surr-card-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--moss);
+    display: block; margin-bottom: 8px;
+  }
+  .surr-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300;
+    color: var(--warm-white); line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .surr-card-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic;
+    color: rgba(253,250,247,0.5); line-height: 1.65;
+  }
+  .surr-card-dist {
+    position: absolute; top: 18px; right: 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    background: rgba(0,0,0,0.3);
+    padding: 4px 10px;
+    backdrop-filter: blur(4px);
+  }
+  /* Wide feature card */
+  .surr-feature {
+    position: relative; overflow: hidden;
+    height: 52vh; min-height: 380px;
+  }
+  .surr-feature-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    transform: scale(1.04);
+  }
+  .surr-feature:hover .surr-feature-img { transform: scale(1.0); }
+  .surr-feature-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(42,37,32,0.82) 0%, rgba(42,37,32,0.3) 55%, transparent 100%);
+  }
+  .surr-feature-body {
+    position: absolute; bottom: 0; left: 0; top: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 48px 56px; z-index: 2; max-width: 52%;
+  }
+  /* Map */
+  .surr-map-wrap {
+    position: relative;
+    height: 55vh; min-height: 380px;
+    overflow: hidden;
+  }
+  .surr-map-wrap iframe {
+    width: 100%; height: 100%;
+    border: none; display: block;
+  }
+  .surr-map-label {
+    position: absolute; top: 20px; left: 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--bark);
+    background: rgba(247,243,238,0.9);
+    padding: 6px 14px;
+    backdrop-filter: blur(6px);
+  }
+  /* Transport strip */
+  .surr-transport {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--charcoal);
+  }
+  .surr-transport-item {
+    padding: 40px 48px;
+    border-right: 1px solid rgba(201,185,154,0.08);
+  }
+  .surr-transport-item:last-child { border-right: none; }
+  @media (max-width: 700px) {
+    .surr-grid { grid-template-columns: 1fr; }
+    .surr-card { aspect-ratio: 4/3; }
+    .surr-hero-content { padding: 0 24px 36px; }
+    .surr-feature-body { max-width: 100%; padding: 28px 24px; }
+    .surr-transport { grid-template-columns: 1fr; }
+    .surr-transport-item { border-right: none; border-bottom: 1px solid rgba(201,185,154,0.08); }
+  }
+</style>
+
+  <!-- ── HERO — full bleed Villajoyosa ── -->
+  <div class="surr-hero">
+    <img class="surr-hero-img"
+      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85"
+      alt="Villajoyosa coastline"
+      onerror="this.parentElement.style.background='linear-gradient(160deg,#1a1510,#2A2520)';this.style.display='none'" />
+    <div class="surr-hero-overlay"></div>
+    <div class="surr-hero-content">
+      <div class="tips-badge reveal" style="display:inline-flex;width:fit-content;margin-bottom:16px;"><span class="tips-badge-dot"></span>Villajoyosa &nbsp;·&nbsp; Costa Blanca &nbsp;·&nbsp; Spain</div>
+      <div class="reveal" data-i18n-html="surr-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,76px);font-weight:300;color:var(--warm-white);line-height:0.95;letter-spacing:-0.01em;">
+        Discover<br><em style="color:var(--sand);">the Surroundings</em>
+      </div>
+      <p class="reveal" data-i18n="surr-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.4);line-height:1.8;margin-top:18px;max-width:500px;">
+        Colourful facades, centuries-old chocolate, crystal Mediterranean water — a pace of life that rewards exploration on foot.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── SECTION LABEL ── -->
+  <div style="background:var(--cream);padding:32px 64px 0;border-bottom:none;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">01 &nbsp;·&nbsp; Beach & Coastline</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">The <em>Sea</em></div>
+  </div>
+
+  <!-- ── BEACH PHOTO CARDS ── -->
+  <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+        alt="Playa Centro Villajoyosa"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">5 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Town Beach</span>
+        <div class="surr-card-title">Playa Centro</div>
+        <div class="surr-card-desc">Calm, clear water flanked by the famous painted houses. Ideal for morning swimming.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80"
+        alt="Playa Paraiso"
+        onerror="this.style.background='#1a1510';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">10 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Quieter Cove</span>
+        <div class="surr-card-title">Playa Paraíso</div>
+        <div class="surr-card-desc">Rocky entry, excellent snorkelling, fewer crowds — especially early morning.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800&q=80"
+        alt="Benidorm beach"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">15 min by car</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Day Trip</span>
+        <div class="surr-card-title">Benidorm</div>
+        <div class="surr-card-desc">Playa de Levante — one of Spain's most famous beaches. Wide, fine sand.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHOCOLATE FEATURE ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">02 &nbsp;·&nbsp; Villajoyosa Chocolate</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">A town built <em>on chocolate</em></div>
+  </div>
+  <div class="surr-feature reveal-scale">
+    <img class="surr-feature-img"
+      src="https://images.unsplash.com/photo-1549488344-6c1b0b7a6e0e?w=1600&q=85"
+      alt="Chocolate Villajoyosa"
+      onerror="this.parentElement.style.background='var(--charcoal)';this.style.display='none'" />
+    <div class="surr-feature-overlay"></div>
+    <div class="surr-feature-body">
+      <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);margin-bottom:14px;">Since the 18th century</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:18px;">Pérez Chocolatier<br><em style="color:var(--sand);">Walking distance</em></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.75;">Watch the chocolate being made and buy bars to take home — the same Pérez chocolate served at your breakfast table.</div>
+      <div style="margin-top:18px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.3);line-height:1.65;">Also: Museo del Chocolate · Valor · Free entry · Guided tastings available</div>
+    </div>
+  </div>
+
+  <!-- ── RESTAURANTS CARDS ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">03 &nbsp;·&nbsp; Eat & Drink</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">Restaurants <em>&amp; Bars</em></div>
+  </div>
+  <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
+        alt="Seafood restaurant"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">5 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Seafood &amp; Rice</span>
+        <div class="surr-card-title">Seafront Restaurants</div>
+        <div class="surr-card-desc">Fresh catch daily on the promenade. Ask your host for personal current recommendations.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80"
+        alt="Local market"
+        onerror="this.style.background='#1a1510';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">Tue &amp; Sat</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Morning Market</span>
+        <div class="surr-card-title">Mercado Central</div>
+        <div class="surr-card-desc">Local produce, cheese, cured meats, fresh flowers. The heart of the town on market mornings.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
+        alt="Tapas bar"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">2 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Tapas &amp; Wine</span>
+        <div class="surr-card-title">Old Town Bars</div>
+        <div class="surr-card-desc">The streets around Calle Pou are lined with neighbourhood bars. Cold beer, no tourist menus.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── THINGS TO DO ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">04 &nbsp;·&nbsp; Things To Do</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">Explore <em>&amp; Experience</em></div>
+  </div>
+  <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80"
+        alt="Villajoyosa old town"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Old Town · 3 min</span>
+        <div class="surr-card-title">Casco Antiguo</div>
+        <div class="surr-card-desc">Colourful painted facades of the old fishing quarter. Best before the morning heat.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1461823385004-d7660947a7c0?w=800&q=80"
+        alt="Roman history museum"
+        onerror="this.style.background='#1a1510';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Culture</span>
+        <div class="surr-card-title">Roman History</div>
+        <div class="surr-card-desc">Villajoyosa sits on a Roman settlement. The archaeology museum traces 2,000 years of history.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+        alt="Alicante day trip"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">30 min by tram</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Day Trip</span>
+        <div class="surr-card-title">Alicante</div>
+        <div class="surr-card-desc">Castle, palm-lined promenade and one of Spain's best old-town tapas scenes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GOOGLE MAP ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">Map &nbsp;·&nbsp; Villajoyosa</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:20px;">Calle Pou <em>&amp; Around</em></div>
+  </div>
+  <div class="surr-map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3118.8!2d-0.2317!3d38.5057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6201b703d83c25%3A0x8e5b7e7b2c1d4a0!2sVillajoyosa%2C%20Alicante%2C%20Spain!5e0!3m2!1sen!2ses!4v1710000000000!5m2!1sen!2ses"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Villajoyosa map">
+    </iframe>
+    <div class="surr-map-label">Villajoyosa · Calle Pou</div>
+  </div>
+
+  <!-- ── GETTING AROUND ── -->
+  <div class="surr-transport reveal-stagger">
+    <div class="surr-transport-item">
+      <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:10px;">On Foot</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--warm-white);font-weight:300;margin-bottom:10px;">The Town</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.75;">Beach 5 min · Old town 3 min · Market 8 min. Everything in Villajoyosa is walkable from Calle Pou.</div>
+    </div>
+    <div class="surr-transport-item">
+      <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:10px;">By Tram</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--warm-white);font-weight:300;margin-bottom:10px;">TRAM Line 9</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.75;">Benidorm 15 min · Alicante 35 min. Station is a 10-minute walk from the apartment.</div>
+    </div>
+    <div class="surr-transport-item">
+      <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:10px;">By Car</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--warm-white);font-weight:300;margin-bottom:10px;">Parking</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.75;">Paid parking on the seafront. Free parking zones 5 min drive inland.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Villajoyosa &nbsp;·&nbsp; Costa Blanca</span>
+    <span>MB Luxury Living</span>
+    <span>Explore the area</span>
+  </div>
+
+</div><!-- /tab-surrounding -->
+
+ ═══════════ -->
 <div id="order-panel">
   <div class="order-panel-head">
     <div>
@@ -2416,6 +3864,34 @@
 </script>
 
 <script>
+
+// Tips & Tricks panel switcher
+function selectTip(id) {
+  document.querySelectorAll('.tips-pill').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tips-panel').forEach(function(p) { p.classList.remove('active'); });
+  var pill = document.getElementById('tip-pill-' + id);
+  var panel = document.getElementById('tip-panel-' + id);
+  if (pill) pill.classList.add('active');
+  if (panel) {
+    panel.classList.add('active');
+    setTimeout(function() {
+      document.querySelectorAll('#tip-panel-' + id + ' .reveal, #tip-panel-' + id + ' .reveal-left, #tip-panel-' + id + ' .reveal-right, #tip-panel-' + id + ' .reveal-scale, #tip-panel-' + id + ' .reveal-stagger').forEach(function(el) {
+        el.classList.remove('visible');
+      });
+      setTimeout(observeAllGlobal, 60);
+    }, 20);
+  }
+}
+
+function observeAllGlobal() {
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title').forEach(function(el) {
+    if (!el.classList.contains('visible')) {
+      try { ioGlobal.observe(el); } catch(e) {}
+    }
+  });
+}
+var ioGlobal;
+
 // ── Enhanced Apple-style animations ──
 (function() {
 
@@ -2430,11 +3906,15 @@
     // Progress bar
     if (bar) bar.style.width = (docH > 0 ? st / docH * 100 : 0) + '%';
 
-    // Cover parallax — drift up and fade
-    var cover = document.querySelector('#tab-menu .cover');
-    if (cover) {
-      cover.style.transform = 'translateY(' + Math.min(st * 0.28, 90) + 'px)';
-      cover.style.opacity   = Math.max(1 - st / 460, 0);
+    // Cover parallax
+    var coverImg = document.querySelector('.cover-photo-img');
+    if (coverImg && st < window.innerHeight) {
+      coverImg.style.transform = 'scale(1.0) translateY(' + (st * 0.2) + 'px)';
+    }
+    var coverTagline = document.querySelector('.cover-tagline');
+    if (coverTagline && st < window.innerHeight) {
+      coverTagline.style.opacity = Math.max(1 - st / 400, 0);
+      coverTagline.style.transform = 'translateY(' + (st * 0.12) + 'px)';
     }
 
     // Video scale — unzooms from 1.08 to 1.0 as you scroll through the wrapper
@@ -2449,7 +3929,7 @@
   }, { passive: true });
 
   // IntersectionObserver for all reveal + split-title
-  var io = new IntersectionObserver(function(entries) {
+  ioGlobal = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
     });
@@ -2459,19 +3939,289 @@
     document.querySelectorAll(
       '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title'
     ).forEach(function(el) {
-      if (!el.classList.contains('visible')) io.observe(el);
+      if (!el.classList.contains('visible')) ioGlobal.observe(el);
     });
   }
 
-  document.addEventListener('DOMContentLoaded', observeAll);
+  // Forsthofgut nav state
+  var tabBar = document.getElementById('tab-bar');
+  var coverEl = document.getElementById('cover-split');
+  function updateNav() {
+    if (!tabBar) return;
+    var coverH = coverEl ? coverEl.offsetHeight : window.innerHeight;
+    var st = window.scrollY || document.documentElement.scrollTop;
+    if (st > coverH * 0.72) { tabBar.classList.add('nav-scrolled'); }
+    else { tabBar.classList.remove('nav-scrolled'); }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
 
-  var orig = window.switchTab;
+  document.addEventListener('DOMContentLoaded', function() {
+    observeAll();
+    updateNav();
+  });
+
+  var origSwitch = window.switchTab;
   window.switchTab = function(tab) {
-    if (orig) orig(tab);
-    setTimeout(observeAll, 60);
+    if (origSwitch) origSwitch(tab);
+    // Non-menu tabs: always solid nav
+    if (tab !== 'menu') {
+      if (tabBar) tabBar.classList.add('nav-scrolled');
+    } else {
+      setTimeout(updateNav, 50);
+    }
+    setTimeout(observeAllGlobal, 60);
   };
 
 })();
+</script>
+
+
+
+
+
+<script>
+// ══════════════════════════════════════════
+// LANGUAGE SWITCHER — data-i18n driven
+// ══════════════════════════════════════════
+var currentLang = 'en';
+
+var T = {
+  en: {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Breakfast & Drinks',
+    'tab-cleaning-primary':   'Housekeeping',
+    'tab-cleaning-sub':       'Limpieza',
+    'tab-surrounding-primary':'Surrounding',
+    'tab-surrounding-sub':    'Explore',
+    'tab-tips-primary':       'Tips & Tricks',
+    'tab-tips-sub':           'Guides',
+    'cover-title':            'Breakfast<br><em>with Champagne</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'scroll',
+    'cover-nav-welcome':      'Welcome',
+    'cover-nav-breakfast':    'Breakfast',
+    'cover-nav-tea':          'Tea & Coffee',
+    'cover-nav-champagne':    'Champagne',
+    'cover-nav-picnic':       'Picnic',
+    'intro-title':            'Breakfast<br><em style="color:var(--sand);">with Champagne</em>',
+    'intro-sub':              'A morning celebration at the table.<br><span style="font-size:0.88em;opacity:0.7">Una celebración al amanecer.</span>',
+    's01-num':                '01 — The Breakfast · El Desayuno',
+    's01-intro':              'Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.<br><span style="font-size:0.85em; opacity:0.7">Cada mañana ponemos la mesa con productos frescos de la costa valenciana.</span>',
+    'hk-eyebrow':             'Housekeeping · Servicio de Limpieza',
+    'hk-title':               'Housekeeping<br><em>&amp; Comfort</em>',
+    'hk-desc':                'Select what you need and we will be with you shortly.',
+    'hk-towels':              'Fresh Towels',
+    'hk-towels-desc':         'Bath & hand towels · Toallas de baño y mano',
+    'hk-room':                'Room Cleaning',
+    'hk-room-desc':           'Full clean & linen change · Limpieza completa',
+    'hk-amenities':           'Fresh Amenities',
+    'hk-amenities-desc':      'Soap · Shampoo · Shower gel · Toilet paper',
+    'hk-request':             'Request',
+    'hk-room-label':          'Room',
+    'hk-notes-label':         'Notes',
+    'hk-footer-service':      'Service available · 8:00 – 20:00',
+    'surr-title':             'Discover<br><em style="color:var(--sand);">the Surroundings</em>',
+    'surr-desc':              'Colourful facades, centuries-old chocolate, crystal Mediterranean water — a pace of life that rewards exploration on foot.',
+  },
+  de: {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Frühstück & Getränke',
+    'tab-cleaning-primary':   'Housekeeping',
+    'tab-cleaning-sub':       'Reinigung',
+    'tab-surrounding-primary':'Umgebung',
+    'tab-surrounding-sub':    'Erkunden',
+    'tab-tips-primary':       'Tipps & Tricks',
+    'tab-tips-sub':           'Ratgeber',
+    'cover-title':            'Frühstück<br><em>mit Champagner</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Scrollen',
+    'cover-nav-welcome':      'Willkommen',
+    'cover-nav-breakfast':    'Frühstück',
+    'cover-nav-tea':          'Tee & Kaffee',
+    'cover-nav-champagne':    'Champagner',
+    'cover-nav-picnic':       'Picknick',
+    'intro-title':            'Frühstück<br><em style="color:var(--sand);">mit Champagner</em>',
+    'intro-sub':              'Eine morgendliche Feier am Tisch.<br><span style="font-size:0.88em;opacity:0.7">Una celebración al amanecer.</span>',
+    's01-num':                '01 — Das Frühstück',
+    's01-intro':              'Jeden Morgen decken wir den Tisch mit frischen Produkten von der valencianischen Küste. Das Frühstück wird als vollständiges Erlebnis serviert.',
+    'hk-eyebrow':             'Housekeeping · Zimmerservice',
+    'hk-title':               'Housekeeping<br><em>&amp; Komfort</em>',
+    'hk-desc':                'Wählen Sie aus, was Sie benötigen — wir sind gleich bei Ihnen.',
+    'hk-towels':              'Frische Handtücher',
+    'hk-towels-desc':         'Bad- und Handtücher',
+    'hk-room':                'Zimmerreinigung',
+    'hk-room-desc':           'Vollständige Reinigung & Bettwäschewechsel',
+    'hk-amenities':           'Frische Amenities',
+    'hk-amenities-desc':      'Seife · Shampoo · Duschgel · Toilettenpapier',
+    'hk-request':             'Anfordern',
+    'hk-room-label':          'Zimmer',
+    'hk-notes-label':         'Hinweise',
+    'hk-footer-service':      'Service verfügbar · 8:00 – 20:00 Uhr',
+    'surr-title':             'Die Umgebung<br><em style="color:var(--sand);">entdecken</em>',
+    'surr-desc':              'Bunte Fassaden, jahrhundertealte Schokolade, kristallklares Mittelmeer — ein Tempo, das zur Erkundung einlädt.',
+  },
+  es: {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Desayuno & Bebidas',
+    'tab-cleaning-primary':   'Limpieza',
+    'tab-cleaning-sub':       'Housekeeping',
+    'tab-surrounding-primary':'Alrededores',
+    'tab-surrounding-sub':    'Explorar',
+    'tab-tips-primary':       'Consejos',
+    'tab-tips-sub':           'Guías',
+    'cover-title':            'Desayuno<br><em>con Champán</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Desplazar',
+    'cover-nav-welcome':      'Bienvenida',
+    'cover-nav-breakfast':    'Desayuno',
+    'cover-nav-tea':          'Té & Café',
+    'cover-nav-champagne':    'Champán',
+    'cover-nav-picnic':       'Picnic',
+    'intro-title':            'Desayuno<br><em style="color:var(--sand);">con Champán</em>',
+    'intro-sub':              'Una celebración al amanecer.',
+    's01-num':                '01 — El Desayuno',
+    's01-intro':              'Cada mañana ponemos la mesa con productos frescos de la costa valenciana. El desayuno se sirve como una experiencia completa.',
+    'hk-eyebrow':             'Servicio de Limpieza · Housekeeping',
+    'hk-title':               'Limpieza<br><em>&amp; Confort</em>',
+    'hk-desc':                'Seleccione lo que necesita y le atendemos enseguida.',
+    'hk-towels':              'Toallas Frescas',
+    'hk-towels-desc':         'Toallas de baño y de mano',
+    'hk-room':                'Limpieza de Habitación',
+    'hk-room-desc':           'Limpieza completa y cambio de ropa de cama',
+    'hk-amenities':           'Amenities Frescos',
+    'hk-amenities-desc':      'Jabón · Champú · Gel de ducha · Papel higiénico',
+    'hk-request':             'Solicitar',
+    'hk-room-label':          'Habitación',
+    'hk-notes-label':         'Notas',
+    'hk-footer-service':      'Servicio disponible · 8:00 – 20:00',
+    'surr-title':             'Descubrir<br><em style="color:var(--sand);">los Alrededores</em>',
+    'surr-desc':              'Fachadas de colores, chocolate centenario, mar Mediterráneo cristalino — un ritmo de vida que invita a explorar.',
+  },
+  fr: {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Petit-déjeuner & Boissons',
+    'tab-cleaning-primary':   'Ménage',
+    'tab-cleaning-sub':       'Housekeeping',
+    'tab-surrounding-primary':'Alentours',
+    'tab-surrounding-sub':    'Explorer',
+    'tab-tips-primary':       'Conseils',
+    'tab-tips-sub':           'Guides',
+    'cover-title':            'Petit-déjeuner<br><em>au Champagne</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Défiler',
+    'cover-nav-welcome':      'Bienvenue',
+    'cover-nav-breakfast':    'Petit-déjeuner',
+    'cover-nav-tea':          'Thé & Café',
+    'cover-nav-champagne':    'Champagne',
+    'cover-nav-picnic':       'Pique-nique',
+    'intro-title':            'Petit-déjeuner<br><em style="color:var(--sand);">au Champagne</em>',
+    'intro-sub':              'Une célébration matinale à table.',
+    's01-num':                '01 — Le Petit-déjeuner',
+    's01-intro':              'Chaque matin nous dressons la table avec des produits frais de la côte valencienne. Le petit-déjeuner est servi comme une expérience complète.',
+    'hk-eyebrow':             'Ménage · Housekeeping',
+    'hk-title':               'Ménage<br><em>&amp; Confort</em>',
+    'hk-desc':                'Sélectionnez ce dont vous avez besoin et nous serons avec vous rapidement.',
+    'hk-towels':              'Serviettes Fraîches',
+    'hk-towels-desc':         'Serviettes de bain et de main',
+    'hk-room':                'Nettoyage de Chambre',
+    'hk-room-desc':           'Nettoyage complet & changement de linge',
+    'hk-amenities':           'Produits Frais',
+    'hk-amenities-desc':      'Savon · Shampooing · Gel douche · Papier toilette',
+    'hk-request':             'Demander',
+    'hk-room-label':          'Chambre',
+    'hk-notes-label':         'Notes',
+    'hk-footer-service':      'Service disponible · 8h00 – 20h00',
+    'surr-title':             'Découvrir<br><em style="color:var(--sand);">les Alentours</em>',
+    'surr-desc':              'Façades colorées, chocolat séculaire, mer Méditerranée cristalline — un rythme de vie qui invite à l'exploration.',
+  }
+  no: {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Frokost & Drikke',
+    'tab-cleaning-primary':   'Rengjøring',
+    'tab-cleaning-sub':       'Housekeeping',
+    'tab-surrounding-primary':'Omgivelser',
+    'tab-surrounding-sub':    'Utforsk',
+    'tab-tips-primary':       'Tips & Triks',
+    'tab-tips-sub':           'Guider',
+    'cover-title':            'Frokost<br><em>med Champagne</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Scroll',
+    'cover-nav-welcome':      'Velkommen',
+    'cover-nav-breakfast':    'Frokost',
+    'cover-nav-tea':          'Te & Kaffe',
+    'cover-nav-champagne':    'Champagne',
+    'cover-nav-picnic':       'Piknik',
+    'intro-title':            'Frokost<br><em style="color:var(--sand);">med Champagne</em>',
+    'intro-sub':              'En morgenfest ved bordet.',
+    's01-num':                '01 — Frokosten',
+    's01-intro':              'Hver morgen dekker vi bordet med ferske råvarer fra Valenciakysten. Frokosten serveres som en komplett opplevelse.',
+    'hk-eyebrow':             'Rengjøring · Housekeeping',
+    'hk-title':               'Rengjøring<br><em>&amp; Komfort</em>',
+    'hk-desc':                'Velg hva du trenger — vi er hos deg snart.',
+    'hk-towels':              'Friske Håndklær',
+    'hk-towels-desc':         'Badehåndklær og håndklær',
+    'hk-room':                'Romrengjøring',
+    'hk-room-desc':           'Fullstendig rengjøring og sengetøyskifte',
+    'hk-amenities':           'Friske Amenities',
+    'hk-amenities-desc':      'Såpe · Sjampo · Dusjsåpe · Toalettpapir',
+    'hk-request':             'Bestill',
+    'hk-room-label':          'Rom',
+    'hk-notes-label':         'Notater',
+    'hk-footer-service':      'Tilgjengelig · 8:00 – 20:00',
+    'surr-title':             'Oppdag<br><em style="color:var(--sand);">omgivelsene</em>',
+    'surr-desc':              'Fargerike fasader, århundregammelt sjokolade, krystallklart Middelhav — et livsrytme som belønner utforskning til fots.',
+  }
+};
+
+function applyLang() {
+  var t = T[currentLang];
+  if (!t) return;
+
+  // Plain text elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // HTML elements (allow tags inside)
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Update switcher label + checkmarks + active class
+  document.getElementById('lang-current').textContent = currentLang.toUpperCase();
+  ['en','de','es','fr','no'].forEach(function(l) {
+    var chk = document.getElementById('check-' + l);
+    var opt = document.getElementById('lang-opt-' + l);
+    if (chk) chk.style.display = l === currentLang ? 'inline' : 'none';
+    if (opt) opt.classList.toggle('lang-active', l === currentLang);
+  });
+}
+
+function setLang(lang, e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  currentLang = lang;
+  document.getElementById('lang-switcher').classList.remove('open');
+  applyLang();
+}
+
+function toggleLangDropdown(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var sw = document.getElementById('lang-switcher');
+  sw.classList.toggle('open');
+}
+
+document.addEventListener('mousedown', function(e) {
+  var sw = document.getElementById('lang-switcher');
+  if (sw && sw.classList.contains('open') && !sw.contains(e.target)) {
+    sw.classList.remove('open');
+  }
+});
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', applyLang);
 </script>
 
 </body>
