@@ -1918,19 +1918,15 @@
   <div id="tab-nav-centre">
     <button class="tab-btn active" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" id="tab-btn-menu">
       <span class="tab-es" data-i18n="tab-menu-primary">Room Service</span>
-      <span class="tab-en" data-i18n="tab-menu-sub">Breakfast & Drinks</span>
     </button>
     <button class="tab-btn" onclick="switchTab('cleaning')" id="tab-btn-cleaning">
-      <span class="tab-es">Housekeeping</span>
-      <span class="tab-en">Limpieza</span>
+      <span class="tab-es" data-i18n="tab-cleaning-primary">Housekeeping</span>
     </button>
     <button class="tab-btn" onclick="switchTab('surrounding')" id="tab-btn-surrounding">
-      <span class="tab-es">Surrounding</span>
-      <span class="tab-en">Explore</span>
+      <span class="tab-es" data-i18n="tab-surrounding-primary">Surrounding</span>
     </button>
     <button class="tab-btn" onclick="switchTab('tips')" id="tab-btn-tips">
-      <span class="tab-es">Tips & Tricks</span>
-      <span class="tab-en">Guides</span>
+      <span class="tab-es" data-i18n="tab-tips-primary">Tips & Tricks</span>
     </button>
   </div>
 
@@ -2032,7 +2028,7 @@
   <!-- Sub-nav — bottom strip -->
   <nav class="cover-nav">
     <button class="cover-nav-btn" onclick="document.getElementById('cover-intro').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-welcome">Welcome</button>
-    <button class="cover-nav-btn" onclick="document.getElementById('section-01').scrollIntoView({behavior:'smooth'})">Breakfast</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-01').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-breakfast">Breakfast</button>
     <button class="cover-nav-btn" onclick="document.getElementById('section-02').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-tea">Tea & Coffee</button>
     <button class="cover-nav-btn" onclick="document.getElementById('section-03').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-champagne">Champagne</button>
     <button class="cover-nav-btn" onclick="document.getElementById('section-05').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-picnic">Picnic</button>
@@ -2054,12 +2050,11 @@
     Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca
   </span>
   <h1 class="reveal split-title" data-i18n-html="intro-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,88px);font-weight:300;color:var(--warm-white);line-height:0.95;letter-spacing:-0.02em;margin:0 0 28px;">
-    <span class="word">Breakfast&nbsp;</span><span class="word"><br></span><span class="word"><em style="color:var(--sand);">with Champagne</em></span>
+    <span class="word">Breakfast&nbsp;</span><span class="word"></span><span class="word"><em style="color:var(--sand);">with Champagne</em></span>
   </h1>
   <div class="reveal" style="width:40px;height:1px;background:rgba(201,185,154,0.3);margin:0 auto 28px;"></div>
-  <p class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.85;max-width:480px;margin:0;">
-    A morning celebration at the table.<br>
-    <span style="font-size:0.88em;opacity:0.7">Una celebración al amanecer.</span>
+  <p class="reveal" data-i18n-html="intro-sub" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.85;max-width:480px;margin:0;">
+    A morning celebration at the table.
   </p>
 </div>
 
@@ -2095,11 +2090,10 @@
 <!-- ═══════════ 01 — EL DESAYUNO ═══════════ -->
 <div class="page" id="section-01">
   <span class="section-number reveal-left" data-i18n="s01-num">01 — The Breakfast · El Desayuno</span>
-  <h2 class="section-title reveal split-title"><span class="word">The&nbsp;</span><span class="word"><br></span><span class="word"><em>Table</em></span></h2>
+  <h2 class="section-title reveal split-title"><span class="word">The&nbsp;</span><span class="word"></span><span class="word"><em>Table</em></span></h2>
 
   <p class="intro-text reveal" data-i18n-html="s01-intro">
-    Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.<br>
-    <span style="font-size:0.85em; opacity:0.7">Cada mañana ponemos la mesa con productos frescos de la costa valenciana. El desayuno se sirve completo.</span>
+    Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.
   </p>
 
   <div class="menu-grid reveal-stagger">
@@ -2115,10 +2109,9 @@
           <div class="menu-item-price">—,—</div>
         </div>
         <div class="menu-item-desc">
-          Gallegas Nº 3 · 2 piezas por persona · Vinagreta de chalotas · Limón de Murcia<br>
-          <em style="opacity:0.65">2 pieces per person · Shallot vinaigrette · Murcia lemon</em>
+          Gallegas Nº 3 · 2 piezas por persona · Vinagreta de chalotas · Limón de Murcia
         </div>
-        <span class="menu-item-note">Opened to order, served on crushed ice · Abiertas al momento sobre hielo picado</span>
+        <span class="menu-item-note">Opened to order, served on crushed ice sobre hielo picado</span>
       </div>
     </div>
 
@@ -2134,8 +2127,7 @@
           <div class="menu-item-price">—,—</div>
         </div>
         <div class="menu-item-desc">
-          Pan de masa madre · Barra andaluza · Coca de aceite de oliva virgen extra · Horneado cada mañana<br>
-          <em style="opacity:0.65">Sourdough · Andalusian barra · Olive oil flatbread · Baked fresh daily</em>
+          Pan de masa madre · Barra andaluza · Coca de aceite de oliva virgen extra · Horneado cada mañana
         </div>
       </div>
     </div>
@@ -2154,9 +2146,8 @@
         <div class="menu-item-desc">
           Grated tomato with extra virgin olive oil · Herb butter · Orange blossom honey · Seasonal jams<br>
           Iberian acorn ham · Aged manchego · Cantabrian smoked salmon · Avocado cream · Sobrasada<br>
-          <em style="font-style:normal; color:var(--bark);">Pérez dark chocolate bar</em> — from Villajoyosa's own chocolate tradition · Served on the side<br>
-          <em style="opacity:0.6">Tomate rallado · Mantequilla de hierbas · Miel de azahar · Mermeladas · Jamón ibérico · Manchego · Salmón · Crema de aguacate · Sobrasada · Tableta de chocolate negro Pérez</em>
-        </div>
+          <em style="font-style:normal; color:var(--bark);">Pérez dark chocolate bar</em> — from Villajoyosa's own chocolate tradition · Served on the side
+</div>
       </div>
     </div>
 
@@ -2172,8 +2163,7 @@
           <div class="menu-item-price">—,—</div>
         </div>
         <div class="menu-item-desc">
-          Frutas del mercado local · Zumos recién exprimidos · Granola de frutos secos andaluces<br>
-          <em style="opacity:0.65">Local market fruits · Freshly pressed juices · Andalusian nut granola</em>
+          Frutas del mercado local · Granola de frutos secos andaluces
         </div>
       </div>
     </div>
@@ -2183,7 +2173,7 @@
 <!-- ═══════════ 02 — TÉ & CAFÉ ═══════════ -->
 <div class="page" id="section-02">
       <span class="section-number reveal-right">02 — Tea & Coffee · Té y Café</span>
-      <h2 class="section-title reveal split-title"><span class="word">Teas&nbsp;</span><span class="word"><br></span><span class="word"><em>&amp; Coffee</em></span></h2>
+      <h2 class="section-title reveal split-title"><span class="word">Teas&nbsp;</span><span class="word"></span><span class="word"><em>&amp; Coffee</em></span></h2>
 
       <div class="menu-grid reveal-stagger">
         <div class="menu-item orderable" data-id="tea-hierbas" data-name="Té Andaluz de Hierbas" data-sub="Andalusian Herbal Tea" data-price="5.50">
@@ -2197,7 +2187,7 @@
               </div>
               <div class="menu-item-price">5,50</div>
             </div>
-            <div class="menu-item-desc">Manzanilla · Poleo · Cantueso · Menta fresca · Ecológico</div>
+            <div class="menu-item-desc">Manzanilla · Poleo · Cantueso · Menta fresca</div>
             <span class="menu-item-note">From our kitchen garden · Hierbas de nuestra huerta</span>
           </div>
         </div>
@@ -2213,7 +2203,7 @@
               </div>
               <div class="menu-item-price">6,50</div>
             </div>
-            <div class="menu-item-desc">Uji, Japón · Origen único · Vegetal y fresco · Single origin, vegetal & fresh</div>
+            <div class="menu-item-desc">Uji, Japón · Single origin, vegetal & fresh</div>
           </div>
         </div>
 
@@ -2228,7 +2218,7 @@
               </div>
               <div class="menu-item-price">6,—</div>
             </div>
-            <div class="menu-item-desc">Bergamota · Té negro · Con limón y leche fría · Bergamot, black tea, lemon & cold milk</div>
+            <div class="menu-item-desc">Bergamota · Bergamot, black tea, lemon & cold milk</div>
           </div>
         </div>
 
@@ -2243,7 +2233,7 @@
               </div>
               <div class="menu-item-price">4,50</div>
             </div>
-            <div class="menu-item-desc">Espresso · Cortado · Café con leche · Tueste propio, Etiopía Yirgacheffe<br><em style="opacity:0.65">House roast, Ethiopia Yirgacheffe</em></div>
+            <div class="menu-item-desc">Espresso · Cortado · Tueste propio, Etiopía Yirgacheffe</div>
           </div>
         </div>
 
@@ -2258,7 +2248,7 @@
               </div>
               <div class="menu-item-price">5,50</div>
             </div>
-            <div class="menu-item-desc">Leche fresca de granja · Técnica de microespuma · Fresh farm milk, microfoam</div>
+            <div class="menu-item-desc">Leche fresca de granja · Fresh farm milk, microfoam</div>
           </div>
         </div>
       </div>
@@ -2286,11 +2276,10 @@
 <!-- ═══════════ 03 — CHAMPÁN · COPAS ═══════════ -->
 <div class="page" id="section-03">
   <span class="section-number reveal-left">03 — Drinks Menu · Carta de Bebidas · Separately Available · Disponible por Separado</span>
-  <h2 class="section-title reveal split-title"><span class="word">Champán&nbsp;</span><span class="word"><br></span><span class="word"><em>& Cava</em></span></h2>
+  <h2 class="section-title reveal split-title"><span class="word">Champán&nbsp;</span><span class="word"></span><span class="word"><em>& Cava</em></span></h2>
 
   <p class="intro-text reveal">
-    Our champagne and cava selection is available separately — by the glass or bottle. We recommend beginning with our house selection.<br>
-    <span style="font-size:0.85em; opacity:0.7">Nuestra selección de champanes y cavas se sirve por separado — por copa o botella.</span>
+    Our champagne and cava selection is available separately — by the glass or bottle. We recommend beginning with our house selection.
   </p>
 
   <div class="price-note reveal">Prices per glass 0.1 l · Precios por copa 0,1 l</div>
@@ -2312,7 +2301,7 @@
       <div class="add-hint">+ Añadir</div>
       <span class="region">Épernay · Francia</span>
       <div class="name">Moët & Chandon<br>Impérial Brut</div>
-      <div class="desc">Pinot Noir, Chardonnay, Meunier · Tostado y clásico · Toasty & classic</div>
+      <div class="desc">Pinot Noir, Chardonnay, Meunier · Toasty & classic</div>
       <div class="price-row">
         <span class="glass-price">18,—</span>
         <span class="bottle-price">Botella · 118,—</span>
@@ -2322,7 +2311,7 @@
     <div class="bottle-card orderable" data-id="gramona" data-name="Gramona Imperial Gran Reserva" data-sub="Copa 0,1 l" data-price="16">
       <div class="add-hint">+ Añadir</div>
       <span class="badge">España</span>
-      <span class="region">Penedès · Cataluña</span>
+      <span class="region">Penedès</span>
       <div class="name">Gramona Imperial<br>Gran Reserva</div>
       <div class="desc">Xarel·lo, Macabeo, Parellada · 60 meses de crianza · 60 months aged</div>
       <div class="price-row">
@@ -2344,9 +2333,8 @@
   </div>
 
   <div class="highlight reveal">
-    <strong>Prestige —</strong> Krug Grande Cuvée · 0,75 l · For singular moments · Para momentos únicos.<br>
-    <span style="opacity:0.7; font-size:0.9em">320,— · Available upon prior request · Se ruega reserva previa.</span>
-  </div>
+    <strong>Prestige —</strong> Krug Grande Cuvée · 0,75 l · For singular moments · Para momentos únicos.
+</div>
 </div>
 
 <!-- ═══════════ 04 — SIN ALCOHOL ═══════════ -->
@@ -2357,7 +2345,7 @@
     <div>
       <span class="section-number reveal-right" style="display:block; margin-bottom:20px;">04 — Non-Alcoholic · Sin Alcohol</span>
       <h2 class="section-title reveal split-title" style="margin:0; font-size:clamp(48px,6.5vw,84px); line-height:0.92; font-weight:300; letter-spacing:-0.01em;">
-        <span class="word">Pure&nbsp;</span><span class="word"><br></span><span class="word"><em>&amp;&nbsp;Still</em></span>
+        <span class="word">Pure&nbsp;</span><span class="word"></span><span class="word"><em>&amp;&nbsp;Still</em></span>
       </h2>
     </div>
     <p class="reveal" style="font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; color:var(--charcoal); opacity:0.55; line-height:1.9; margin:0; padding-bottom:6px; align-self:end;">
@@ -2422,11 +2410,10 @@
 <!-- ═══════════ 05 — PICNIC ═══════════ -->
 <div class="page" id="section-05">
   <span class="section-number reveal-left">05 — Special Experience · Experiencia Especial</span>
-  <h2 class="section-title reveal split-title"><span class="word">Beach&nbsp;</span><span class="word">Picnic&nbsp;</span><span class="word"><br></span><span class="word"><em>Basket</em></span></h2>
+  <h2 class="section-title reveal split-title"><span class="word">Beach&nbsp;</span><span class="word">Picnic&nbsp;</span><span class="word"></span><span class="word"><em>Basket</em></span></h2>
 
   <p class="intro-text reveal">
-    A hand-prepared basket to enjoy on the beach or in the garden — ready to take at any time.<br>
-    <span style="font-size:0.85em; opacity:0.7">Una cesta preparada para disfrutar en la playa o en el jardín.</span>
+    A hand-prepared basket to enjoy on the beach or in the garden — ready to take at any time.
   </p>
 
   <div class="menu-grid reveal-stagger">
@@ -2443,10 +2430,9 @@
           <div class="menu-item-price">25,—</div>
         </div>
         <div class="menu-item-desc">
-          Sourdough roll · Manchego · Cherry tomatoes · Gordal olives · Peach, nectarine &amp; watermelon · Pérez chocolate bar · Sparkling mineral water<br>
-          <em style="opacity:0.65">Panecillo de masa madre · Manchego · Tomates cherry · Aceitunas gordal · Melocotón, nectarina y sandía · Tableta de chocolate Pérez · Agua mineral con gas</em>
+          Sourdough roll · Manchego · Cherry tomatoes · Gordal olives · Peach, nectarine &amp; watermelon · Sparkling mineral water
         </div>
-        <span class="menu-item-note">Includes basket, linen napkin &amp; cutlery · Incluye cesta, servilleta y cubiertos</span>
+        <span class="menu-item-note">Includes basket, linen napkin &amp; cutlery</span>
       </div>
     </div>
 
@@ -2462,10 +2448,9 @@
           <div class="menu-item-price">35,—</div>
         </div>
         <div class="menu-item-desc">
-          Artisan bread · Manchego &amp; Tetilla cheese · Jamón serrano · Smoked salmon · Marinated olives · Cold gazpacho 200ml · Seasonal fruit · Fresh Valencia orange juice · Mineral water · Pérez chocolate bar<br>
-          <em style="opacity:0.65">Pan artesano · Manchego y Tetilla · Jamón serrano · Salmón ahumado · Aceitunas marinadas · Gazpacho frío 200ml · Fruta de temporada · Zumo de naranja valenciana · Agua mineral · Tableta de chocolate Pérez</em>
+          Artisan bread · Manchego &amp; Tetilla cheese · Smoked salmon · Marinated olives · Cold gazpacho 200ml · Seasonal fruit · Fresh Valencia orange juice · Mineral water · Pérez chocolate bar
         </div>
-        <span class="menu-item-note">Includes basket, blanket &amp; cutlery · Incluye cesta, manta y cubiertos</span>
+        <span class="menu-item-note">Includes basket, blanket &amp; cutlery</span>
       </div>
     </div>
 
@@ -2481,8 +2466,7 @@
           <div class="menu-item-price">55,—</div>
         </div>
         <div class="menu-item-desc">
-          Everything in The Classic · Fresh Galician oysters (2 p.p.) · Fuet &amp; lomo ibérico · Burrata with heirloom tomatoes &amp; basil oil · Chilled salmorejo · Pérez single-origin chocolate bar · Glass of Gramona Cava<br>
-          <em style="opacity:0.65">Todo lo anterior · Ostras gallegas frescas (2 p.p.) · Fuet y lomo ibérico · Burrata con tomates y aceite de albahaca · Salmorejo frío · Tableta de chocolate negro Pérez · Copa de cava Gramona</em>
+          Everything in The Classic · Fresh Galician oysters (2 p.p.) · Fuet &amp; lomo ibérico · Burrata with heirloom tomatoes &amp; basil oil · Chilled salmorejo · Pérez single-origin chocolate bar · Glass of Gramona Cava
         </div>
         <span class="menu-item-note">2 hours advance notice appreciated · Se agradece reserva con 2 horas de antelación</span>
       </div>
@@ -2492,16 +2476,7 @@
 
   <div class="highlight reveal">
     <strong>Note —</strong> Baskets are prepared fresh to order — packed for the beach, the garden, or wherever the morning takes you. Please indicate your desired collection time in the notes field when ordering.<br>
-    <span style="opacity:0.7; font-size:0.9em">Las cestas se preparan al momento para la playa, el jardín o donde la mañana les lleve. Indique la hora deseada en el campo de notas.</span><br><br>
-    <strong>On chocolate —</strong> Every basket includes a bar from Pérez, one of Villajoyosa's celebrated local chocolatiers. Our town has been crafting fine chocolate since the 18th century — we think it deserves a place at every table.<br>
-    <span style="opacity:0.7; font-size:0.9em">Cada cesta incluye una tableta de Pérez — Villajoyosa lleva elaborando chocolate de calidad desde el siglo XVIII.</span>
-  </div>
-</div>
-
-<!-- ═══════════ NEWSLETTER STRIP ═══════════ -->
-<div class="nl-strip reveal">
-  <div class="nl-strip-text">
-    <span class="nl-strip-label">Stay in Touch · Mantenerse al Día</span>
+    
     <div class="nl-strip-title">Letters from Calle Pou</div>
     <div class="nl-strip-sub">Seasonal menus, local stories from Villajoyosa &amp; early access to special offers — delivered quietly to your inbox.<br>Menús de temporada, historias locales y acceso anticipado a ofertas especiales.</div>
   </div>
@@ -2510,7 +2485,7 @@
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <div class="page-footer">
-  <span>Villajoyosa · Costa Blanca · España</span>
+  <span>Villajoyosa · Costa Blanca</span>
   <span>All prices include VAT · Todos los precios incluyen IVA</span>
   <span>Season 2025 · Temporada 2025</span>
 </div>
@@ -2523,7 +2498,7 @@
   <div style="background:var(--charcoal);padding:52px 52px 40px;border-bottom:1px solid rgba(201,185,154,0.15);">
     <span data-i18n="hk-eyebrow" style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Housekeeping &nbsp;·&nbsp; Servicio de Limpieza</span>
     <h2 data-i18n-html="hk-title" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Housekeeping<br><em>&amp; Comfort</em></h2>
-    <p data-i18n="hk-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Select what you need and we will be with you shortly.<br><span style="opacity:0.6">Seleccione lo que necesita y le atendemos enseguida.</span></p>
+    <p data-i18n-html="hk-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Select what you need and we will be with you shortly.</p>
   </div>
 
   <div style="background:var(--cream);">
@@ -2531,8 +2506,7 @@
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
         <div class="csvc-name-en" data-i18n="hk-towels">Fresh Towels</div>
-        <div class="csvc-name-es">Toallas Frescas</div>
-        <div class="csvc-desc" data-i18n="hk-towels-desc">Bath &amp; hand towels · Toallas de baño y mano</div>
+        <div class="csvc-desc" data-i18n="hk-towels-desc">Bath &amp; hand towels</div>
       </div>
       <div class="csvc-price">—,—</div>
     </button>
@@ -2540,8 +2514,7 @@
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
         <div class="csvc-name-en" data-i18n="hk-room">Room Cleaning</div>
-        <div class="csvc-name-es">Limpieza de Habitaci&oacute;n</div>
-        <div class="csvc-desc" data-i18n="hk-room-desc">Full clean &amp; linen change · Limpieza completa y cambio de ropa</div>
+        <div class="csvc-desc" data-i18n="hk-room-desc">Full clean &amp; linen change</div>
       </div>
       <div class="csvc-price">—,—</div>
     </button>
@@ -2549,7 +2522,6 @@
       <div class="csvc-check">&#10003;</div>
       <div class="csvc-text">
         <div class="csvc-name-en" data-i18n="hk-amenities">Fresh Amenities</div>
-        <div class="csvc-name-es">Amenities Frescos</div>
         <div class="csvc-desc" data-i18n="hk-amenities-desc">Soap · Shampoo · Shower gel · Toilet paper</div>
       </div>
       <div class="csvc-price">—,—</div>
@@ -2821,32 +2793,105 @@
 
     <!-- ── Air Conditioning ── -->
     <div class="tips-method">
+      <!-- Header -->
       <div class="tips-method-header reveal">
         <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">AC</div>
         <div class="tips-method-title-wrap">
           <div class="tips-method-title">Air Conditioning</div>
-          <div class="tips-method-sub">Two Daikin units · Upper floor & downstairs</div>
+          <div class="tips-method-sub">Two Daikin units · Remotes provided</div>
         </div>
       </div>
-      <div class="reveal-stagger">
-        <div class="tips-step">
-          <div class="tips-step-num" style="font-size:9px; letter-spacing:0.06em;">UP</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Upstairs Unit</div>
-            <div class="tips-step-desc">The <strong>remote control</strong> is located directly below the unit on the upper floor.</div>
-          </div>
+
+      <!-- Remote locations — compact row -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; background:var(--warm-white);" class="reveal-stagger">
+        <div style="padding:20px 32px; border-right:1px solid var(--light-line); border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
+          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Upstairs</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote below the unit</div>
         </div>
-        <div class="tips-step">
-          <div class="tips-step-num" style="font-size:9px; letter-spacing:0.04em;">DN</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Downstairs Unit</div>
-            <div class="tips-step-desc">The <strong>remote</strong> is mounted next to the bed. Press <strong>COOL</strong> to reduce temperature, <strong>HEAT</strong> to increase. If it feels humid, press <strong>DRY</strong>.</div>
-          </div>
+        <div style="padding:20px 32px; border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
+          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Downstairs</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote next to the bed</div>
         </div>
       </div>
-      <div class="tips-notice reveal" style="border-left-color: #c0392b; background:rgba(192,57,43,0.05);">
-        <span class="tips-notice-icon" style="font-size:12px; color:#c0392b; font-family:'Jost',sans-serif; font-weight:700;">!</span>
-        <div class="tips-notice-text"><strong>Please switch off the AC if any windows are open.</strong> This saves energy and preserves the environment.</div>
+
+      <!-- Apple-style mode selector -->
+      <div style="background:var(--charcoal); padding:0;" class="reveal">
+
+        <!-- Mode tab strip -->
+        <div style="display:flex; border-bottom:1px solid rgba(201,185,154,0.1);" id="ac-tabs">
+          <button onclick="acMode('cool')" id="ac-tab-cool"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid #4a9fe8; cursor:pointer; transition:all 0.2s;">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#4a9fe8;margin-bottom:8px;">COOL</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a9fe8" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <line x1="12" y1="2" x2="12" y2="22"/><line x1="12" y1="2" x2="9" y2="5"/><line x1="12" y1="2" x2="15" y2="5"/>
+              <line x1="2" y1="12" x2="22" y2="12"/><line x1="22" y1="12" x2="19" y2="9"/><line x1="22" y1="12" x2="19" y2="15"/>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+            </svg>
+          </button>
+          <button onclick="acMode('heat')" id="ac-tab-heat"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">HEAT</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          </button>
+          <button onclick="acMode('dry')" id="ac-tab-dry"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">DRY</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mode content panels -->
+        <div id="ac-panel-cool" style="padding:40px 52px 44px; display:block;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4a9fe8;margin-bottom:16px;">When to use COOL</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#4a9fe8;">too warm</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">COOL</strong> on hot sunny days. The unit actively blows cold air and runs until the room reaches your set temperature. Best used when the room is uncomfortably warm.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Hot days</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Summer afternoons</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">After sun exposure</span>
+          </div>
+        </div>
+
+        <div id="ac-panel-heat" style="padding:40px 52px 44px; display:none;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#e8874a;margin-bottom:16px;">When to use HEAT</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#e8874a;">too cold</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">HEAT</strong> on cool evenings or in winter. The unit blows warm air until the set temperature is reached. Use it when you need to take the chill off the room.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Cool evenings</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Winter mornings</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">After rain</span>
+          </div>
+        </div>
+
+        <div id="ac-panel-dry" style="padding:40px 52px 44px; display:none;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4ae8a8;margin-bottom:16px;">When to use DRY</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The air feels<br><em style="color:#4ae8a8;">sticky or muggy</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">DRY</strong> when the air feels heavy and humid — very common on Mediterranean summer days. Unlike COOL, DRY does not blast cold air. It gently removes excess moisture from the air, making the room feel comfortable without overcooling. It uses significantly less energy than COOL mode.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Humid days</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Sticky feeling</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Energy saving</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">After rain</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Warning -->
+      <div class="tips-notice reveal" style="border-left-color:#c0392b; background:rgba(192,57,43,0.04);">
+        <span class="tips-notice-icon" style="font-size:12px;color:#c0392b;font-family:'Jost',sans-serif;font-weight:700;">!</span>
+        <div class="tips-notice-text"><strong>Always switch off the AC when windows are open.</strong> This preserves the environment and prevents energy waste.</div>
       </div>
     </div>
 
@@ -2911,37 +2956,92 @@
     </div>
 
     <!-- ── Waste Removal ── -->
-    <div class="tips-method">
-      <div class="tips-method-header reveal">
-        <div class="tips-method-letter" style="font-size:10px; background:var(--moss);">♻</div>
+    <div style="background:var(--cream); border-top:1px solid var(--light-line);">
+
+      <!-- Header -->
+      <div class="tips-method-header reveal" style="padding:36px 52px 28px;">
+        <div class="tips-method-letter" style="background:var(--moss);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+          </svg>
+        </div>
         <div class="tips-method-title-wrap">
           <div class="tips-method-title">Waste Removal</div>
-          <div class="tips-method-sub">Bins across the main street · Separate daily</div>
+          <div class="tips-method-sub">Separate daily · Bins across the main street</div>
         </div>
       </div>
-      <div class="reveal-stagger">
-        <div class="tips-step">
-          <div class="tips-step-num">1</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Separate your waste</div>
-            <div class="tips-step-desc"><strong>Glass, cardboard, paper and general trash are separated</strong> in Spain. Use the appropriate bins.</div>
+
+      <!-- Bin type diagram — Apple-style visual cards -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--light-line);" class="reveal-stagger">
+
+        <!-- Glass -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(100,160,220,0.12); border:1.5px solid rgba(100,160,220,0.3); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#64a0dc" stroke-width="1.5" stroke-linecap="round">
+              <path d="M8 2h8l2 6H6L8 2z"/><path d="M6 8v12a2 2 0 002 2h8a2 2 0 002-2V8"/>
+              <line x1="10" y1="12" x2="10" y2="18"/><line x1="14" y1="12" x2="14" y2="18"/>
+            </svg>
           </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64a0dc;margin-bottom:8px;">Glass</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Jars<br>No broken glass</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,160,220,0.1);border:1px solid rgba(100,160,220,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64a0dc;">Blue bin</div>
         </div>
-        <div class="tips-step">
-          <div class="tips-step-num">2</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Find the bins</div>
-            <div class="tips-step-desc">Bins are on the <strong>opposite side of the main street</strong> from the apartment — a short walk, marked on the map above the apartment.</div>
+
+        <!-- Paper & Cardboard -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(100,180,120,0.1); border:1.5px solid rgba(100,180,120,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#64b478" stroke-width="1.5" stroke-linecap="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
+            </svg>
           </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64b478;margin-bottom:8px;">Paper</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Cardboard · Newspapers<br>Flatten boxes</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,180,120,0.08);border:1px solid rgba(100,180,120,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64b478;">Green bin</div>
         </div>
-        <div class="tips-step">
-          <div class="tips-step-num">3</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Bring waste daily</div>
-            <div class="tips-step-desc">We recommend bringing your trash <strong>daily</strong> to avoid insects inside the apartment.</div>
+
+        <!-- Plastic & Metal -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(220,180,60,0.1); border:1.5px solid rgba(220,180,60,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#dcb43c" stroke-width="1.5" stroke-linecap="round">
+              <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+            </svg>
           </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#dcb43c;margin-bottom:8px;">Plastic</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Cans · Tins<br>Rinse before disposal</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(220,180,60,0.08);border:1px solid rgba(220,180,60,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#dcb43c;">Yellow bin</div>
+        </div>
+
+        <!-- General -->
+        <div style="padding:32px 24px 36px; text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(150,120,90,0.1); border:1.5px solid rgba(150,120,90,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#967a5a" stroke-width="1.5" stroke-linecap="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+              <path d="M10 11v6"/><path d="M14 11v6"/>
+              <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#967a5a;margin-bottom:8px;">General</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Everything else<br>Food waste · Other</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(150,120,90,0.08);border:1px solid rgba(150,120,90,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#967a5a;">Grey bin</div>
+        </div>
+
+      </div>
+
+      <!-- Key rule -->
+      <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;">
+          Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.
+        </div>
+        <div style="flex-shrink:0; text-align:right;">
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:var(--moss);margin-bottom:6px;">Daily</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.4);">Take waste daily<br>to avoid insects</div>
         </div>
       </div>
+
     </div>
 
     <div class="page-footer">
@@ -3341,7 +3441,7 @@
   </div>
 
   <div class="order-items" id="order-items">
-    <div class="order-empty" id="order-empty">Seleccione artículos del menú<br><span style="font-size:0.85em; opacity:0.6">Click any item to add it here</span></div>
+    <div class="order-empty" id="order-empty">Click any item to add it here</div>
   </div>
 
   <div class="order-footer">
@@ -4127,7 +4227,7 @@ var ioGlobal;
 var currentLang = 'en';
 
 var T = {
-  en: {
+  'en': {
     'tab-menu-primary':       'Room Service',
     'tab-menu-sub':           'Breakfast & Drinks',
     'tab-cleaning-primary':   'Housekeeping',
@@ -4145,9 +4245,9 @@ var T = {
     'cover-nav-champagne':    'Champagne',
     'cover-nav-picnic':       'Picnic',
     'intro-title':            'Breakfast<br><em style="color:var(--sand);">with Champagne</em>',
-    'intro-sub':              'A morning celebration at the table.<br><span style="font-size:0.88em;opacity:0.7">Una celebración al amanecer.</span>',
+    'intro-sub':              'A morning celebration at the table.',
     's01-num':                '01 — The Breakfast · El Desayuno',
-    's01-intro':              'Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.<br><span style="font-size:0.85em; opacity:0.7">Cada mañana ponemos la mesa con productos frescos de la costa valenciana.</span>',
+    's01-intro':              'Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.',
     'hk-eyebrow':             'Housekeeping · Servicio de Limpieza',
     'hk-title':               'Housekeeping<br><em>&amp; Comfort</em>',
     'hk-desc':                'Select what you need and we will be with you shortly.',
@@ -4164,7 +4264,7 @@ var T = {
     'surr-title':             'Discover<br><em style="color:var(--sand);">the Surroundings</em>',
     'surr-desc':              'Colourful facades, centuries-old chocolate, crystal Mediterranean water — a pace of life that rewards exploration on foot.',
   },
-  de: {
+  'de': {
     'tab-menu-primary':       'Room Service',
     'tab-menu-sub':           'Frühstück & Getränke',
     'tab-cleaning-primary':   'Housekeeping',
@@ -4182,7 +4282,7 @@ var T = {
     'cover-nav-champagne':    'Champagner',
     'cover-nav-picnic':       'Picknick',
     'intro-title':            'Frühstück<br><em style="color:var(--sand);">mit Champagner</em>',
-    'intro-sub':              'Eine morgendliche Feier am Tisch.<br><span style="font-size:0.88em;opacity:0.7">Una celebración al amanecer.</span>',
+    'intro-sub':              'Eine morgendliche Feier am Tisch.',
     's01-num':                '01 — Das Frühstück',
     's01-intro':              'Jeden Morgen decken wir den Tisch mit frischen Produkten von der valencianischen Küste. Das Frühstück wird als vollständiges Erlebnis serviert.',
     'hk-eyebrow':             'Housekeeping · Zimmerservice',
@@ -4201,7 +4301,7 @@ var T = {
     'surr-title':             'Die Umgebung<br><em style="color:var(--sand);">entdecken</em>',
     'surr-desc':              'Bunte Fassaden, jahrhundertealte Schokolade, kristallklares Mittelmeer — ein Tempo, das zur Erkundung einlädt.',
   },
-  es: {
+  'es': {
     'tab-menu-primary':       'Room Service',
     'tab-menu-sub':           'Desayuno & Bebidas',
     'tab-cleaning-primary':   'Limpieza',
@@ -4230,7 +4330,7 @@ var T = {
     'hk-room':                'Limpieza de Habitación',
     'hk-room-desc':           'Limpieza completa y cambio de ropa de cama',
     'hk-amenities':           'Amenities Frescos',
-    'hk-amenities-desc':      'Jabón · Champú · Gel de ducha · Papel higiénico',
+    'hk-amenities-desc':      'Jabón · Gel de ducha · Papel higiénico',
     'hk-request':             'Solicitar',
     'hk-room-label':          'Habitación',
     'hk-notes-label':         'Notas',
@@ -4238,7 +4338,7 @@ var T = {
     'surr-title':             'Descubrir<br><em style="color:var(--sand);">los Alrededores</em>',
     'surr-desc':              'Fachadas de colores, chocolate centenario, mar Mediterráneo cristalino — un ritmo de vida que invita a explorar.',
   },
-  fr: {
+  'fr': {
     'tab-menu-primary':       'Room Service',
     'tab-menu-sub':           'Petit-déjeuner & Boissons',
     'tab-cleaning-primary':   'Ménage',
@@ -4273,9 +4373,9 @@ var T = {
     'hk-notes-label':         'Notes',
     'hk-footer-service':      'Service disponible · 8h00 – 20h00',
     'surr-title':             'Découvrir<br><em style="color:var(--sand);">les Alentours</em>',
-    'surr-desc':              'Façades colorées, chocolat séculaire, mer Méditerranée cristalline — un rythme de vie qui invite à l'exploration.',
-  }
-  no: {
+    'surr-desc':              'Façades colorées, chocolat séculaire, mer Méditerranée cristalline — un rythme de vie qui invite à l\'exploration.',
+  },
+  'no': {
     'tab-menu-primary':       'Room Service',
     'tab-menu-sub':           'Frokost & Drikke',
     'tab-cleaning-primary':   'Rengjøring',
@@ -4318,41 +4418,72 @@ function applyLang() {
   var t = T[currentLang];
   if (!t) return;
 
-  // Plain text elements
+  // 1. Plain text — [data-i18n]
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) el.textContent = t[key];
+    var v = t[el.getAttribute('data-i18n')];
+    if (v !== undefined) el.textContent = v;
   });
 
-  // HTML elements (allow tags inside)
+  // 2. HTML content — [data-i18n-html]
   document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
-    var key = el.getAttribute('data-i18n-html');
-    if (t[key] !== undefined) el.innerHTML = t[key];
+    var v = t[el.getAttribute('data-i18n-html')];
+    if (v !== undefined) el.innerHTML = v;
   });
 
-  // Update switcher label + checkmarks + active class
-  document.getElementById('lang-current').textContent = currentLang.toUpperCase();
+  // 3. Update switcher button label
+  var cur = document.getElementById('lang-current');
+  if (cur) cur.textContent = currentLang.toUpperCase();
+
+  // 4. Update ticks and active states
   ['en','de','es','fr','no'].forEach(function(l) {
     var chk = document.getElementById('check-' + l);
     var opt = document.getElementById('lang-opt-' + l);
-    if (chk) chk.style.display = l === currentLang ? 'inline' : 'none';
-    if (opt) opt.classList.toggle('lang-active', l === currentLang);
+    if (chk) chk.style.display = (l === currentLang) ? 'inline' : 'none';
+    if (opt) {
+      opt.classList.toggle('lang-active', l === currentLang);
+    }
   });
+
+  // 5. Store preference
+  try { localStorage.setItem('lang', currentLang); } catch(e) {}
 }
 
 function setLang(lang, e) {
   if (e) { e.preventDefault(); e.stopPropagation(); }
   currentLang = lang;
-  document.getElementById('lang-switcher').classList.remove('open');
   applyLang();
 }
 
-function toggleLangDropdown(e) {
-  // Hover handles open/close via CSS — this is a no-op fallback
+function toggleLangDropdown(e) { /* hover handles this via CSS */ }
+
+// AC mode switcher
+function acMode(mode) {
+  var modes = ['cool','heat','dry'];
+  var colors = { cool:'#4a9fe8', heat:'#e8874a', dry:'#4ae8a8' };
+  modes.forEach(function(m) {
+    var tab   = document.getElementById('ac-tab-' + m);
+    var panel = document.getElementById('ac-panel-' + m);
+    var active = m === mode;
+    if (panel) panel.style.display = active ? 'block' : 'none';
+    if (tab) {
+      var dim = 'rgba(201,185,154,0.35)';
+      tab.style.borderBottomColor = active ? colors[m] : 'transparent';
+      var label = tab.querySelector('div');
+      var svg   = tab.querySelector('svg');
+      if (label) label.style.color = active ? colors[m] : dim;
+      if (svg)   svg.style.stroke  = active ? colors[m] : dim;
+    }
+  });
 }
 
-// Run on page load
-document.addEventListener('DOMContentLoaded', applyLang);
+// Run on load — restore saved preference if any
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    var saved = localStorage.getItem('lang');
+    if (saved && T[saved]) currentLang = saved;
+  } catch(e) {}
+  applyLang();
+});
 </script>
 
 </body>
