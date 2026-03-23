@@ -1349,10 +1349,10 @@
   /* Product selector — Apple-style pill row */
   .tips-selector {
     position: sticky;
-    top: 56px; /* below tab bar */
+    top: 56px;
     z-index: 100;
-    background: var(--charcoal);
-    border-bottom: 1px solid rgba(201,185,154,0.12);
+    background: #1e1a15;
+    border-bottom: 1px solid rgba(201,185,154,0.15);
     display: flex;
     gap: 0;
     overflow-x: auto;
@@ -1363,47 +1363,64 @@
 
   .tips-pill {
     flex-shrink: 0;
-    padding: 18px 32px;
+    padding: 20px 32px;
     background: none;
     border: none;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
     border-bottom: 2px solid transparent;
-    transition: border-color 0.2s, opacity 0.2s;
-    opacity: 0.45;
+    transition: border-color 0.2s, background 0.2s;
     position: relative;
   }
-  .tips-pill.active { border-bottom-color: var(--sand); opacity: 1; }
-  .tips-pill:hover { opacity: 0.75; }
+  .tips-pill.active {
+    border-bottom-color: var(--sand);
+    background: rgba(201,185,154,0.04);
+  }
+  .tips-pill:hover { background: rgba(201,185,154,0.06); }
 
   .tips-pill-icon {
-    width: 36px; height: 36px;
+    width: 38px; height: 38px;
     display: flex; align-items: center; justify-content: center;
-    color: rgba(201,185,154,0.55);
-    background: rgba(201,185,154,0.06);
-    border: 1px solid rgba(201,185,154,0.12);
-    border-radius: 9px;
+    color: rgba(201,185,154,0.65);
+    background: rgba(201,185,154,0.08);
+    border: 1px solid rgba(201,185,154,0.18);
+    border-radius: 10px;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
-  .tips-pill.active .tips-pill-icon { background: rgba(201,185,154,0.14); border-color: rgba(201,185,154,0.3); color: var(--sand); }
+  .tips-pill.active .tips-pill-icon {
+    background: rgba(201,185,154,0.16);
+    border-color: rgba(201,185,154,0.35);
+    color: var(--sand);
+  }
+  .tips-pill:hover .tips-pill-icon {
+    color: rgba(201,185,154,0.9);
+    border-color: rgba(201,185,154,0.28);
+  }
 
   .tips-pill-label {
     font-family: 'Jost', sans-serif;
     font-size: 9px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--sand);
+    color: rgba(201,185,154,0.6);
     white-space: nowrap;
+    transition: color 0.2s;
   }
+  .tips-pill.active .tips-pill-label { color: var(--sand); }
+  .tips-pill:hover .tips-pill-label  { color: rgba(201,185,154,0.88); }
+
   .tips-pill-sub {
     font-family: 'Cormorant Garamond', serif;
     font-size: 10px;
     font-style: italic;
-    color: rgba(201,185,154,0.4);
+    color: rgba(201,185,154,0.38);
+    transition: color 0.2s;
   }
+  .tips-pill.active .tips-pill-sub { color: rgba(201,185,154,0.55); }
+  .tips-pill:hover .tips-pill-sub   { color: rgba(201,185,154,0.55); }
 
   /* Coming soon pill */
   .tips-pill.coming-soon { cursor: default; }
@@ -3268,9 +3285,9 @@
 
     <!-- Hero -->
     <div class="tips-hero">
-      <div class="tips-badge"><span class="tips-badge-dot"></span>Kitchen Area · Sonos Speaker</div>
-      <div class="tips-hero-title reveal">Play music on<br><em>Sonos Speaker</em></div>
-      <div class="tips-hero-desc reveal">Quick setup guide &nbsp;·&nbsp; Two methods available. Connect any device to the kitchen speaker in under a minute.</div>
+      <div class="tips-badge"><span class="tips-badge-dot"></span><span data-i18n="sonos-badge">Kitchen Area · Sonos Speaker</span></div>
+      <div class="tips-hero-title reveal" data-i18n-html="sonos-title">Play music on<br><em>Sonos Speaker</em></div>
+      <div class="tips-hero-desc reveal" data-i18n="sonos-desc">Quick setup guide · Two methods available. Connect any device to the kitchen speaker in under a minute.</div>
       <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
         <span class="scroll-cue-label">Scroll</span>
         <div class="scroll-cue-line"></div>
@@ -3279,9 +3296,14 @@
 
     <!-- Before you begin notice -->
     <div class="tips-notice reveal">
-      <span class="tips-notice-icon">⚡</span>
+      <span class="tips-notice-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/>
+        </svg>
+      </span>
       <div class="tips-notice-text">
-        <strong>Before you begin —</strong> Make sure your iPhone or iPad and the Sonos speaker are connected to the <strong>same Wi-Fi network</strong>.
+        <strong data-i18n="sonos-notice-label">Before you begin —</strong> <span data-i18n="sonos-notice-text">Make sure your iPhone or iPad and the Sonos speaker are connected to the</span> <strong data-i18n="sonos-notice-network">same Wi-Fi network</strong>.
       </div>
     </div>
 
@@ -3303,8 +3325,8 @@
       <div class="tips-method-header reveal">
         <div class="tips-method-letter">A</div>
         <div class="tips-method-title-wrap">
-          <div class="tips-method-title">Via AirPlay</div>
-          <div class="tips-method-sub">Works with any app — Apple Music, Podcasts, Videos & more</div>
+          <div class="tips-method-title" data-i18n="sonos-a-title">Via AirPlay</div>
+          <div class="tips-method-sub" data-i18n="sonos-a-sub">Works with any app — Apple Music, Podcasts, Videos & more</div>
         </div>
       </div>
 
@@ -3312,37 +3334,37 @@
         <div class="tips-step">
           <div class="tips-step-num">1</div>
           <div class="tips-step-body">
-            <div class="tips-step-title">Open Control Center</div>
-            <div class="tips-step-desc">On iPhone X or later, <strong>swipe down from the top-right corner</strong> of your screen to open Control Center.</div>
+            <div class="tips-step-title" data-i18n="sonos-a1-title">Open Control Center</div>
+            <div class="tips-step-desc" data-i18n-html="sonos-a1-desc">On iPhone X or later, <strong>swipe down from the top-right corner</strong> of your screen to open Control Center.</div>
           </div>
         </div>
         <div class="tips-step">
           <div class="tips-step-num">2</div>
           <div class="tips-step-body">
-            <div class="tips-step-title">Tap the AirPlay button</div>
-            <div class="tips-step-desc">In the Now Playing widget (top-right of Control Center), tap the <strong>AirPlay icon</strong> — it looks like a triangle with concentric rings.</div>
+            <div class="tips-step-title" data-i18n="sonos-a2-title">Tap the AirPlay button</div>
+            <div class="tips-step-desc" data-i18n-html="sonos-a2-desc">In the Now Playing widget (top-right of Control Center), tap the <strong>AirPlay icon</strong> — it looks like a triangle with concentric rings.</div>
           </div>
         </div>
         <div class="tips-step">
           <div class="tips-step-num">3</div>
           <div class="tips-step-body">
-            <div class="tips-step-title">Select the Sonos Speaker</div>
-            <div class="tips-step-desc">A list of available speakers will appear. Tap <strong>Living Room</strong> (the Sonos speaker in the kitchen area) to connect.</div>
+            <div class="tips-step-title" data-i18n="sonos-a3-title">Select the Sonos Speaker</div>
+            <div class="tips-step-desc" data-i18n-html="sonos-a3-desc">A list of available speakers will appear. Tap <strong>Living Room</strong> (the Sonos speaker in the kitchen area) to connect.</div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Divider -->
-    <div class="tips-divider reveal"><span>or use Spotify</span></div>
+    <div class="tips-divider reveal"><span data-i18n="sonos-divider">or use Spotify</span></div>
 
     <!-- ── Method B: Spotify ── -->
     <div class="tips-method">
       <div class="tips-method-header reveal">
         <div class="tips-method-letter green">B</div>
         <div class="tips-method-title-wrap">
-          <div class="tips-method-title">Via Spotify</div>
-          <div class="tips-method-sub">Stream from the Spotify app using Spotify Connect</div>
+          <div class="tips-method-title" data-i18n="sonos-b-title">Via Spotify</div>
+          <div class="tips-method-sub" data-i18n="sonos-b-sub">Stream from the Spotify app using Spotify Connect</div>
         </div>
       </div>
 
@@ -3350,23 +3372,28 @@
         <div class="tips-step">
           <div class="tips-step-num">1</div>
           <div class="tips-step-body">
-            <div class="tips-step-title">Open Spotify</div>
-            <div class="tips-step-desc">Launch the <strong>Spotify app</strong> on your iPhone or iPad and select a song or playlist.</div>
+            <div class="tips-step-title" data-i18n="sonos-b1-title">Open Spotify</div>
+            <div class="tips-step-desc" data-i18n-html="sonos-b1-desc">Launch the <strong>Spotify app</strong> on your iPhone or iPad and select a song or playlist.</div>
           </div>
         </div>
         <div class="tips-step">
           <div class="tips-step-num">2</div>
           <div class="tips-step-body">
-            <div class="tips-step-title">Tap the Connect icon</div>
-            <div class="tips-step-desc">In the Now Playing screen, tap the <strong>speaker/device icon</strong> in the bottom-left corner (highlighted in yellow in the image).</div>
-            <span class="tips-step-tag">⊙ It's the small icon with a screen and sound waves</span>
+            <div class="tips-step-title" data-i18n="sonos-b2-title">Tap the Connect icon</div>
+            <div class="tips-step-desc" data-i18n-html="sonos-b2-desc">In the Now Playing screen, tap the <strong>speaker/device icon</strong> in the bottom-left corner.</div>
+            <span class="tips-step-tag" style="display:inline-flex;align-items:center;gap:6px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <rect x="2" y="3" width="20" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="16" x2="12" y2="21"/>
+              </svg>
+              Small icon with a screen and sound waves
+            </span>
           </div>
         </div>
         <div class="tips-step">
           <div class="tips-step-num">3</div>
           <div class="tips-step-body">
-            <div class="tips-step-title">Select the Sonos Speaker</div>
-            <div class="tips-step-desc">From the device list, choose the <strong>Living Room Sonos Speaker</strong>. Spotify will instantly start playing through it.</div>
+            <div class="tips-step-title" data-i18n="sonos-b3-title">Select the Sonos Speaker</div>
+            <div class="tips-step-desc" data-i18n-html="sonos-b3-desc">From the device list, choose the <strong>Living Room Sonos Speaker</strong>. Spotify will instantly start playing through it.</div>
           </div>
         </div>
       </div>
@@ -3374,8 +3401,10 @@
 
     <!-- Success banner -->
     <div class="tips-success reveal">
-      <span style="font-size:20px;">✓</span>
-      <div class="tips-success-text"><strong style="color:#3a7d44;">Enjoy your music.</strong> Music is now playing through the Sonos speaker in the kitchen area.</div>
+      <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(58,125,68,0.15);border:1.5px solid rgba(58,125,68,0.35);flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7d44" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="tips-success-text"><strong style="color:#3a7d44;" data-i18n="sonos-success-bold">Enjoy your music.</strong> <span data-i18n="sonos-success-text">Music is now playing through the Sonos speaker in the kitchen area.</span></div>
     </div>
 
     <!-- Footer -->
@@ -3501,7 +3530,7 @@
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 01</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">No insects</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n-html="waste-roach-headline">No insects</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Do not leave any food waste on the kitchen counter. This prevents ants and similar insects.</div>
         </div>
 
@@ -3532,8 +3561,8 @@
           </svg>
         </div>
         <div class="tips-method-title-wrap">
-          <div class="tips-method-title">Waste Removal</div>
-          <div class="tips-method-sub">Separate daily · Bins across the main street</div>
+          <div class="tips-method-title" data-i18n="waste-removal-title">Waste Removal</div>
+          <div class="tips-method-sub" data-i18n="waste-removal-sub">Separate daily · Bins across the main street</div>
         </div>
       </div>
 
@@ -3548,9 +3577,9 @@
               <line x1="10" y1="12" x2="10" y2="18"/><line x1="14" y1="12" x2="14" y2="18"/>
             </svg>
           </div>
-          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64a0dc;margin-bottom:8px;">Glass</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Jars<br>No broken glass</div>
-          <div style="margin-top:12px;display:inline-block;background:rgba(100,160,220,0.1);border:1px solid rgba(100,160,220,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64a0dc;">Blue bin</div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64a0dc;margin-bottom:8px;" data-i18n="waste-glass-label">Glass</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;" data-i18n-html="waste-glass-desc">Bottles · Jars<br>No broken glass</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,160,220,0.1);border:1px solid rgba(100,160,220,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64a0dc;" data-i18n="waste-glass-bin">Blue bin</div>
         </div>
 
         <!-- Paper & Cardboard -->
@@ -3562,9 +3591,9 @@
               <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
             </svg>
           </div>
-          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64b478;margin-bottom:8px;">Paper</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Cardboard · Newspapers<br>Flatten boxes</div>
-          <div style="margin-top:12px;display:inline-block;background:rgba(100,180,120,0.08);border:1px solid rgba(100,180,120,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64b478;">Green bin</div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64b478;margin-bottom:8px;" data-i18n="waste-paper-label">Paper</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;" data-i18n-html="waste-paper-desc">Cardboard · Newspapers<br>Flatten boxes</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,180,120,0.08);border:1px solid rgba(100,180,120,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64b478;" data-i18n="waste-paper-bin">Green bin</div>
         </div>
 
         <!-- Plastic & Metal -->
@@ -3574,9 +3603,9 @@
               <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
             </svg>
           </div>
-          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#dcb43c;margin-bottom:8px;">Plastic</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Cans · Tins<br>Rinse before disposal</div>
-          <div style="margin-top:12px;display:inline-block;background:rgba(220,180,60,0.08);border:1px solid rgba(220,180,60,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#dcb43c;">Yellow bin</div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#dcb43c;margin-bottom:8px;" data-i18n="waste-plastic-label">Plastic</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;" data-i18n-html="waste-plastic-desc">Bottles · Cans · Tins<br>Rinse before disposal</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(220,180,60,0.08);border:1px solid rgba(220,180,60,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#dcb43c;" data-i18n="waste-plastic-bin">Yellow bin</div>
         </div>
 
         <!-- General -->
@@ -3589,21 +3618,21 @@
               <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
             </svg>
           </div>
-          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#967a5a;margin-bottom:8px;">General</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Everything else<br>Food waste · Other</div>
-          <div style="margin-top:12px;display:inline-block;background:rgba(150,120,90,0.08);border:1px solid rgba(150,120,90,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#967a5a;">Grey bin</div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#967a5a;margin-bottom:8px;" data-i18n="waste-general-label">General</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;" data-i18n-html="waste-general-desc">Everything else<br>Food waste · Other</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(150,120,90,0.08);border:1px solid rgba(150,120,90,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#967a5a;" data-i18n="waste-general-bin">Grey bin</div>
         </div>
 
       </div>
 
       <!-- Key rule -->
       <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;" data-i18n-html="waste-location">
           Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.
         </div>
         <div style="flex-shrink:0; text-align:right;">
-          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:var(--moss);margin-bottom:6px;">Daily</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.4);">Take waste daily<br>to avoid insects</div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:var(--moss);margin-bottom:6px;" data-i18n="waste-daily-label">Daily</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.4);" data-i18n-html="waste-daily">Take waste daily<br>to avoid insects</div>
         </div>
       </div>
 
@@ -3624,7 +3653,7 @@
     <div class="tips-hero">
       <div class="tips-badge"><span class="tips-badge-dot"></span>Calle Pou · Technology</div>
       <div class="tips-hero-title reveal">AC <em>&amp; Television</em></div>
-      <div class="tips-hero-desc reveal">How to use the air conditioning and smart TVs in the apartment.</div>
+      <div class="tips-hero-desc reveal" data-i18n="tips-tech-desc">How to use the air conditioning and smart TVs in the apartment.</div>
       <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
         <span class="scroll-cue-label">Scroll</span>
         <div class="scroll-cue-line"></div>
@@ -3877,10 +3906,10 @@
             <path d="M8 12.5c-2 1-3 2.5-3 4.5 0 2.5 3 5 7 5s7-2.5 7-5c0-2-1-3.5-3-4.5"/>
           </svg>
         </div>
-        <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--moss);">Prevent Ants</div>
+        <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--moss);" data-i18n="waste-ant-title">Prevent Ants</div>
       </div>
-      <div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--warm-white); margin-bottom:12px; line-height:1.1;">No food on the<br><em style="color:var(--sand);">kitchen counter</em></div>
-      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75;">Even small crumbs attract ants quickly in a Mediterranean climate. Clear the counter after every meal and store food in sealed containers or in the fridge.</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--warm-white); margin-bottom:12px; line-height:1.1;" data-i18n-html="waste-ant-headline">No food on the<br><em style="color:var(--sand);">kitchen counter</em></div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75;" data-i18n="waste-ant-desc">Even small crumbs attract ants quickly in a Mediterranean climate. Clear the counter after every meal and store food in sealed containers or in the fridge.</div>
     </div>
 
     <div style="padding:40px 48px;">
@@ -3891,10 +3920,10 @@
             <polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
         </div>
-        <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--moss);">Prevent Cockroaches</div>
+        <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--moss);" data-i18n="waste-roach-title">Prevent Cockroaches</div>
       </div>
       <div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--warm-white); margin-bottom:12px; line-height:1.1;">Keep doors<br><em style="color:var(--sand);">closed</em></div>
-      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75;">Never leave terrace or entrance doors open unattended. Flying cockroaches are common in the region during warm evenings — a closed door is all it takes.</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75;" data-i18n="waste-roach-desc">Never leave terrace or entrance doors open unattended. Flying cockroaches are common in the region during warm evenings — a closed door is all it takes.</div>
     </div>
 
   </div>
@@ -3977,7 +4006,7 @@
 
       <!-- Key rule -->
       <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;" data-i18n-html="waste-location">
           Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.
         </div>
         <div style="flex-shrink:0; text-align:right;">
@@ -4163,8 +4192,8 @@
 
   <!-- ── SECTION LABEL ── -->
   <div style="background:var(--cream);padding:32px 64px 0;border-bottom:none;" class="reveal">
-    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">01 &nbsp;·&nbsp; Beach & Coastline</span>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">The <em>Sea</em></div>
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;" data-i18n="surr-s01-label">01 &nbsp;·&nbsp; Beach & Coastline</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;" data-i18n-html="surr-s01-title">The <em>Sea</em></div>
   </div>
 
   <!-- ── BEACH PHOTO CARDS ── -->
@@ -4212,7 +4241,7 @@
 
   <!-- ── CHOCOLATE FEATURE ── -->
   <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
-    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">02 &nbsp;·&nbsp; Villajoyosa Chocolate</span>
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;" data-i18n="surr-s02-label">02 &nbsp;·&nbsp; Villajoyosa Chocolate</span>
     <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">A town built <em>on chocolate</em></div>
   </div>
   <div class="surr-feature reveal-scale">
@@ -4231,8 +4260,8 @@
 
   <!-- ── RESTAURANTS CARDS ── -->
   <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
-    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">03 &nbsp;·&nbsp; Eat & Drink</span>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">Restaurants <em>&amp; Bars</em></div>
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;" data-i18n="surr-s03-label">03 &nbsp;·&nbsp; Eat & Drink</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;" data-i18n-html="surr-s03-title">Restaurants <em>&amp; Bars</em></div>
   </div>
   <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
     <div class="surr-card">
@@ -4278,7 +4307,7 @@
 
   <!-- ── THINGS TO DO ── -->
   <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
-    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">04 &nbsp;·&nbsp; Things To Do</span>
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;" data-i18n="surr-s04-label">04 &nbsp;·&nbsp; Things To Do</span>
     <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">Explore <em>&amp; Experience</em></div>
   </div>
   <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
@@ -5252,6 +5281,61 @@ var T = {
     'hk-footer-service':      'Service available · 8:00 – 20:00',
     'surr-title':             'Discover<br><em style="color:var(--sand);">the Surroundings</em>',
     'surr-desc':              'Colourful facades, centuries-old chocolate, crystal Mediterranean water — a pace of life that rewards exploration on foot.',
+    'sonos-badge': 'Kitchen Area · Sonos Speaker',
+    'sonos-title': 'Play music on<br><em>Sonos Speaker</em>',
+    'sonos-desc': 'Quick setup guide · Two methods available. Connect any device to the kitchen speaker in under a minute.',
+    'sonos-notice-label': 'Before you begin —',
+    'sonos-notice-text': 'Make sure your iPhone or iPad and the Sonos speaker are connected to the',
+    'sonos-notice-network': 'same Wi-Fi network',
+    'sonos-a-title': 'Via AirPlay',
+    'sonos-a-sub': 'Works with any app — Apple Music, Podcasts, Videos & more',
+    'sonos-a1-title': 'Open Control Center',
+    'sonos-a1-desc': 'On iPhone X or later, <strong>swipe down from the top-right corner</strong> of your screen to open Control Center.',
+    'sonos-a2-title': 'Tap the AirPlay button',
+    'sonos-a2-desc': 'In the Now Playing widget, tap the <strong>AirPlay icon</strong> — it looks like a triangle with concentric rings.',
+    'sonos-a3-title': 'Select the Sonos Speaker',
+    'sonos-a3-desc': 'A list of available speakers will appear. Tap <strong>Living Room</strong> (the Sonos speaker in the kitchen) to connect.',
+    'sonos-divider': 'or use Spotify',
+    'sonos-b-title': 'Via Spotify',
+    'sonos-b-sub': 'Stream from the Spotify app using Spotify Connect',
+    'sonos-b1-title': 'Open Spotify',
+    'sonos-b1-desc': 'Launch the <strong>Spotify app</strong> on your iPhone or iPad and select a song or playlist.',
+    'sonos-b2-title': 'Tap the Connect icon',
+    'sonos-b2-desc': 'In the Now Playing screen, tap the <strong>speaker/device icon</strong> in the bottom-left corner.',
+    'sonos-b3-title': 'Select the Sonos Speaker',
+    'sonos-b3-desc': 'From the device list, choose the <strong>Living Room Sonos Speaker</strong>. Spotify will instantly start playing through it.',
+    'sonos-success-bold': 'Enjoy your music.',
+    'sonos-success-text': 'Music is now playing through the Sonos speaker in the kitchen area.',
+    'waste-ant-title': 'Prevent Ants',
+    'waste-ant-headline': 'No food on the<br><em style="color:var(--sand);">kitchen counter</em>',
+    'waste-ant-desc': 'Even small crumbs attract ants quickly in a Mediterranean climate. Clear the counter after every meal and store food in sealed containers or in the fridge.',
+    'waste-roach-title': 'Prevent Cockroaches',
+    'waste-roach-headline': 'Keep doors<br><em style="color:var(--sand);">closed</em>',
+    'waste-roach-desc': 'Never leave terrace or entrance doors open unattended. Flying cockroaches are common in the region during warm evenings — a closed door is all it takes.',
+    'waste-glass-label': 'Glass',
+    'waste-paper-label': 'Paper',
+    'waste-plastic-label': 'Plastic',
+    'waste-general-label': 'General',
+    'waste-glass-bin': 'Blue bin',
+    'waste-paper-bin': 'Green bin',
+    'waste-plastic-bin': 'Yellow bin',
+    'waste-general-bin': 'Grey bin',
+    'waste-glass-desc': 'Bottles · Jars<br>No broken glass',
+    'waste-paper-desc': 'Cardboard · Newspapers<br>Flatten boxes',
+    'waste-plastic-desc': 'Bottles · Cans · Tins<br>Rinse before disposal',
+    'waste-general-desc': 'Everything else<br>Food waste · Other',
+    'waste-removal-title': 'Waste Removal',
+    'waste-removal-sub': 'Separate daily · Bins across the main street',
+    'waste-location': 'Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.',
+    'waste-daily': 'Take waste daily<br>to avoid insects',
+    'waste-daily-label': 'Daily',
+    'surr-s01-label': '01 &nbsp;·&nbsp; Beach & Coastline',
+    'surr-s01-title': 'The <em>Sea</em>',
+    'surr-s02-label': '02 &nbsp;·&nbsp; Villajoyosa Chocolate',
+    'surr-s03-label': '03 &nbsp;·&nbsp; Eat & Drink',
+    'surr-s03-title': 'Restaurants <em>&amp; Bars</em>',
+    'surr-s04-label': '04 &nbsp;·&nbsp; Things To Do',
+    'surr-s05-label': '05 &nbsp;·&nbsp; Getting Around',
     'tips-waste-label': 'Waste',
     'tips-waste-sub': '& Insects',
     'tips-waste-badge': 'Apartment · Daily Habits',
@@ -5332,6 +5416,61 @@ var T = {
     'hk-footer-service':      'Service verfügbar · 8:00 – 20:00 Uhr',
     'surr-title':             'Die Umgebung<br><em style="color:var(--sand);">entdecken</em>',
     'surr-desc':              'Bunte Fassaden, jahrhundertealte Schokolade, kristallklares Mittelmeer — ein Tempo, das zur Erkundung einlädt.',
+    'sonos-badge': 'Küchenbereich · Sonos Lautsprecher',
+    'sonos-title': 'Musik abspielen auf dem<br><em>Sonos Lautsprecher</em>',
+    'sonos-desc': 'Schnelle Einrichtung · Zwei Methoden verfügbar. Gerät in unter einer Minute verbinden.',
+    'sonos-notice-label': 'Bevor Sie beginnen —',
+    'sonos-notice-text': 'Stellen Sie sicher, dass Ihr iPhone oder iPad und der Sonos Lautsprecher mit dem',
+    'sonos-notice-network': 'gleichen WLAN-Netzwerk',
+    'sonos-a-title': 'Via AirPlay',
+    'sonos-a-sub': 'Funktioniert mit jeder App — Apple Music, Podcasts, Videos & mehr',
+    'sonos-a1-title': 'Kontrollzentrum öffnen',
+    'sonos-a1-desc': 'Auf iPhone X oder neuer: <strong>von der oberen rechten Ecke nach unten wischen</strong>, um das Kontrollzentrum zu öffnen.',
+    'sonos-a2-title': 'AirPlay-Taste tippen',
+    'sonos-a2-desc': 'Im „Jetzt läuft"-Widget das <strong>AirPlay-Symbol</strong> antippen — es sieht aus wie ein Dreieck mit konzentrischen Ringen.',
+    'sonos-a3-title': 'Sonos Lautsprecher auswählen',
+    'sonos-a3-desc': 'Eine Liste verfügbarer Lautsprecher erscheint. <strong>Wohnzimmer</strong> (den Sonos Lautsprecher in der Küche) antippen.',
+    'sonos-divider': 'oder Spotify verwenden',
+    'sonos-b-title': 'Via Spotify',
+    'sonos-b-sub': 'Über die Spotify-App mit Spotify Connect streamen',
+    'sonos-b1-title': 'Spotify öffnen',
+    'sonos-b1-desc': 'Die <strong>Spotify-App</strong> auf iPhone oder iPad starten und einen Song oder eine Playlist auswählen.',
+    'sonos-b2-title': 'Connect-Symbol antippen',
+    'sonos-b2-desc': 'Im „Jetzt läuft"-Bildschirm das <strong>Lautsprecher-Symbol</strong> unten links antippen.',
+    'sonos-b3-title': 'Sonos Lautsprecher auswählen',
+    'sonos-b3-desc': 'Aus der Geräteliste den <strong>Wohnzimmer Sonos Lautsprecher</strong> wählen. Spotify spielt sofort darüber ab.',
+    'sonos-success-bold': 'Viel Spaß beim Hören.',
+    'sonos-success-text': 'Musik läuft jetzt über den Sonos Lautsprecher im Küchenbereich.',
+    'waste-ant-title': 'Ameisen vermeiden',
+    'waste-ant-headline': 'Kein Essen auf der<br><em style="color:var(--sand);">Küchentheke</em>',
+    'waste-ant-desc': 'Schon kleine Krümel ziehen im mediterranen Klima schnell Ameisen an. Theke nach jeder Mahlzeit reinigen und Lebensmittel verschlossen im Kühlschrank aufbewahren.',
+    'waste-roach-title': 'Kakerlaken vermeiden',
+    'waste-roach-headline': 'Türen geschlossen<br><em style="color:var(--sand);">halten</em>',
+    'waste-roach-desc': 'Terrassen- und Eingangstüren niemals unbeaufsichtigt offen lassen. Fliegende Kakerlaken sind in der Region an warmen Abenden häufig — eine geschlossene Tür genügt.',
+    'waste-glass-label': 'Glas',
+    'waste-paper-label': 'Papier',
+    'waste-plastic-label': 'Plastik',
+    'waste-general-label': 'Restmüll',
+    'waste-glass-bin': 'Blauer Behälter',
+    'waste-paper-bin': 'Grüner Behälter',
+    'waste-plastic-bin': 'Gelber Behälter',
+    'waste-general-bin': 'Grauer Behälter',
+    'waste-glass-desc': 'Flaschen · Gläser<br>Kein Bruchglas',
+    'waste-paper-desc': 'Karton · Zeitungen<br>Kartons flach falten',
+    'waste-plastic-desc': 'Flaschen · Dosen · Konserven<br>Vor Entsorgung spülen',
+    'waste-general-desc': 'Alles andere<br>Lebensmittelabfälle · Sonstiges',
+    'waste-removal-title': 'Abfallentsorgung',
+    'waste-removal-sub': 'Täglich trennen · Tonnen gegenüber der Hauptstraße',
+    'waste-location': 'Die Behälter befinden sich auf der <strong>gegenüberliegenden Seite der Hauptstraße</strong> — ein kurzer Weg von der Wohnung.',
+    'waste-daily': 'Abfall täglich<br>entsorgen – Insekten vorbeugen',
+    'waste-daily-label': 'Täglich',
+    'surr-s01-label': '01 &nbsp;·&nbsp; Strände & Küste',
+    'surr-s01-title': 'Das <em>Meer</em>',
+    'surr-s02-label': '02 &nbsp;·&nbsp; Villajoyosa Schokolade',
+    'surr-s03-label': '03 &nbsp;·&nbsp; Essen & Trinken',
+    'surr-s03-title': 'Restaurants <em>&amp; Bars</em>',
+    'surr-s04-label': '04 &nbsp;·&nbsp; Aktivitäten',
+    'surr-s05-label': '05 &nbsp;·&nbsp; Fortbewegung',
     'tips-waste-label': 'Abfall',
     'tips-waste-sub': '& Insekten',
     'tips-waste-badge': 'Wohnung · Tägliche Gewohnheiten',
@@ -5412,6 +5551,61 @@ var T = {
     'hk-footer-service':      'Servicio disponible · 8:00 – 20:00',
     'surr-title':             'Descubrir<br><em style="color:var(--sand);">los Alrededores</em>',
     'surr-desc':              'Fachadas de colores, chocolate centenario, mar Mediterráneo cristalino — un ritmo de vida que invita a explorar.',
+    'sonos-badge': 'Área de Cocina · Altavoz Sonos',
+    'sonos-title': 'Reproducir música en el<br><em>Altavoz Sonos</em>',
+    'sonos-desc': 'Guía de configuración rápida · Dos métodos disponibles. Conecta cualquier dispositivo en menos de un minuto.',
+    'sonos-notice-label': 'Antes de empezar —',
+    'sonos-notice-text': 'Asegúrate de que tu iPhone o iPad y el altavoz Sonos estén conectados a la misma',
+    'sonos-notice-network': 'red Wi-Fi',
+    'sonos-a-title': 'Via AirPlay',
+    'sonos-a-sub': 'Funciona con cualquier app — Apple Music, Podcasts, Videos y más',
+    'sonos-a1-title': 'Abrir Centro de Control',
+    'sonos-a1-desc': 'En iPhone X o posterior, <strong>desliza hacia abajo desde la esquina superior derecha</strong> para abrir el Centro de Control.',
+    'sonos-a2-title': 'Pulsar el botón AirPlay',
+    'sonos-a2-desc': 'En el widget de reproducción, pulsa el <strong>icono AirPlay</strong> — parece un triángulo con anillos.',
+    'sonos-a3-title': 'Seleccionar el altavoz Sonos',
+    'sonos-a3-desc': 'Aparecerá una lista de altavoces. Pulsa <strong>Salón</strong> (el altavoz Sonos de la cocina) para conectar.',
+    'sonos-divider': 'o usa Spotify',
+    'sonos-b-title': 'Via Spotify',
+    'sonos-b-sub': 'Transmite desde la app Spotify con Spotify Connect',
+    'sonos-b1-title': 'Abrir Spotify',
+    'sonos-b1-desc': 'Abre la <strong>app Spotify</strong> en tu iPhone o iPad y selecciona una canción o lista.',
+    'sonos-b2-title': 'Pulsar el icono Conectar',
+    'sonos-b2-desc': 'En la pantalla de reproducción, pulsa el <strong>icono de altavoz</strong> en la esquina inferior izquierda.',
+    'sonos-b3-title': 'Seleccionar el altavoz Sonos',
+    'sonos-b3-desc': 'En la lista de dispositivos, elige el <strong>Altavoz Sonos Salón</strong>. Spotify empezará a reproducir al instante.',
+    'sonos-success-bold': 'Disfruta la música.',
+    'sonos-success-text': 'La música se reproduce ahora a través del altavoz Sonos del área de cocina.',
+    'waste-ant-title': 'Prevenir hormigas',
+    'waste-ant-headline': 'Sin comida en la<br><em style="color:var(--sand);">encimera</em>',
+    'waste-ant-desc': 'Incluso las migas pequeñas atraen hormigas rápidamente en el clima mediterráneo. Limpie la encimera después de cada comida y guarde los alimentos en recipientes sellados.',
+    'waste-roach-title': 'Prevenir cucarachas',
+    'waste-roach-headline': 'Mantener las puertas<br><em style="color:var(--sand);">cerradas</em>',
+    'waste-roach-desc': 'No deje nunca las puertas de la terraza o entrada abiertas sin vigilancia. Las cucarachas voladoras son comunes en la región durante las noches cálidas.',
+    'waste-glass-label': 'Vidrio',
+    'waste-paper-label': 'Papel',
+    'waste-plastic-label': 'Plástico',
+    'waste-general-label': 'General',
+    'waste-glass-bin': 'Contenedor azul',
+    'waste-paper-bin': 'Contenedor verde',
+    'waste-plastic-bin': 'Contenedor amarillo',
+    'waste-general-bin': 'Contenedor gris',
+    'waste-glass-desc': 'Botellas · Tarros<br>Sin vidrio roto',
+    'waste-paper-desc': 'Cartón · Periódicos<br>Aplanar cajas',
+    'waste-plastic-desc': 'Botellas · Latas<br>Enjuagar antes de desechar',
+    'waste-general-desc': 'Todo lo demás<br>Residuos de comida · Otros',
+    'waste-removal-title': 'Eliminación de Residuos',
+    'waste-removal-sub': 'Separar diariamente · Contenedores al otro lado de la calle',
+    'waste-location': 'Los contenedores están al <strong>otro lado de la calle principal</strong> — a un corto paseo del apartamento.',
+    'waste-daily': 'Llevar los residuos<br>diariamente para evitar insectos',
+    'waste-daily-label': 'Diariamente',
+    'surr-s01-label': '01 &nbsp;·&nbsp; Playas & Costa',
+    'surr-s01-title': 'El <em>Mar</em>',
+    'surr-s02-label': '02 &nbsp;·&nbsp; Chocolate de Villajoyosa',
+    'surr-s03-label': '03 &nbsp;·&nbsp; Comer & Beber',
+    'surr-s03-title': 'Restaurantes <em>&amp; Bares</em>',
+    'surr-s04-label': '04 &nbsp;·&nbsp; Actividades',
+    'surr-s05-label': '05 &nbsp;·&nbsp; Cómo Moverse',
     'tips-waste-label': 'Residuos',
     'tips-waste-sub': '& Insectos',
     'tips-waste-badge': 'Apartamento · Hábitos Diarios',
@@ -5492,6 +5686,61 @@ var T = {
     'hk-footer-service':      'Service disponible · 8h00 – 20h00',
     'surr-title':             'Découvrir<br><em style="color:var(--sand);">les Alentours</em>',
     'surr-desc':              'Façades colorées, chocolat séculaire, mer Méditerranée cristalline — un rythme de vie qui invite à l\'exploration.',
+    'sonos-badge': 'Zone Cuisine · Enceinte Sonos',
+    'sonos-title': 'Écouter de la musique sur<br><em>l\'enceinte Sonos</em>',
+    'sonos-desc': 'Guide de configuration rapide · Deux méthodes disponibles. Connectez en moins d\'une minute.',
+    'sonos-notice-label': 'Avant de commencer —',
+    'sonos-notice-text': 'Assurez-vous que votre iPhone ou iPad et l\'enceinte Sonos sont connectés au même',
+    'sonos-notice-network': 'réseau Wi-Fi',
+    'sonos-a-title': 'Via AirPlay',
+    'sonos-a-sub': 'Fonctionne avec toute app — Apple Music, Podcasts, Vidéos & plus',
+    'sonos-a1-title': 'Ouvrir le Centre de contrôle',
+    'sonos-a1-desc': 'Sur iPhone X ou ultérieur, <strong>faites glisser depuis le coin supérieur droit</strong> pour ouvrir le Centre de contrôle.',
+    'sonos-a2-title': 'Appuyer sur AirPlay',
+    'sonos-a2-desc': 'Dans le widget En écoute, appuyez sur l\'<strong>icône AirPlay</strong> — un triangle avec des anneaux concentriques.',
+    'sonos-a3-title': 'Sélectionner l\'enceinte Sonos',
+    'sonos-a3-desc': 'Une liste d\'enceintes apparaît. Appuyez sur <strong>Salon</strong> (l\'enceinte Sonos dans la cuisine) pour connecter.',
+    'sonos-divider': 'ou utiliser Spotify',
+    'sonos-b-title': 'Via Spotify',
+    'sonos-b-sub': 'Diffusez depuis l\'app Spotify avec Spotify Connect',
+    'sonos-b1-title': 'Ouvrir Spotify',
+    'sonos-b1-desc': 'Lancez l\'<strong>app Spotify</strong> sur votre iPhone ou iPad et sélectionnez un morceau.',
+    'sonos-b2-title': 'Appuyer sur l\'icône Connecter',
+    'sonos-b2-desc': 'Dans l\'écran En écoute, appuyez sur l\'<strong>icône d\'enceinte</strong> en bas à gauche.',
+    'sonos-b3-title': 'Sélectionner l\'enceinte Sonos',
+    'sonos-b3-desc': 'Dans la liste, choisissez l\'<strong>enceinte Sonos Salon</strong>. Spotify commence à jouer instantanément.',
+    'sonos-success-bold': 'Profitez de la musique.',
+    'sonos-success-text': 'La musique joue maintenant via l\'enceinte Sonos dans la cuisine.',
+    'waste-ant-title': 'Prévenir les fourmis',
+    'waste-ant-headline': 'Pas de nourriture sur le<br><em style="color:var(--sand);">plan de travail</em>',
+    'waste-ant-desc': 'Même de petites miettes attirent rapidement les fourmis dans un climat méditerranéen. Nettoyez le plan de travail après chaque repas et conservez les aliments dans des récipients fermés.',
+    'waste-roach-title': 'Prévenir les cafards',
+    'waste-roach-headline': 'Garder les portes<br><em style="color:var(--sand);">fermées</em>',
+    'waste-roach-desc': 'Ne laissez jamais les portes de la terrasse ou de l\'entrée ouvertes sans surveillance. Les cafards volants sont fréquents dans la région lors des soirées chaudes.',
+    'waste-glass-label': 'Verre',
+    'waste-paper-label': 'Papier',
+    'waste-plastic-label': 'Plastique',
+    'waste-general-label': 'Ordures',
+    'waste-glass-bin': 'Bac bleu',
+    'waste-paper-bin': 'Bac vert',
+    'waste-plastic-bin': 'Bac jaune',
+    'waste-general-bin': 'Bac gris',
+    'waste-glass-desc': 'Bouteilles · Bocaux<br>Pas de verre cassé',
+    'waste-paper-desc': 'Carton · Journaux<br>Aplatir les cartons',
+    'waste-plastic-desc': 'Bouteilles · Canettes<br>Rincer avant de jeter',
+    'waste-general-desc': 'Tout le reste<br>Déchets alimentaires · Autres',
+    'waste-removal-title': 'Élimination des Déchets',
+    'waste-removal-sub': 'Trier quotidiennement · Bacs en face de la rue principale',
+    'waste-location': 'Les bacs sont de l\'<strong>autre côté de la rue principale</strong> — à quelques pas de l\'appartement.',
+    'waste-daily': 'Apporter les déchets<br>quotidiennement pour éviter les insectes',
+    'waste-daily-label': 'Quotidien',
+    'surr-s01-label': '01 &nbsp;·&nbsp; Plages & Côte',
+    'surr-s01-title': 'La <em>Mer</em>',
+    'surr-s02-label': '02 &nbsp;·&nbsp; Chocolat de Villajoyosa',
+    'surr-s03-label': '03 &nbsp;·&nbsp; Manger & Boire',
+    'surr-s03-title': 'Restaurants <em>&amp; Bars</em>',
+    'surr-s04-label': '04 &nbsp;·&nbsp; Activités',
+    'surr-s05-label': '05 &nbsp;·&nbsp; Se Déplacer',
     'tips-waste-label': 'Déchets',
     'tips-waste-sub': '& Insectes',
     'tips-waste-badge': 'Appartement · Habitudes Quotidiennes',
@@ -5572,6 +5821,61 @@ var T = {
     'hk-footer-service':      'Tilgjengelig · 8:00 – 20:00',
     'surr-title':             'Oppdag<br><em style="color:var(--sand);">omgivelsene</em>',
     'surr-desc':              'Fargerike fasader, århundregammelt sjokolade, krystallklart Middelhav — et livsrytme som belønner utforskning.',
+    'sonos-badge': 'Kjøkkenområde · Sonos Høyttaler',
+    'sonos-title': 'Spill musikk på<br><em>Sonos Høyttaler</em>',
+    'sonos-desc': 'Hurtigoppsett · To metoder tilgjengelig. Koble til på under ett minutt.',
+    'sonos-notice-label': 'Før du begynner —',
+    'sonos-notice-text': 'Sørg for at iPhone eller iPad og Sonos-høyttaleren er koblet til det samme',
+    'sonos-notice-network': 'Wi-Fi-nettverket',
+    'sonos-a-title': 'Via AirPlay',
+    'sonos-a-sub': 'Fungerer med alle apper — Apple Music, Podcaster, Videoer og mer',
+    'sonos-a1-title': 'Åpne Kontrollsenter',
+    'sonos-a1-desc': 'På iPhone X eller nyere: <strong>sveip ned fra øvre høyre hjørne</strong> for å åpne Kontrollsenter.',
+    'sonos-a2-title': 'Trykk på AirPlay-knappen',
+    'sonos-a2-desc': 'I Spiller nå-widgeten trykker du på <strong>AirPlay-ikonet</strong> — en trekant med konsentriske ringer.',
+    'sonos-a3-title': 'Velg Sonos-høyttaleren',
+    'sonos-a3-desc': 'En liste over tilgjengelige høyttalere vises. Trykk på <strong>Stue</strong> (Sonos-høyttaleren på kjøkkenet).',
+    'sonos-divider': 'eller bruk Spotify',
+    'sonos-b-title': 'Via Spotify',
+    'sonos-b-sub': 'Stream fra Spotify-appen med Spotify Connect',
+    'sonos-b1-title': 'Åpne Spotify',
+    'sonos-b1-desc': 'Start <strong>Spotify-appen</strong> på iPhone eller iPad og velg en sang eller spilleliste.',
+    'sonos-b2-title': 'Trykk på Koble til-ikonet',
+    'sonos-b2-desc': 'På Spiller nå-skjermen trykker du på <strong>høyttaler-ikonet</strong> nede til venstre.',
+    'sonos-b3-title': 'Velg Sonos-høyttaleren',
+    'sonos-b3-desc': 'Fra enhetslisten velger du <strong>Stue Sonos Høyttaler</strong>. Spotify begynner å spille umiddelbart.',
+    'sonos-success-bold': 'God musikklytting.',
+    'sonos-success-text': 'Musikken spiller nå via Sonos-høyttaleren i kjøkkenområdet.',
+    'waste-ant-title': 'Forebygge maur',
+    'waste-ant-headline': 'Ingen mat på<br><em style="color:var(--sand);">kjøkkenbenken</em>',
+    'waste-ant-desc': 'Selv små smuler tiltrekker maur raskt i middelhavsklima. Rengjør benken etter hvert måltid og oppbevar mat i forseglede beholdere eller i kjøleskapet.',
+    'waste-roach-title': 'Forebygge kakerlakker',
+    'waste-roach-headline': 'Hold dørene<br><em style="color:var(--sand);">lukket</em>',
+    'waste-roach-desc': 'La aldri terrasse- eller inngangsdørene stå åpne uten tilsyn. Flygende kakerlakker er vanlige i regionen på varme kvelder — en lukket dør er alt som trengs.',
+    'waste-glass-label': 'Glass',
+    'waste-paper-label': 'Papir',
+    'waste-plastic-label': 'Plast',
+    'waste-general-label': 'Restavfall',
+    'waste-glass-bin': 'Blå beholder',
+    'waste-paper-bin': 'Grønn beholder',
+    'waste-plastic-bin': 'Gul beholder',
+    'waste-general-bin': 'Grå beholder',
+    'waste-glass-desc': 'Flasker · Glass<br>Ikke knust glass',
+    'waste-paper-desc': 'Papp · Aviser<br>Brett flat papp',
+    'waste-plastic-desc': 'Flasker · Bokser<br>Skyll før du kaster',
+    'waste-general-desc': 'Alt annet<br>Matrester · Annet',
+    'waste-removal-title': 'Avfallshåndtering',
+    'waste-removal-sub': 'Sorter daglig · Beholdere på andre siden av gaten',
+    'waste-location': 'Beholderne er på <strong>andre siden av hovedgaten</strong> — en kort tur fra leiligheten.',
+    'waste-daily': 'Kast avfall daglig<br>for å unngå insekter',
+    'waste-daily-label': 'Daglig',
+    'surr-s01-label': '01 &nbsp;·&nbsp; Strender & Kyst',
+    'surr-s01-title': 'Havet <em></em>',
+    'surr-s02-label': '02 &nbsp;·&nbsp; Villajoyosa Sjokolade',
+    'surr-s03-label': '03 &nbsp;·&nbsp; Spise & Drikke',
+    'surr-s03-title': 'Restauranter <em>&amp; Barer</em>',
+    'surr-s04-label': '04 &nbsp;·&nbsp; Aktiviteter',
+    'surr-s05-label': '05 &nbsp;·&nbsp; Komme seg rundt',
     'tips-waste-label': 'Avfall',
     'tips-waste-sub': '& Insekter',
     'tips-waste-badge': 'Leilighet · Daglige Vaner',
@@ -5830,7 +6134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="p-field"><label>Referral code</label><input type="text" id="j-code" placeholder="e.g. MBVIP-2025" style="letter-spacing:0.15em;text-transform:uppercase"/></div>
         <div class="p-msg" id="j-msg"></div>
         <button class="p-btn" onclick="doJoin()">Request Access &nbsp;&rarr;</button>
-        <div class="p-note">No code? Contact us at hello@mbluxuryliving.com</div>
+        <div class="p-note">No code? Contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a6cec3cacac9e6cbc4cad3ded3d4dfcacfd0cfc8c188c5c9cb">[email&#160;protected]</a></div>
       </div>
 
       <!-- DASHBOARD -->
@@ -5868,7 +6172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // MB LUXURY LIVING — MEMBER PORTAL
 var MB_REFERRAL_CODES = ['MBVIP-2025','CALLE-POU','BUCKSCH','LUXURY25','INSIDER25'];
 var MB_ADMIN_EMAIL = 'admin@mbluxuryliving.com';
@@ -6010,11 +6314,4 @@ function mbTelegramNotify(text){
 
 document.addEventListener('DOMContentLoaded',function(){
   var sess=mbGetSession();
-  if(sess){
-    if(sess===MB_ADMIN_EMAIL.toLowerCase()){mbCurrentUser={email:sess,first:'Admin',admin:true};}
-    else{var u=mbGetMembers().find(function(m){return m.email===sess;});if(u)mbCurrentUser=u;}
-  }
-});
-</script>
-</body>
-</html>
+  i
