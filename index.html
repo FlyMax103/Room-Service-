@@ -96,18 +96,6 @@
     animation: fadeIn 1s ease 0.6s both;
     z-index: 2;
   }
-  .cover-logo svg { width: auto; }
-  .cover-logo-house { height: 90px; filter: drop-shadow(0 2px 16px rgba(0,0,0,0.4)); }
-  .cover-logo-wordmark {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-weight: 300;
-    letter-spacing: 0.65em;
-    text-transform: uppercase;
-    color: rgba(253,250,247,0.95);
-    white-space: nowrap;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
-  }
 
   /* Tagline — bottom centre, above nav strip */
   .cover-tagline {
@@ -238,7 +226,6 @@
     .cover-tagline-main { font-size: 32px; }
     .cover-nav-btn { font-size: 7px; padding: 14px 12px; letter-spacing: 0.18em; }
     .cover-logo { transform: translate(-50%, -70%); }
-    .cover-logo-house { height: 40px; }
     .cover-scroll-cue { right: 24px; }
   }
 
@@ -1014,12 +1001,13 @@
     transition: opacity 0.4s ease, transform 0.4s ease;
     pointer-events: none;
     padding: 0 20px;
+    overflow: hidden;
+    max-height: 56px;
   }
   #tab-bar.nav-scrolled #tab-logo {
     opacity: 1; transform: translateY(0);
     pointer-events: auto;
   }
-  #tab-logo svg { height: 26px; width: auto; }
 
   /* Buttons */
   .tab-btn {
@@ -1705,7 +1693,6 @@
     .tab-btn .tab-es { font-size: 7px; letter-spacing: 0.15em; }
     .tab-btn .tab-en { display: none; }
     .tab-btn { padding: 0 10px; }
-    #tab-logo svg { height: 24px; }
   }
 
 
@@ -1894,6 +1881,685 @@
   #lang-dropdown[data-scrolled] .lang-option-name {
     color: rgba(42,37,32,0.3) !important;
   }
+
+  /* ── ARRIVAL LOCK SCREEN ── */
+  #arrival-lock {
+    background: var(--charcoal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #arrival-lock::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(122,139,106,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .lock-logo {
+    margin-bottom: 48px;
+    animation: fadeIn 0.8s ease both;
+  }
+  .lock-icon {
+    width: 64px; height: 64px;
+    border: 1.5px solid rgba(201,185,154,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px;
+    animation: fadeIn 0.7s ease 0.2s both;
+  }
+  .lock-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+  }
+  .lock-title em { color: var(--sand); }
+  .lock-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(253,250,247,0.35);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 320px;
+    animation: fadeUp 0.7s ease 0.45s both;
+  }
+  .lock-input-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 280px;
+    animation: fadeUp 0.7s ease 0.55s both;
+  }
+  #arrival-code-input {
+    width: 100%;
+    background: rgba(201,185,154,0.06);
+    border: 1px solid rgba(201,185,154,0.2);
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 16px 20px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  #arrival-code-input::placeholder {
+    color: rgba(201,185,154,0.2);
+    letter-spacing: 0.25em;
+    text-transform: none;
+  }
+  #arrival-code-input:focus { border-color: rgba(201,185,154,0.5); }
+  #arrival-code-input.shake {
+    animation: lockShake 0.4s ease;
+    border-color: rgba(192,57,43,0.6);
+  }
+  @keyframes lockShake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+  #lock-submit {
+    width: 100%;
+    background: rgba(201,185,154,0.1);
+    border: 1px solid rgba(201,185,154,0.25);
+    color: rgba(201,185,154,0.75);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  #lock-submit:hover {
+    background: rgba(201,185,154,0.16);
+    color: var(--sand);
+    border-color: rgba(201,185,154,0.4);
+  }
+  #lock-error {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(192,57,43,0.7);
+    min-height: 16px;
+    margin-top: 4px;
+  }
+  .lock-footer {
+    position: absolute;
+    bottom: 28px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.18);
+    animation: fadeIn 0.6s ease 1.2s both;
+  }
+
+
+  /* MB Luxury Living logo image */
+  .mb-logo-img {
+    display: block;
+    object-fit: contain;
+  }
+  /* Nav bar — small, adapts to light/dark */
+  #tab-logo .mb-logo-img {
+    height: 36px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+    transition: opacity 0.3s, filter 0.4s;
+  }
+  #tab-bar.nav-scrolled #tab-logo .mb-logo-img {
+    filter: brightness(0);
+    opacity: 0.6;
+  }
+  /* Cover page — large white */
+  .cover-logo .mb-logo-img {
+    height: 160px;
+    width: auto;
+    filter: drop-shadow(0 2px 16px rgba(0,0,0,0.3)) brightness(0) invert(1);
+    opacity: 0.95;
+  }
+  /* Lock screen */
+  #arrival-lock .mb-logo-img {
+    height: 100px;
+    width: auto;
+    opacity: 0.55;
+    filter: brightness(0) invert(1);
+  }
+
+
+  /* ── MEMBER PORTAL OVERLAY ── */
+  #member-portal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(20,17,14,0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    animation: portalFadeIn 0.25s ease both;
+  }
+  #member-portal.open { display: flex; }
+  @keyframes portalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── PORTAL CARD ── */
+  #portal-card {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    min-height: 560px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--charcoal);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+    animation: portalSlideUp 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    margin: 20px;
+    overflow: hidden;
+  }
+  @keyframes portalSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Left editorial panel */
+  #portal-left {
+    position: relative;
+    background: linear-gradient(160deg, #1a1510 0%, #2A2520 100%);
+    padding: 56px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(201,185,154,0.1);
+    overflow: hidden;
+  }
+  #portal-left::before {
+    content: '';
+    position: absolute;
+    top: -30%; right: -20%;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(122,139,106,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .portal-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .portal-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .portal-headline em { color: var(--sand); }
+  .portal-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(253,250,247,0.35);
+    line-height: 1.8;
+    margin-top: 20px;
+    max-width: 320px;
+  }
+  .portal-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 36px;
+  }
+  .portal-perk {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .portal-perk-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--moss);
+    flex-shrink: 0;
+  }
+  .portal-perk-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.45);
+  }
+  .portal-footer-brand {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.18);
+    position: relative;
+  }
+
+  /* Right form panel */
+  #portal-right {
+    padding: 52px 52px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  #portal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    cursor: pointer;
+    color: rgba(201,185,154,0.3);
+    transition: color 0.2s;
+    font-size: 20px;
+    line-height: 1;
+    padding: 4px;
+  }
+  #portal-close:hover { color: rgba(201,185,154,0.7); }
+
+  /* Tab switcher */
+  .portal-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(201,185,154,0.1);
+  }
+  .portal-tab {
+    background: none; border: none;
+    cursor: pointer;
+    padding: 12px 0;
+    margin-right: 32px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.3);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .portal-tab.active { color: var(--sand); border-bottom-color: var(--sand); }
+  .portal-tab:hover { color: rgba(201,185,154,0.7); }
+
+  /* Forms */
+  .portal-form { display: none; flex-direction: column; gap: 16px; flex: 1; }
+  .portal-form.active { display: flex; }
+  .portal-form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--warm-white);
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .portal-form-title em { color: var(--sand); }
+  .portal-form-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(253,250,247,0.3);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .portal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .portal-field label {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.4);
+  }
+  .portal-field input {
+    background: rgba(201,185,154,0.05);
+    border: 1px solid rgba(201,185,154,0.15);
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 13px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .portal-field input::placeholder { color: rgba(201,185,154,0.18); }
+  .portal-field input:focus { border-color: rgba(201,185,154,0.4); }
+  .portal-btn {
+    background: var(--bark);
+    border: none;
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    padding: 15px 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+  }
+  .portal-btn:hover { background: #6e5940; }
+  .portal-referral-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(201,185,154,0.25);
+    line-height: 1.6;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(201,185,154,0.08);
+  }
+  .portal-msg {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    min-height: 14px;
+    margin-top: -4px;
+  }
+  .portal-msg.success { color: var(--moss); }
+  .portal-msg.error   { color: rgba(192,57,43,0.7); }
+
+  @media (max-width: 700px) {
+    #portal-card { grid-template-columns: 1fr; min-height: auto; margin: 0; max-width: 100%; height: 100%; border-radius: 0; }
+    #portal-left { display: none; }
+    #portal-right { padding: 48px 28px; }
+  }
+
+
+  /* ── MEMBER ICON ── */
+  #member-btn {
+    background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+    color: rgba(255,255,255,0.65);
+    transition: color 0.3s;
+    flex-shrink: 0; margin-right: 2px;
+  }
+  #tab-bar.nav-scrolled #member-btn { color: rgba(42,37,32,0.5); }
+  #member-btn:hover { color: rgba(255,255,255,1); }
+  #tab-bar.nav-scrolled #member-btn:hover { color: var(--bark); }
+
+  /* ── PORTAL OVERLAY ── */
+  #member-portal {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(14,11,9,0.8);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    align-items: center; justify-content: center;
+  }
+  #member-portal.open { display: flex; animation: pfadeIn 0.22s ease both; }
+  @keyframes pfadeIn { from{opacity:0} to{opacity:1} }
+
+  /* ── PORTAL CARD ── */
+  #portal-card {
+    position: relative; width: 100%; max-width: 1020px;
+    display: grid; grid-template-columns: 380px 1fr;
+    background: #141210;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,185,154,0.1);
+    margin: 16px; max-height: calc(100vh - 32px);
+    overflow: hidden;
+    animation: pslideUp 0.28s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  @keyframes pslideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* LEFT brand panel */
+  #portal-brand {
+    background: linear-gradient(175deg, #1c1712 0%, #111009 100%);
+    padding: 52px 44px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 1px solid rgba(201,185,154,0.07);
+    position: relative; overflow: hidden;
+  }
+  #portal-brand::after {
+    content:''; position:absolute; bottom:-80px; right:-80px;
+    width:300px; height:300px;
+    background: radial-gradient(circle, rgba(122,139,106,0.09) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .pb-eyebrow {
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.45em;
+    text-transform:uppercase; color:var(--moss); margin-bottom:28px;
+  }
+  .pb-title {
+    font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300;
+    color:var(--warm-white); line-height:1.0; letter-spacing:-0.01em;
+  }
+  .pb-title em { color:var(--sand); font-style:italic; }
+  .pb-desc {
+    font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic;
+    color:rgba(253,250,247,0.3); line-height:1.8; margin-top:18px; max-width:280px;
+  }
+  .pb-perks { margin-top:32px; display:flex; flex-direction:column; gap:12px; }
+  .pb-perk {
+    display:flex; align-items:center; gap:10px;
+    font-family:'Jost',sans-serif; font-size:8px; letter-spacing:0.22em;
+    text-transform:uppercase; color:rgba(201,185,154,0.38);
+  }
+  .pb-perk svg { flex-shrink:0; }
+  .pb-footer {
+    font-family:'Jost',sans-serif; font-size:7px; letter-spacing:0.4em;
+    text-transform:uppercase; color:rgba(201,185,154,0.12);
+  }
+  .pb-points-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(122,139,106,0.12); border:1px solid rgba(122,139,106,0.2);
+    padding:8px 14px; margin-top:24px;
+  }
+  .pb-points-badge span {
+    font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic;
+    color:rgba(201,185,154,0.5);
+  }
+
+  /* RIGHT form area */
+  #portal-main {
+    display:flex; flex-direction:column; overflow-y:auto;
+    max-height: calc(100vh - 32px);
+  }
+  #portal-close {
+    position:absolute; top:18px; right:18px; background:none; border:none;
+    cursor:pointer; color:rgba(201,185,154,0.25); transition:color 0.2s;
+    width:32px; height:32px; display:flex; align-items:center; justify-content:center;
+    z-index:2;
+  }
+  #portal-close:hover { color:rgba(201,185,154,0.6); }
+
+  /* Tabs */
+  .p-tabs {
+    display:flex; border-bottom:1px solid rgba(201,185,154,0.08);
+    padding:0 48px; flex-shrink:0;
+  }
+  .p-tab {
+    background:none; border:none; cursor:pointer;
+    padding:20px 0; margin-right:28px;
+    font-family:'Jost',sans-serif; font-size:8.5px; letter-spacing:0.32em;
+    text-transform:uppercase; color:rgba(201,185,154,0.28);
+    border-bottom:1.5px solid transparent; margin-bottom:-1px;
+    transition:color 0.2s, border-color 0.2s;
+  }
+  .p-tab.active { color:var(--sand); border-bottom-color:var(--sand); }
+  .p-tab:hover:not(.active) { color:rgba(201,185,154,0.55); }
+
+  /* Views */
+  .p-view { display:none; padding:40px 48px; flex-direction:column; gap:22px; flex:1; }
+  .p-view.active { display:flex; }
+  .p-view-title {
+    font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300;
+    color:var(--warm-white); line-height:1.1;
+  }
+  .p-view-title em { color:var(--sand); }
+  .p-view-sub {
+    font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic;
+    color:rgba(253,250,247,0.28); line-height:1.65; margin-top:-10px;
+  }
+
+  /* Fields */
+  .p-field { display:flex; flex-direction:column; gap:7px; }
+  .p-field label {
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.32em;
+    text-transform:uppercase; color:rgba(201,185,154,0.38);
+  }
+  .p-field input, .p-field select {
+    background:rgba(201,185,154,0.04); border:1px solid rgba(201,185,154,0.14);
+    color:var(--warm-white); font-family:'Jost',sans-serif; font-size:12px;
+    letter-spacing:0.06em; padding:12px 16px; outline:none;
+    transition:border-color 0.2s; -webkit-appearance:none; border-radius:0;
+  }
+  .p-field input::placeholder { color:rgba(201,185,154,0.16); }
+  .p-field input:focus { border-color:rgba(201,185,154,0.38); }
+  .p-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .p-btn {
+    background:var(--bark); border:none; color:rgba(253,250,247,0.9);
+    font-family:'Jost',sans-serif; font-size:8.5px; font-weight:500;
+    letter-spacing:0.38em; text-transform:uppercase; padding:14px 20px;
+    cursor:pointer; transition:background 0.2s; margin-top:4px; align-self:stretch;
+  }
+  .p-btn:hover { background:#7a6248; }
+  .p-btn.secondary {
+    background:transparent; border:1px solid rgba(201,185,154,0.18);
+    color:rgba(201,185,154,0.45);
+  }
+  .p-btn.secondary:hover { border-color:rgba(201,185,154,0.4); color:var(--sand); background:transparent; }
+  .p-msg {
+    font-family:'Jost',sans-serif; font-size:8px; letter-spacing:0.2em;
+    text-transform:uppercase; min-height:14px;
+  }
+  .p-msg.ok  { color:var(--moss); }
+  .p-msg.err { color:rgba(192,57,43,0.75); }
+  .p-note {
+    font-family:'Cormorant Garamond',serif; font-size:12px; font-style:italic;
+    color:rgba(201,185,154,0.2); line-height:1.6;
+    border-top:1px solid rgba(201,185,154,0.07); padding-top:14px;
+    margin-top:auto;
+  }
+  .p-divider {
+    display:flex; align-items:center; gap:12px;
+    font-family:'Jost',sans-serif; font-size:7px; letter-spacing:0.3em;
+    text-transform:uppercase; color:rgba(201,185,154,0.2);
+  }
+  .p-divider::before, .p-divider::after {
+    content:''; flex:1; height:1px; background:rgba(201,185,154,0.08);
+  }
+
+  /* ── DASHBOARD VIEW ── */
+  .dash-greeting {
+    font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300;
+    color:var(--warm-white); line-height:1.1;
+  }
+  .dash-greeting em { color:var(--sand); }
+  .dash-points-bar {
+    background:rgba(201,185,154,0.05); border:1px solid rgba(201,185,154,0.1);
+    padding:20px 24px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .dash-pts-num {
+    font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300;
+    color:var(--sand); line-height:1;
+  }
+  .dash-pts-label {
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.35em;
+    text-transform:uppercase; color:rgba(201,185,154,0.4);
+    margin-top:4px;
+  }
+  .dash-pts-info {
+    font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic;
+    color:rgba(201,185,154,0.3); text-align:right; line-height:1.65;
+  }
+  .dash-section-title {
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.38em;
+    text-transform:uppercase; color:var(--moss);
+    border-bottom:1px solid rgba(201,185,154,0.08); padding-bottom:10px;
+  }
+  .dash-items { display:flex; flex-direction:column; gap:0; }
+  .dash-item {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 0; border-bottom:1px solid rgba(201,185,154,0.06);
+    gap:12px;
+  }
+  .dash-item:last-child { border-bottom:none; }
+  .dash-item-name {
+    font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:300;
+    color:rgba(253,250,247,0.7); flex:1;
+  }
+  .dash-item-date {
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.15em;
+    color:rgba(201,185,154,0.25); flex-shrink:0;
+  }
+  .dash-item-pts {
+    font-family:'Jost',sans-serif; font-size:8px; letter-spacing:0.2em;
+    color:var(--moss); flex-shrink:0; white-space:nowrap;
+  }
+  .dash-item-status {
+    font-family:'Jost',sans-serif; font-size:7px; letter-spacing:0.2em;
+    text-transform:uppercase; padding:3px 8px; flex-shrink:0;
+  }
+  .dash-item-status.pending { color:rgba(220,180,60,0.7); background:rgba(220,180,60,0.08); border:1px solid rgba(220,180,60,0.18); }
+  .dash-item-status.done    { color:var(--moss); background:rgba(122,139,106,0.08); border:1px solid rgba(122,139,106,0.18); }
+  .dash-empty {
+    font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic;
+    color:rgba(201,185,154,0.2); padding:16px 0;
+  }
+
+  /* ── ADMIN VIEW ── */
+  .admin-header {
+    background:rgba(192,57,43,0.08); border:1px solid rgba(192,57,43,0.18);
+    padding:10px 16px; display:flex; align-items:center; gap:10px;
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.28em;
+    text-transform:uppercase; color:rgba(192,57,43,0.7);
+  }
+  .admin-table { width:100%; border-collapse:collapse; }
+  .admin-table th {
+    font-family:'Jost',sans-serif; font-size:7px; letter-spacing:0.3em;
+    text-transform:uppercase; color:rgba(201,185,154,0.3);
+    padding:10px 12px; text-align:left;
+    border-bottom:1px solid rgba(201,185,154,0.08);
+  }
+  .admin-table td {
+    font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:300;
+    color:rgba(253,250,247,0.6); padding:11px 12px;
+    border-bottom:1px solid rgba(201,185,154,0.05);
+  }
+  .admin-table tr:hover td { background:rgba(201,185,154,0.03); }
+  .admin-pts-cell { color:var(--sand) !important; font-family:'Jost',sans-serif !important; font-size:12px !important; }
+
+  @media(max-width:720px) {
+    #portal-card { grid-template-columns:1fr; margin:0; max-height:100vh; height:100vh; }
+    #portal-brand { display:none; }
+    .p-view { padding:28px 24px; }
+    .p-tabs { padding:0 24px; }
+    .p-row { grid-template-columns:1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -1904,13 +2570,7 @@
   <!-- LEFT: logo only (appears on scroll) -->
   <div id="tab-nav-left">
     <div id="tab-logo" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" title="Home">
-      <svg viewBox="0 0 200 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="28,4 48,16 48,38 8,38 8,16" stroke="#5C4A35" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-        <polyline points="28,4 28,15" stroke="#5C4A35" stroke-width="1.2" fill="none"/>
-        <text x="11" y="32" font-family="Georgia,serif" font-size="16" font-weight="700" fill="none" stroke="#5C4A35" stroke-width="1.1">MB</text>
-        <text x="58" y="19" font-family="Georgia,serif" font-size="10" fill="#5C4A35" letter-spacing="3.5" opacity="0.9">LUXURY</text>
-        <text x="58" y="33" font-family="Georgia,serif" font-size="10" fill="#5C4A35" letter-spacing="3.5" opacity="0.55">LIVING</text>
-      </svg>
+      <img src="data:image/png;base64,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" alt="MB Luxury Living" class="mb-logo-img" />
     </div>
   </div>
 
@@ -1930,8 +2590,16 @@
     </button>
   </div>
 
-  <!-- RIGHT: language switcher only -->
+  <!-- RIGHT: member icon + language switcher -->
   <div id="tab-nav-right">
+
+    <button id="member-btn" onclick="openMemberPortal()" aria-label="Member portal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </button>
+
     <div id="lang-switcher">
       <button id="lang-btn" onclick="toggleLangDropdown(event)" aria-label="Language">
         <span id="lang-current">EN</span>
@@ -1991,29 +2659,7 @@
   <!-- MB Luxury Living Logo — centred, Forsthofgut style -->
   <div class="cover-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});" title="Home">
     <!-- Faithful recreation of uploaded MB Luxury Living logo -->
-    <svg class="cover-logo-house" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer house shape -->
-      <polygon points="110,12 202,68 202,188 18,188 18,68"
-        stroke="rgba(253,250,247,0.92)" stroke-width="3.5" fill="none" stroke-linejoin="miter"/>
-      <!-- Roof ridge line -->
-      <line x1="110" y1="12" x2="110" y2="52"
-        stroke="rgba(253,250,247,0.5)" stroke-width="2"/>
-      <!-- Inner house frame lines -->
-      <polyline points="18,68 110,12 202,68"
-        stroke="rgba(253,250,247,0.3)" stroke-width="1.5" fill="none"/>
-      <!-- M letterform -->
-      <polyline points="42,158 42,98 76,138 110,98 110,158"
-        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"
-        stroke-linejoin="miter" stroke-linecap="square"/>
-      <!-- B letterform -->
-      <polyline points="118,98 118,158"
-        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none" stroke-linecap="square"/>
-      <path d="M118,98 L148,98 Q168,98 168,118 Q168,138 148,138 L118,138"
-        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"/>
-      <path d="M118,138 L150,138 Q172,138 172,158 Q172,178 150,178 L118,178"
-        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"/>
-    </svg>
-    <div class="cover-logo-wordmark">MB &nbsp;Luxury Living</div>
+    <img src="data:image/png;base64,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" alt="MB Luxury Living" class="mb-logo-img" />
   </div>
 
   <!-- Location + scroll indicator — bottom centre -->
@@ -2570,16 +3216,13 @@
     <button class="tips-pill active" onclick="selectTip('sonos')" id="tip-pill-sonos">
       <div class="tips-pill-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <circle cx="12" cy="12" r="9"/>
-          <circle cx="12" cy="12" r="3"/>
-          <line x1="12" y1="3" x2="12" y2="5"/>
-          <line x1="12" y1="19" x2="12" y2="21"/>
-          <line x1="3" y1="12" x2="5" y2="12"/>
-          <line x1="19" y1="12" x2="21" y2="12"/>
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
         </svg>
       </div>
-      <div class="tips-pill-label">Sonos</div>
-      <div class="tips-pill-sub">Speaker</div>
+      <div class="tips-pill-label" data-i18n="tips-sonos-label">Sonos</div>
+      <div class="tips-pill-sub" data-i18n="tips-sonos-sub">Speaker</div>
     </button>
 
     <button class="tips-pill" onclick="selectTip('arrival')" id="tip-pill-arrival">
@@ -2589,8 +3232,33 @@
           <polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
       </div>
-      <div class="tips-pill-label">Arrival</div>
-      <div class="tips-pill-sub">Guide</div>
+      <div class="tips-pill-label" data-i18n="tips-arrival-label">Arrival</div>
+      <div class="tips-pill-sub" data-i18n="tips-arrival-sub">Guide</div>
+    </button>
+
+    <button class="tips-pill" onclick="selectTip('tech')" id="tip-pill-tech">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label" data-i18n="tips-tech-label">Tech</div>
+      <div class="tips-pill-sub" data-i18n="tips-tech-sub">AC & TV</div>
+    </button>
+
+    <button class="tips-pill" onclick="selectTip('waste')" id="tip-pill-waste">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+          <path d="M10 11v6M14 11v6"/>
+          <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label" data-i18n="tips-waste-label">Waste</div>
+      <div class="tips-pill-sub" data-i18n="tips-waste-sub">&amp; Insects</div>
     </button>
 
   </div>
@@ -2722,6 +3390,41 @@
   <!-- ══ PANEL: ARRIVAL GUIDE ══ -->
   <div class="tips-panel" id="tip-panel-arrival">
 
+    <!-- ── LOCK SCREEN ── -->
+    <div id="arrival-lock">
+
+      <!-- MB logo -->
+      <div style="margin-bottom:44px; animation: fadeIn 0.7s ease both;">
+        <img src="data:image/png;base64,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" alt="MB Luxury Living" class="mb-logo-img" />
+      </div>
+
+      <div class="lock-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.55)" stroke-width="1.5" stroke-linecap="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+
+      <div class="lock-title" data-i18n-html="lock-title">Arrival<br><em>Guide</em></div>
+      <div class="lock-sub" data-i18n-html="lock-sub">Personalised for your stay at Calle Pou.<br>Enter your access code to continue.</div>
+
+      <div class="lock-input-wrap">
+        <input id="arrival-code-input" type="password" data-i18n-placeholder="lock-placeholder" placeholder="Your access code"
+          maxlength="20" autocomplete="off" autocorrect="off"
+          spellcheck="false"
+          onkeydown="if(event.key==='Enter') checkArrivalCode()" />
+        <button id="lock-submit" data-i18n="lock-btn" onclick="checkArrivalCode()">Enter Guide</button>
+        <div id="lock-error"></div>
+      </div>
+
+      <div class="lock-footer" data-i18n="lock-footer">Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; MB Luxury Living</div>
+    </div>
+      <div class="lock-footer">Calle Pou &nbsp;·&nbsp; MB Luxury Living</div>
+    </div>
+
+    <!-- ── GUIDE CONTENT (hidden until unlocked) ── -->
+    <div id="arrival-content" style="display:none;">
+
     <!-- Hero -->
     <div class="tips-hero">
       <div class="tips-badge"><span class="tips-badge-dot"></span>Calle Pou · Villajoyosa</div>
@@ -2786,144 +3489,6 @@
         <div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.8;">
             The apartment is equipped with <span style="color:rgba(201,185,154,0.6);font-style:normal;">unlimited</span> high-speed Wi-Fi throughout both floors.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── Air Conditioning ── -->
-    <div class="tips-method">
-      <!-- Header -->
-      <div class="tips-method-header reveal">
-        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">AC</div>
-        <div class="tips-method-title-wrap">
-          <div class="tips-method-title">Air Conditioning</div>
-          <div class="tips-method-sub">Two Daikin units · Remotes provided</div>
-        </div>
-      </div>
-
-      <!-- Remote locations — compact row -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; background:var(--warm-white);" class="reveal-stagger">
-        <div style="padding:20px 32px; border-right:1px solid var(--light-line); border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
-          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Upstairs</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote below the unit</div>
-        </div>
-        <div style="padding:20px 32px; border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
-          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Downstairs</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote next to the bed</div>
-        </div>
-      </div>
-
-      <!-- Apple-style mode selector -->
-      <div style="background:var(--charcoal); padding:0;" class="reveal">
-
-        <!-- Mode tab strip -->
-        <div style="display:flex; border-bottom:1px solid rgba(201,185,154,0.1);" id="ac-tabs">
-          <button onclick="acMode('cool')" id="ac-tab-cool"
-            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid #4a9fe8; cursor:pointer; transition:all 0.2s;">
-            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#4a9fe8;margin-bottom:8px;">COOL</div>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a9fe8" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
-              <line x1="12" y1="2" x2="12" y2="22"/><line x1="12" y1="2" x2="9" y2="5"/><line x1="12" y1="2" x2="15" y2="5"/>
-              <line x1="2" y1="12" x2="22" y2="12"/><line x1="22" y1="12" x2="19" y2="9"/><line x1="22" y1="12" x2="19" y2="15"/>
-              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
-            </svg>
-          </button>
-          <button onclick="acMode('heat')" id="ac-tab-heat"
-            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
-            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">HEAT</div>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
-              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-              <circle cx="12" cy="12" r="4"/>
-            </svg>
-          </button>
-          <button onclick="acMode('dry')" id="ac-tab-dry"
-            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
-            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">DRY</div>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
-              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Mode content panels -->
-        <div id="ac-panel-cool" style="padding:40px 52px 44px; display:block;">
-          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4a9fe8;margin-bottom:16px;">When to use COOL</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#4a9fe8;">too warm</em></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
-            Press <strong style="color:var(--warm-white);font-style:normal;">COOL</strong> on hot sunny days. The unit actively blows cold air and runs until the room reaches your set temperature. Best used when the room is uncomfortably warm.
-          </div>
-          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Hot days</span>
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Summer afternoons</span>
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">After sun exposure</span>
-          </div>
-        </div>
-
-        <div id="ac-panel-heat" style="padding:40px 52px 44px; display:none;">
-          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#e8874a;margin-bottom:16px;">When to use HEAT</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#e8874a;">too cold</em></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
-            Press <strong style="color:var(--warm-white);font-style:normal;">HEAT</strong> on cool evenings or in winter. The unit blows warm air until the set temperature is reached. Use it when you need to take the chill off the room.
-          </div>
-          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Cool evenings</span>
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Winter mornings</span>
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">After rain</span>
-          </div>
-        </div>
-
-        <div id="ac-panel-dry" style="padding:40px 52px 44px; display:none;">
-          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4ae8a8;margin-bottom:16px;">When to use DRY</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The air feels<br><em style="color:#4ae8a8;">sticky or muggy</em></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
-            Press <strong style="color:var(--warm-white);font-style:normal;">DRY</strong> when the air feels heavy and humid — very common on Mediterranean summer days. Unlike COOL, DRY does not blast cold air. It gently removes excess moisture from the air, making the room feel comfortable without overcooling. It uses significantly less energy than COOL mode.
-          </div>
-          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Humid days</span>
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Sticky feeling</span>
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Energy saving</span>
-            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">After rain</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Warning -->
-      <div class="tips-notice reveal" style="border-left-color:#c0392b; background:rgba(192,57,43,0.04);">
-        <span class="tips-notice-icon" style="font-size:12px;color:#c0392b;font-family:'Jost',sans-serif;font-weight:700;">!</span>
-        <div class="tips-notice-text"><strong>Always switch off the AC when windows are open.</strong> This preserves the environment and prevents energy waste.</div>
-      </div>
-    </div>
-
-    <!-- ── Television ── -->
-    <div class="tips-method" style="background:var(--warm-white);">
-      <div class="tips-method-header reveal">
-        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">TV</div>
-        <div class="tips-method-title-wrap">
-          <div class="tips-method-title">Television</div>
-          <div class="tips-method-sub">Two Samsung Smart TVs · Upper floor</div>
-        </div>
-      </div>
-      <div class="reveal-stagger">
-        <div class="tips-step" style="background:var(--warm-white);">
-          <div class="tips-step-num">1</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Living Room Remote</div>
-            <div class="tips-step-desc">Located in the living room <strong>on the table</strong> in front of the couch.</div>
-          </div>
-        </div>
-        <div class="tips-step" style="background:#f5f0e8;">
-          <div class="tips-step-num">2</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Master Bedroom Remote</div>
-            <div class="tips-step-desc">Located <strong>on the cupboard</strong> below the TV in the master bedroom.</div>
-          </div>
-        </div>
-        <div class="tips-step" style="background:var(--warm-white);">
-          <div class="tips-step-num">3</div>
-          <div class="tips-step-body">
-            <div class="tips-step-title">Smart Streaming</div>
-            <div class="tips-step-desc">Both TVs are <strong>smart TVs</strong> — you can connect your mobile device to stream your favourite movies and shows.</div>
           </div>
         </div>
       </div>
@@ -3050,7 +3615,388 @@
       <span>V1.0 · 2024</span>
     </div>
 
+    </div><!-- /arrival-content -->
   </div><!-- /tip-panel-arrival -->
+  <!-- ══ PANEL: TECH — AC & TV ══ -->
+  <div class="tips-panel" id="tip-panel-tech">
+
+    <!-- Hero -->
+    <div class="tips-hero">
+      <div class="tips-badge"><span class="tips-badge-dot"></span>Calle Pou · Technology</div>
+      <div class="tips-hero-title reveal">AC <em>&amp; Television</em></div>
+      <div class="tips-hero-desc reveal">How to use the air conditioning and smart TVs in the apartment.</div>
+      <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+        <span class="scroll-cue-label">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </div>
+
+
+
+
+    <div class="page-footer">
+      <span>Calle Pou · Villajoyosa</span>
+      <span>MB Luxury Living · Family Bucksch</span>
+      <span>V1.0 · 2024</span>
+    </div>
+
+    </div><!-- /arrival-content -->
+  </div><!-- /tip-panel-arrival -->
+  <!-- ══ PANEL: TECH — AC & TV ══ -->
+  <div class="tips-panel" id="tip-panel-tech">
+
+    <!-- Hero -->
+    <div class="tips-hero">
+      <div class="tips-badge"><span class="tips-badge-dot"></span>Calle Pou · Technology</div>
+      <div class="tips-hero-title reveal">AC <em>&amp; Television</em></div>
+      <div class="tips-hero-desc reveal">How to use the air conditioning and smart TVs in the apartment.</div>
+      <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+        <span class="scroll-cue-label">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </div>
+
+    <!-- ── Air Conditioning ── -->
+    <div class="tips-method">
+      <!-- Header -->
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">AC</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Air Conditioning</div>
+          <div class="tips-method-sub">Two Daikin units · Remotes provided</div>
+        </div>
+      </div>
+
+      <!-- Remote locations — compact row -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; background:var(--warm-white);" class="reveal-stagger">
+        <div style="padding:20px 32px; border-right:1px solid var(--light-line); border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
+          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Upstairs</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote below the unit</div>
+        </div>
+        <div style="padding:20px 32px; border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
+          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Downstairs</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote next to the bed</div>
+        </div>
+      </div>
+
+      <!-- Apple-style mode selector -->
+      <div style="background:var(--charcoal); padding:0;" class="reveal">
+
+        <!-- Mode tab strip -->
+        <div style="display:flex; border-bottom:1px solid rgba(201,185,154,0.1);" id="ac-tabs">
+          <button onclick="acMode('cool')" id="ac-tab-cool"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid #4a9fe8; cursor:pointer; transition:all 0.2s;">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#4a9fe8;margin-bottom:8px;">COOL</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a9fe8" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <line x1="12" y1="2" x2="12" y2="22"/><line x1="12" y1="2" x2="9" y2="5"/><line x1="12" y1="2" x2="15" y2="5"/>
+              <line x1="2" y1="12" x2="22" y2="12"/><line x1="22" y1="12" x2="19" y2="9"/><line x1="22" y1="12" x2="19" y2="15"/>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+            </svg>
+          </button>
+          <button onclick="acMode('heat')" id="ac-tab-heat"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">HEAT</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          </button>
+          <button onclick="acMode('dry')" id="ac-tab-dry"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">DRY</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mode content panels -->
+        <div id="ac-panel-cool" style="padding:40px 52px 44px; display:block;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4a9fe8;margin-bottom:16px;">When to use COOL</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#4a9fe8;">too warm</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">COOL</strong> on hot sunny days. The unit actively blows cold air and runs until the room reaches your set temperature. Best used when the room is uncomfortably warm.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Hot days</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Summer afternoons</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">After sun exposure</span>
+          </div>
+        </div>
+
+        <div id="ac-panel-heat" style="padding:40px 52px 44px; display:none;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#e8874a;margin-bottom:16px;">When to use HEAT</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#e8874a;">too cold</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">HEAT</strong> on cool evenings or in winter. The unit blows warm air until the set temperature is reached. Use it when you need to take the chill off the room.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Cool evenings</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Winter mornings</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">After rain</span>
+          </div>
+        </div>
+
+        <div id="ac-panel-dry" style="padding:40px 52px 44px; display:none;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4ae8a8;margin-bottom:16px;">When to use DRY</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The air feels<br><em style="color:#4ae8a8;">sticky or muggy</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">DRY</strong> when the air feels heavy and humid — very common on Mediterranean summer days. Unlike COOL, DRY does not blast cold air. It gently removes excess moisture from the air, making the room feel comfortable without overcooling. It uses significantly less energy than COOL mode.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Humid days</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Sticky feeling</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Energy saving</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">After rain</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Warning -->
+      <div class="tips-notice reveal" style="border-left-color:#c0392b; background:rgba(192,57,43,0.04);">
+        <span class="tips-notice-icon" style="font-size:12px;color:#c0392b;font-family:'Jost',sans-serif;font-weight:700;">!</span>
+        <div class="tips-notice-text"><strong>Always switch off the AC when windows are open.</strong> This preserves the environment and prevents energy waste.</div>
+      </div>
+    </div>
+
+    <!-- ── Television ── -->
+    <div class="tips-method" style="background:var(--warm-white);">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">TV</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Television</div>
+          <div class="tips-method-sub">Two Samsung Smart TVs · AirPlay Ready · Upper floor</div>
+        </div>
+      </div>
+
+      <!-- Remote locations -->
+      <div class="reveal-stagger">
+        <div class="tips-step" style="background:var(--warm-white);">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Living Room Remote</div>
+            <div class="tips-step-desc">Located <strong>on the table</strong> in front of the couch in the living room.</div>
+          </div>
+        </div>
+        <div class="tips-step" style="background:#f5f0e8;">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Master Bedroom Remote</div>
+            <div class="tips-step-desc">Located <strong>on the cupboard</strong> below the TV in the master bedroom.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smart TV feature cards -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; background:var(--charcoal);" class="reveal-stagger">
+
+        <div style="padding:36px 44px; border-right:1px solid rgba(201,185,154,0.08);">
+          <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.38em; text-transform:uppercase; color:var(--moss); margin-bottom:14px;">AirPlay</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--warm-white); line-height:1.1; margin-bottom:14px;">Mirror your<br><em style="color:var(--sand);">iPhone or iPad</em></div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75; margin-bottom:16px;">
+            Both Samsung TVs are <strong style="color:rgba(253,250,247,0.7); font-style:normal;">AirPlay 2 compatible</strong>. As long as your iPhone or iPad is connected to the house Wi-Fi (<strong style="font-style:normal; color:rgba(253,250,247,0.7);">Pou_Wifi</strong>), you can mirror your screen or stream directly to the TV — no cables needed.
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">iPhone</span>
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">iPad</span>
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">Mac</span>
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">No cable needed</span>
+          </div>
+          <!-- AirPlay how-to -->
+          <div style="margin-top:20px; border-top:1px solid rgba(201,185,154,0.1); padding-top:16px;">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:var(--moss);margin-bottom:10px;">How to connect</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:10px;align-items:baseline;">
+                <span style="font-family:'Jost',sans-serif;font-size:8px;color:var(--moss);flex-shrink:0;">01</span>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(253,250,247,0.45);">Connect your device to <strong style="font-style:normal;color:rgba(253,250,247,0.65);">Pou_Wifi</strong></span>
+              </div>
+              <div style="display:flex;gap:10px;align-items:baseline;">
+                <span style="font-family:'Jost',sans-serif;font-size:8px;color:var(--moss);flex-shrink:0;">02</span>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(253,250,247,0.45);">Swipe down → Control Centre → tap the <strong style="font-style:normal;color:rgba(253,250,247,0.65);">AirPlay icon</strong></span>
+              </div>
+              <div style="display:flex;gap:10px;align-items:baseline;">
+                <span style="font-family:'Jost',sans-serif;font-size:8px;color:var(--moss);flex-shrink:0;">03</span>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(253,250,247,0.45);">Select the Samsung TV in the list</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:36px 44px;">
+          <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.38em; text-transform:uppercase; color:var(--moss); margin-bottom:14px;">Smart TV</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--warm-white); line-height:1.1; margin-bottom:14px;">Stream your<br><em style="color:var(--sand);">favourite apps</em></div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75; margin-bottom:16px;">
+            Both TVs have built-in Samsung Smart TV apps. Open the TV and navigate to your favourite service — no extra device needed. Log in with your own account and log out when you leave.
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">Netflix</span>
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">Disney+</span>
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">YouTube</span>
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">Prime Video</span>
+            <span style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand);background:rgba(201,185,154,0.08);border:1px solid rgba(201,185,154,0.18);padding:5px 12px;">Spotify</span>
+          </div>
+          <div style="margin-top:20px;border-top:1px solid rgba(201,185,154,0.1);padding-top:14px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(201,185,154,0.3);line-height:1.65;">Please log out of personal accounts before checkout.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="page-footer">
+      <span>Calle Pou &nbsp;·&nbsp; Villajoyosa</span>
+      <span>MB Luxury Living</span>
+      <span>Technology Guide</span>
+    </div>
+
+  </div><!-- /tip-panel-tech -->
+<!-- ══ PANEL: WASTE & INSECTS ══ -->
+<div class="tips-panel" id="tip-panel-waste">
+
+  <!-- Hero -->
+  <div class="tips-hero">
+    <div class="tips-badge"><span class="tips-badge-dot"></span><span data-i18n="tips-waste-badge">Apartment · Daily Habits</span></div>
+    <div class="tips-hero-title reveal" data-i18n-html="tips-waste-title">Waste <em>&amp; Insects</em></div>
+    <div class="tips-hero-desc reveal" data-i18n="tips-waste-desc">How to keep the apartment clean, insect-free and properly sorted every day.</div>
+    <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+      <span class="scroll-cue-label" data-i18n="cover-scroll">scroll</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </div>
+
+  <!-- Insect Prevention — two feature cards -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; background:var(--charcoal); border-bottom:1px solid rgba(201,185,154,0.08);" class="reveal-stagger">
+
+    <div style="padding:40px 48px; border-right:1px solid rgba(201,185,154,0.08);">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="width:44px; height:44px; border-radius:50%; background:rgba(201,185,154,0.08); border:1px solid rgba(201,185,154,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sand)" stroke-width="1.5" stroke-linecap="round">
+            <path d="M3 2l18 18M10.5 2.5C10.5 2.5 8 5 8 8c0 2 1 3.5 2.5 4.5"/><path d="M13.5 2.5C13.5 2.5 16 5 16 8c0 2-1 3.5-2.5 4.5"/>
+            <path d="M8 12.5c-2 1-3 2.5-3 4.5 0 2.5 3 5 7 5s7-2.5 7-5c0-2-1-3.5-3-4.5"/>
+          </svg>
+        </div>
+        <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--moss);">Prevent Ants</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--warm-white); margin-bottom:12px; line-height:1.1;">No food on the<br><em style="color:var(--sand);">kitchen counter</em></div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75;">Even small crumbs attract ants quickly in a Mediterranean climate. Clear the counter after every meal and store food in sealed containers or in the fridge.</div>
+    </div>
+
+    <div style="padding:40px 48px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+        <div style="width:44px; height:44px; border-radius:50%; background:rgba(201,185,154,0.08); border:1px solid rgba(201,185,154,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sand)" stroke-width="1.5" stroke-linecap="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div style="font-family:'Jost',sans-serif; font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:var(--moss);">Prevent Cockroaches</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--warm-white); margin-bottom:12px; line-height:1.1;">Keep doors<br><em style="color:var(--sand);">closed</em></div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(253,250,247,0.4); line-height:1.75;">Never leave terrace or entrance doors open unattended. Flying cockroaches are common in the region during warm evenings — a closed door is all it takes.</div>
+    </div>
+
+  </div>
+
+    <!-- ── Waste Removal ── -->
+    <div style="background:var(--cream); border-top:1px solid var(--light-line);">
+
+      <!-- Header -->
+      <div class="tips-method-header reveal" style="padding:36px 52px 28px;">
+        <div class="tips-method-letter" style="background:var(--moss);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+          </svg>
+        </div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Waste Removal</div>
+          <div class="tips-method-sub">Separate daily · Bins across the main street</div>
+        </div>
+      </div>
+
+      <!-- Bin type diagram — Apple-style visual cards -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--light-line);" class="reveal-stagger">
+
+        <!-- Glass -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(100,160,220,0.12); border:1.5px solid rgba(100,160,220,0.3); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#64a0dc" stroke-width="1.5" stroke-linecap="round">
+              <path d="M8 2h8l2 6H6L8 2z"/><path d="M6 8v12a2 2 0 002 2h8a2 2 0 002-2V8"/>
+              <line x1="10" y1="12" x2="10" y2="18"/><line x1="14" y1="12" x2="14" y2="18"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64a0dc;margin-bottom:8px;">Glass</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Jars<br>No broken glass</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,160,220,0.1);border:1px solid rgba(100,160,220,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64a0dc;">Blue bin</div>
+        </div>
+
+        <!-- Paper & Cardboard -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(100,180,120,0.1); border:1.5px solid rgba(100,180,120,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#64b478" stroke-width="1.5" stroke-linecap="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64b478;margin-bottom:8px;">Paper</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Cardboard · Newspapers<br>Flatten boxes</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,180,120,0.08);border:1px solid rgba(100,180,120,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64b478;">Green bin</div>
+        </div>
+
+        <!-- Plastic & Metal -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(220,180,60,0.1); border:1.5px solid rgba(220,180,60,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#dcb43c" stroke-width="1.5" stroke-linecap="round">
+              <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#dcb43c;margin-bottom:8px;">Plastic</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Cans · Tins<br>Rinse before disposal</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(220,180,60,0.08);border:1px solid rgba(220,180,60,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#dcb43c;">Yellow bin</div>
+        </div>
+
+        <!-- General -->
+        <div style="padding:32px 24px 36px; text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(150,120,90,0.1); border:1.5px solid rgba(150,120,90,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#967a5a" stroke-width="1.5" stroke-linecap="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+              <path d="M10 11v6"/><path d="M14 11v6"/>
+              <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#967a5a;margin-bottom:8px;">General</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Everything else<br>Food waste · Other</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(150,120,90,0.08);border:1px solid rgba(150,120,90,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#967a5a;">Grey bin</div>
+        </div>
+
+      </div>
+
+      <!-- Key rule -->
+      <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;">
+          Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.
+        </div>
+        <div style="flex-shrink:0; text-align:right;">
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:var(--moss);margin-bottom:6px;">Daily</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.4);">Take waste daily<br>to avoid insects</div>
+        </div>
+      </div>
+
+    </div>
+
+  <div class="page-footer">
+    <span>Calle Pou · Villajoyosa</span>
+    <span>MB Luxury Living</span>
+    <span>Daily Habits</span>
+  </div>
+
+</div><!-- /tip-panel-waste -->
+
+
 
 </div><!-- /tab-tips -->
 
@@ -3546,6 +4492,27 @@
   #send-status.error { color: #c88a8a; }
   #send-status.info { color: rgba(201,185,154,0.6); font-style: italic; }
 </style>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// ╔══════════════════════════════════════════════════════════════╗
+// ║         GUEST ACCESS — HOW TO SET A NEW CODE               ║
+// ║                                                             ║
+// ║  The actual code is stored as a one-way SHA-256 hash.       ║
+// ║  Even if someone reads this source, they CANNOT reverse     ║
+// ║  it back to the original code.                              ║
+// ║                                                             ║
+// ║  TO SET A NEW CODE FOR A GUEST:                             ║
+// ║  1. Go to: https://emn178.github.io/online-tools/sha256     ║
+// ║  2. Type your chosen code IN CAPITALS (e.g. SMITH2025)      ║
+// ║  3. Copy the hash and paste it below replacing the value    ║
+// ║  4. Re-upload index.html to GitHub                          ║
+// ║                                                             ║
+// ║  Current code hash (SHA-256 of "BUCKSCH25"):                ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6f7ca";
+</script>
 
 <script>
   // ══════════════════════════════════════════════
@@ -4285,6 +5252,27 @@ var T = {
     'hk-footer-service':      'Service available · 8:00 – 20:00',
     'surr-title':             'Discover<br><em style="color:var(--sand);">the Surroundings</em>',
     'surr-desc':              'Colourful facades, centuries-old chocolate, crystal Mediterranean water — a pace of life that rewards exploration on foot.',
+    'tips-waste-label': 'Waste',
+    'tips-waste-sub': '& Insects',
+    'tips-waste-badge': 'Apartment · Daily Habits',
+    'tips-waste-title': 'Waste <em>&amp; Insects</em>',
+    'tips-waste-desc': 'How to keep the apartment clean, insect-free and properly sorted every day.',
+    'tips-tech-label': 'Tech',
+    'tips-tech-sub': 'AC & TV',
+    'tips-tech-badge': 'Apartment · Tech Guide',
+    'tips-tech-title': 'AC <em>&amp; Television</em>',
+    'tips-tech-desc': 'Everything you need to control the climate and entertainment in the apartment.',
+    'lock-title': 'Arrival<br><em>Guide</em>',
+    'lock-sub': 'Personalised for your stay at Calle Pou.<br>Enter your access code to continue.',
+    'lock-btn': 'Enter Guide',
+    'lock-footer': 'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; MB Luxury Living',
+    'lock-placeholder': 'Your access code',
+    'tips-sonos-label': 'Sonos',
+    'tips-sonos-sub': 'Speaker',
+    'tips-tech-label': 'Tech',
+    'tips-tech-sub':   'AC & TV',
+    'tips-arrival-label': 'Arrival',
+    'tips-arrival-sub': 'Guide',
   },
   'de': {
     'tab-menu-primary':       'Room Service',
@@ -4344,6 +5332,27 @@ var T = {
     'hk-footer-service':      'Service verfügbar · 8:00 – 20:00 Uhr',
     'surr-title':             'Die Umgebung<br><em style="color:var(--sand);">entdecken</em>',
     'surr-desc':              'Bunte Fassaden, jahrhundertealte Schokolade, kristallklares Mittelmeer — ein Tempo, das zur Erkundung einlädt.',
+    'tips-waste-label': 'Abfall',
+    'tips-waste-sub': '& Insekten',
+    'tips-waste-badge': 'Wohnung · Tägliche Gewohnheiten',
+    'tips-waste-title': 'Abfall <em>&amp; Insekten</em>',
+    'tips-waste-desc': 'So halten Sie die Wohnung täglich sauber, insektenfrei und ordnungsgemäß sortiert.',
+    'tips-tech-label': 'Technik',
+    'tips-tech-sub': 'AC & TV',
+    'tips-tech-badge': 'Wohnung · Technik-Guide',
+    'tips-tech-title': 'Klimaanlage <em>&amp; Fernseher</em>',
+    'tips-tech-desc': 'Alles, was Sie zur Steuerung von Klima und Unterhaltungselektronik benötigen.',
+    'lock-title': 'Ankunft<br><em>Guide</em>',
+    'lock-sub': 'Personalisiert für Ihren Aufenthalt in Calle Pou.<br>Bitte geben Sie Ihren Zugangscode ein.',
+    'lock-btn': 'Guide öffnen',
+    'lock-footer': 'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; MB Luxury Living',
+    'lock-placeholder': 'Ihr Zugangscode',
+    'tips-sonos-label': 'Sonos',
+    'tips-sonos-sub': 'Lautsprecher',
+    'tips-tech-label': 'Technik',
+    'tips-tech-sub':   'AC & TV',
+    'tips-arrival-label': 'Ankunft',
+    'tips-arrival-sub': 'Guide',
   },
   'es': {
     'tab-menu-primary':       'Room Service',
@@ -4403,6 +5412,27 @@ var T = {
     'hk-footer-service':      'Servicio disponible · 8:00 – 20:00',
     'surr-title':             'Descubrir<br><em style="color:var(--sand);">los Alrededores</em>',
     'surr-desc':              'Fachadas de colores, chocolate centenario, mar Mediterráneo cristalino — un ritmo de vida que invita a explorar.',
+    'tips-waste-label': 'Residuos',
+    'tips-waste-sub': '& Insectos',
+    'tips-waste-badge': 'Apartamento · Hábitos Diarios',
+    'tips-waste-title': 'Residuos <em>&amp; Insectos</em>',
+    'tips-waste-desc': 'Cómo mantener el apartamento limpio, sin insectos y correctamente separado cada día.',
+    'tips-tech-label': 'Tecnología',
+    'tips-tech-sub': 'AC & TV',
+    'tips-tech-badge': 'Apartamento · Guía Técnica',
+    'tips-tech-title': 'Aire Acond. <em>&amp; Televisión</em>',
+    'tips-tech-desc': 'Todo lo que necesita para controlar el clima y el entretenimiento en el apartamento.',
+    'lock-title': 'Guía de<br><em>Llegada</em>',
+    'lock-sub': 'Personalizado para su estancia en Calle Pou.<br>Introduzca su código de acceso.',
+    'lock-btn': 'Abrir Guía',
+    'lock-footer': 'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; MB Luxury Living',
+    'lock-placeholder': 'Su código de acceso',
+    'tips-sonos-label': 'Sonos',
+    'tips-sonos-sub': 'Altavoz',
+    'tips-tech-label': 'Tecnología',
+    'tips-tech-sub':   'AC & TV',
+    'tips-arrival-label': 'Llegada',
+    'tips-arrival-sub': 'Guía',
   },
   'fr': {
     'tab-menu-primary':       'Room Service',
@@ -4462,6 +5492,27 @@ var T = {
     'hk-footer-service':      'Service disponible · 8h00 – 20h00',
     'surr-title':             'Découvrir<br><em style="color:var(--sand);">les Alentours</em>',
     'surr-desc':              'Façades colorées, chocolat séculaire, mer Méditerranée cristalline — un rythme de vie qui invite à l\'exploration.',
+    'tips-waste-label': 'Déchets',
+    'tips-waste-sub': '& Insectes',
+    'tips-waste-badge': 'Appartement · Habitudes Quotidiennes',
+    'tips-waste-title': 'Déchets <em>&amp; Insectes</em>',
+    'tips-waste-desc': 'Comment garder l\'appartement propre, sans insectes et correctement trié chaque jour.',
+    'tips-tech-label': 'Tech',
+    'tips-tech-sub': 'AC & TV',
+    'tips-tech-badge': 'Appartement · Guide Tech',
+    'tips-tech-title': 'Climatisation <em>&amp; Télévision</em>',
+    'tips-tech-desc': 'Tout ce dont vous avez besoin pour contrôler le climat et le divertissement.',
+    'lock-title': 'Guide<br><em>d\'Arrivée</em>',
+    'lock-sub': 'Personnalisé pour votre séjour à Calle Pou.<br>Entrez votre code d\'accès.',
+    'lock-btn': 'Ouvrir le Guide',
+    'lock-footer': 'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; MB Luxury Living',
+    'lock-placeholder': 'Votre code d\'accès',
+    'tips-sonos-label': 'Sonos',
+    'tips-sonos-sub': 'Enceinte',
+    'tips-tech-label': 'Technologie',
+    'tips-tech-sub':   'AC & TV',
+    'tips-arrival-label': 'Arrivée',
+    'tips-arrival-sub': 'Guide',
   },
   'no': {
     'tab-menu-primary':       'Room Service',
@@ -4521,6 +5572,27 @@ var T = {
     'hk-footer-service':      'Tilgjengelig · 8:00 – 20:00',
     'surr-title':             'Oppdag<br><em style="color:var(--sand);">omgivelsene</em>',
     'surr-desc':              'Fargerike fasader, århundregammelt sjokolade, krystallklart Middelhav — et livsrytme som belønner utforskning.',
+    'tips-waste-label': 'Avfall',
+    'tips-waste-sub': '& Insekter',
+    'tips-waste-badge': 'Leilighet · Daglige Vaner',
+    'tips-waste-title': 'Avfall <em>&amp; Insekter</em>',
+    'tips-waste-desc': 'Slik holder du leiligheten ren, insektfri og riktig sortert hver dag.',
+    'tips-tech-label': 'Teknikk',
+    'tips-tech-sub': 'AC & TV',
+    'tips-tech-badge': 'Leilighet · Teknikk-Guide',
+    'tips-tech-title': 'Klimaanlegg <em>&amp; Fjernsyn</em>',
+    'tips-tech-desc': 'Alt du trenger for å styre klima og underholdning i leiligheten.',
+    'lock-title': 'Ankomst<br><em>Guide</em>',
+    'lock-sub': 'Tilpasset for ditt opphold på Calle Pou.<br>Skriv inn tilgangskoden din.',
+    'lock-btn': 'Åpne Guide',
+    'lock-footer': 'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; MB Luxury Living',
+    'lock-placeholder': 'Din tilgangskode',
+    'tips-sonos-label': 'Sonos',
+    'tips-sonos-sub': 'Høyttaler',
+    'tips-tech-label': 'Teknologi',
+    'tips-tech-sub':   'AC & TV',
+    'tips-arrival-label': 'Ankomst',
+    'tips-arrival-sub': 'Guide',
   }
 };
 
@@ -4538,6 +5610,12 @@ function applyLang() {
   document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
     var v = t[el.getAttribute('data-i18n-html')];
     if (v !== undefined) el.innerHTML = v;
+  });
+
+  // 3. Placeholder text — [data-i18n-placeholder]
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var v = t[el.getAttribute('data-i18n-placeholder')];
+    if (v !== undefined) el.placeholder = v;
   });
 
   // 3. Update switcher button label
@@ -4565,6 +5643,100 @@ function setLang(lang, e) {
 }
 
 function toggleLangDropdown(e) { /* hover handles this via CSS */ }
+
+
+// ── Arrival Guide lock ──
+// Hash a string with SHA-256 using WebCrypto (built into every browser)
+async function sha256(str) {
+  var buf = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(str)
+  );
+  return Array.from(new Uint8Array(buf))
+    .map(function(b) { return b.toString(16).padStart(2,'0'); })
+    .join('');
+}
+
+function unlockArrival() {
+  var lock    = document.getElementById('arrival-lock');
+  var content = document.getElementById('arrival-content');
+  lock.style.transition = 'opacity 0.4s ease';
+  lock.style.opacity = '0';
+  setTimeout(function() {
+    lock.style.display = 'none';
+    content.style.display = 'block';
+    try { sessionStorage.setItem('arrival_unlocked', ARRIVAL_HASH); } catch(e) {}
+    // Trigger animations
+    var panel = document.getElementById('tip-panel-arrival');
+    if (!panel) return;
+    var sel = '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title';
+    panel.querySelectorAll(sel).forEach(function(el) { el.classList.remove('visible'); });
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        panel.querySelectorAll(sel).forEach(function(el) {
+          var rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 40 && rect.bottom > 0) {
+            el.classList.add('visible');
+          } else {
+            try { ioGlobal.observe(el); } catch(e) {}
+          }
+        });
+      });
+    });
+  }, 400);
+}
+
+function checkArrivalCode() {
+  var input = document.getElementById('arrival-code-input');
+  var err   = document.getElementById('lock-error');
+  var btn   = document.getElementById('lock-submit');
+  var val = input.value.trim().toUpperCase();  // uppercase so SMITH25 = smith25
+  if (!val) return;
+
+  // Disable button while hashing
+  btn.disabled = true;
+  btn.textContent = '···';
+
+  sha256(val).then(function(hash) {
+    btn.disabled = false;
+    btn.textContent = 'Enter Guide';
+
+    if (hash === ARRIVAL_HASH) {
+      unlockArrival();
+    } else {
+      err.textContent = 'Incorrect code. Please try again.';
+      input.classList.remove('shake');
+      void input.offsetWidth;
+      input.classList.add('shake');
+      input.value = '';
+      input.focus();
+      setTimeout(function() {
+        err.textContent = '';
+        input.classList.remove('shake');
+      }, 3000);
+    }
+  }).catch(function() {
+    // Fallback for very old browsers without WebCrypto
+    btn.disabled = false;
+    btn.textContent = 'Enter Guide';
+    err.textContent = 'Browser not supported. Please try a different browser.';
+  });
+}
+
+// Auto-unlock if already entered this session
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      var saved = sessionStorage.getItem('arrival_unlocked');
+      if (saved && saved === ARRIVAL_HASH) {
+        var lock    = document.getElementById('arrival-lock');
+        var content = document.getElementById('arrival-content');
+        if (lock)    lock.style.display = 'none';
+        if (content) content.style.display = 'block';
+      }
+    } catch(e) {}
+  });
+})();
 
 // AC mode switcher
 function acMode(mode) {
@@ -4596,5 +5768,253 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<!-- ═══════════ MEMBER PORTAL ═══════════ -->
+<div id="member-portal" onclick="if(event.target===this)closeMemberPortal()">
+  <div id="portal-card">
+
+    <!-- LEFT brand panel -->
+    <div id="portal-brand">
+      <div>
+        <div class="pb-eyebrow">MB Luxury Living &nbsp;·&nbsp; Insider</div>
+        <div class="pb-title">By<br>invitation<br><em>only.</em></div>
+        <p class="pb-desc">Earn points through breakfast packages, housekeeping and referrals. Exclusive access for invited guests only.</p>
+        <div class="pb-perks">
+          <div class="pb-perk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span>Points for every purchase</span></div>
+          <div class="pb-perk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span>Referral rewards</span></div>
+          <div class="pb-perk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span>Seasonal insider offers</span></div>
+          <div class="pb-perk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span>Priority access to Calle Pou</span></div>
+        </div>
+        <div class="pb-points-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Points never expire</span>
+        </div>
+      </div>
+      <div class="pb-footer">Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca</div>
+    </div>
+
+    <!-- RIGHT form area -->
+    <div id="portal-main">
+      <button id="portal-close" onclick="closeMemberPortal()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="p-tabs">
+        <button class="p-tab active" id="ptab-login"  onclick="showPView('login')">Sign In</button>
+        <button class="p-tab"        id="ptab-join"   onclick="showPView('join')">Join</button>
+        <button class="p-tab"        id="ptab-dash"   onclick="showPView('dash')"  style="display:none">Account</button>
+        <button class="p-tab"        id="ptab-admin"  onclick="showPView('admin')" style="display:none">Admin</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="p-view active" id="pview-login">
+        <div class="p-view-title">Welcome<br><em>back</em></div>
+        <div class="p-view-sub">Sign in to your member account.</div>
+        <div class="p-field"><label>Email</label><input type="email" id="l-email" placeholder="you@example.com" autocomplete="email"/></div>
+        <div class="p-field"><label>Password</label><input type="password" id="l-pass" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password"/></div>
+        <div class="p-msg" id="l-msg"></div>
+        <button class="p-btn" onclick="doLogin()">Sign In &nbsp;&rarr;</button>
+        <div class="p-note">No account? Switch to Join and use your referral code.</div>
+      </div>
+
+      <!-- JOIN -->
+      <div class="p-view" id="pview-join">
+        <div class="p-view-title">Request<br><em>access</em></div>
+        <div class="p-view-sub">Membership is by referral only.</div>
+        <div class="p-row">
+          <div class="p-field"><label>First name</label><input type="text" id="j-first" placeholder="First name" autocomplete="given-name"/></div>
+          <div class="p-field"><label>Last name</label><input type="text" id="j-last" placeholder="Last name" autocomplete="family-name"/></div>
+        </div>
+        <div class="p-field"><label>Email</label><input type="email" id="j-email" placeholder="you@example.com" autocomplete="email"/></div>
+        <div class="p-field"><label>Password</label><input type="password" id="j-pass" placeholder="Min. 6 characters"/></div>
+        <div class="p-field"><label>Referral code</label><input type="text" id="j-code" placeholder="e.g. MBVIP-2025" style="letter-spacing:0.15em;text-transform:uppercase"/></div>
+        <div class="p-msg" id="j-msg"></div>
+        <button class="p-btn" onclick="doJoin()">Request Access &nbsp;&rarr;</button>
+        <div class="p-note">No code? Contact us at hello@mbluxuryliving.com</div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="p-view" id="pview-dash">
+        <div class="dash-greeting">Hello, <em id="dash-name">Member</em></div>
+        <div class="dash-points-bar">
+          <div><div class="dash-pts-num" id="dash-pts">0</div><div class="dash-pts-label">MB Points</div></div>
+          <div class="dash-pts-info">Earn points with every<br>purchase at Calle Pou</div>
+        </div>
+        <div class="dash-section-title">Purchases &amp; points earned</div>
+        <div class="dash-items" id="dash-purchases"></div>
+        <div class="dash-section-title">Pending requests</div>
+        <div class="dash-items" id="dash-pending"></div>
+        <button class="p-btn secondary" onclick="doLogout()" style="margin-top:auto">Sign out</button>
+      </div>
+
+      <!-- ADMIN -->
+      <div class="p-view" id="pview-admin">
+        <div class="admin-header">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(192,57,43,0.7)" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Master Admin
+        </div>
+        <div class="dash-section-title">Registered members</div>
+        <div style="overflow-x:auto">
+          <table class="admin-table" id="admin-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Joined</th><th>Points</th><th>Code</th></tr></thead>
+            <tbody id="admin-tbody"></tbody>
+          </table>
+        </div>
+        <div class="dash-section-title" style="margin-top:16px">All activity</div>
+        <div class="dash-items" id="admin-activity"></div>
+        <button class="p-btn secondary" onclick="doLogout()" style="margin-top:auto">Sign out</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+// MB LUXURY LIVING — MEMBER PORTAL
+var MB_REFERRAL_CODES = ['MBVIP-2025','CALLE-POU','BUCKSCH','LUXURY25','INSIDER25'];
+var MB_ADMIN_EMAIL = 'admin@mbluxuryliving.com';
+var MB_ADMIN_PASS  = 'MB2025admin!';
+var mbCurrentUser  = null;
+
+function mbGetMembers(){try{return JSON.parse(localStorage.getItem('mb_members')||'[]');}catch(e){return[];}}
+function mbSaveMembers(m){try{localStorage.setItem('mb_members',JSON.stringify(m));}catch(e){}}
+function mbGetActivity(){try{return JSON.parse(localStorage.getItem('mb_activity')||'[]');}catch(e){return[];}}
+function mbSaveActivity(a){try{localStorage.setItem('mb_activity',JSON.stringify(a));}catch(e){}}
+function mbGetSession(){try{return localStorage.getItem('mb_session')||null;}catch(e){return null;}}
+function mbSetSession(e){try{localStorage.setItem('mb_session',e);}catch(e){}}
+function mbClearSession(){try{localStorage.removeItem('mb_session');}catch(e){}}
+
+function openMemberPortal(){
+  var p=document.getElementById('member-portal');
+  p.classList.add('open');
+  document.body.style.overflow='hidden';
+  var sess=mbGetSession();
+  if(sess){
+    if(sess===MB_ADMIN_EMAIL.toLowerCase()){
+      mbCurrentUser={email:sess,first:'Admin',admin:true};
+      renderAdmin(); return;
+    }
+    var u=mbGetMembers().find(function(m){return m.email===sess;});
+    if(u){mbCurrentUser=u; renderDash(); return;}
+  }
+  showPView('login');
+}
+
+function closeMemberPortal(){
+  document.getElementById('member-portal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMemberPortal();});
+
+function showPView(id){
+  document.querySelectorAll('.p-tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.p-view').forEach(function(v){v.classList.remove('active');});
+  var tab=document.getElementById('ptab-'+id);
+  var view=document.getElementById('pview-'+id);
+  if(tab)tab.classList.add('active');
+  if(view)view.classList.add('active');
+}
+
+function pmsg(el,cls,txt){el.className='p-msg '+cls;el.textContent=txt;}
+
+function doLogin(){
+  var email=(document.getElementById('l-email').value||'').trim().toLowerCase();
+  var pass=document.getElementById('l-pass').value;
+  var msg=document.getElementById('l-msg');
+  if(!email||!pass) return pmsg(msg,'err','Please fill in all fields.');
+  if(email===MB_ADMIN_EMAIL.toLowerCase()&&pass===MB_ADMIN_PASS){
+    mbCurrentUser={email:email,first:'Admin',admin:true};
+    mbSetSession(email); renderAdmin(); return;
+  }
+  var u=mbGetMembers().find(function(m){return m.email===email&&m.pass===pass;});
+  if(!u) return pmsg(msg,'err','Email or password incorrect.');
+  mbCurrentUser=u; mbSetSession(email); renderDash();
+}
+
+function doJoin(){
+  var first=(document.getElementById('j-first').value||'').trim();
+  var last=(document.getElementById('j-last').value||'').trim();
+  var email=(document.getElementById('j-email').value||'').trim().toLowerCase();
+  var pass=document.getElementById('j-pass').value;
+  var code=(document.getElementById('j-code').value||'').trim().toUpperCase().replace(/[\s\-]/g,'');
+  var msg=document.getElementById('j-msg');
+  if(!first||!last||!email||!pass||!code) return pmsg(msg,'err','Please fill in all fields.');
+  if(!email.includes('@')) return pmsg(msg,'err','Invalid email address.');
+  if(pass.length<6) return pmsg(msg,'err','Password must be at least 6 characters.');
+  var valid=MB_REFERRAL_CODES.map(function(c){return c.toUpperCase().replace(/[\s\-]/g,'');});
+  if(!valid.includes(code)) return pmsg(msg,'err','Referral code not recognised.');
+  var members=mbGetMembers();
+  if(members.find(function(m){return m.email===email;})) return pmsg(msg,'err','Email already registered.');
+  var nm={email:email,first:first,last:last,pass:pass,code:code,points:0,
+    joined:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})};
+  members.push(nm); mbSaveMembers(members);
+  mbTelegramNotify('NEW MEMBER: '+first+' '+last+' | '+email+' | Code: '+code);
+  mbCurrentUser=nm; mbSetSession(email);
+  pmsg(msg,'ok','Welcome to MB Insider!');
+  setTimeout(renderDash,900);
+}
+
+function renderDash(){
+  document.getElementById('ptab-dash').style.display='';
+  document.getElementById('ptab-admin').style.display='none';
+  document.getElementById('dash-name').textContent=mbCurrentUser.first;
+  document.getElementById('dash-pts').textContent=(mbCurrentUser.points||0).toLocaleString();
+  var all=mbGetActivity();
+  var mine=all.filter(function(a){return a.email===mbCurrentUser.email;});
+  var purch=mine.filter(function(a){return a.type==='purchase';});
+  var pend=mine.filter(function(a){return a.type==='pending';});
+  var pEl=document.getElementById('dash-purchases');
+  pEl.innerHTML=purch.length?purch.map(function(p){return '<div class="dash-item"><span class="dash-item-name">'+p.item+'</span><span class="dash-item-date">'+p.date+'</span><span class="dash-item-pts">+'+p.pts+' pts</span></div>';}).join(''):'<div class="dash-empty">No purchases yet.</div>';
+  var rEl=document.getElementById('dash-pending');
+  rEl.innerHTML=pend.length?pend.map(function(p){return '<div class="dash-item"><span class="dash-item-name">'+p.item+'</span><span class="dash-item-date">'+p.date+'</span><span class="dash-item-status '+(p.status||'pending')+'">'+(p.status||'pending')+'</span></div>';}).join(''):'<div class="dash-empty">No pending requests.</div>';
+  showPView('dash');
+}
+
+function renderAdmin(){
+  document.getElementById('ptab-admin').style.display='';
+  document.getElementById('ptab-dash').style.display='none';
+  var members=mbGetMembers();
+  var all=mbGetActivity();
+  var tb=document.getElementById('admin-tbody');
+  tb.innerHTML=members.length?members.map(function(m){return '<tr><td>'+m.first+' '+m.last+'</td><td>'+m.email+'</td><td>'+m.joined+'</td><td class="admin-pts-cell">'+(m.points||0)+'</td><td>'+m.code+'</td></tr>';}).join(''):'<tr><td colspan="5" style="color:rgba(201,185,154,0.25);font-style:italic;padding:16px 12px">No members yet.</td></tr>';
+  var aEl=document.getElementById('admin-activity');
+  aEl.innerHTML=all.length?all.slice().reverse().map(function(a){return '<div class="dash-item"><span class="dash-item-name">'+a.item+'</span><span class="dash-item-date">'+a.email+' · '+a.date+'</span><span class="dash-item-pts">'+(a.pts?'+'+a.pts+' pts':'')+'</span><span class="dash-item-status '+(a.status||'done')+'">'+(a.status||'done')+'</span></div>';}).join(''):'<div class="dash-empty">No activity yet.</div>';
+  showPView('admin');
+}
+
+function doLogout(){
+  mbCurrentUser=null; mbClearSession();
+  document.getElementById('ptab-dash').style.display='none';
+  document.getElementById('ptab-admin').style.display='none';
+  showPView('login');
+}
+
+function mbAwardPoints(itemName,pts){
+  var sess=mbGetSession(); if(!sess) return;
+  var members=mbGetMembers();
+  var idx=members.findIndex(function(m){return m.email===sess;});
+  if(idx<0) return;
+  members[idx].points=(members[idx].points||0)+pts; mbSaveMembers(members);
+  var activity=mbGetActivity();
+  activity.push({email:sess,type:'purchase',item:itemName,pts:pts,
+    date:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}),status:'done'});
+  mbSaveActivity(activity);
+}
+
+function mbTelegramNotify(text){
+  try{
+    if(typeof TELEGRAM_TOKEN==='undefined'||TELEGRAM_TOKEN==='PASTE_YOUR_BOT_TOKEN_HERE') return;
+    fetch('https://api.telegram.org/bot'+TELEGRAM_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TELEGRAM_CHAT_ID,text:'MB INSIDER\n'+text})});
+  }catch(e){}
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  var sess=mbGetSession();
+  if(sess){
+    if(sess===MB_ADMIN_EMAIL.toLowerCase()){mbCurrentUser={email:sess,first:'Admin',admin:true};}
+    else{var u=mbGetMembers().find(function(m){return m.email===sess;});if(u)mbCurrentUser=u;}
+  }
+});
+</script>
 </body>
 </html>
