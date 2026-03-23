@@ -1,0 +1,4600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desayuno con Champán</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FDFAF7;
+    --bark: #5C4A35;
+    --moss: #7A8B6A;
+    --sand: #C9B99A;
+    --charcoal: #2A2520;
+    --light-line: #E2D9CE;
+    --accent: #8B6E4E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* ── COVER ── */
+  /* ══ FORSTHOFGUT FULL-BLEED COVER ══ */
+  .cover {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+
+  /* Full-bleed video */
+  .cover-video {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  /* Full-bleed photo fallback */
+  .cover-photo {
+    position: absolute;
+    inset: 0;
+  }
+  .cover-photo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    transform: scale(1.06);
+    animation: photoPanIn 2.4s cubic-bezier(0.16,1,0.3,1) 0s both;
+    will-change: transform;
+    z-index: 0;
+  }
+  @keyframes photoPanIn {
+    from { transform: scale(1.12); opacity: 0.7; }
+    to   { transform: scale(1.0);  opacity: 1; }
+  }
+  /* Dark gradient — lighter at top for nav, heavier at bottom for text */
+  .cover-photo-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.38) 0%,
+        rgba(0,0,0,0.0)  30%,
+        rgba(0,0,0,0.0)  55%,
+        rgba(0,0,0,0.55) 100%
+      );
+    pointer-events: none;
+  }
+
+  /* Logo — centred, over photo */
+  .cover-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    animation: fadeIn 1s ease 0.6s both;
+    z-index: 2;
+  }
+  .cover-logo svg { width: auto; }
+  .cover-logo-house { height: 90px; filter: drop-shadow(0 2px 16px rgba(0,0,0,0.4)); }
+  .cover-logo-wordmark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.65em;
+    text-transform: uppercase;
+    color: rgba(253,250,247,0.95);
+    white-space: nowrap;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+  }
+
+  /* Tagline — bottom centre, above nav strip */
+  .cover-tagline {
+    z-index: 2;
+    position: absolute;
+    bottom: 96px;
+    left: 0; right: 0;
+    text-align: center;
+    animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 1.0s both;
+  }
+  .cover-tagline-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .cover-tagline-main em {
+    font-style: italic;
+    color: var(--sand);
+  }
+  .cover-tagline-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: rgba(253,250,247,0.55);
+    text-align: center;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    display: block;
+  }
+  .cover-scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .cover-scroll-indicator span {
+    font-family: 'Jost', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+  }
+  .cover-scroll-indicator-line {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-scroll-indicator-line::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.7), transparent);
+    animation: scrollDrop 2s ease-in-out 2s infinite;
+  }
+
+  /* Sub-nav — bottom strip */
+  .cover-nav {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    animation: fadeIn 0.8s ease 1.4s both;
+  }
+  .cover-nav-btn {
+    padding: 16px 24px;
+    background: none;
+    border: none;
+    border-top: 2px solid transparent;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .cover-nav-btn:hover {
+    color: rgba(255,255,255,0.9);
+    border-top-color: rgba(255,255,255,0.5);
+  }
+
+  /* Scroll cue — hidden, merged into tagline area */
+  .cover-scroll-cue { display: none; }
+  .cover-scroll-cue span {
+    font-family: 'Jost', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .cover-scroll-line {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0; width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    animation: scrollSweep 2s ease-in-out 2.2s infinite;
+  }
+  @keyframes scrollSweep {
+    0%   { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    .cover-tagline { bottom: 56px; }
+    .cover-tagline-main { font-size: 32px; }
+    .cover-nav-btn { font-size: 7px; padding: 14px 12px; letter-spacing: 0.18em; }
+    .cover-logo { transform: translate(-50%, -70%); }
+    .cover-logo-house { height: 40px; }
+    .cover-scroll-cue { right: 24px; }
+  }
+
+  /* ── PAGES ── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--light-line);
+  }
+  .page:last-of-type { border-bottom: none; }
+
+  .section-number {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 400;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 42px;
+    color: var(--bark);
+    line-height: 1.1;
+    margin-bottom: 36px;
+    letter-spacing: -0.01em;
+  }
+  .section-title em { font-style: italic; }
+
+  .intro-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--charcoal);
+    max-width: 600px;
+    margin-bottom: 48px;
+    padding-left: 24px;
+    border-left: 2px solid var(--sand);
+  }
+
+  /* ── MENU ITEMS GRID ── */
+  .menu-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--light-line);
+    border: 1px solid var(--light-line);
+    margin-bottom: 40px;
+  }
+
+  .menu-item {
+    background: var(--warm-white);
+    padding: 26px 32px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .menu-item-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  .menu-item-body { flex: 1; }
+
+  .menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 4px;
+  }
+
+  .menu-item-name-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--bark);
+    line-height: 1.1;
+  }
+
+  .menu-item-name-es {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .menu-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--bark);
+    white-space: nowrap;
+  }
+
+  .menu-item-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #5a5048;
+    margin-top: 4px;
+  }
+
+  .menu-item-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--accent);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── STEPS GRID ── */
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .step {
+    background: var(--warm-white);
+    padding: 28px 28px 28px 24px;
+    border-top: 2px solid var(--bark);
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 46px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .step-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .step-desc { font-size: 14px; color: var(--charcoal); line-height: 1.6; }
+
+  /* ── INFO BLOCK (dark) ── */
+  .info-block {
+    background: var(--charcoal);
+    color: var(--warm-white);
+    padding: 48px 52px;
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .info-block .label {
+    display: none;
+  }
+
+  .info-block .info-item {
+    padding: 0 32px 0 0;
+    border-right: 1px solid rgba(201,185,154,0.12);
+    margin-bottom: 0;
+    padding-right: 40px;
+  }
+
+  .info-block .info-item:first-child { padding-left: 0; }
+  .info-block .info-item:last-child { border-right: none; padding-left: 40px; padding-right: 0; }
+  .info-block .info-item:nth-child(2) { padding-left: 40px; }
+
+  .info-block .info-item span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 10px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+  }
+
+  .info-block .info-item strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--warm-white);
+    letter-spacing: 0.02em;
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .info-block .info-item .sub {
+    font-size: 12px;
+    color: rgba(201,185,154,0.4);
+    line-height: 1.65;
+    display: block;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  @media (max-width: 640px) {
+    .info-block {
+      grid-template-columns: 1fr;
+      padding: 36px 24px;
+      gap: 32px;
+    }
+    .info-block .info-item {
+      border-right: none;
+      border-bottom: 1px solid rgba(201,185,154,0.12);
+      padding: 0 0 32px 0 !important;
+    }
+    .info-block .info-item:last-child { border-bottom: none; padding-bottom: 0 !important; }
+  }
+
+
+  /* ── NEWSLETTER STRIP ── */
+  .nl-strip {
+    background: var(--charcoal);
+    padding: 40px 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    border-top: 1px solid rgba(201,185,154,0.1);
+    border-bottom: 1px solid rgba(201,185,154,0.1);
+  }
+  .nl-strip-text { flex: 1; }
+  .nl-strip-label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-family: 'Jost', sans-serif;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .nl-strip-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .nl-strip-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(253,250,247,0.38);
+    line-height: 1.55;
+  }
+  .nl-btn {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid rgba(201,185,154,0.45);
+    color: var(--sand);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .nl-btn:hover {
+    background: rgba(201,185,154,0.12);
+    border-color: var(--sand);
+    color: var(--warm-white);
+  }
+  /* Cover subscribe button */
+  .cover-nl-btn {
+    display: inline-block;
+    margin-top: 28px;
+    border: 1px solid rgba(201,185,154,0.35);
+    color: rgba(201,185,154,0.75);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .cover-nl-btn:hover { border-color: var(--sand); color: var(--sand); }
+  @media (max-width: 640px) {
+    .nl-strip { flex-direction: column; align-items: flex-start; padding: 36px 24px; }
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* ── RULE ── */
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 44px 0;
+  }
+  .rule::before, .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--light-line);
+  }
+  .rule-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--sand);
+    transform: rotate(45deg);
+  }
+
+  /* ── HIGHLIGHT ── */
+  .highlight {
+    background: rgba(122,139,106,0.1);
+    border-left: 3px solid var(--moss);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--charcoal);
+  }
+  .highlight strong { color: var(--bark); }
+
+  /* ── PRICE TAG STRIP ── */
+  .price-note {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 400;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--light-line);
+  }
+
+  /* ── BOTTLE CARDS ── */
+  .bottle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .bottle-card {
+    background: var(--charcoal);
+    padding: 28px 26px;
+    position: relative;
+    border-bottom: 2px solid var(--sand);
+  }
+
+  .bottle-card .region {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.5);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .bottle-card .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .bottle-card .desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(201,185,154,0.5);
+    margin-bottom: 14px;
+  }
+
+  .bottle-card .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .bottle-card .glass-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--sand);
+  }
+
+  .bottle-card .bottle-price {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.4);
+  }
+
+  .bottle-card .badge {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    text-align: center;
+    padding: 36px 60px;
+    background: var(--charcoal);
+    color: rgba(201,185,154,0.45);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 48px 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; gap: 36px; }
+    .bottle-grid { grid-template-columns: 1fr; }
+    .menu-item-header { flex-wrap: wrap; }
+  }
+
+  /* ── ORDER SYSTEM ── */
+  .orderable {
+    cursor: pointer;
+    transition: background 0.18s ease, box-shadow 0.18s ease;
+    position: relative;
+    user-select: none;
+  }
+  .orderable:hover {
+    background: #f5f0e8;
+    box-shadow: inset 3px 0 0 var(--sand);
+  }
+  .orderable.in-order {
+    background: rgba(201,185,154,0.12);
+    box-shadow: inset 3px 0 0 var(--bark);
+  }
+  .orderable .add-hint {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+  }
+  .orderable:hover .add-hint { opacity: 1; }
+  .orderable.in-order .add-hint { opacity: 0; }
+
+  /* bottle cards orderable */
+  .bottle-card.orderable:hover {
+    box-shadow: inset 0 -3px 0 var(--sand), 0 0 0 1px rgba(201,185,154,0.3);
+    background: #2f2b26;
+  }
+  .bottle-card.orderable.in-order {
+    box-shadow: inset 0 -3px 0 var(--sand), 0 0 0 1px rgba(201,185,154,0.5);
+    background: #35302a;
+  }
+  .bottle-card .add-hint { color: rgba(201,185,154,0.6); }
+
+  /* ── ORDER PANEL ── */
+  #order-panel {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 340px;
+    background: var(--charcoal);
+    border-left: 3px solid var(--sand);
+    box-shadow: 0 8px 48px rgba(0,0,0,0.35);
+    z-index: 1000;
+    transform: translateY(calc(100% + 40px));
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+  #order-panel.visible {
+    transform: translateY(0);
+  }
+
+  .order-panel-head {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid rgba(201,185,154,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .order-panel-head .title {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sand);
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+  }
+  .order-panel-head .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--warm-white);
+    display: block;
+    margin-top: 2px;
+  }
+  .order-close {
+    background: none;
+    border: none;
+    color: rgba(201,185,154,0.5);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .order-close:hover { color: var(--sand); }
+
+  .order-items {
+    overflow-y: auto;
+    flex: 1;
+    padding: 8px 0;
+  }
+
+  .order-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    border-bottom: 1px solid rgba(201,185,154,0.08);
+  }
+  .order-row:last-child { border-bottom: none; }
+
+  .order-row-name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--warm-white);
+    line-height: 1.3;
+  }
+  .order-row-name .sub {
+    display: block;
+    font-size: 10px;
+    color: rgba(201,185,154,0.4);
+    margin-top: 1px;
+    letter-spacing: 0.05em;
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .qty-btn {
+    background: rgba(201,185,154,0.12);
+    border: none;
+    color: var(--sand);
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.12s;
+    font-family: 'Jost', sans-serif;
+  }
+  .qty-btn:hover { background: rgba(201,185,154,0.25); }
+  .qty-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--warm-white);
+    min-width: 16px;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .order-row-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--sand);
+    min-width: 48px;
+    text-align: right;
+  }
+
+  .order-empty {
+    padding: 28px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(201,185,154,0.35);
+    text-align: center;
+  }
+
+  .order-footer {
+    border-top: 1px solid rgba(201,185,154,0.2);
+    padding: 16px 24px 20px;
+    flex-shrink: 0;
+  }
+  .order-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .order-total-label {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.5);
+    font-family: 'Jost', sans-serif;
+  }
+  .order-total-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--warm-white);
+  }
+  .order-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .btn-print {
+    flex: 1;
+    background: var(--sand);
+    border: none;
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-print:hover { background: #d4c4a4; }
+  .btn-clear {
+    background: rgba(201,185,154,0.1);
+    border: 1px solid rgba(201,185,154,0.2);
+    color: rgba(201,185,154,0.5);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-clear:hover { color: var(--sand); border-color: rgba(201,185,154,0.4); }
+
+  /* ── ORDER TRIGGER BUBBLE ── */
+  #order-bubble {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bark);
+    border: 1px solid var(--sand);
+    color: var(--warm-white);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.2s ease, background 0.15s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    flex-direction: column;
+    gap: 2px;
+  }
+  #order-bubble:hover { transform: scale(1.08); background: #6b5840; }
+  #order-bubble .bubble-icon { font-size: 20px; line-height: 1; }
+  #order-bubble .bubble-count {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--sand);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+  }
+  #order-bubble.hidden { display: none; }
+  #order-panel.visible ~ #order-bubble { display: none; }
+
+  /* ── PRINT ORDER ── */
+  @media print {
+    body > *:not(#print-order) { display: none !important; }
+    #print-order {
+      display: block !important;
+      padding: 40px;
+      font-family: 'Jost', sans-serif;
+    }
+  }
+  #print-order { display: none; }
+  /* ══ TAB BAR ══ */
+  #tab-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    height: 56px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+  }
+  #tab-bar.nav-scrolled {
+    background: rgba(247,243,238,0.97);
+    border-bottom: 1px solid var(--light-line);
+    box-shadow: 0 1px 18px rgba(90,74,53,0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Left: logo only */
+  #tab-nav-left {
+    display: flex; align-items: center;
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+  /* Centre: all nav tabs */
+  #tab-nav-centre {
+    display: flex; align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  /* Right: language switcher only */
+  #tab-nav-right {
+    display: flex; align-items: center;
+    justify-content: flex-end;
+    padding-right: 0;
+  }
+
+  /* Logo — hidden over cover, fades in on scroll */
+  #tab-logo {
+    display: flex; align-items: center; justify-content: flex-start;
+    cursor: pointer;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    padding: 0 20px;
+  }
+  #tab-bar.nav-scrolled #tab-logo {
+    opacity: 1; transform: translateY(0);
+    pointer-events: auto;
+  }
+  #tab-logo svg { height: 26px; width: auto; }
+
+  /* Buttons */
+  .tab-btn {
+    height: 56px; padding: 0 20px;
+    background: none; border: none; cursor: pointer;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+    opacity: 0.55; flex-shrink: 0;
+  }
+  .tab-btn .tab-es {
+    font-family: 'Jost', sans-serif;
+    font-size: 8.5px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.8);
+    transition: color 0.4s;
+  }
+  #tab-bar.nav-scrolled .tab-btn .tab-es { color: var(--charcoal); opacity: 0.7; }
+  .tab-btn .tab-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 10px;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.3);
+    transition: color 0.4s;
+  }
+  #tab-bar.nav-scrolled .tab-btn .tab-en { color: rgba(90,74,53,0.38); }
+  .tab-btn.active { opacity: 1; border-bottom-color: rgba(255,255,255,0.6); }
+  #tab-bar.nav-scrolled .tab-btn.active { border-bottom-color: var(--bark); }
+  #tab-bar.nav-scrolled .tab-btn.active .tab-es { color: var(--bark); opacity: 1; }
+  .tab-btn:hover { opacity: 0.9; }
+
+  .tab-page { display: none; }
+  .tab-page.active { display: block; }
+
+  /* CLEANING PAGE */
+  .csvc-item {
+    background: var(--warm-white); border: none; width: 100%; text-align: left;
+    padding: 24px 52px; cursor: pointer;
+    display: flex; align-items: center; gap: 20px;
+    border-bottom: 1px solid var(--light-line);
+    transition: background 0.15s, box-shadow 0.15s; user-select: none;
+  }
+  .csvc-item:last-child { border-bottom: 1px solid var(--light-line); }
+  .csvc-item:hover { background: #f5f0e8; box-shadow: inset 3px 0 0 var(--moss); }
+  .csvc-item.selected { background: rgba(122,139,106,0.08); box-shadow: inset 3px 0 0 var(--moss); }
+  .csvc-check {
+    width: 22px; height: 22px; border: 1px solid #d4c9b8; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 13px; color: transparent; transition: all 0.15s;
+  }
+  .csvc-item.selected .csvc-check { background: var(--moss); border-color: var(--moss); color: white; }
+  .csvc-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--bark);
+    white-space: nowrap;
+    min-width: 52px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .csvc-item.selected .csvc-price { color: var(--moss); }
+  .csvc-text { flex: 1; }
+  .csvc-name-en { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--bark); }
+  .csvc-name-es { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; margin-top: 2px; }
+  .csvc-desc { font-size: 12px; color: #8a8a7a; margin-top: 3px; line-height: 1.5; font-family: 'Jost', sans-serif; font-weight: 300; }
+  #cleaning-form {
+    background: var(--charcoal); padding: 40px 52px;
+    border-top: 1px solid rgba(201,185,154,0.15); display: none;
+    margin: 0;
+  }
+  #cleaning-form.visible { display: block; }
+  .cf-label { font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--sand); font-family: 'Jost', sans-serif; margin-bottom: 8px; display: block; }
+  .cf-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--warm-white); margin-bottom: 20px; }
+  .cf-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .cf-tag { background: rgba(122,139,106,0.18); border: 1px solid rgba(122,139,106,0.3); color: #a8c8a0; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 12px; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .cf-group { display: flex; flex-direction: column; gap: 5px; }
+  .cf-group label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(201,185,154,0.45); font-family: 'Jost', sans-serif; }
+  .cf-group input { background: rgba(201,185,154,0.07); border: 1px solid rgba(201,185,154,0.15); color: var(--warm-white); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; padding: 9px 12px; outline: none; width: 100%; }
+  .cf-group input::placeholder { color: rgba(201,185,154,0.2); }
+  .cf-group input:focus { border-color: rgba(201,185,154,0.45); }
+  #cf-status { font-size: 11px; font-family: 'Jost', sans-serif; font-weight: 300; min-height: 18px; margin-bottom: 12px; text-align: center; }
+  .cf-btns { display: flex; gap: 10px; }
+  .cf-btn-send { flex: 1; background: var(--moss); border: none; color: var(--warm-white); font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; padding: 13px 16px; cursor: pointer; }
+  .cf-btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+  .cf-btn-clear { background: rgba(201,185,154,0.08); border: 1px solid rgba(201,185,154,0.18); color: rgba(201,185,154,0.45); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 13px 16px; cursor: pointer; }
+  @media (max-width: 640px) {
+    #cleaning-form { padding: 28px 24px; }
+    .cf-row { grid-template-columns: 1fr; }
+    .csvc-item { padding: 20px 24px; }
+  }
+
+  /* ── SCROLL PROGRESS BAR ── */
+  #scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--moss), var(--sand));
+    z-index: 9999;
+    transition: width 0.1s linear;
+    pointer-events: none;
+  }
+
+  /* ── APPLE-STYLE ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(36px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.88); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-32px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(32px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes splitReveal {
+    from { clip-path: inset(0 100% 0 0); opacity: 0; }
+    to   { clip-path: inset(0 0% 0 0); opacity: 1; }
+  }
+
+  /* Cover elements — cascade */
+
+  /* Scroll-triggered reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.93);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+  /* Stagger grid children */
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+    transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal-stagger.visible > *:nth-child(1)  { opacity:1; transform:none; transition-delay:0s; }
+  .reveal-stagger.visible > *:nth-child(2)  { opacity:1; transform:none; transition-delay:0.07s; }
+  .reveal-stagger.visible > *:nth-child(3)  { opacity:1; transform:none; transition-delay:0.14s; }
+  .reveal-stagger.visible > *:nth-child(4)  { opacity:1; transform:none; transition-delay:0.21s; }
+  .reveal-stagger.visible > *:nth-child(5)  { opacity:1; transform:none; transition-delay:0.28s; }
+  .reveal-stagger.visible > *:nth-child(n+6){ opacity:1; transform:none; transition-delay:0.35s; }
+
+  /* Menu item hover — scale + lift */
+  .menu-item.orderable {
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s cubic-bezier(0.16,1,0.3,1) !important;
+  }
+  .menu-item.orderable:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: 0 6px 24px rgba(90,74,53,0.10), inset 3px 0 0 var(--sand) !important;
+  }
+
+  /* Bottle card hover */
+  .bottle-card {
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease !important;
+  }
+  .bottle-card:hover {
+    transform: translateY(-4px) scale(1.015) !important;
+    box-shadow: 0 12px 32px rgba(90,74,53,0.13) !important;
+  }
+
+  /* ── VIDEO SECTION — Apple sticky scroll ── */
+  .video-wrapper {
+    position: relative;
+    height: 200vh;
+    background: #000;
+  }
+  .video-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .video-sticky video {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.08);
+  }
+  .video-sticky::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(42,37,32,0.3) 0%, transparent 35%, transparent 55%, rgba(42,37,32,0.75) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .video-ph {
+    position: absolute;
+    inset: 0;
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border: 1px dashed rgba(201,185,154,0.12);
+    transform: scale(1.08);
+  }
+  .video-ph-ring {
+    width: 72px; height: 72px;
+    border: 1.5px solid rgba(201,185,154,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-ph-ring::after {
+    content: '';
+    width: 0; height: 0;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 22px solid rgba(201,185,154,0.45);
+    margin-left: 5px;
+  }
+  .video-caption {
+    position: absolute;
+    bottom: 52px; left: 52px; right: 52px;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .video-caption-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(253,250,247,0.5);
+    margin-bottom: 10px;
+    display: block;
+    animation: fadeIn 1s ease 0.3s both;
+  }
+  .video-caption-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.1;
+    animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.5s both;
+  }
+  .video-caption-title em { font-style: italic; color: var(--sand); }
+  .video-caption-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(253,250,247,0.4);
+    max-width: 280px;
+    line-height: 1.7;
+    text-align: right;
+    animation: fadeIn 1s ease 0.8s both;
+  }
+  @media (max-width: 640px) {
+    .video-caption { bottom: 32px; left: 24px; right: 24px; flex-direction: column; gap: 10px; }
+    .video-caption-sub { text-align: left; max-width: 100%; }
+    .video-wrapper { height: 150vh; }
+    .video-sticky { height: 100svh; }
+  }
+
+  /* ── NON-ALCOHOLIC CARDS ── */
+  .na-card {
+    transition: background 0.25s ease, box-shadow 0.25s ease !important;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .na-card:hover { background: #ede8e0 !important; }
+  .na-card:hover .na-price { color: var(--moss) !important; }
+  .na-card.in-order { box-shadow: inset 4px 0 0 var(--bark) !important; }
+  /* Fix add-hint inside na-card grid rows */
+  .na-card .add-hint {
+    position: absolute !important;
+    top: 50% !important;
+    right: 20px !important;
+    left: auto !important;
+    transform: translateY(-50%) !important;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── SPLIT TEXT TITLES ── */
+  .split-title { overflow: hidden; }
+  .split-title .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(105%);
+    transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+  }
+  .split-title.visible .word:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0s; }
+  .split-title.visible .word:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.09s; }
+  .split-title.visible .word:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.18s; }
+  .split-title.visible .word:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.27s; }
+  .split-title.visible .word:nth-child(n+5){ opacity:1; transform:translateY(0); transition-delay:0.36s; }
+
+  /* ── PARALLAX COVER ── */
+  .cover { will-change: transform; }
+
+
+  /* ══════════ TIPS & TRICKS TAB ══════════ */
+
+  /* Product selector — Apple-style pill row */
+  .tips-selector {
+    position: sticky;
+    top: 56px; /* below tab bar */
+    z-index: 100;
+    background: var(--charcoal);
+    border-bottom: 1px solid rgba(201,185,154,0.12);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tips-selector::-webkit-scrollbar { display: none; }
+
+  .tips-pill {
+    flex-shrink: 0;
+    padding: 18px 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+    opacity: 0.45;
+    position: relative;
+  }
+  .tips-pill.active { border-bottom-color: var(--sand); opacity: 1; }
+  .tips-pill:hover { opacity: 0.75; }
+
+  .tips-pill-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(201,185,154,0.55);
+    background: rgba(201,185,154,0.06);
+    border: 1px solid rgba(201,185,154,0.12);
+    border-radius: 9px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .tips-pill.active .tips-pill-icon { background: rgba(201,185,154,0.14); border-color: rgba(201,185,154,0.3); color: var(--sand); }
+
+  .tips-pill-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sand);
+    white-space: nowrap;
+  }
+  .tips-pill-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    font-style: italic;
+    color: rgba(201,185,154,0.4);
+  }
+
+  /* Coming soon pill */
+  .tips-pill.coming-soon { cursor: default; }
+  .tips-pill.coming-soon .tips-pill-icon { opacity: 0.4; }
+  .tips-pill-soon {
+    position: absolute;
+    top: 10px; right: 8px;
+    font-size: 7px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    color: var(--moss);
+    background: rgba(122,139,106,0.15);
+    padding: 2px 5px;
+    border-radius: 2px;
+  }
+
+  /* Guide panels */
+  .tips-panel { display: none; }
+  .tips-panel.active { display: block; }
+
+  /* Hero header — dark, generous, Forsthofgut */
+  .tips-hero {
+    background: var(--charcoal);
+    padding: 72px 64px 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(201,185,154,0.1);
+  }
+  .tips-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(122,139,106,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tips-hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--moss);
+    font-family: 'Jost', sans-serif;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .tips-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5.5vw, 68px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.0;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .tips-hero-title em { color: var(--sand); }
+  .tips-hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(253,250,247,0.4);
+    line-height: 1.8;
+    max-width: 480px;
+  }
+  .tips-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(201,185,154,0.08);
+    border: 1px solid rgba(201,185,154,0.2);
+    padding: 7px 14px;
+    margin-bottom: 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.6);
+  }
+  .tips-badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--moss);
+    flex-shrink: 0;
+  }
+
+  /* Step method block */
+  .tips-method {
+    background: var(--cream);
+    border-bottom: 1px solid var(--light-line);
+  }
+  .tips-method-header {
+    padding: 40px 64px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--light-line);
+  }
+  .tips-method-letter {
+    width: 40px; height: 40px;
+    background: var(--bark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--warm-white);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .tips-method-letter.green { background: #3a7d44; }
+  .tips-method-title-wrap {}
+  .tips-method-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--bark);
+    line-height: 1.1;
+  }
+  .tips-method-sub {
+    font-size: 11px;
+    color: var(--moss);
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* Step rows */
+  .tips-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--light-line);
+    min-height: 80px;
+    align-items: stretch;
+    background: var(--warm-white);
+  }
+  .tips-step:nth-child(even) { background: var(--cream); }
+  .tips-step-num {
+    display: flex; align-items: center; justify-content: center;
+    border-right: 1px solid var(--light-line);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--moss);
+    letter-spacing: 0.1em;
+  }
+  .tips-step-body { padding: 24px 64px 24px 32px; }
+  .tips-step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--bark);
+    margin-bottom: 6px;
+  }
+  .tips-step-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--charcoal);
+    opacity: 0.6;
+    line-height: 1.7;
+  }
+  .tips-step-desc strong {
+    font-weight: 600;
+    color: var(--bark);
+    opacity: 1;
+  }
+  .tips-step-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #b8860b;
+    background: rgba(184,134,11,0.08);
+    border: 1px solid rgba(184,134,11,0.2);
+    padding: 3px 10px;
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* Warning notice */
+  .tips-notice {
+    margin: 0;
+    padding: 18px 64px;
+    background: rgba(201,185,154,0.06);
+    border-left: 3px solid var(--sand);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--light-line);
+  }
+  .tips-notice-icon { font-size: 16px; flex-shrink: 0; }
+  .tips-notice-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+  .tips-notice-text strong { color: var(--bark); font-weight: 600; }
+  .tips-notice-text a { color: var(--bark); }
+
+  /* Divider between methods */
+  .tips-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 64px;
+    background: var(--cream);
+  }
+  .tips-divider::before, .tips-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--light-line);
+  }
+  .tips-divider span {
+    font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase;
+    color: rgba(90,74,53,0.35); font-family: 'Jost', sans-serif; white-space: nowrap;
+  }
+
+  /* Video slot — Forsthofgut inset style */
+  .tips-video-slot {
+    position: relative;
+    margin: 0;
+    background: var(--charcoal);
+    aspect-ratio: 16/9;
+    max-height: 52vh;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tips-video-slot video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .tips-video-ph {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 16px; width: 100%; height: 100%;
+    border: 1px dashed rgba(201,185,154,0.12);
+    min-height: 260px;
+  }
+  .tips-video-ph-ring {
+    width: 56px; height: 56px;
+    border: 1.5px solid rgba(201,185,154,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tips-video-ph-ring::after {
+    content: '';
+    width: 0; height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 18px solid rgba(201,185,154,0.35);
+    margin-left: 4px;
+  }
+  .tips-video-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px 48px;
+    background: linear-gradient(to top, rgba(42,37,32,0.8), transparent);
+  }
+
+  /* Success / done banner */
+  .tips-success {
+    margin: 0;
+    padding: 24px 64px;
+    background: rgba(58,125,68,0.08);
+    border-left: 3px solid #3a7d44;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .tips-success-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; color: var(--charcoal); line-height: 1.6;
+  }
+
+  /* Arrival guide — coming soon state */
+  .tips-coming-soon {
+    background: var(--cream);
+    min-height: 60vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 20px; padding: 80px 64px; text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .tips-hero { padding: 48px 24px 40px; }
+    .tips-method-header { padding: 28px 24px 22px; }
+    .tips-step-body { padding: 20px 24px 20px 20px; }
+    .tips-notice { padding: 16px 24px; }
+    .tips-divider { padding: 16px 24px; }
+    .tips-success { padding: 20px 24px; }
+    .tips-selector { top: 52px; }
+    .tab-btn .tab-es { font-size: 7px; letter-spacing: 0.15em; }
+    .tab-btn .tab-en { display: none; }
+    .tab-btn { padding: 0 10px; }
+    #tab-logo svg { height: 24px; }
+  }
+
+
+  /* ══ LANGUAGE SWITCHER ══ */
+  /* ── LANGUAGE SWITCHER — matches nav design ── */
+  #lang-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 24px;
+    flex-shrink: 0;
+    border-left: 1px solid transparent;
+    transition: border-color 0.4s;
+  }
+  #tab-bar.nav-scrolled #lang-switcher {
+    border-left-color: var(--light-line);
+  }
+  #lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    /* Over cover: white like tab labels */
+    color: rgba(255,255,255,0.8);
+    transition: color 0.4s, opacity 0.4s;
+    opacity: 0.55;
+  }
+  #tab-bar.nav-scrolled #lang-btn {
+    color: var(--charcoal);
+    opacity: 0.55;
+  }
+  #lang-switcher:hover #lang-btn { opacity: 0.9; }
+  #lang-arrow {
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid currentColor;
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  #lang-switcher:hover #lang-arrow { transform: rotate(180deg); }
+  #lang-dropdown {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 56px;
+    right: 0;
+    /* Over cover: dark charcoal matching the nav */
+    background: rgba(42,37,32,0.97);
+    border: none;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    min-width: 120px;
+    z-index: 9999;
+    transform: translateY(-4px);
+    transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0.22s;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  /* When nav is scrolled — match the cream nav */
+  #tab-bar.nav-scrolled ~ * #lang-dropdown,
+  #lang-dropdown.scrolled {
+    background: rgba(247,243,238,0.97);
+    border-color: var(--light-line);
+  }
+  /* Show on hover */
+  #lang-switcher:hover #lang-dropdown,
+  #lang-switcher:focus-within #lang-dropdown {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0s;
+  }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 22px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    transition: color 0.15s, background 0.15s;
+  }
+  .lang-option:last-child { border-bottom: none; }
+  .lang-option:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
+  .lang-option.lang-active { color: var(--sand); border-bottom-color: rgba(201,185,154,0.12); }
+  .lang-option-code { flex: 1; }
+  .lang-option-name {
+    font-size: 10px; font-weight: 300;
+    letter-spacing: 0.05em; text-transform: none;
+    color: rgba(255,255,255,0.2);
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+  }
+  .lang-option-check { color: var(--moss); font-size: 9px; flex-shrink: 0; }
+  /* Stagger in */
+  #lang-switcher:hover .lang-option:nth-child(1) { animation: optionIn 0.2s ease 0.04s both; }
+  #lang-switcher:hover .lang-option:nth-child(2) { animation: optionIn 0.2s ease 0.08s both; }
+  #lang-switcher:hover .lang-option:nth-child(3) { animation: optionIn 0.2s ease 0.12s both; }
+  #lang-switcher:hover .lang-option:nth-child(4) { animation: optionIn 0.2s ease 0.16s both; }
+  #lang-switcher:hover .lang-option:nth-child(5) { animation: optionIn 0.2s ease 0.20s both; }
+  @keyframes optionIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+
+  /* ── REUSABLE SCROLL CUE ── */
+  .scroll-cue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+  }
+  .scroll-cue-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.4);
+  }
+  .scroll-cue-line {
+    width: 1px;
+    height: 36px;
+    background: rgba(201,185,154,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-cue-line::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--sand), transparent);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop {
+    0%   { top: -100%; opacity: 0; }
+    30%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  /* Dark version (on charcoal bg) */
+  .scroll-cue.dark .scroll-cue-label { color: rgba(201,185,154,0.35); }
+  .scroll-cue.dark .scroll-cue-line { background: rgba(201,185,154,0.12); }
+
+  /* Scrolled nav dropdown — light theme */
+  #lang-dropdown[data-scrolled] {
+    background: rgba(247,243,238,0.97) !important;
+    border-color: var(--light-line) !important;
+    box-shadow: 0 8px 28px rgba(90,74,53,0.1) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option {
+    color: rgba(42,37,32,0.5) !important;
+    border-bottom-color: var(--light-line) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option:hover {
+    color: var(--bark) !important;
+    background: rgba(201,185,154,0.08) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option.lang-active {
+    color: var(--bark) !important;
+  }
+  #lang-dropdown[data-scrolled] .lang-option-name {
+    color: rgba(42,37,32,0.3) !important;
+  }
+</style>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<!-- TAB BAR -->
+<div id="tab-bar">
+
+  <!-- LEFT: logo only (appears on scroll) -->
+  <div id="tab-nav-left">
+    <div id="tab-logo" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" title="Home">
+      <svg viewBox="0 0 200 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="28,4 48,16 48,38 8,38 8,16" stroke="#5C4A35" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+        <polyline points="28,4 28,15" stroke="#5C4A35" stroke-width="1.2" fill="none"/>
+        <text x="11" y="32" font-family="Georgia,serif" font-size="16" font-weight="700" fill="none" stroke="#5C4A35" stroke-width="1.1">MB</text>
+        <text x="58" y="19" font-family="Georgia,serif" font-size="10" fill="#5C4A35" letter-spacing="3.5" opacity="0.9">LUXURY</text>
+        <text x="58" y="33" font-family="Georgia,serif" font-size="10" fill="#5C4A35" letter-spacing="3.5" opacity="0.55">LIVING</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- CENTRE: all nav tabs -->
+  <div id="tab-nav-centre">
+    <button class="tab-btn active" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" id="tab-btn-menu">
+      <span class="tab-es" data-i18n="tab-menu-primary">Room Service</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('cleaning')" id="tab-btn-cleaning">
+      <span class="tab-es" data-i18n="tab-cleaning-primary">Housekeeping</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('surrounding')" id="tab-btn-surrounding">
+      <span class="tab-es" data-i18n="tab-surrounding-primary">Surrounding</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('tips')" id="tab-btn-tips">
+      <span class="tab-es" data-i18n="tab-tips-primary">Tips & Tricks</span>
+    </button>
+  </div>
+
+  <!-- RIGHT: language switcher only -->
+  <div id="tab-nav-right">
+    <div id="lang-switcher">
+      <button id="lang-btn" onclick="toggleLangDropdown(event)" aria-label="Language">
+        <span id="lang-current">EN</span>
+        <span id="lang-arrow"></span>
+      </button>
+      <div id="lang-dropdown">
+        <button class="lang-option lang-active" onclick="setLang('en', event)" id="lang-opt-en">
+          <span class="lang-option-code">EN</span>
+          <span class="lang-option-name">English</span>
+          <span class="lang-option-check" id="check-en">✓</span>
+        </button>
+        <button class="lang-option" onclick="setLang('de', event)" id="lang-opt-de">
+          <span class="lang-option-code">DE</span>
+          <span class="lang-option-name">Deutsch</span>
+          <span class="lang-option-check" id="check-de" style="display:none">✓</span>
+        </button>
+        <button class="lang-option" onclick="setLang('es', event)" id="lang-opt-es">
+          <span class="lang-option-code">ES</span>
+          <span class="lang-option-name">Español</span>
+          <span class="lang-option-check" id="check-es" style="display:none">✓</span>
+        </button>
+        <button class="lang-option" onclick="setLang('fr', event)" id="lang-opt-fr">
+          <span class="lang-option-code">FR</span>
+          <span class="lang-option-name">Français</span>
+          <span class="lang-option-check" id="check-fr" style="display:none">✓</span>
+        </button>
+        <button class="lang-option" onclick="setLang('no', event)" id="lang-opt-no">
+          <span class="lang-option-code">NO</span>
+          <span class="lang-option-name">Norsk</span>
+          <span class="lang-option-check" id="check-no" style="display:none">✓</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="tab-menu" class="tab-page active">
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover" id="cover-split">
+
+  <!-- Video background (loops silently) -->
+  <!-- ▶ Upload video.mp4 to GitHub alongside index.html to activate -->
+  <!-- Once uploaded, delete the <img> fallback and uncomment the video tag -->
+  <!-- <video class="cover-video" autoplay muted loop playsinline src="video.mp4"></video> -->
+
+  <!-- Photo fallback until video is added -->
+  <img class="cover-photo-img"
+       src="IMG_5900.jpeg"
+       alt="Calle Pou · Villajoyosa"
+       onerror="this.style.display='none'" />
+
+  <!-- Dark overlay -->
+  <div class="cover-photo-overlay"></div>
+
+  <!-- MB Luxury Living Logo — centred, Forsthofgut style -->
+  <div class="cover-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});" title="Home">
+    <!-- Faithful recreation of uploaded MB Luxury Living logo -->
+    <svg class="cover-logo-house" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer house shape -->
+      <polygon points="110,12 202,68 202,188 18,188 18,68"
+        stroke="rgba(253,250,247,0.92)" stroke-width="3.5" fill="none" stroke-linejoin="miter"/>
+      <!-- Roof ridge line -->
+      <line x1="110" y1="12" x2="110" y2="52"
+        stroke="rgba(253,250,247,0.5)" stroke-width="2"/>
+      <!-- Inner house frame lines -->
+      <polyline points="18,68 110,12 202,68"
+        stroke="rgba(253,250,247,0.3)" stroke-width="1.5" fill="none"/>
+      <!-- M letterform -->
+      <polyline points="42,158 42,98 76,138 110,98 110,158"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"
+        stroke-linejoin="miter" stroke-linecap="square"/>
+      <!-- B letterform -->
+      <polyline points="118,98 118,158"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none" stroke-linecap="square"/>
+      <path d="M118,98 L148,98 Q168,98 168,118 Q168,138 148,138 L118,138"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"/>
+      <path d="M118,138 L150,138 Q172,138 172,158 Q172,178 150,178 L118,178"
+        stroke="rgba(253,250,247,0.9)" stroke-width="4" fill="none"/>
+    </svg>
+    <div class="cover-logo-wordmark">MB &nbsp;Luxury Living</div>
+  </div>
+
+  <!-- Location + scroll indicator — bottom centre -->
+  <div class="cover-tagline">
+    <div class="cover-tagline-sub" data-i18n-html="cover-location">Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca</div>
+    <div class="cover-scroll-indicator">
+      <span data-i18n="cover-scroll">scroll</span>
+      <div class="cover-scroll-indicator-line"></div>
+    </div>
+  </div>
+
+  <!-- Sub-nav — bottom strip -->
+  <nav class="cover-nav">
+    <button class="cover-nav-btn" onclick="document.getElementById('cover-intro').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-welcome">Welcome</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-01').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-breakfast">Breakfast</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-02').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-tea">Tea & Coffee</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-03').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-champagne">Champagne</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('section-05').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-picnic">Picnic</button>
+  </nav>
+
+</div>
+
+<!-- ═══════════ INTRO PAGE — Breakfast with Champagne ═══════════ -->
+<div id="cover-intro" style="
+  background: var(--charcoal);
+  padding: 100px 64px 90px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  border-bottom: 1px solid rgba(201,185,154,0.1);
+  min-height: 60vh;
+">
+  <span class="reveal" style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.48em;text-transform:uppercase;color:var(--moss);display:block;margin-bottom:24px;">
+    Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca
+  </span>
+  <h1 class="reveal split-title" data-i18n-html="intro-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,88px);font-weight:300;color:var(--warm-white);line-height:0.95;letter-spacing:-0.02em;margin:0 0 28px;">
+    <span class="word">Breakfast&nbsp;</span><span class="word"></span><span class="word"><em style="color:var(--sand);">with Champagne</em></span>
+  </h1>
+  <div class="reveal" style="width:40px;height:1px;background:rgba(201,185,154,0.3);margin:0 auto 28px;"></div>
+  <p class="reveal" data-i18n-html="intro-sub" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.85;max-width:480px;margin:0;">
+    A morning celebration at the table.
+  </p>
+</div>
+
+<!-- ═══════════ VIDEO SECTION ═══════════ -->
+<div class="video-wrapper" id="video-wrapper">
+  <div class="video-sticky" id="video-sticky">
+
+    <!-- ▶ TO ADD YOUR VIDEO:
+         1. Upload your video file named  video.mp4  to the same GitHub folder as index.html
+         2. Delete the entire <div class="video-ph">...</div> block below
+         3. Uncomment the next line: -->
+    <!-- <video autoplay muted loop playsinline src="video.mp4"></video> -->
+
+    <div class="video-ph" id="video-ph">
+      <div class="video-ph-ring"></div>
+      <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(201,185,154,0.35);">Upload video.mp4 alongside index.html</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(201,185,154,0.2);">Then delete this block and uncomment the video tag above</span>
+    </div>
+
+    <div class="video-caption">
+      <div>
+        <span class="video-caption-eyebrow">Calle Pou · Villajoyosa · Spain</span>
+        <div class="video-caption-title">The table,<br><em>set for you</em></div>
+      </div>
+      <div class="video-caption-sub">
+        Every morning, fresh from the kitchen. Every detail, placed with intention.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════ 01 — EL DESAYUNO ═══════════ -->
+<div class="page" id="section-01">
+  <span class="section-number reveal-left" data-i18n="s01-num">01 — The Breakfast · El Desayuno</span>
+  <h2 class="section-title reveal split-title"><span class="word">The&nbsp;</span><span class="word"></span><span class="word"><em>Table</em></span></h2>
+
+  <p class="intro-text reveal" data-i18n-html="s01-intro">
+    Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.
+  </p>
+
+  <div class="menu-grid reveal-stagger">
+    <div class="menu-item orderable" data-id="ostras" data-name="Ostras Frescas" data-sub="Fresh Oysters" data-price="12">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">I</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">Fresh Oysters</div>
+            <div class="menu-item-name-es">Ostras Frescas</div>
+          </div>
+          <div class="menu-item-price">—,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Gallegas Nº 3 · 2 piezas por persona · Vinagreta de chalotas · Limón de Murcia
+        </div>
+        <span class="menu-item-note">Opened to order, served on crushed ice sobre hielo picado</span>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="pan" data-name="Pan Artesano" data-sub="Artisan Oven Bread" data-price="4">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">II</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">Artisan Oven Bread</div>
+            <div class="menu-item-name-es">Pan Artesano del Horno</div>
+          </div>
+          <div class="menu-item-price">—,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Pan de masa madre · Barra andaluza · Coca de aceite de oliva virgen extra · Horneado cada mañana
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="acomp" data-name="Acompañamientos & Untables" data-sub="Accompaniments & Spreads" data-price="8">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">III</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">Accompaniments & Spreads</div>
+            <div class="menu-item-name-es">Acompañamientos & Untables</div>
+          </div>
+          <div class="menu-item-price">—,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Grated tomato with extra virgin olive oil · Herb butter · Orange blossom honey · Seasonal jams<br>
+          Iberian acorn ham · Aged manchego · Cantabrian smoked salmon · Avocado cream · Sobrasada<br>
+          <em style="font-style:normal; color:var(--bark);">Pérez dark chocolate bar</em> — from Villajoyosa's own chocolate tradition · Served on the side
+</div>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="temp" data-name="De Temporada" data-sub="Seasonal Selection" data-price="6">
+      <div class="add-hint">+ Añadir</div>
+      <div class="menu-item-num">IV</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">Seasonal Selection</div>
+            <div class="menu-item-name-es">De Temporada</div>
+          </div>
+          <div class="menu-item-price">—,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Frutas del mercado local · Granola de frutos secos andaluces
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 02 — TÉ & CAFÉ ═══════════ -->
+<div class="page" id="section-02">
+      <span class="section-number reveal-right">02 — Tea & Coffee · Té y Café</span>
+      <h2 class="section-title reveal split-title"><span class="word">Teas&nbsp;</span><span class="word"></span><span class="word"><em>&amp; Coffee</em></span></h2>
+
+      <div class="menu-grid reveal-stagger">
+        <div class="menu-item orderable" data-id="tea-hierbas" data-name="Té Andaluz de Hierbas" data-sub="Andalusian Herbal Tea" data-price="5.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">I</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-en">Andalusian Herbal Tea</div>
+                <div class="menu-item-name-es">Té Andaluz de Hierbas</div>
+              </div>
+              <div class="menu-item-price">5,50</div>
+            </div>
+            <div class="menu-item-desc">Manzanilla · Poleo · Cantueso · Menta fresca</div>
+            <span class="menu-item-note">From our kitchen garden · Hierbas de nuestra huerta</span>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="tea-sencha" data-name="Té Verde Sencha" data-sub="Sencha Green Tea" data-price="6.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">II</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-en">Sencha Green Tea</div>
+                <div class="menu-item-name-es">Té Verde Sencha</div>
+              </div>
+              <div class="menu-item-price">6,50</div>
+            </div>
+            <div class="menu-item-desc">Uji, Japón · Single origin, vegetal & fresh</div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="tea-earl" data-name="Earl Grey Imperial" data-sub="Earl Grey Imperial" data-price="6">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">III</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-en">Earl Grey Imperial</div>
+                <div class="menu-item-name-es">Earl Grey Imperial</div>
+              </div>
+              <div class="menu-item-price">6,—</div>
+            </div>
+            <div class="menu-item-desc">Bergamota · Bergamot, black tea, lemon & cold milk</div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="cafe-esp" data-name="Café de Especialidad" data-sub="Specialty Coffee" data-price="4.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">IV</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-en">Specialty Coffee</div>
+                <div class="menu-item-name-es">Café de Especialidad</div>
+              </div>
+              <div class="menu-item-price">4,50</div>
+            </div>
+            <div class="menu-item-desc">Espresso · Cortado · Tueste propio, Etiopía Yirgacheffe</div>
+          </div>
+        </div>
+
+        <div class="menu-item orderable" data-id="flat-white" data-name="Flat White / Cappuccino" data-sub="Flat White · Cappuccino" data-price="5.50">
+          <div class="add-hint">+ Añadir</div>
+          <div class="menu-item-num">V</div>
+          <div class="menu-item-body">
+            <div class="menu-item-header">
+              <div>
+                <div class="menu-item-name-en">Flat White · Cappuccino</div>
+                <div class="menu-item-name-es">Flat White · Cappuccino</div>
+              </div>
+              <div class="menu-item-price">5,50</div>
+            </div>
+            <div class="menu-item-desc">Leche fresca de granja · Fresh farm milk, microfoam</div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<!-- House Note Band -->
+<div class="info-block reveal-stagger">
+  <div class="info-item">
+    <span data-i18n="info-service-label">Service Hours</span>
+    <strong data-i18n-html="info-service-val">Every morning<br>8:00 – 11:30</strong>
+    <span class="sub">Todos los días · Daily without exception</span>
+  </div>
+  <div class="info-item">
+    <span data-i18n="info-allergy-label">Allergies &amp; Dietary</span>
+    <strong data-i18n="info-allergy-val">Please inform us</strong>
+    <span class="sub">Tell us of any allergies or dietary requirements before ordering. We will take care of the rest.</span>
+  </div>
+  <div class="info-item">
+    <span data-i18n="info-request-label">Special Requests</span>
+    <strong data-i18n="info-request-val">With pleasure</strong>
+    <span class="sub">We are happy to accommodate special requests wherever possible. · Con mucho gusto.</span>
+  </div>
+</div>
+
+<!-- ═══════════ 03 — CHAMPÁN · COPAS ═══════════ -->
+<div class="page" id="section-03">
+  <span class="section-number reveal-left">03 — Drinks Menu · Carta de Bebidas · Separately Available · Disponible por Separado</span>
+  <h2 class="section-title reveal split-title" data-i18n-html="s03-title"><span class="word">Champán&nbsp;</span><span class="word"></span><span class="word"><em>& Cava</em></span></h2>
+
+  <p class="intro-text reveal" data-i18n-html="s03-intro">
+    Our champagne and cava selection is available separately — by the glass or bottle. We recommend beginning with our house selection.
+  </p>
+
+  <div class="price-note reveal" data-i18n="s03-price-note">Prices per glass 0.1 l</div>
+
+  <div class="bottle-grid reveal-stagger">
+    <div class="bottle-card orderable" data-id="ruinart" data-name="Ruinart Blanc de Blancs" data-sub="Copa 0,1 l" data-price="22">
+      <div class="add-hint">+ Añadir</div>
+      <span class="badge">Casa · House</span>
+      <span class="region">Reims · Francia</span>
+      <div class="name">Ruinart<br>Blanc de Blancs</div>
+      <div class="desc">Chardonnay 100% · Floral, vivo, elegante · Floral, crisp & elegant</div>
+      <div class="price-row">
+        <span class="glass-price">22,—</span>
+        <span class="bottle-price">Botella · 145,—</span>
+      </div>
+    </div>
+
+    <div class="bottle-card orderable" data-id="moet" data-name="Moët & Chandon Impérial" data-sub="Copa 0,1 l" data-price="18">
+      <div class="add-hint">+ Añadir</div>
+      <span class="region">Épernay · Francia</span>
+      <div class="name">Moët & Chandon<br>Impérial Brut</div>
+      <div class="desc">Pinot Noir, Chardonnay, Meunier · Toasty & classic</div>
+      <div class="price-row">
+        <span class="glass-price">18,—</span>
+        <span class="bottle-price">Botella · 118,—</span>
+      </div>
+    </div>
+
+    <div class="bottle-card orderable" data-id="gramona" data-name="Gramona Imperial Gran Reserva" data-sub="Copa 0,1 l" data-price="16">
+      <div class="add-hint">+ Añadir</div>
+      <span class="badge">España</span>
+      <span class="region">Penedès</span>
+      <div class="name">Gramona Imperial<br>Gran Reserva</div>
+      <div class="desc">Xarel·lo, Macabeo, Parellada · 60 meses de crianza · 60 months aged</div>
+      <div class="price-row">
+        <span class="glass-price">16,—</span>
+        <span class="bottle-price">Botella · 95,—</span>
+      </div>
+    </div>
+
+    <div class="bottle-card orderable" data-id="polroger" data-name="Pol Roger Rosé Vintage" data-sub="Copa 0,1 l" data-price="26">
+      <div class="add-hint">+ Añadir</div>
+      <span class="region">Champagne · Francia</span>
+      <div class="name">Pol Roger<br>Rosé Vintage</div>
+      <div class="desc">Fresa delicada · Burbuja muy fina · Delicate strawberry, fine bubbles</div>
+      <div class="price-row">
+        <span class="glass-price">26,—</span>
+        <span class="bottle-price">Bajo pedido</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight reveal">
+    <strong>Prestige —</strong> Krug Grande Cuvée · 0,75 l · For singular moments · Para momentos únicos.
+</div>
+</div>
+
+<!-- ═══════════ 04 — SIN ALCOHOL ═══════════ -->
+<div style="background:var(--cream); overflow:hidden;">
+
+  <!-- ── Header band ── -->
+  <div style="padding:80px 64px 56px; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:end; border-bottom:1px solid var(--light-line);">
+    <div>
+      <span class="section-number reveal-right" style="display:block; margin-bottom:20px;">04 — Non-Alcoholic · Sin Alcohol</span>
+      <h2 class="section-title reveal split-title" style="margin:0; font-size:clamp(48px,6.5vw,84px); line-height:0.92; font-weight:300; letter-spacing:-0.01em;">
+        <span class="word">Pure&nbsp;</span><span class="word"></span><span class="word"><em>&amp;&nbsp;Still</em></span>
+      </h2>
+    </div>
+    <p class="reveal" style="font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; color:var(--charcoal); opacity:0.55; line-height:1.9; margin:0; padding-bottom:6px; align-self:end;">
+      Nothing from a bottle. Each drink prepared at the moment it is ordered — from the orchards and springs of the region.<br>
+      <em style="font-size:0.88em; opacity:0.8">Todo preparado al momento, de los huertos y manantiales de la región.</em>
+    </p>
+  </div>
+
+  <!-- ── Drink row I ── -->
+  <div class="na-card orderable" data-id="zumo" data-name="Valencia Orange Juice" data-sub="Freshly squeezed · 0.2 l" data-price="6.50"
+    style="position:relative; display:flex; align-items:stretch; border-bottom:1px solid var(--light-line); min-height:130px;">
+    <div style="width:64px; flex-shrink:0; display:flex; align-items:center; justify-content:center; border-right:1px solid var(--light-line);">
+      <span style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--moss); font-family:'Jost',sans-serif; writing-mode:vertical-rl; transform:rotate(180deg);">I</span>
+    </div>
+    <div style="flex:1; padding:36px 80px 36px 48px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:9px; letter-spacing:0.42em; text-transform:uppercase; color:var(--moss); font-family:'Jost',sans-serif; margin-bottom:10px;">Freshly Squeezed</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--bark); line-height:1.05; margin-bottom:8px;">Valencia Orange Juice &ensp;<em style="font-size:0.62em; color:var(--charcoal); opacity:0.4; font-style:italic;">Zumo de Naranja</em></div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--charcoal); opacity:0.5; line-height:1.7;">Local Valencia oranges · Pressed to order · 0.2 l</div>
+    </div>
+    <div class="na-price" style="flex-shrink:0; display:flex; align-items:center; padding:0 64px 0 32px; font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--bark); transition:color 0.25s; border-left:1px solid var(--light-line);">6,50</div>
+  </div>
+
+  <!-- ── Drink row II ── -->
+  <div class="na-card orderable" data-id="agua" data-name="Mineral Water" data-sub="Still or sparkling · 0.33 l" data-price="4"
+    style="position:relative; display:flex; align-items:stretch; border-bottom:1px solid var(--light-line); min-height:130px; background:var(--warm-white);">
+    <div style="width:64px; flex-shrink:0; display:flex; align-items:center; justify-content:center; border-right:1px solid var(--light-line);">
+      <span style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--moss); font-family:'Jost',sans-serif; writing-mode:vertical-rl; transform:rotate(180deg);">II</span>
+    </div>
+    <div style="flex:1; padding:36px 80px 36px 48px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:9px; letter-spacing:0.42em; text-transform:uppercase; color:var(--moss); font-family:'Jost',sans-serif; margin-bottom:10px;">Still or Sparkling</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--bark); line-height:1.05; margin-bottom:8px;">Solán de Cabras &ensp;<em style="font-size:0.62em; color:var(--charcoal); opacity:0.4; font-style:italic;">Agua Mineral · Cuenca</em></div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--charcoal); opacity:0.5; line-height:1.7;">Con gas o sin gas · 0,33 l · From the springs of the Cuenca highlands</div>
+    </div>
+    <div class="na-price" style="flex-shrink:0; display:flex; align-items:center; padding:0 64px 0 32px; font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--bark); transition:color 0.25s; border-left:1px solid var(--light-line);">4,—</div>
+  </div>
+
+  <!-- ── Drink row III — signature ── -->
+  <div class="na-card orderable" data-id="bellini" data-name="Andalusian Non-Alcoholic Bellini" data-sub="House recipe · 0.0%" data-price="9"
+    style="position:relative; display:flex; align-items:stretch; border-bottom:1px solid var(--light-line); min-height:155px;">
+    <div style="width:64px; flex-shrink:0; display:flex; align-items:center; justify-content:center; border-right:1px solid var(--light-line);">
+      <span style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--moss); font-family:'Jost',sans-serif; writing-mode:vertical-rl; transform:rotate(180deg);">III</span>
+    </div>
+    <div style="flex:1; padding:40px 80px 40px 48px; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-size:9px; letter-spacing:0.42em; text-transform:uppercase; color:var(--moss); font-family:'Jost',sans-serif; margin-bottom:10px;">House Recipe &nbsp;·&nbsp; Signature</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--bark); line-height:1.05; margin-bottom:8px;">Bellini Andaluz 0,0% &ensp;<em style="font-size:0.62em; color:var(--charcoal); opacity:0.4; font-style:italic;">Non-Alcoholic · Receta de la Casa</em></div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--charcoal); opacity:0.5; line-height:1.7;">White peach from Jaén &nbsp;·&nbsp; Orange blossom water &nbsp;·&nbsp; 0% cava</div>
+      <div style="margin-top:10px; display:inline-block; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:var(--sand); font-family:'Jost',sans-serif; border:1px solid rgba(201,185,154,0.4); padding:4px 10px;">Recommended for non-drinkers</div>
+    </div>
+    <div class="na-price" style="flex-shrink:0; display:flex; align-items:center; padding:0 64px 0 32px; font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--bark); transition:color 0.25s; border-left:1px solid var(--light-line);">9,—</div>
+  </div>
+
+  <!-- ── Footnote — Forsthofgut single quiet line ── -->
+  <div class="reveal" style="padding:28px 64px; display:flex; align-items:center; justify-content:space-between; gap:32px; border-bottom:1px solid var(--light-line);">
+    <p style="font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:var(--charcoal); opacity:0.38; line-height:1.75; margin:0;">
+      Pairing — Oysters with Ruinart Blanc de Blancs &nbsp;·&nbsp; Gramona Imperial, 60 months, Penedès &nbsp;·&nbsp; Prestige bottles available upon prior request
+    </p>
+    <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--moss); font-family:'Jost',sans-serif; white-space:nowrap; flex-shrink:0;">Villajoyosa · Spain</div>
+  </div>
+
+</div>
+
+<!-- ═══════════ 05 — PICNIC ═══════════ -->
+<div class="page" id="section-05">
+  <span class="section-number reveal-left">05 — Special Experience · Experiencia Especial</span>
+  <h2 class="section-title reveal split-title"><span class="word">Beach&nbsp;</span><span class="word">Picnic&nbsp;</span><span class="word"></span><span class="word"><em>Basket</em></span></h2>
+
+  <p class="intro-text reveal" data-i18n-html="s05-intro">
+    A hand-prepared basket to enjoy on the beach or in the garden — ready to take at any time.
+  </p>
+
+  <div class="menu-grid reveal-stagger">
+
+    <div class="menu-item orderable" data-id="picnic-light" data-name="Beach Picnic — The Light" data-sub="Cesta Ligera · 25 €" data-price="25">
+      <div class="add-hint">+ Add</div>
+      <div class="menu-item-num">I</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">The Light</div>
+            <div class="menu-item-name-es">Cesta Ligera</div>
+          </div>
+          <div class="menu-item-price">25,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Sourdough roll · Manchego · Cherry tomatoes · Gordal olives · Peach, nectarine &amp; watermelon · Sparkling mineral water
+        </div>
+        <span class="menu-item-note">Includes basket, linen napkin &amp; cutlery</span>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="picnic-classic" data-name="Beach Picnic — The Classic" data-sub="Cesta Clásica · 35 €" data-price="35">
+      <div class="add-hint">+ Add</div>
+      <div class="menu-item-num">II</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">The Classic</div>
+            <div class="menu-item-name-es">Cesta Clásica</div>
+          </div>
+          <div class="menu-item-price">35,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Artisan bread · Manchego &amp; Tetilla cheese · Smoked salmon · Marinated olives · Cold gazpacho 200ml · Seasonal fruit · Fresh Valencia orange juice · Mineral water · Pérez chocolate bar
+        </div>
+        <span class="menu-item-note">Includes basket, blanket &amp; cutlery</span>
+      </div>
+    </div>
+
+    <div class="menu-item orderable" data-id="picnic-deluxe" data-name="Beach Picnic — The Deluxe" data-sub="Cesta Deluxe · 55 €" data-price="55">
+      <div class="add-hint">+ Add</div>
+      <div class="menu-item-num">III</div>
+      <div class="menu-item-body">
+        <div class="menu-item-header">
+          <div>
+            <div class="menu-item-name-en">The Deluxe</div>
+            <div class="menu-item-name-es">Cesta Deluxe</div>
+          </div>
+          <div class="menu-item-price">55,—</div>
+        </div>
+        <div class="menu-item-desc">
+          Everything in The Classic · Fresh Galician oysters (2 p.p.) · Fuet &amp; lomo ibérico · Burrata with heirloom tomatoes &amp; basil oil · Chilled salmorejo · Pérez single-origin chocolate bar · Glass of Gramona Cava
+        </div>
+        <span class="menu-item-note">2 hours advance notice appreciated · Se agradece reserva con 2 horas de antelación</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="highlight reveal">
+    <strong>Note —</strong> Baskets are prepared fresh to order — packed for the beach, the garden, or wherever the morning takes you. Please indicate your desired collection time in the notes field when ordering.<br>
+    
+    <div class="nl-strip-title" data-i18n="nl-title">Letters from Calle Pou</div>
+    <div class="nl-strip-sub">Seasonal menus, local stories from Villajoyosa &amp; early access to special offers — delivered quietly to your inbox.<br>Menús de temporada, historias locales y acceso anticipado a ofertas especiales.</div>
+  </div>
+  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank" class="nl-btn" data-i18n="nl-btn">Subscribe</a>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="page-footer">
+  <span>Villajoyosa · Costa Blanca</span>
+  <span>All prices include VAT · Todos los precios incluyen IVA</span>
+  <span>Season 2025 · Temporada 2025</span>
+</div>
+
+</div><!-- /tab-menu -->
+
+<!-- TAB: CLEANING -->
+<div id="tab-cleaning" class="tab-page">
+
+  <div style="background:var(--charcoal);padding:52px 52px 40px;border-bottom:1px solid rgba(201,185,154,0.15);">
+    <span data-i18n="hk-eyebrow" style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Housekeeping &nbsp;·&nbsp; Servicio de Limpieza</span>
+    <h2 data-i18n-html="hk-title" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Housekeeping<br><em>&amp; Comfort</em></h2>
+    <p data-i18n-html="hk-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Select what you need and we will be with you shortly.</p>
+  </div>
+
+  <div style="background:var(--cream);">
+    <button class="csvc-item" data-cid="towels" data-cname="Toallas Frescas" data-csub="Fresh Towels" data-cprice="0" onclick="toggleCleaning(this)">
+      <div class="csvc-check">&#10003;</div>
+      <div class="csvc-text">
+        <div class="csvc-name-en" data-i18n="hk-towels">Fresh Towels</div>
+        <div class="csvc-desc" data-i18n="hk-towels-desc">Bath &amp; hand towels</div>
+      </div>
+      <div class="csvc-price">—,—</div>
+    </button>
+    <button class="csvc-item" data-cid="room-clean" data-cname="Limpieza de Habitacion" data-csub="Room Cleaning" data-cprice="0" onclick="toggleCleaning(this)">
+      <div class="csvc-check">&#10003;</div>
+      <div class="csvc-text">
+        <div class="csvc-name-en" data-i18n="hk-room">Room Cleaning</div>
+        <div class="csvc-desc" data-i18n="hk-room-desc">Full clean &amp; linen change</div>
+      </div>
+      <div class="csvc-price">—,—</div>
+    </button>
+    <button class="csvc-item" data-cid="amenities" data-cname="Amenities Frescos" data-csub="Fresh Amenities" data-cprice="0" onclick="toggleCleaning(this)">
+      <div class="csvc-check">&#10003;</div>
+      <div class="csvc-text">
+        <div class="csvc-name-en" data-i18n="hk-amenities">Fresh Amenities</div>
+        <div class="csvc-desc" data-i18n="hk-amenities-desc">Soap · Shampoo · Shower gel · Toilet paper</div>
+      </div>
+      <div class="csvc-price">—,—</div>
+    </button>
+  </div>
+
+  <div id="cleaning-form">
+    <span class="cf-label">Your Request &nbsp;&middot;&nbsp; Su Solicitud</span>
+    <div class="cf-title">Confirm Order · Confirmar Pedido</div>
+    <div class="cf-tags" id="cf-tags"></div>
+    <div class="cf-total-row" id="cf-total-row" style="display:none; justify-content:space-between; align-items:baseline; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid rgba(201,185,154,0.15);">
+      <span style="font-size:9px; letter-spacing:0.35em; text-transform:uppercase; color:rgba(201,185,154,0.45); font-family:'Jost',sans-serif;">Total</span>
+      <span id="cf-total-amount" style="font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--warm-white);">—</span>
+    </div>
+    <div class="cf-row">
+      <div class="cf-group">
+        <label data-i18n="hk-room-label">Room</label>
+        <input type="text" id="cf-room" placeholder="Ej: 3, Suite A..." maxlength="20" />
+      </div>
+      <div class="cf-group">
+        <label data-i18n="hk-notes-label">Notes</label>
+        <input type="text" id="cf-notes" placeholder="Special instructions..." maxlength="120" />
+      </div>
+    </div>
+    <div id="cf-status"></div>
+    <div class="cf-btns">
+      <button class="cf-btn-send" id="cf-send-btn" data-i18n="hk-request" onclick="sendCleaning()">Request</button>
+      <button class="cf-btn-clear" onclick="clearCleaning()">Limpiar</button>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Villajoyosa &middot; Costa Blanca</span>
+    <span data-i18n="hk-footer-service">Service available · 8:00 – 20:00</span>
+    <span>Temporada 2025</span>
+  </div>
+
+</div><!-- /tab-cleaning -->
+
+<!-- TAB: TIPS & TRICKS -->
+<div id="tab-tips" class="tab-page">
+
+  <!-- Apple-style product selector -->
+  <div class="tips-selector" id="tips-selector">
+
+    <button class="tips-pill active" onclick="selectTip('sonos')" id="tip-pill-sonos">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="3"/>
+          <line x1="12" y1="3" x2="12" y2="5"/>
+          <line x1="12" y1="19" x2="12" y2="21"/>
+          <line x1="3" y1="12" x2="5" y2="12"/>
+          <line x1="19" y1="12" x2="21" y2="12"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label">Sonos</div>
+      <div class="tips-pill-sub">Speaker</div>
+    </button>
+
+    <button class="tips-pill" onclick="selectTip('arrival')" id="tip-pill-arrival">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label">Arrival</div>
+      <div class="tips-pill-sub">Guide</div>
+    </button>
+
+  </div>
+
+  <!-- ══ PANEL: SONOS SPEAKER ══ -->
+  <div class="tips-panel active" id="tip-panel-sonos">
+
+    <!-- Hero -->
+    <div class="tips-hero">
+      <div class="tips-badge"><span class="tips-badge-dot"></span>Kitchen Area · Sonos Speaker</div>
+      <div class="tips-hero-title reveal">Play music on<br><em>Sonos Speaker</em></div>
+      <div class="tips-hero-desc reveal">Quick setup guide &nbsp;·&nbsp; Two methods available. Connect any device to the kitchen speaker in under a minute.</div>
+      <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+        <span class="scroll-cue-label">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </div>
+
+    <!-- Before you begin notice -->
+    <div class="tips-notice reveal">
+      <span class="tips-notice-icon">⚡</span>
+      <div class="tips-notice-text">
+        <strong>Before you begin —</strong> Make sure your iPhone or iPad and the Sonos speaker are connected to the <strong>same Wi-Fi network</strong>.
+      </div>
+    </div>
+
+    <!-- Video slot — between notice and methods, Forsthofgut inset -->
+    <div class="tips-video-slot reveal-scale">
+      <!-- To add video: delete .tips-video-ph block, uncomment:
+           <video autoplay muted loop playsinline src="sonos-guide.mp4"></video> -->
+      <div class="tips-video-ph">
+        <div class="tips-video-ph-ring"></div>
+        <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(201,185,154,0.3);">Upload sonos-guide.mp4 to activate</span>
+      </div>
+      <div class="tips-video-caption">
+        <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(253,250,247,0.4);">Quick visual guide</span>
+      </div>
+    </div>
+
+    <!-- ── Method A: AirPlay ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter">A</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Via AirPlay</div>
+          <div class="tips-method-sub">Works with any app — Apple Music, Podcasts, Videos & more</div>
+        </div>
+      </div>
+
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Open Control Center</div>
+            <div class="tips-step-desc">On iPhone X or later, <strong>swipe down from the top-right corner</strong> of your screen to open Control Center.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Tap the AirPlay button</div>
+            <div class="tips-step-desc">In the Now Playing widget (top-right of Control Center), tap the <strong>AirPlay icon</strong> — it looks like a triangle with concentric rings.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Select the Sonos Speaker</div>
+            <div class="tips-step-desc">A list of available speakers will appear. Tap <strong>Living Room</strong> (the Sonos speaker in the kitchen area) to connect.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="tips-divider reveal"><span>or use Spotify</span></div>
+
+    <!-- ── Method B: Spotify ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter green">B</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Via Spotify</div>
+          <div class="tips-method-sub">Stream from the Spotify app using Spotify Connect</div>
+        </div>
+      </div>
+
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Open Spotify</div>
+            <div class="tips-step-desc">Launch the <strong>Spotify app</strong> on your iPhone or iPad and select a song or playlist.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Tap the Connect icon</div>
+            <div class="tips-step-desc">In the Now Playing screen, tap the <strong>speaker/device icon</strong> in the bottom-left corner (highlighted in yellow in the image).</div>
+            <span class="tips-step-tag">⊙ It's the small icon with a screen and sound waves</span>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Select the Sonos Speaker</div>
+            <div class="tips-step-desc">From the device list, choose the <strong>Living Room Sonos Speaker</strong>. Spotify will instantly start playing through it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success banner -->
+    <div class="tips-success reveal">
+      <span style="font-size:20px;">✓</span>
+      <div class="tips-success-text"><strong style="color:#3a7d44;">Enjoy your music.</strong> Music is now playing through the Sonos speaker in the kitchen area.</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="page-footer">
+      <span>Calle Pou · Villajoyosa</span>
+      <span>Tips &amp; Tricks</span>
+      <span>Need help? Ask us.</span>
+    </div>
+
+  </div><!-- /tip-panel-sonos -->
+
+  <!-- ══ PANEL: ARRIVAL GUIDE ══ -->
+  <div class="tips-panel" id="tip-panel-arrival">
+
+    <!-- Hero -->
+    <div class="tips-hero">
+      <div class="tips-badge"><span class="tips-badge-dot"></span>Calle Pou · Villajoyosa</div>
+      <div class="tips-hero-title reveal">Welcome to<br><em>Calle Pou</em></div>
+      <div class="tips-hero-desc reveal">
+        Welcome to our beautifully renovated apartment. We hope you had a pleasant journey. Everything you need to feel at home — from your first step through the door.
+      </div>
+      <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+        <span class="scroll-cue-label">Scroll</span>
+        <div class="scroll-cue-line"></div>
+      </div>
+    </div>
+
+    <!-- ── Enter the apartment ── -->
+    <div class="tips-method">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="background:var(--bark); font-size:11px; letter-spacing:0.05em;">KEY</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Enter the Apartment</div>
+          <div class="tips-method-sub">Key box · Left of the wooden door</div>
+        </div>
+      </div>
+      <div class="tips-notice reveal">
+        <span class="tips-notice-icon" style="font-size:13px; font-family:'Cormorant Garamond',serif; color:var(--sand);">◉</span>
+        <div class="tips-notice-text">When you approach the wooden door, find the <strong>small box on your left</strong>. It has a lid that hides a panel with numbers.</div>
+      </div>
+      <div class="reveal-stagger">
+        <div class="tips-step">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Press Reset</div>
+            <div class="tips-step-desc">Press the reset button to clear any previous entry.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Enter the code</div>
+            <div class="tips-step-desc">Press <strong>1 · 3 · 5</strong> in sequence.</div>
+          </div>
+        </div>
+        <div class="tips-step">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Press Open</div>
+            <div class="tips-step-desc">The box will unlock. Take out the keys and open the door.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WiFi ── -->
+    <div style="background:var(--charcoal); padding:48px 64px; border-top:1px solid rgba(201,185,154,0.1); border-bottom:1px solid rgba(201,185,154,0.1);" class="reveal">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+        <div>
+          <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:16px;">Wi-Fi · Unlimited High Speed</span>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--warm-white);line-height:1.0;margin-bottom:6px;">Pou_Wifi</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.25em;color:rgba(201,185,154,0.4);margin-bottom:28px;">Network name</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--sand);letter-spacing:0.04em;">Villajoyosa123</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.25em;color:rgba(201,185,154,0.4);margin-top:6px;">Password</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.8;">
+            The apartment is equipped with <span style="color:rgba(201,185,154,0.6);font-style:normal;">unlimited</span> high-speed Wi-Fi throughout both floors.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Air Conditioning ── -->
+    <div class="tips-method">
+      <!-- Header -->
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">AC</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Air Conditioning</div>
+          <div class="tips-method-sub">Two Daikin units · Remotes provided</div>
+        </div>
+      </div>
+
+      <!-- Remote locations — compact row -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; background:var(--warm-white);" class="reveal-stagger">
+        <div style="padding:20px 32px; border-right:1px solid var(--light-line); border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
+          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Upstairs</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote below the unit</div>
+        </div>
+        <div style="padding:20px 32px; border-bottom:1px solid var(--light-line); display:flex; align-items:center; gap:16px;">
+          <div style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--moss);flex-shrink:0;">Downstairs</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--charcoal);opacity:0.6;">Remote next to the bed</div>
+        </div>
+      </div>
+
+      <!-- Apple-style mode selector -->
+      <div style="background:var(--charcoal); padding:0;" class="reveal">
+
+        <!-- Mode tab strip -->
+        <div style="display:flex; border-bottom:1px solid rgba(201,185,154,0.1);" id="ac-tabs">
+          <button onclick="acMode('cool')" id="ac-tab-cool"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid #4a9fe8; cursor:pointer; transition:all 0.2s;">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#4a9fe8;margin-bottom:8px;">COOL</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4a9fe8" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <line x1="12" y1="2" x2="12" y2="22"/><line x1="12" y1="2" x2="9" y2="5"/><line x1="12" y1="2" x2="15" y2="5"/>
+              <line x1="2" y1="12" x2="22" y2="12"/><line x1="22" y1="12" x2="19" y2="9"/><line x1="22" y1="12" x2="19" y2="15"/>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+            </svg>
+          </button>
+          <button onclick="acMode('heat')" id="ac-tab-heat"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">HEAT</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          </button>
+          <button onclick="acMode('dry')" id="ac-tab-dry"
+            style="flex:1; padding:20px 12px; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:all 0.2s; border-left:1px solid rgba(201,185,154,0.08);">
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,185,154,0.35);margin-bottom:8px;">DRY</div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.35)" stroke-width="1.5" stroke-linecap="round" style="display:block;margin:0 auto;">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mode content panels -->
+        <div id="ac-panel-cool" style="padding:40px 52px 44px; display:block;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4a9fe8;margin-bottom:16px;">When to use COOL</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#4a9fe8;">too warm</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">COOL</strong> on hot sunny days. The unit actively blows cold air and runs until the room reaches your set temperature. Best used when the room is uncomfortably warm.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Hot days</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">Summer afternoons</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4a9fe8;background:rgba(74,159,232,0.1);border:1px solid rgba(74,159,232,0.2);padding:6px 14px;">After sun exposure</span>
+          </div>
+        </div>
+
+        <div id="ac-panel-heat" style="padding:40px 52px 44px; display:none;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#e8874a;margin-bottom:16px;">When to use HEAT</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The room feels<br><em style="color:#e8874a;">too cold</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">HEAT</strong> on cool evenings or in winter. The unit blows warm air until the set temperature is reached. Use it when you need to take the chill off the room.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Cool evenings</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">Winter mornings</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#e8874a;background:rgba(232,135,74,0.1);border:1px solid rgba(232,135,74,0.2);padding:6px 14px;">After rain</span>
+          </div>
+        </div>
+
+        <div id="ac-panel-dry" style="padding:40px 52px 44px; display:none;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:#4ae8a8;margin-bottom:16px;">When to use DRY</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:20px;">The air feels<br><em style="color:#4ae8a8;">sticky or muggy</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(253,250,247,0.5);line-height:1.8;max-width:480px;">
+            Press <strong style="color:var(--warm-white);font-style:normal;">DRY</strong> when the air feels heavy and humid — very common on Mediterranean summer days. Unlike COOL, DRY does not blast cold air. It gently removes excess moisture from the air, making the room feel comfortable without overcooling. It uses significantly less energy than COOL mode.
+          </div>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Humid days</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Sticky feeling</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">Energy saving</span>
+            <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:#4ae8a8;background:rgba(74,232,168,0.08);border:1px solid rgba(74,232,168,0.18);padding:6px 14px;">After rain</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Warning -->
+      <div class="tips-notice reveal" style="border-left-color:#c0392b; background:rgba(192,57,43,0.04);">
+        <span class="tips-notice-icon" style="font-size:12px;color:#c0392b;font-family:'Jost',sans-serif;font-weight:700;">!</span>
+        <div class="tips-notice-text"><strong>Always switch off the AC when windows are open.</strong> This preserves the environment and prevents energy waste.</div>
+      </div>
+    </div>
+
+    <!-- ── Television ── -->
+    <div class="tips-method" style="background:var(--warm-white);">
+      <div class="tips-method-header reveal">
+        <div class="tips-method-letter" style="font-size:10px; letter-spacing:0.03em;">TV</div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Television</div>
+          <div class="tips-method-sub">Two Samsung Smart TVs · Upper floor</div>
+        </div>
+      </div>
+      <div class="reveal-stagger">
+        <div class="tips-step" style="background:var(--warm-white);">
+          <div class="tips-step-num">1</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Living Room Remote</div>
+            <div class="tips-step-desc">Located in the living room <strong>on the table</strong> in front of the couch.</div>
+          </div>
+        </div>
+        <div class="tips-step" style="background:#f5f0e8;">
+          <div class="tips-step-num">2</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Master Bedroom Remote</div>
+            <div class="tips-step-desc">Located <strong>on the cupboard</strong> below the TV in the master bedroom.</div>
+          </div>
+        </div>
+        <div class="tips-step" style="background:var(--warm-white);">
+          <div class="tips-step-num">3</div>
+          <div class="tips-step-body">
+            <div class="tips-step-title">Smart Streaming</div>
+            <div class="tips-step-desc">Both TVs are <strong>smart TVs</strong> — you can connect your mobile device to stream your favourite movies and shows.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Useful Tips ── -->
+    <div style="background:var(--charcoal); padding:52px 64px; border-top:1px solid rgba(201,185,154,0.1);" class="reveal-stagger">
+      <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:32px;">Good to Know · Useful Tips</span>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px;">
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 01</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">No insects</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Do not leave any food waste on the kitchen counter. This prevents ants and similar insects.</div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 02</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Keep doors closed</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Do not leave doors open unattended to avoid cockroaches flying into the apartment.</div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 03</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Red-dot switch</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Next to the main entrance on the left. The switch with the <span style="color:var(--sand);">red dot</span> turns off all electronics except the fridge. Use it when leaving.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Waste Removal ── -->
+    <div style="background:var(--cream); border-top:1px solid var(--light-line);">
+
+      <!-- Header -->
+      <div class="tips-method-header reveal" style="padding:36px 52px 28px;">
+        <div class="tips-method-letter" style="background:var(--moss);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+          </svg>
+        </div>
+        <div class="tips-method-title-wrap">
+          <div class="tips-method-title">Waste Removal</div>
+          <div class="tips-method-sub">Separate daily · Bins across the main street</div>
+        </div>
+      </div>
+
+      <!-- Bin type diagram — Apple-style visual cards -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--light-line);" class="reveal-stagger">
+
+        <!-- Glass -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(100,160,220,0.12); border:1.5px solid rgba(100,160,220,0.3); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#64a0dc" stroke-width="1.5" stroke-linecap="round">
+              <path d="M8 2h8l2 6H6L8 2z"/><path d="M6 8v12a2 2 0 002 2h8a2 2 0 002-2V8"/>
+              <line x1="10" y1="12" x2="10" y2="18"/><line x1="14" y1="12" x2="14" y2="18"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64a0dc;margin-bottom:8px;">Glass</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Jars<br>No broken glass</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,160,220,0.1);border:1px solid rgba(100,160,220,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64a0dc;">Blue bin</div>
+        </div>
+
+        <!-- Paper & Cardboard -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(100,180,120,0.1); border:1.5px solid rgba(100,180,120,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#64b478" stroke-width="1.5" stroke-linecap="round">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#64b478;margin-bottom:8px;">Paper</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Cardboard · Newspapers<br>Flatten boxes</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(100,180,120,0.08);border:1px solid rgba(100,180,120,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#64b478;">Green bin</div>
+        </div>
+
+        <!-- Plastic & Metal -->
+        <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(220,180,60,0.1); border:1.5px solid rgba(220,180,60,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#dcb43c" stroke-width="1.5" stroke-linecap="round">
+              <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#dcb43c;margin-bottom:8px;">Plastic</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Bottles · Cans · Tins<br>Rinse before disposal</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(220,180,60,0.08);border:1px solid rgba(220,180,60,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#dcb43c;">Yellow bin</div>
+        </div>
+
+        <!-- General -->
+        <div style="padding:32px 24px 36px; text-align:center;">
+          <div style="margin:0 auto 20px; width:56px; height:56px; border-radius:50%; background:rgba(150,120,90,0.1); border:1.5px solid rgba(150,120,90,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#967a5a" stroke-width="1.5" stroke-linecap="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+              <path d="M10 11v6"/><path d="M14 11v6"/>
+              <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:#967a5a;margin-bottom:8px;">General</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--charcoal);opacity:0.55;line-height:1.65;">Everything else<br>Food waste · Other</div>
+          <div style="margin-top:12px;display:inline-block;background:rgba(150,120,90,0.08);border:1px solid rgba(150,120,90,0.2);padding:4px 10px;font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#967a5a;">Grey bin</div>
+        </div>
+
+      </div>
+
+      <!-- Key rule -->
+      <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;">
+          Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.
+        </div>
+        <div style="flex-shrink:0; text-align:right;">
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:var(--moss);margin-bottom:6px;">Daily</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.4);">Take waste daily<br>to avoid insects</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-footer">
+      <span>Calle Pou · Villajoyosa</span>
+      <span>MB Luxury Living · Family Bucksch</span>
+      <span>V1.0 · 2024</span>
+    </div>
+
+  </div><!-- /tip-panel-arrival -->
+
+</div><!-- /tab-tips -->
+
+<!-- TAB: SURROUNDING -->
+<div id="tab-surrounding" class="tab-page">
+
+<!-- ── Surrounding CSS ── -->
+<style>
+  .surr-hero {
+    position: relative;
+    height: 70vh; min-height: 500px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+  }
+  .surr-hero-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 55%;
+    transform: scale(1.05);
+    animation: photoPanIn 2s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .surr-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, transparent 35%, rgba(0,0,0,0.55) 100%);
+  }
+  .surr-hero-content {
+    position: relative; z-index: 2;
+    padding: 0 64px 52px;
+  }
+  /* Photo cards grid */
+  .surr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .surr-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: default;
+  }
+  .surr-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    transform: scale(1.04);
+  }
+  .surr-card:hover .surr-card-img { transform: scale(1.0); }
+  .surr-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(42,37,32,0.88) 0%, rgba(42,37,32,0.2) 45%, transparent 100%);
+    transition: opacity 0.4s;
+  }
+  .surr-card-body {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 28px 32px;
+    z-index: 2;
+  }
+  .surr-card-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--moss);
+    display: block; margin-bottom: 8px;
+  }
+  .surr-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300;
+    color: var(--warm-white); line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .surr-card-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic;
+    color: rgba(253,250,247,0.5); line-height: 1.65;
+  }
+  .surr-card-dist {
+    position: absolute; top: 18px; right: 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
+    background: rgba(0,0,0,0.3);
+    padding: 4px 10px;
+    backdrop-filter: blur(4px);
+  }
+  /* Wide feature card */
+  .surr-feature {
+    position: relative; overflow: hidden;
+    height: 52vh; min-height: 380px;
+  }
+  .surr-feature-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    transform: scale(1.04);
+  }
+  .surr-feature:hover .surr-feature-img { transform: scale(1.0); }
+  .surr-feature-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(42,37,32,0.82) 0%, rgba(42,37,32,0.3) 55%, transparent 100%);
+  }
+  .surr-feature-body {
+    position: absolute; bottom: 0; left: 0; top: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 48px 56px; z-index: 2; max-width: 52%;
+  }
+  /* Map */
+  .surr-map-wrap {
+    position: relative;
+    height: 55vh; min-height: 380px;
+    overflow: hidden;
+  }
+  .surr-map-wrap iframe {
+    width: 100%; height: 100%;
+    border: none; display: block;
+  }
+  .surr-map-label {
+    position: absolute; top: 20px; left: 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--bark);
+    background: rgba(247,243,238,0.9);
+    padding: 6px 14px;
+    backdrop-filter: blur(6px);
+  }
+  /* Transport strip */
+  .surr-transport {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--charcoal);
+  }
+  .surr-transport-item {
+    padding: 40px 48px;
+    border-right: 1px solid rgba(201,185,154,0.08);
+  }
+  .surr-transport-item:last-child { border-right: none; }
+  @media (max-width: 700px) {
+    .surr-grid { grid-template-columns: 1fr; }
+    .surr-card { aspect-ratio: 4/3; }
+    .surr-hero-content { padding: 0 24px 36px; }
+    .surr-feature-body { max-width: 100%; padding: 28px 24px; }
+    .surr-transport { grid-template-columns: 1fr; }
+    .surr-transport-item { border-right: none; border-bottom: 1px solid rgba(201,185,154,0.08); }
+  }
+</style>
+
+  <!-- ── HERO — full bleed Villajoyosa ── -->
+  <div class="surr-hero">
+    <img class="surr-hero-img"
+      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85"
+      alt="Villajoyosa coastline"
+      onerror="this.parentElement.style.background='linear-gradient(160deg,#1a1510,#2A2520)';this.style.display='none'" />
+    <div class="surr-hero-overlay"></div>
+    <div class="surr-hero-content">
+      <div class="tips-badge reveal" style="display:inline-flex;width:fit-content;margin-bottom:16px;"><span class="tips-badge-dot"></span>Villajoyosa &nbsp;·&nbsp; Costa Blanca &nbsp;·&nbsp; Spain</div>
+      <div class="reveal" data-i18n-html="surr-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,76px);font-weight:300;color:var(--warm-white);line-height:0.95;letter-spacing:-0.01em;">
+        Discover<br><em style="color:var(--sand);">the Surroundings</em>
+      </div>
+      <p class="reveal" data-i18n="surr-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.4);line-height:1.8;margin-top:18px;max-width:500px;">
+        Colourful facades, centuries-old chocolate, crystal Mediterranean water — a pace of life that rewards exploration on foot.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── SECTION LABEL ── -->
+  <div style="background:var(--cream);padding:32px 64px 0;border-bottom:none;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">01 &nbsp;·&nbsp; Beach & Coastline</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">The <em>Sea</em></div>
+  </div>
+
+  <!-- ── BEACH PHOTO CARDS ── -->
+  <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+        alt="Playa Centro Villajoyosa"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">5 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Town Beach</span>
+        <div class="surr-card-title">Playa Centro</div>
+        <div class="surr-card-desc">Calm, clear water flanked by the famous painted houses. Ideal for morning swimming.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80"
+        alt="Playa Paraiso"
+        onerror="this.style.background='#1a1510';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">10 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Quieter Cove</span>
+        <div class="surr-card-title">Playa Paraíso</div>
+        <div class="surr-card-desc">Rocky entry, excellent snorkelling, fewer crowds — especially early morning.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800&q=80"
+        alt="Benidorm beach"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">15 min by car</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Day Trip</span>
+        <div class="surr-card-title">Benidorm</div>
+        <div class="surr-card-desc">Playa de Levante — one of Spain's most famous beaches. Wide, fine sand.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHOCOLATE FEATURE ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">02 &nbsp;·&nbsp; Villajoyosa Chocolate</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">A town built <em>on chocolate</em></div>
+  </div>
+  <div class="surr-feature reveal-scale">
+    <img class="surr-feature-img"
+      src="https://images.unsplash.com/photo-1549488344-6c1b0b7a6e0e?w=1600&q=85"
+      alt="Chocolate Villajoyosa"
+      onerror="this.parentElement.style.background='var(--charcoal)';this.style.display='none'" />
+    <div class="surr-feature-overlay"></div>
+    <div class="surr-feature-body">
+      <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);margin-bottom:14px;">Since the 18th century</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:18px;">Pérez Chocolatier<br><em style="color:var(--sand);">Walking distance</em></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.75;">Watch the chocolate being made and buy bars to take home — the same Pérez chocolate served at your breakfast table.</div>
+      <div style="margin-top:18px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.3);line-height:1.65;">Also: Museo del Chocolate · Valor · Free entry · Guided tastings available</div>
+    </div>
+  </div>
+
+  <!-- ── RESTAURANTS CARDS ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">03 &nbsp;·&nbsp; Eat & Drink</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">Restaurants <em>&amp; Bars</em></div>
+  </div>
+  <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
+        alt="Seafood restaurant"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">5 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Seafood &amp; Rice</span>
+        <div class="surr-card-title">Seafront Restaurants</div>
+        <div class="surr-card-desc">Fresh catch daily on the promenade. Ask your host for personal current recommendations.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80"
+        alt="Local market"
+        onerror="this.style.background='#1a1510';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">Tue &amp; Sat</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Morning Market</span>
+        <div class="surr-card-title">Mercado Central</div>
+        <div class="surr-card-desc">Local produce, cheese, cured meats, fresh flowers. The heart of the town on market mornings.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
+        alt="Tapas bar"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">2 min walk</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Tapas &amp; Wine</span>
+        <div class="surr-card-title">Old Town Bars</div>
+        <div class="surr-card-desc">The streets around Calle Pou are lined with neighbourhood bars. Cold beer, no tourist menus.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── THINGS TO DO ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">04 &nbsp;·&nbsp; Things To Do</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:24px;">Explore <em>&amp; Experience</em></div>
+  </div>
+  <div class="surr-grid reveal-stagger" style="border-top:1px solid var(--light-line);">
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80"
+        alt="Villajoyosa old town"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Old Town · 3 min</span>
+        <div class="surr-card-title">Casco Antiguo</div>
+        <div class="surr-card-desc">Colourful painted facades of the old fishing quarter. Best before the morning heat.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1461823385004-d7660947a7c0?w=800&q=80"
+        alt="Roman history museum"
+        onerror="this.style.background='#1a1510';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Culture</span>
+        <div class="surr-card-title">Roman History</div>
+        <div class="surr-card-desc">Villajoyosa sits on a Roman settlement. The archaeology museum traces 2,000 years of history.</div>
+      </div>
+    </div>
+    <div class="surr-card">
+      <img class="surr-card-img"
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+        alt="Alicante day trip"
+        onerror="this.style.background='#2A2520';this.style.display='none'" />
+      <div class="surr-card-overlay"></div>
+      <div class="surr-card-dist">30 min by tram</div>
+      <div class="surr-card-body">
+        <span class="surr-card-tag">Day Trip</span>
+        <div class="surr-card-title">Alicante</div>
+        <div class="surr-card-desc">Castle, palm-lined promenade and one of Spain's best old-town tapas scenes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GOOGLE MAP ── -->
+  <div style="background:var(--cream);padding:40px 64px 0;" class="reveal">
+    <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;">Map &nbsp;·&nbsp; Villajoyosa</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--bark);line-height:1.0;margin-top:8px;padding-bottom:20px;">Calle Pou <em>&amp; Around</em></div>
+  </div>
+  <div class="surr-map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3118.8!2d-0.2317!3d38.5057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6201b703d83c25%3A0x8e5b7e7b2c1d4a0!2sVillajoyosa%2C%20Alicante%2C%20Spain!5e0!3m2!1sen!2ses!4v1710000000000!5m2!1sen!2ses"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Villajoyosa map">
+    </iframe>
+    <div class="surr-map-label">Villajoyosa · Calle Pou</div>
+  </div>
+
+  <!-- ── GETTING AROUND ── -->
+  <div class="surr-transport reveal-stagger">
+    <div class="surr-transport-item">
+      <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:10px;">On Foot</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--warm-white);font-weight:300;margin-bottom:10px;">The Town</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.75;">Beach 5 min · Old town 3 min · Market 8 min. Everything in Villajoyosa is walkable from Calle Pou.</div>
+    </div>
+    <div class="surr-transport-item">
+      <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:10px;">By Tram</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--warm-white);font-weight:300;margin-bottom:10px;">TRAM Line 9</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.75;">Benidorm 15 min · Alicante 35 min. Station is a 10-minute walk from the apartment.</div>
+    </div>
+    <div class="surr-transport-item">
+      <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:10px;">By Car</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--warm-white);font-weight:300;margin-bottom:10px;">Parking</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.35);line-height:1.75;">Paid parking on the seafront. Free parking zones 5 min drive inland.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Villajoyosa &nbsp;·&nbsp; Costa Blanca</span>
+    <span>MB Luxury Living</span>
+    <span>Explore the area</span>
+  </div>
+
+</div><!-- /tab-surrounding -->
+
+ ═══════════ -->
+<div id="order-panel">
+  <div class="order-panel-head">
+    <div>
+      <span class="title" data-i18n="order-title">Your Order</span>
+      <span class="subtitle">Room Service</span>
+    </div>
+    <button class="order-close" onclick="closePanel()" title="Minimizar">✕</button>
+  </div>
+
+  <!-- Room number + notes -->
+  <div class="order-meta">
+    <div class="order-meta-field">
+      <label for="room-number">🏠 Habitación · Room</label>
+      <input type="text" id="room-number" placeholder="Ej: 3, Suite A…" maxlength="20" />
+    </div>
+    <div class="order-meta-field">
+      <label for="order-notes">📝 Notas · Notes</label>
+      <input type="text" id="order-notes" placeholder="Allergies, special requests…" maxlength="120" />
+    </div>
+  </div>
+
+  <div class="order-items" id="order-items">
+    <div class="order-empty" id="order-empty">Click any item to add it here</div>
+  </div>
+
+  <div class="order-footer">
+    <div class="order-total-row">
+      <span class="order-total-label">Total</span>
+      <span class="order-total-amount" id="order-total">0,00 €</span>
+    </div>
+    <!-- Status message -->
+    <div id="send-status"></div>
+    <div class="order-actions">
+      <button class="btn-send" id="btn-send" onclick="sendOrder()">
+        <span id="btn-send-text">Enviar Pedido · Send Order</span>
+      </button>
+      <button class="btn-clear" onclick="clearOrder()">Limpiar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating bubble -->
+<div id="order-bubble" class="hidden" onclick="openPanel()">
+  <span class="bubble-icon">🛎</span>
+  <span class="bubble-count" id="bubble-count">0 items</span>
+</div>
+
+<!-- Print-only fallback -->
+<div id="print-order"></div>
+
+<style>
+  /* ── META FIELDS (room + notes) ── */
+  .order-meta {
+    padding: 12px 24px 4px;
+    border-bottom: 1px solid rgba(201,185,154,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .order-meta-field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .order-meta-field label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,185,154,0.5);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+  }
+  .order-meta-field input {
+    background: rgba(201,185,154,0.08);
+    border: 1px solid rgba(201,185,154,0.18);
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 7px 10px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+  .order-meta-field input::placeholder { color: rgba(201,185,154,0.25); }
+  .order-meta-field input:focus { border-color: rgba(201,185,154,0.5); }
+
+  /* ── SEND BUTTON ── */
+  .btn-send {
+    flex: 1;
+    background: var(--moss);
+    border: none;
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .btn-send:hover { background: #8a9b7a; }
+  .btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-send.sending { background: #6a7b5a; }
+  .btn-send.success { background: #4a6a3a; }
+  .btn-send.error { background: #8a3a2a; }
+
+  /* ── STATUS ── */
+  #send-status {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    min-height: 0;
+    transition: all 0.2s;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+  #send-status.success { color: #8ac88a; }
+  #send-status.error { color: #c88a8a; }
+  #send-status.info { color: rgba(201,185,154,0.6); font-style: italic; }
+</style>
+
+<script>
+  // ══════════════════════════════════════════════
+  // 🔧 PASTE YOUR TELEGRAM CREDENTIALS HERE
+  // ══════════════════════════════════════════════
+  const TELEGRAM_TOKEN   = 'PASTE_YOUR_BOT_TOKEN_HERE';
+  const TELEGRAM_CHAT_ID = 'PASTE_YOUR_CHAT_ID_HERE';
+  // ══════════════════════════════════════════════
+
+  const order = {};
+
+  function formatPrice(p) {
+    return p.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function getTotal() {
+    return Object.values(order).reduce((sum, i) => sum + i.price * i.qty, 0);
+  }
+
+  function getTotalCount() {
+    return Object.values(order).reduce((sum, i) => sum + i.qty, 0);
+  }
+
+  function renderOrder() {
+    const container   = document.getElementById('order-items');
+    const empty       = document.getElementById('order-empty');
+    const totalEl     = document.getElementById('order-total');
+    const bubbleCount = document.getElementById('bubble-count');
+    const keys        = Object.keys(order);
+
+    bubbleCount.textContent = getTotalCount() + ' item' + (getTotalCount() !== 1 ? 's' : '');
+
+    if (keys.length === 0) {
+      empty.style.display = 'block';
+      totalEl.textContent = '0,00 €';
+      document.getElementById('order-bubble').classList.add('hidden');
+      return;
+    }
+
+    empty.style.display = 'none';
+    document.getElementById('order-bubble').classList.remove('hidden');
+
+    Array.from(container.querySelectorAll('.order-row')).forEach(r => r.remove());
+
+    keys.forEach(id => {
+      const item = order[id];
+      const row = document.createElement('div');
+      row.className = 'order-row';
+      row.innerHTML = `
+        <div class="order-row-name">
+          ${item.name}
+          <span class="sub">${item.sub}</span>
+        </div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('${id}', -1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${id}', 1)">+</button>
+        </div>
+        <div class="order-row-price">${formatPrice(item.price * item.qty)}</div>
+      `;
+      container.insertBefore(row, container.querySelector('.order-empty'));
+    });
+
+    const total = getTotal();
+    totalEl.textContent = total === 0 ? '—' : total.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function addItem(el) {
+    const { id, name, sub, price: priceStr } = el.dataset;
+    const price = parseFloat(priceStr);
+    if (order[id]) {
+      order[id].qty += 1;
+    } else {
+      order[id] = { name, sub, price, qty: 1 };
+      el.classList.add('in-order');
+    }
+    openPanel();
+    renderOrder();
+  }
+
+  function changeQty(id, delta) {
+    if (!order[id]) return;
+    order[id].qty += delta;
+    if (order[id].qty <= 0) {
+      delete order[id];
+      const el = document.querySelector(`[data-id="${id}"]`);
+      if (el) el.classList.remove('in-order');
+    }
+    renderOrder();
+    if (Object.keys(order).length === 0) closePanel();
+  }
+
+  function clearOrder() {
+    Object.keys(order).forEach(id => {
+      delete order[id];
+      const el = document.querySelector(`[data-id="${id}"]`);
+      if (el) el.classList.remove('in-order');
+    });
+    renderOrder();
+    setStatus('', '');
+    closePanel();
+  }
+
+  function openPanel() {
+    document.getElementById('order-panel').classList.add('visible');
+    document.getElementById('order-bubble').style.display = 'none';
+  }
+
+  function closePanel() {
+    document.getElementById('order-panel').classList.remove('visible');
+    if (Object.keys(order).length > 0) {
+      document.getElementById('order-bubble').style.display = 'flex';
+    }
+  }
+
+  function setStatus(msg, type) {
+    const el = document.getElementById('send-status');
+    el.textContent = msg;
+    el.className = type;
+  }
+
+  // ── BUILD TELEGRAM MESSAGE ──
+  function buildMessage() {
+    const room  = document.getElementById('room-number').value.trim() || '—';
+    const notes = document.getElementById('order-notes').value.trim();
+    const now   = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
+    const total = getTotal();
+
+    const lines = Object.values(order).map(item => {
+      const priceStr = formatPrice(item.price * item.qty);
+      return `  • ${item.name} × ${item.qty}   ${priceStr}`;
+    }).join('\n');
+
+    let msg = `🛎 *NUEVO PEDIDO · NEW ORDER*\n`;
+    msg += `─────────────────────\n`;
+    msg += `🏠 Habitación: *${room}*\n`;
+    msg += `🕐 ${now}\n`;
+    msg += `─────────────────────\n`;
+    msg += `${lines}\n`;
+    msg += `─────────────────────\n`;
+    if (total > 0) msg += `💶 *Total: ${total.toFixed(2).replace('.', ',')} €*\n`;
+    if (notes) msg += `\n📝 Notas: _${notes}_\n`;
+    msg += `\n_Villajoyosa · Room Service_`;
+    return msg;
+  }
+
+  // ── SEND TO TELEGRAM ──
+  async function sendOrder() {
+    if (Object.keys(order).length === 0) {
+      setStatus('Añada artículos antes de enviar · Add items first', 'info');
+      return;
+    }
+
+    const room = document.getElementById('room-number').value.trim();
+    if (!room) {
+      setStatus('Por favor, indique su número de habitación · Please enter your room number', 'error');
+      document.getElementById('room-number').focus();
+      return;
+    }
+
+    // Check credentials are filled in
+    if (TELEGRAM_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'PASTE_YOUR_CHAT_ID_HERE') {
+      setStatus('⚠️ Telegram not configured yet — see setup instructions', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('btn-send');
+    const btnText = document.getElementById('btn-send-text');
+    btn.disabled = true;
+    btn.classList.add('sending');
+    btnText.textContent = 'Enviando…';
+    setStatus('', '');
+
+    const message = buildMessage();
+    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message,
+          parse_mode: 'Markdown'
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.ok) {
+        btn.classList.remove('sending');
+        btn.classList.add('success');
+        btnText.textContent = '✓ Pedido Enviado · Order Sent';
+        setStatus('Su pedido ha sido recibido. Le atendemos enseguida.\nYour order has been received. We will be with you shortly.', 'success');
+
+        // Reset after 6 seconds
+        setTimeout(() => {
+          clearOrder();
+          document.getElementById('room-number').value = '';
+          document.getElementById('order-notes').value = '';
+          btn.disabled = false;
+          btn.classList.remove('success');
+          btnText.textContent = 'Enviar Pedido · Send Order';
+          setStatus('', '');
+        }, 6000);
+
+      } else {
+        throw new Error(data.description || 'Telegram error');
+      }
+
+    } catch (err) {
+      btn.disabled = false;
+      btn.classList.remove('sending');
+      btn.classList.add('error');
+      btnText.textContent = 'Error — Reintentar · Retry';
+      setStatus('No se pudo enviar. Compruebe la conexión o llame a recepción.\nCould not send. Please check your connection or call reception.', 'error');
+      console.error('Telegram error:', err);
+
+      setTimeout(() => {
+        btn.classList.remove('error');
+        btnText.textContent = 'Enviar Pedido · Send Order';
+      }, 4000);
+    }
+  }
+
+
+  // TAB SWITCHING
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('tab-btn-' + tab).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // CLEANING SERVICE
+  const cleaningItems = {};
+
+  function toggleCleaning(el) {
+    const id = el.dataset.cid;
+    if (cleaningItems[id]) {
+      delete cleaningItems[id];
+      el.classList.remove('selected');
+    } else {
+      cleaningItems[id] = {
+        name: el.dataset.cname,
+        sub: el.dataset.csub,
+        price: parseFloat(el.dataset.cprice) || 0
+      };
+      el.classList.add('selected');
+    }
+    updateCleaningForm();
+  }
+
+  function getCleaningTotal() {
+    return Object.values(cleaningItems).reduce((sum, i) => sum + i.price, 0);
+  }
+
+  function updateCleaningForm() {
+    const form      = document.getElementById('cleaning-form');
+    const tags      = document.getElementById('cf-tags');
+    const totalRow  = document.getElementById('cf-total-row');
+    const totalAmt  = document.getElementById('cf-total-amount');
+    const keys      = Object.keys(cleaningItems);
+    if (keys.length === 0) { form.classList.remove('visible'); return; }
+    form.classList.add('visible');
+    tags.innerHTML = keys.map(id => {
+      const p = cleaningItems[id].price;
+      const priceLabel = p.toFixed(2).replace('.', ',') + ' \u20AC';
+      return '<span class="cf-tag">' + cleaningItems[id].name + ' &nbsp;&middot;&nbsp; ' + priceLabel + '</span>';
+    }).join('');
+    const total = getCleaningTotal();
+    if (total > 0) {
+      totalRow.style.display = 'flex';
+      totalAmt.textContent = total.toFixed(2).replace('.', ',') + ' \u20AC';
+    } else {
+      totalRow.style.display = 'none';
+    }
+  }
+
+  function clearCleaning() {
+    Object.keys(cleaningItems).forEach(id => {
+      delete cleaningItems[id];
+      const el = document.querySelector('[data-cid="' + id + '"]');
+      if (el) el.classList.remove('selected');
+    });
+    const r = document.getElementById('cf-room'); if(r) r.value = '';
+    const n = document.getElementById('cf-notes'); if(n) n.value = '';
+    setCfStatus('', '');
+    updateCleaningForm();
+  }
+
+  function setCfStatus(msg, color) {
+    const el = document.getElementById('cf-status');
+    if (!el) return;
+    el.textContent = msg;
+    el.style.color = color || '';
+  }
+
+  async function sendCleaning() {
+    const keys = Object.keys(cleaningItems);
+    if (keys.length === 0) { setCfStatus('Seleccione al menos un servicio', '#c88a8a'); return; }
+    const room = document.getElementById('cf-room').value.trim();
+    if (!room) { setCfStatus('Por favor indique su habitacion - Please enter your room number', '#c88a8a'); document.getElementById('cf-room').focus(); return; }
+    if (TELEGRAM_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE') { setCfStatus('Telegram not configured', '#c88a8a'); return; }
+
+    const btn = document.getElementById('cf-send-btn');
+    btn.disabled = true; btn.style.background = '#6a7b5a'; btn.textContent = 'Enviando...';
+
+    const notes = document.getElementById('cf-notes').value.trim();
+    const now = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
+    const total = getCleaningTotal();
+    const lines = keys.map(id => {
+      const p = cleaningItems[id].price;
+      const priceStr = p.toFixed(2).replace('.', ',') + ' \u20AC';
+      return '  - ' + cleaningItems[id].name + '   ' + priceStr;
+    }).join('\n');
+    let msg = '*LIMPIEZA - HOUSEKEEPING*\n';
+    msg += '---------------------\n';
+    msg += 'Habitacion: *' + room + '*\n';
+    msg += now + '\n';
+    msg += '---------------------\n';
+    msg += lines + '\n';
+    msg += '---------------------\n';
+    if (total > 0) msg += '*Total: ' + total.toFixed(2).replace('.', ',') + ' \u20AC*\n';
+    else msg += '*Total: 0,00 \u20AC*\n';
+    if (notes) msg += '\nNotas: _' + notes + '_\n';
+    msg += '\n_Villajoyosa · Housekeeping_';
+
+    try {
+      const res = await fetch('https://api.telegram.org/bot' + TELEGRAM_TOKEN + '/sendMessage', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg, parse_mode: 'Markdown' })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        btn.style.background = '#4a6a3a'; btn.textContent = 'Enviado - Sent';
+        setCfStatus('Le atendemos cuanto antes - We will be with you shortly', '#8ac88a');
+        setTimeout(() => { clearCleaning(); btn.disabled = false; btn.style.background = 'var(--moss)'; btn.textContent = 'Solicitar - Request'; }, 5000);
+      } else { throw new Error(data.description); }
+    } catch(err) {
+      btn.disabled = false; btn.style.background = '#8a3a2a'; btn.textContent = 'Error - Reintentar';
+      setCfStatus('No se pudo enviar. Por favor llame a recepcion.', '#c88a8a');
+      setTimeout(() => { btn.style.background = 'var(--moss)'; btn.textContent = 'Solicitar - Request'; }, 4000);
+    }
+  }
+
+  // Wire up food/drink orderable elements
+  document.querySelectorAll('.orderable:not(.cleaning-item)').forEach(el => {
+    el.addEventListener('click', function(e) {
+      if (e.target.classList.contains('qty-btn')) return;
+      addItem(this);
+    });
+  });
+
+  // ── CLEANING SERVICE ──
+  const cleaningSelected = {};
+
+  document.querySelectorAll('.cleaning-item').forEach(el => {
+    el.addEventListener('click', function() {
+      const id   = this.dataset.cid;
+      const name = this.dataset.cname;
+      const sub  = this.dataset.csub;
+
+      if (cleaningSelected[id]) {
+        delete cleaningSelected[id];
+        this.classList.remove('in-order');
+      } else {
+        cleaningSelected[id] = { name, sub };
+        this.classList.add('in-order');
+      }
+      renderCleaning();
+    });
+  });
+
+  function renderCleaning() {
+    const panel = document.getElementById('cleaning-panel');
+    const list  = document.getElementById('cleaning-selected-list');
+    const keys  = Object.keys(cleaningSelected);
+
+    if (keys.length === 0) {
+      panel.style.display = 'none';
+      return;
+    }
+
+    panel.style.display = 'block';
+    list.innerHTML = keys.map(id => `
+      <div style="display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid rgba(201,185,154,0.1);">
+        <span style="color:var(--moss); font-size:14px;">✓</span>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--warm-white);">${cleaningSelected[id].name}</div>
+          <div style="font-size:10px; letter-spacing:0.15em; color:rgba(201,185,154,0.4); text-transform:uppercase;">${cleaningSelected[id].sub}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function clearCleaning() {
+    Object.keys(cleaningSelected).forEach(id => {
+      delete cleaningSelected[id];
+      const el = document.querySelector(`[data-cid="${id}"]`);
+      if (el) el.classList.remove('in-order');
+    });
+    document.getElementById('cleaning-room').value  = '';
+    document.getElementById('cleaning-notes').value = '';
+    setCleaningStatus('', '');
+    renderCleaning();
+  }
+
+  function setCleaningStatus(msg, color) {
+    const el = document.getElementById('cleaning-status');
+    el.textContent  = msg;
+    el.style.color  = color;
+  }
+
+  async function sendCleaningRequest() {
+    const keys = Object.keys(cleaningSelected);
+    if (keys.length === 0) {
+      setCleaningStatus('Seleccione al menos un servicio · Select at least one service', '#c88a8a');
+      return;
+    }
+
+    const room = document.getElementById('cleaning-room').value.trim();
+    if (!room) {
+      setCleaningStatus('Por favor, indique su habitación · Please enter your room number', '#c88a8a');
+      document.getElementById('cleaning-room').focus();
+      return;
+    }
+
+    if (TELEGRAM_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE') {
+      setCleaningStatus('⚠️ Telegram not configured', '#c88a8a');
+      return;
+    }
+
+    const btn = document.getElementById('btn-cleaning-send');
+    btn.disabled    = true;
+    btn.style.background = '#6a7b5a';
+    btn.textContent = 'Enviando…';
+
+    const notes = document.getElementById('cleaning-notes').value.trim();
+    const now   = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
+    const lines = keys.map(id => `  🧹 ${cleaningSelected[id].name}`).join('\n');
+
+    let msg = `🧹 *LIMPIEZA · HOUSEKEEPING REQUEST*\n`;
+    msg += `─────────────────────\n`;
+    msg += `🏠 Habitación: *${room}*\n`;
+    msg += `🕐 ${now}\n`;
+    msg += `─────────────────────\n`;
+    msg += `${lines}\n`;
+    msg += `─────────────────────\n`;
+    if (notes) msg += `\n📝 Notas: _${notes}_\n`;
+    msg += `\n_Villajoyosa · Housekeeping_`;
+
+    try {
+      const res  = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg, parse_mode: 'Markdown' })
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        btn.style.background = '#4a6a3a';
+        btn.textContent      = '✓ Solicitud Enviada · Sent';
+        setCleaningStatus('Le atendemos cuanto antes. We will be with you shortly.', '#8ac88a');
+
+        setTimeout(() => {
+          clearCleaning();
+          btn.disabled         = false;
+          btn.style.background = 'var(--moss)';
+          btn.textContent      = 'Solicitar · Request';
+        }, 5000);
+      } else {
+        throw new Error(data.description);
+      }
+    } catch(err) {
+      btn.disabled         = false;
+      btn.style.background = '#8a3a2a';
+      btn.textContent      = 'Error — Reintentar · Retry';
+      setCleaningStatus('No se pudo enviar. Por favor llame a recepción.\nCould not send. Please call reception.', '#c88a8a');
+      setTimeout(() => {
+        btn.style.background = 'var(--moss)';
+        btn.textContent      = 'Solicitar · Request';
+      }, 4000);
+    }
+  }
+</script>
+
+<script>
+
+// Tips & Tricks panel switcher
+function selectTip(id) {
+  document.querySelectorAll('.tips-pill').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tips-panel').forEach(function(p) { p.classList.remove('active'); });
+  var pill  = document.getElementById('tip-pill-' + id);
+  var panel = document.getElementById('tip-panel-' + id);
+  if (pill)  pill.classList.add('active');
+  if (!panel) return;
+  panel.classList.add('active');
+
+  var sel = '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title';
+
+  // Reset all first
+  panel.querySelectorAll(sel).forEach(function(el) {
+    el.classList.remove('visible');
+    el.style.transitionDelay = '';
+  });
+
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      panel.querySelectorAll(sel).forEach(function(el) {
+        var rect   = el.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight - 40 && rect.bottom > 0;
+        if (inView) {
+          var delay = Math.max(0, rect.top / window.innerHeight * 0.25);
+          el.style.transitionDelay = delay + 's';
+          el.classList.add('visible');
+          setTimeout(function() { el.style.transitionDelay = ''; }, 800);
+        } else {
+          try { ioGlobal.observe(el); } catch(e) {}
+        }
+      });
+    });
+  });
+}
+
+function observeAllGlobal() {
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title').forEach(function(el) {
+    if (!el.classList.contains('visible')) {
+      try { ioGlobal.observe(el); } catch(e) {}
+    }
+  });
+}
+var ioGlobal;
+
+// ── Enhanced Apple-style animations ──
+(function() {
+
+  var bar          = document.getElementById('scroll-progress');
+  var videoWrapper = document.getElementById('video-wrapper');
+  var videoSticky  = document.getElementById('video-sticky');
+
+  window.addEventListener('scroll', function() {
+    var st   = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+
+    // Progress bar
+    if (bar) bar.style.width = (docH > 0 ? st / docH * 100 : 0) + '%';
+
+    // Cover parallax
+    var coverImg = document.querySelector('.cover-photo-img');
+    if (coverImg && st < window.innerHeight) {
+      coverImg.style.transform = 'scale(1.0) translateY(' + (st * 0.2) + 'px)';
+    }
+    var coverTagline = document.querySelector('.cover-tagline');
+    if (coverTagline && st < window.innerHeight) {
+      coverTagline.style.opacity = Math.max(1 - st / 400, 0);
+      coverTagline.style.transform = 'translateY(' + (st * 0.12) + 'px)';
+    }
+
+    // Video scale — unzooms from 1.08 to 1.0 as you scroll through the wrapper
+    if (videoWrapper) {
+      var rect  = videoWrapper.getBoundingClientRect();
+      var total = videoWrapper.offsetHeight - window.innerHeight;
+      var prog  = total > 0 ? Math.max(0, Math.min(1, -rect.top / total)) : 0;
+      var s     = 1.08 - prog * 0.08;
+      var targets = videoSticky.querySelectorAll('video, .video-ph');
+      targets.forEach(function(el) { el.style.transform = 'scale(' + s + ')'; });
+    }
+  }, { passive: true });
+
+  // IntersectionObserver for all reveal + split-title
+  ioGlobal = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  function observeAll() {
+    document.querySelectorAll(
+      '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title'
+    ).forEach(function(el) {
+      if (!el.classList.contains('visible')) ioGlobal.observe(el);
+    });
+  }
+
+  // Forsthofgut nav state
+  var tabBar = document.getElementById('tab-bar');
+  var coverEl = document.getElementById('cover-split');
+  function updateNav() {
+    if (!tabBar) return;
+    var coverH = coverEl ? coverEl.offsetHeight : window.innerHeight;
+    var st = window.scrollY || document.documentElement.scrollTop;
+    var isScrolled = st > coverH * 0.72;
+    tabBar.classList.toggle('nav-scrolled', isScrolled);
+    // Dropdown adapts to nav state
+    var dd = document.getElementById('lang-dropdown');
+    if (dd) {
+      if (isScrolled) {
+        dd.style.background = 'rgba(247,243,238,0.97)';
+        dd.style.borderColor = 'var(--light-line)';
+        dd.querySelectorAll('.lang-option').forEach(function(o) {
+          o.style.color = '';
+          o.style.borderBottomColor = '';
+        });
+        dd.querySelectorAll('.lang-option').forEach(function(o) {
+          o.style.setProperty('--opt-color', 'rgba(42,37,32,0.55)');
+        });
+        dd.setAttribute('data-scrolled', '1');
+      } else {
+        dd.style.background = 'rgba(42,37,32,0.97)';
+        dd.style.borderColor = 'rgba(255,255,255,0.08)';
+        dd.removeAttribute('data-scrolled');
+      }
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    observeAll();
+    updateNav();
+  });
+
+  var origSwitch = window.switchTab;
+  window.switchTab = function(tab) {
+    if (origSwitch) origSwitch(tab);
+    // Non-menu tabs: always solid nav
+    if (tab !== 'menu') {
+      if (tabBar) tabBar.classList.add('nav-scrolled');
+    } else {
+      setTimeout(updateNav, 50);
+    }
+
+    // After tab content is visible, reveal everything already in viewport
+    // AND re-observe the rest — fixes tips/surrounding not animating on first load
+    setTimeout(function() {
+      var sel = '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title';
+      var tabEl = document.getElementById('tab-' + tab);
+      if (!tabEl) return;
+
+      tabEl.querySelectorAll(sel).forEach(function(el) {
+        // Reset so animation replays on tab switch
+        el.classList.remove('visible');
+      });
+
+      // Small delay so browser paints the reset first
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          tabEl.querySelectorAll(sel).forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            var inView = rect.top < window.innerHeight - 40 && rect.bottom > 0;
+            if (inView) {
+              // Already visible — animate with a staggered delay based on position
+              var delay = Math.max(0, rect.top / window.innerHeight * 0.3);
+              el.style.transitionDelay = delay + 's';
+              el.classList.add('visible');
+              setTimeout(function() { el.style.transitionDelay = ''; }, 800);
+            } else {
+              // Off-screen — let IntersectionObserver handle it
+              try { ioGlobal.observe(el); } catch(e) {}
+            }
+          });
+        });
+      });
+    }, 30);
+  };
+
+})();
+</script>
+
+
+
+
+
+<script>
+// ══════════════════════════════════════════
+// LANGUAGE SWITCHER — data-i18n driven
+// ══════════════════════════════════════════
+var currentLang = 'en';
+
+var T = {
+  'en': {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Breakfast & Drinks',
+    'tab-cleaning-primary':   'Housekeeping',
+    'tab-cleaning-sub':       'Housekeeping',
+    'tab-surrounding-primary':'Surrounding',
+    'tab-surrounding-sub':    'Explore',
+    'tab-tips-primary':       'Tips & Tricks',
+    'tab-tips-sub':           'Guides',
+    'cover-title':            'Breakfast<br><em>with Champagne</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'scroll',
+    'cover-nav-welcome':      'Welcome',
+    'cover-nav-breakfast':    'Breakfast',
+    'cover-nav-tea':          'Tea & Coffee',
+    'cover-nav-champagne':    'Champagne',
+    'cover-nav-picnic':       'Picnic',
+    'intro-title':            'Breakfast<br><em style="color:var(--sand);">with Champagne</em>',
+    'intro-sub':              'A morning celebration at the table.',
+    's01-num':                '01 — The Breakfast',
+    's01-intro':              'Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience.',
+    's02-num':                '02 — Tea & Coffee',
+    's02-title':              'Teas<br><em>&amp; Coffee</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Drinks Menu',
+    's03-title':              'Champagne<br><em>&amp; Cava</em>',
+    's03-intro':              'Our champagne and cava selection is available separately — by the glass or bottle.',
+    's03-price-note':         'Prices per glass 0.1 l',
+    's04-num':                '04 — Non-Alcoholic',
+    's04-title':              'Fresh<br><em>Drinks</em>',
+    's05-num':                '05 — Special Experience',
+    's05-title':              'Beach Picnic<br><em>Basket</em>',
+    's05-intro':              'A hand-prepared basket to enjoy on the beach or in the garden — ready to take at any time.',
+    'info-service-label':     'Service Hours',
+    'info-service-val':       'Every morning<br>8:00 – 11:30',
+    'info-allergy-label':     'Allergies & Dietary',
+    'info-allergy-val':       'Please inform us',
+    'info-request-label':     'Special Requests',
+    'info-request-val':       'With pleasure',
+    'nl-label':               'Stay in Touch',
+    'nl-title':               'Letters from Calle Pou',
+    'nl-btn':                 'Subscribe',
+    'order-title':            'Your Order',
+    'hk-eyebrow':             'Housekeeping',
+    'hk-title':               'Housekeeping<br><em>&amp; Comfort</em>',
+    'hk-desc':                'Select what you need and we will be with you shortly.',
+    'hk-towels':              'Fresh Towels',
+    'hk-towels-desc':         'Bath & hand towels',
+    'hk-room':                'Room Cleaning',
+    'hk-room-desc':           'Full clean & linen change',
+    'hk-amenities':           'Fresh Amenities',
+    'hk-amenities-desc':      'Soap · Shampoo · Shower gel · Toilet paper',
+    'hk-request':             'Request',
+    'hk-room-label':          'Room',
+    'hk-notes-label':         'Notes',
+    'hk-footer-service':      'Service available · 8:00 – 20:00',
+    'surr-title':             'Discover<br><em style="color:var(--sand);">the Surroundings</em>',
+    'surr-desc':              'Colourful facades, centuries-old chocolate, crystal Mediterranean water — a pace of life that rewards exploration on foot.',
+  },
+  'de': {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Frühstück & Getränke',
+    'tab-cleaning-primary':   'Housekeeping',
+    'tab-cleaning-sub':       'Reinigung',
+    'tab-surrounding-primary':'Umgebung',
+    'tab-surrounding-sub':    'Erkunden',
+    'tab-tips-primary':       'Tipps & Tricks',
+    'tab-tips-sub':           'Ratgeber',
+    'cover-title':            'Frühstück<br><em>mit Champagner</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Scrollen',
+    'cover-nav-welcome':      'Willkommen',
+    'cover-nav-breakfast':    'Frühstück',
+    'cover-nav-tea':          'Tee & Kaffee',
+    'cover-nav-champagne':    'Champagner',
+    'cover-nav-picnic':       'Picknick',
+    'intro-title':            'Frühstück<br><em style="color:var(--sand);">mit Champagner</em>',
+    'intro-sub':              'Eine morgendliche Feier am Tisch.',
+    's01-num':                '01 — Das Frühstück',
+    's01-intro':              'Jeden Morgen decken wir den Tisch mit frischen Produkten von der valencianischen Küste. Das Frühstück wird als vollständiges Erlebnis serviert.',
+    's02-num':                '02 — Tee & Kaffee',
+    's02-title':              'Tee<br><em>&amp; Kaffee</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Getränkekarte',
+    's03-title':              'Champagner<br><em>&amp; Cava</em>',
+    's03-intro':              'Unsere Champagner- und Cava-Auswahl ist separat erhältlich — glasweise oder als Flasche.',
+    's03-price-note':         'Preis pro Glas 0,1 l',
+    's04-num':                '04 — Alkoholfrei',
+    's04-title':              'Frische<br><em>Getränke</em>',
+    's05-num':                '05 — Besonderes Erlebnis',
+    's05-title':              'Strandpicknick<br><em>Korb</em>',
+    's05-intro':              'Ein handgefertigter Korb zum Genießen am Strand oder im Garten — jederzeit bereit.',
+    'info-service-label':     'Servicezeiten',
+    'info-service-val':       'Jeden Morgen<br>8:00 – 11:30',
+    'info-allergy-label':     'Allergien & Ernährung',
+    'info-allergy-val':       'Bitte informieren Sie uns',
+    'info-request-label':     'Sonderwünsche',
+    'info-request-val':       'Mit Vergnügen',
+    'nl-label':               'Bleiben Sie informiert',
+    'nl-title':               'Briefe aus Calle Pou',
+    'nl-btn':                 'Abonnieren',
+    'order-title':            'Ihre Bestellung',
+    'hk-eyebrow':             'Housekeeping',
+    'hk-title':               'Housekeeping<br><em>&amp; Komfort</em>',
+    'hk-desc':                'Wählen Sie aus, was Sie benötigen — wir sind gleich bei Ihnen.',
+    'hk-towels':              'Frische Handtücher',
+    'hk-towels-desc':         'Bad- und Handtücher',
+    'hk-room':                'Zimmerreinigung',
+    'hk-room-desc':           'Vollständige Reinigung & Bettwäschewechsel',
+    'hk-amenities':           'Frische Amenities',
+    'hk-amenities-desc':      'Seife · Shampoo · Duschgel · Toilettenpapier',
+    'hk-request':             'Anfordern',
+    'hk-room-label':          'Zimmer',
+    'hk-notes-label':         'Hinweise',
+    'hk-footer-service':      'Service verfügbar · 8:00 – 20:00 Uhr',
+    'surr-title':             'Die Umgebung<br><em style="color:var(--sand);">entdecken</em>',
+    'surr-desc':              'Bunte Fassaden, jahrhundertealte Schokolade, kristallklares Mittelmeer — ein Tempo, das zur Erkundung einlädt.',
+  },
+  'es': {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Desayuno & Bebidas',
+    'tab-cleaning-primary':   'Limpieza',
+    'tab-cleaning-sub':       'Housekeeping',
+    'tab-surrounding-primary':'Alrededores',
+    'tab-surrounding-sub':    'Explorar',
+    'tab-tips-primary':       'Consejos',
+    'tab-tips-sub':           'Guías',
+    'cover-title':            'Desayuno<br><em>con Champán</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Desplazar',
+    'cover-nav-welcome':      'Bienvenida',
+    'cover-nav-breakfast':    'Desayuno',
+    'cover-nav-tea':          'Té & Café',
+    'cover-nav-champagne':    'Champán',
+    'cover-nav-picnic':       'Picnic',
+    'intro-title':            'Desayuno<br><em style="color:var(--sand);">con Champán</em>',
+    'intro-sub':              'Una celebración al amanecer.',
+    's01-num':                '01 — El Desayuno',
+    's01-intro':              'Cada mañana ponemos la mesa con productos frescos de la costa valenciana. El desayuno se sirve como una experiencia completa.',
+    's02-num':                '02 — Té & Café',
+    's02-title':              'Infusiones<br><em>&amp; Café</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Carta de Bebidas',
+    's03-title':              'Champán<br><em>&amp; Cava</em>',
+    's03-intro':              'Nuestra selección de champanes y cavas se sirve por separado — por copa o botella.',
+    's03-price-note':         'Precio por copa 0,1 l',
+    's04-num':                '04 — Sin Alcohol',
+    's04-title':              'Bebidas<br><em>Frescas</em>',
+    's05-num':                '05 — Experiencia Especial',
+    's05-title':              'Cesta de<br><em>Picnic</em>',
+    's05-intro':              'Una cesta preparada para disfrutar en la playa o en el jardín — lista para llevar en cualquier momento.',
+    'info-service-label':     'Horario de servicio',
+    'info-service-val':       'Cada mañana<br>8:00 – 11:30',
+    'info-allergy-label':     'Alergias & Dieta',
+    'info-allergy-val':       'Por favor, infórmenos',
+    'info-request-label':     'Peticiones especiales',
+    'info-request-val':       'Con mucho gusto',
+    'nl-label':               'Mantenerse al Día',
+    'nl-title':               'Cartas desde Calle Pou',
+    'nl-btn':                 'Suscribirse',
+    'order-title':            'Su Pedido',
+    'hk-eyebrow':             'Servicio de Limpieza',
+    'hk-title':               'Limpieza<br><em>&amp; Confort</em>',
+    'hk-desc':                'Seleccione lo que necesita y le atendemos enseguida.',
+    'hk-towels':              'Toallas Frescas',
+    'hk-towels-desc':         'Toallas de baño y de mano',
+    'hk-room':                'Limpieza de Habitación',
+    'hk-room-desc':           'Limpieza completa y cambio de ropa de cama',
+    'hk-amenities':           'Amenities Frescos',
+    'hk-amenities-desc':      'Jabón · Champú · Gel de ducha · Papel higiénico',
+    'hk-request':             'Solicitar',
+    'hk-room-label':          'Habitación',
+    'hk-notes-label':         'Notas',
+    'hk-footer-service':      'Servicio disponible · 8:00 – 20:00',
+    'surr-title':             'Descubrir<br><em style="color:var(--sand);">los Alrededores</em>',
+    'surr-desc':              'Fachadas de colores, chocolate centenario, mar Mediterráneo cristalino — un ritmo de vida que invita a explorar.',
+  },
+  'fr': {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Petit-déjeuner & Boissons',
+    'tab-cleaning-primary':   'Ménage',
+    'tab-cleaning-sub':       'Housekeeping',
+    'tab-surrounding-primary':'Alentours',
+    'tab-surrounding-sub':    'Explorer',
+    'tab-tips-primary':       'Conseils',
+    'tab-tips-sub':           'Guides',
+    'cover-title':            'Petit-déjeuner<br><em>au Champagne</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Défiler',
+    'cover-nav-welcome':      'Bienvenue',
+    'cover-nav-breakfast':    'Petit-déjeuner',
+    'cover-nav-tea':          'Thé & Café',
+    'cover-nav-champagne':    'Champagne',
+    'cover-nav-picnic':       'Pique-nique',
+    'intro-title':            'Petit-déjeuner<br><em style="color:var(--sand);">au Champagne</em>',
+    'intro-sub':              'Une célébration matinale à table.',
+    's01-num':                '01 — Le Petit-déjeuner',
+    's01-intro':              'Chaque matin nous dressons la table avec des produits frais de la côte valencienne. Le petit-déjeuner est servi comme une expérience complète.',
+    's02-num':                '02 — Thé & Café',
+    's02-title':              'Thés<br><em>&amp; Café</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Carte des Boissons',
+    's03-title':              'Champagne<br><em>&amp; Cava</em>',
+    's03-intro':              'Notre sélection de champagnes et cavas est disponible séparément — au verre ou à la bouteille.',
+    's03-price-note':         'Prix au verre 0,1 l',
+    's04-num':                '04 — Sans Alcool',
+    's04-title':              'Boissons<br><em>Fraîches</em>',
+    's05-num':                '05 — Expérience Spéciale',
+    's05-title':              'Panier<br><em>Pique-nique</em>',
+    's05-intro':              'Un panier préparé à la main pour profiter à la plage ou au jardin — prêt à emporter à tout moment.',
+    'info-service-label':     'Heures de service',
+    'info-service-val':       'Chaque matin<br>8h00 – 11h30',
+    'info-allergy-label':     'Allergies & Régime',
+    'info-allergy-val':       'Veuillez nous informer',
+    'info-request-label':     'Demandes spéciales',
+    'info-request-val':       'Avec plaisir',
+    'nl-label':               'Rester informé',
+    'nl-title':               'Lettres de Calle Pou',
+    'nl-btn':                 'S\'abonner',
+    'order-title':            'Votre Commande',
+    'hk-eyebrow':             'Ménage',
+    'hk-title':               'Ménage<br><em>&amp; Confort</em>',
+    'hk-desc':                'Sélectionnez ce dont vous avez besoin et nous serons avec vous rapidement.',
+    'hk-towels':              'Serviettes Fraîches',
+    'hk-towels-desc':         'Serviettes de bain et de main',
+    'hk-room':                'Nettoyage de Chambre',
+    'hk-room-desc':           'Nettoyage complet & changement de linge',
+    'hk-amenities':           'Produits Frais',
+    'hk-amenities-desc':      'Savon · Shampooing · Gel douche · Papier toilette',
+    'hk-request':             'Demander',
+    'hk-room-label':          'Chambre',
+    'hk-notes-label':         'Notes',
+    'hk-footer-service':      'Service disponible · 8h00 – 20h00',
+    'surr-title':             'Découvrir<br><em style="color:var(--sand);">les Alentours</em>',
+    'surr-desc':              'Façades colorées, chocolat séculaire, mer Méditerranée cristalline — un rythme de vie qui invite à l\'exploration.',
+  },
+  'no': {
+    'tab-menu-primary':       'Room Service',
+    'tab-menu-sub':           'Frokost & Drikke',
+    'tab-cleaning-primary':   'Rengjøring',
+    'tab-cleaning-sub':       'Housekeeping',
+    'tab-surrounding-primary':'Omgivelser',
+    'tab-surrounding-sub':    'Utforsk',
+    'tab-tips-primary':       'Tips & Triks',
+    'tab-tips-sub':           'Guider',
+    'cover-title':            'Frokost<br><em>med Champagne</em>',
+    'cover-location':         'Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca',
+    'cover-scroll':           'Scroll',
+    'cover-nav-welcome':      'Velkommen',
+    'cover-nav-breakfast':    'Frokost',
+    'cover-nav-tea':          'Te & Kaffe',
+    'cover-nav-champagne':    'Champagne',
+    'cover-nav-picnic':       'Piknik',
+    'intro-title':            'Frokost<br><em style="color:var(--sand);">med Champagne</em>',
+    'intro-sub':              'En morgenfest ved bordet.',
+    's01-num':                '01 — Frokosten',
+    's01-intro':              'Hver morgen dekker vi bordet med ferske råvarer fra Valenciakysten. Frokosten serveres som en komplett opplevelse.',
+    's02-num':                '02 — Te & Kaffe',
+    's02-title':              'Te<br><em>&amp; Kaffe</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Drikkekart',
+    's03-title':              'Champagne<br><em>&amp; Cava</em>',
+    's03-intro':              'Vårt utvalg av champagne og cava er tilgjengelig separat — per glass eller flaske.',
+    's03-price-note':         'Pris per glass 0,1 l',
+    's04-num':                '04 — Alkoholfritt',
+    's04-title':              'Friske<br><em>Drikker</em>',
+    's05-num':                '05 — Spesiell Opplevelse',
+    's05-title':              'Strand<br><em>Piknikkkurv</em>',
+    's05-intro':              'En håndlaget kurv for å nyte på stranden eller i hagen — klar til å ta med seg.',
+    'info-service-label':     'Servicetider',
+    'info-service-val':       'Hver morgen<br>8:00 – 11:30',
+    'info-allergy-label':     'Allergier & Kosthold',
+    'info-allergy-val':       'Vennligst informer oss',
+    'info-request-label':     'Spesielle forespørsler',
+    'info-request-val':       'Med glede',
+    'nl-label':               'Hold deg oppdatert',
+    'nl-title':               'Brev fra Calle Pou',
+    'nl-btn':                 'Abonner',
+    'order-title':            'Din Bestilling',
+    'hk-eyebrow':             'Rengjøring',
+    'hk-title':               'Rengjøring<br><em>&amp; Komfort</em>',
+    'hk-desc':                'Velg hva du trenger — vi er hos deg snart.',
+    'hk-towels':              'Friske Håndklær',
+    'hk-towels-desc':         'Badehåndklær og håndklær',
+    'hk-room':                'Romrengjøring',
+    'hk-room-desc':           'Fullstendig rengjøring og sengetøyskifte',
+    'hk-amenities':           'Friske Amenities',
+    'hk-amenities-desc':      'Såpe · Sjampo · Dusjsåpe · Toalettpapir',
+    'hk-request':             'Bestill',
+    'hk-room-label':          'Rom',
+    'hk-notes-label':         'Notater',
+    'hk-footer-service':      'Tilgjengelig · 8:00 – 20:00',
+    'surr-title':             'Oppdag<br><em style="color:var(--sand);">omgivelsene</em>',
+    'surr-desc':              'Fargerike fasader, århundregammelt sjokolade, krystallklart Middelhav — et livsrytme som belønner utforskning.',
+  }
+};
+
+function applyLang() {
+  var t = T[currentLang];
+  if (!t) return;
+
+  // 1. Plain text — [data-i18n]
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var v = t[el.getAttribute('data-i18n')];
+    if (v !== undefined) el.textContent = v;
+  });
+
+  // 2. HTML content — [data-i18n-html]
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var v = t[el.getAttribute('data-i18n-html')];
+    if (v !== undefined) el.innerHTML = v;
+  });
+
+  // 3. Update switcher button label
+  var cur = document.getElementById('lang-current');
+  if (cur) cur.textContent = currentLang.toUpperCase();
+
+  // 4. Update ticks and active states
+  ['en','de','es','fr','no'].forEach(function(l) {
+    var chk = document.getElementById('check-' + l);
+    var opt = document.getElementById('lang-opt-' + l);
+    if (chk) chk.style.display = (l === currentLang) ? 'inline' : 'none';
+    if (opt) {
+      opt.classList.toggle('lang-active', l === currentLang);
+    }
+  });
+
+  // 5. Store preference
+  try { localStorage.setItem('lang', currentLang); } catch(e) {}
+}
+
+function setLang(lang, e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  currentLang = lang;
+  applyLang();
+}
+
+function toggleLangDropdown(e) { /* hover handles this via CSS */ }
+
+// AC mode switcher
+function acMode(mode) {
+  var modes = ['cool','heat','dry'];
+  var colors = { cool:'#4a9fe8', heat:'#e8874a', dry:'#4ae8a8' };
+  modes.forEach(function(m) {
+    var tab   = document.getElementById('ac-tab-' + m);
+    var panel = document.getElementById('ac-panel-' + m);
+    var active = m === mode;
+    if (panel) panel.style.display = active ? 'block' : 'none';
+    if (tab) {
+      var dim = 'rgba(201,185,154,0.35)';
+      tab.style.borderBottomColor = active ? colors[m] : 'transparent';
+      var label = tab.querySelector('div');
+      var svg   = tab.querySelector('svg');
+      if (label) label.style.color = active ? colors[m] : dim;
+      if (svg)   svg.style.stroke  = active ? colors[m] : dim;
+    }
+  });
+}
+
+// Run on load — restore saved preference if any
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    var saved = localStorage.getItem('lang');
+    if (saved && T[saved]) currentLang = saved;
+  } catch(e) {}
+  applyLang();
+});
+</script>
+
+</body>
+</html>
