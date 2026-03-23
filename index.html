@@ -2257,18 +2257,18 @@
 <!-- House Note Band -->
 <div class="info-block reveal-stagger">
   <div class="info-item">
-    <span>Service Hours</span>
-    <strong>Every morning<br>8:00 – 11:30</strong>
+    <span data-i18n="info-service-label">Service Hours</span>
+    <strong data-i18n-html="info-service-val">Every morning<br>8:00 – 11:30</strong>
     <span class="sub">Todos los días · Daily without exception</span>
   </div>
   <div class="info-item">
-    <span>Allergies &amp; Dietary</span>
-    <strong>Please inform us</strong>
+    <span data-i18n="info-allergy-label">Allergies &amp; Dietary</span>
+    <strong data-i18n="info-allergy-val">Please inform us</strong>
     <span class="sub">Tell us of any allergies or dietary requirements before ordering. We will take care of the rest.</span>
   </div>
   <div class="info-item">
-    <span>Special Requests</span>
-    <strong>With pleasure</strong>
+    <span data-i18n="info-request-label">Special Requests</span>
+    <strong data-i18n="info-request-val">With pleasure</strong>
     <span class="sub">We are happy to accommodate special requests wherever possible. · Con mucho gusto.</span>
   </div>
 </div>
@@ -2276,13 +2276,13 @@
 <!-- ═══════════ 03 — CHAMPÁN · COPAS ═══════════ -->
 <div class="page" id="section-03">
   <span class="section-number reveal-left">03 — Drinks Menu · Carta de Bebidas · Separately Available · Disponible por Separado</span>
-  <h2 class="section-title reveal split-title"><span class="word">Champán&nbsp;</span><span class="word"></span><span class="word"><em>& Cava</em></span></h2>
+  <h2 class="section-title reveal split-title" data-i18n-html="s03-title"><span class="word">Champán&nbsp;</span><span class="word"></span><span class="word"><em>& Cava</em></span></h2>
 
-  <p class="intro-text reveal">
+  <p class="intro-text reveal" data-i18n-html="s03-intro">
     Our champagne and cava selection is available separately — by the glass or bottle. We recommend beginning with our house selection.
   </p>
 
-  <div class="price-note reveal">Prices per glass 0.1 l · Precios por copa 0,1 l</div>
+  <div class="price-note reveal" data-i18n="s03-price-note">Prices per glass 0.1 l</div>
 
   <div class="bottle-grid reveal-stagger">
     <div class="bottle-card orderable" data-id="ruinart" data-name="Ruinart Blanc de Blancs" data-sub="Copa 0,1 l" data-price="22">
@@ -2412,7 +2412,7 @@
   <span class="section-number reveal-left">05 — Special Experience · Experiencia Especial</span>
   <h2 class="section-title reveal split-title"><span class="word">Beach&nbsp;</span><span class="word">Picnic&nbsp;</span><span class="word"></span><span class="word"><em>Basket</em></span></h2>
 
-  <p class="intro-text reveal">
+  <p class="intro-text reveal" data-i18n-html="s05-intro">
     A hand-prepared basket to enjoy on the beach or in the garden — ready to take at any time.
   </p>
 
@@ -2477,10 +2477,10 @@
   <div class="highlight reveal">
     <strong>Note —</strong> Baskets are prepared fresh to order — packed for the beach, the garden, or wherever the morning takes you. Please indicate your desired collection time in the notes field when ordering.<br>
     
-    <div class="nl-strip-title">Letters from Calle Pou</div>
+    <div class="nl-strip-title" data-i18n="nl-title">Letters from Calle Pou</div>
     <div class="nl-strip-sub">Seasonal menus, local stories from Villajoyosa &amp; early access to special offers — delivered quietly to your inbox.<br>Menús de temporada, historias locales y acceso anticipado a ofertas especiales.</div>
   </div>
-  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank" class="nl-btn">Subscribe</a>
+  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank" class="nl-btn" data-i18n="nl-btn">Subscribe</a>
 </div>
 
 <!-- ═══════════ FOOTER ═══════════ -->
@@ -3422,7 +3422,7 @@
 <div id="order-panel">
   <div class="order-panel-head">
     <div>
-      <span class="title">Su Pedido · Your Order</span>
+      <span class="title" data-i18n="order-title">Your Order</span>
       <span class="subtitle">Room Service</span>
     </div>
     <button class="order-close" onclick="closePanel()" title="Minimizar">✕</button>
@@ -4231,7 +4231,7 @@ var T = {
     'tab-menu-primary':       'Room Service',
     'tab-menu-sub':           'Breakfast & Drinks',
     'tab-cleaning-primary':   'Housekeeping',
-    'tab-cleaning-sub':       'Limpieza',
+    'tab-cleaning-sub':       'Housekeeping',
     'tab-surrounding-primary':'Surrounding',
     'tab-surrounding-sub':    'Explore',
     'tab-tips-primary':       'Tips & Tricks',
@@ -4246,15 +4246,37 @@ var T = {
     'cover-nav-picnic':       'Picnic',
     'intro-title':            'Breakfast<br><em style="color:var(--sand);">with Champagne</em>',
     'intro-sub':              'A morning celebration at the table.',
-    's01-num':                '01 — The Breakfast · El Desayuno',
-    's01-intro':              'Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience — prices noted where individually available.',
-    'hk-eyebrow':             'Housekeeping · Servicio de Limpieza',
+    's01-num':                '01 — The Breakfast',
+    's01-intro':              'Each morning we set the table with fresh produce from the Valencia coast. Breakfast is served as a complete experience.',
+    's02-num':                '02 — Tea & Coffee',
+    's02-title':              'Teas<br><em>&amp; Coffee</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Drinks Menu',
+    's03-title':              'Champagne<br><em>&amp; Cava</em>',
+    's03-intro':              'Our champagne and cava selection is available separately — by the glass or bottle.',
+    's03-price-note':         'Prices per glass 0.1 l',
+    's04-num':                '04 — Non-Alcoholic',
+    's04-title':              'Fresh<br><em>Drinks</em>',
+    's05-num':                '05 — Special Experience',
+    's05-title':              'Beach Picnic<br><em>Basket</em>',
+    's05-intro':              'A hand-prepared basket to enjoy on the beach or in the garden — ready to take at any time.',
+    'info-service-label':     'Service Hours',
+    'info-service-val':       'Every morning<br>8:00 – 11:30',
+    'info-allergy-label':     'Allergies & Dietary',
+    'info-allergy-val':       'Please inform us',
+    'info-request-label':     'Special Requests',
+    'info-request-val':       'With pleasure',
+    'nl-label':               'Stay in Touch',
+    'nl-title':               'Letters from Calle Pou',
+    'nl-btn':                 'Subscribe',
+    'order-title':            'Your Order',
+    'hk-eyebrow':             'Housekeeping',
     'hk-title':               'Housekeeping<br><em>&amp; Comfort</em>',
     'hk-desc':                'Select what you need and we will be with you shortly.',
     'hk-towels':              'Fresh Towels',
-    'hk-towels-desc':         'Bath & hand towels · Toallas de baño y mano',
+    'hk-towels-desc':         'Bath & hand towels',
     'hk-room':                'Room Cleaning',
-    'hk-room-desc':           'Full clean & linen change · Limpieza completa',
+    'hk-room-desc':           'Full clean & linen change',
     'hk-amenities':           'Fresh Amenities',
     'hk-amenities-desc':      'Soap · Shampoo · Shower gel · Toilet paper',
     'hk-request':             'Request',
@@ -4285,7 +4307,29 @@ var T = {
     'intro-sub':              'Eine morgendliche Feier am Tisch.',
     's01-num':                '01 — Das Frühstück',
     's01-intro':              'Jeden Morgen decken wir den Tisch mit frischen Produkten von der valencianischen Küste. Das Frühstück wird als vollständiges Erlebnis serviert.',
-    'hk-eyebrow':             'Housekeeping · Zimmerservice',
+    's02-num':                '02 — Tee & Kaffee',
+    's02-title':              'Tee<br><em>&amp; Kaffee</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Getränkekarte',
+    's03-title':              'Champagner<br><em>&amp; Cava</em>',
+    's03-intro':              'Unsere Champagner- und Cava-Auswahl ist separat erhältlich — glasweise oder als Flasche.',
+    's03-price-note':         'Preis pro Glas 0,1 l',
+    's04-num':                '04 — Alkoholfrei',
+    's04-title':              'Frische<br><em>Getränke</em>',
+    's05-num':                '05 — Besonderes Erlebnis',
+    's05-title':              'Strandpicknick<br><em>Korb</em>',
+    's05-intro':              'Ein handgefertigter Korb zum Genießen am Strand oder im Garten — jederzeit bereit.',
+    'info-service-label':     'Servicezeiten',
+    'info-service-val':       'Jeden Morgen<br>8:00 – 11:30',
+    'info-allergy-label':     'Allergien & Ernährung',
+    'info-allergy-val':       'Bitte informieren Sie uns',
+    'info-request-label':     'Sonderwünsche',
+    'info-request-val':       'Mit Vergnügen',
+    'nl-label':               'Bleiben Sie informiert',
+    'nl-title':               'Briefe aus Calle Pou',
+    'nl-btn':                 'Abonnieren',
+    'order-title':            'Ihre Bestellung',
+    'hk-eyebrow':             'Housekeeping',
     'hk-title':               'Housekeeping<br><em>&amp; Komfort</em>',
     'hk-desc':                'Wählen Sie aus, was Sie benötigen — wir sind gleich bei Ihnen.',
     'hk-towels':              'Frische Handtücher',
@@ -4322,7 +4366,29 @@ var T = {
     'intro-sub':              'Una celebración al amanecer.',
     's01-num':                '01 — El Desayuno',
     's01-intro':              'Cada mañana ponemos la mesa con productos frescos de la costa valenciana. El desayuno se sirve como una experiencia completa.',
-    'hk-eyebrow':             'Servicio de Limpieza · Housekeeping',
+    's02-num':                '02 — Té & Café',
+    's02-title':              'Infusiones<br><em>&amp; Café</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Carta de Bebidas',
+    's03-title':              'Champán<br><em>&amp; Cava</em>',
+    's03-intro':              'Nuestra selección de champanes y cavas se sirve por separado — por copa o botella.',
+    's03-price-note':         'Precio por copa 0,1 l',
+    's04-num':                '04 — Sin Alcohol',
+    's04-title':              'Bebidas<br><em>Frescas</em>',
+    's05-num':                '05 — Experiencia Especial',
+    's05-title':              'Cesta de<br><em>Picnic</em>',
+    's05-intro':              'Una cesta preparada para disfrutar en la playa o en el jardín — lista para llevar en cualquier momento.',
+    'info-service-label':     'Horario de servicio',
+    'info-service-val':       'Cada mañana<br>8:00 – 11:30',
+    'info-allergy-label':     'Alergias & Dieta',
+    'info-allergy-val':       'Por favor, infórmenos',
+    'info-request-label':     'Peticiones especiales',
+    'info-request-val':       'Con mucho gusto',
+    'nl-label':               'Mantenerse al Día',
+    'nl-title':               'Cartas desde Calle Pou',
+    'nl-btn':                 'Suscribirse',
+    'order-title':            'Su Pedido',
+    'hk-eyebrow':             'Servicio de Limpieza',
     'hk-title':               'Limpieza<br><em>&amp; Confort</em>',
     'hk-desc':                'Seleccione lo que necesita y le atendemos enseguida.',
     'hk-towels':              'Toallas Frescas',
@@ -4330,7 +4396,7 @@ var T = {
     'hk-room':                'Limpieza de Habitación',
     'hk-room-desc':           'Limpieza completa y cambio de ropa de cama',
     'hk-amenities':           'Amenities Frescos',
-    'hk-amenities-desc':      'Jabón · Gel de ducha · Papel higiénico',
+    'hk-amenities-desc':      'Jabón · Champú · Gel de ducha · Papel higiénico',
     'hk-request':             'Solicitar',
     'hk-room-label':          'Habitación',
     'hk-notes-label':         'Notas',
@@ -4359,7 +4425,29 @@ var T = {
     'intro-sub':              'Une célébration matinale à table.',
     's01-num':                '01 — Le Petit-déjeuner',
     's01-intro':              'Chaque matin nous dressons la table avec des produits frais de la côte valencienne. Le petit-déjeuner est servi comme une expérience complète.',
-    'hk-eyebrow':             'Ménage · Housekeeping',
+    's02-num':                '02 — Thé & Café',
+    's02-title':              'Thés<br><em>&amp; Café</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Carte des Boissons',
+    's03-title':              'Champagne<br><em>&amp; Cava</em>',
+    's03-intro':              'Notre sélection de champagnes et cavas est disponible séparément — au verre ou à la bouteille.',
+    's03-price-note':         'Prix au verre 0,1 l',
+    's04-num':                '04 — Sans Alcool',
+    's04-title':              'Boissons<br><em>Fraîches</em>',
+    's05-num':                '05 — Expérience Spéciale',
+    's05-title':              'Panier<br><em>Pique-nique</em>',
+    's05-intro':              'Un panier préparé à la main pour profiter à la plage ou au jardin — prêt à emporter à tout moment.',
+    'info-service-label':     'Heures de service',
+    'info-service-val':       'Chaque matin<br>8h00 – 11h30',
+    'info-allergy-label':     'Allergies & Régime',
+    'info-allergy-val':       'Veuillez nous informer',
+    'info-request-label':     'Demandes spéciales',
+    'info-request-val':       'Avec plaisir',
+    'nl-label':               'Rester informé',
+    'nl-title':               'Lettres de Calle Pou',
+    'nl-btn':                 'S\'abonner',
+    'order-title':            'Votre Commande',
+    'hk-eyebrow':             'Ménage',
     'hk-title':               'Ménage<br><em>&amp; Confort</em>',
     'hk-desc':                'Sélectionnez ce dont vous avez besoin et nous serons avec vous rapidement.',
     'hk-towels':              'Serviettes Fraîches',
@@ -4396,7 +4484,29 @@ var T = {
     'intro-sub':              'En morgenfest ved bordet.',
     's01-num':                '01 — Frokosten',
     's01-intro':              'Hver morgen dekker vi bordet med ferske råvarer fra Valenciakysten. Frokosten serveres som en komplett opplevelse.',
-    'hk-eyebrow':             'Rengjøring · Housekeeping',
+    's02-num':                '02 — Te & Kaffe',
+    's02-title':              'Te<br><em>&amp; Kaffe</em>',
+    's02-intro':              '',
+    's03-num':                '03 — Drikkekart',
+    's03-title':              'Champagne<br><em>&amp; Cava</em>',
+    's03-intro':              'Vårt utvalg av champagne og cava er tilgjengelig separat — per glass eller flaske.',
+    's03-price-note':         'Pris per glass 0,1 l',
+    's04-num':                '04 — Alkoholfritt',
+    's04-title':              'Friske<br><em>Drikker</em>',
+    's05-num':                '05 — Spesiell Opplevelse',
+    's05-title':              'Strand<br><em>Piknikkkurv</em>',
+    's05-intro':              'En håndlaget kurv for å nyte på stranden eller i hagen — klar til å ta med seg.',
+    'info-service-label':     'Servicetider',
+    'info-service-val':       'Hver morgen<br>8:00 – 11:30',
+    'info-allergy-label':     'Allergier & Kosthold',
+    'info-allergy-val':       'Vennligst informer oss',
+    'info-request-label':     'Spesielle forespørsler',
+    'info-request-val':       'Med glede',
+    'nl-label':               'Hold deg oppdatert',
+    'nl-title':               'Brev fra Calle Pou',
+    'nl-btn':                 'Abonner',
+    'order-title':            'Din Bestilling',
+    'hk-eyebrow':             'Rengjøring',
     'hk-title':               'Rengjøring<br><em>&amp; Komfort</em>',
     'hk-desc':                'Velg hva du trenger — vi er hos deg snart.',
     'hk-towels':              'Friske Håndklær',
@@ -4410,7 +4520,7 @@ var T = {
     'hk-notes-label':         'Notater',
     'hk-footer-service':      'Tilgjengelig · 8:00 – 20:00',
     'surr-title':             'Oppdag<br><em style="color:var(--sand);">omgivelsene</em>',
-    'surr-desc':              'Fargerike fasader, århundregammelt sjokolade, krystallklart Middelhav — et livsrytme som belønner utforskning til fots.',
+    'surr-desc':              'Fargerike fasader, århundregammelt sjokolade, krystallklart Middelhav — et livsrytme som belønner utforskning.',
   }
 };
 
