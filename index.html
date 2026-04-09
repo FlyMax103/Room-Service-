@@ -7,13 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #F7F3EE;
+    --cream: #F5F0EA;
     --warm-white: #FDFAF7;
+    --linen: #EBE5DC;
+    --linen-deep: #E0D9CE;
     --bark: #5C4A35;
     --moss: #7A8B6A;
-    --sand: #C9B99A;
-    --charcoal: #2A2520;
-    --light-line: #E2D9CE;
+    --moss-light: #A8B89A;
+    --sand: #C4B49A;
+    --sand-light: #D8CCBA;
+    --charcoal: #2C2520;
+    --light-line: #DDD5C8;
     --accent: #8B6E4E;
   }
 
@@ -383,10 +387,11 @@
 
   .step-desc { font-size: 14px; color: var(--charcoal); line-height: 1.6; }
 
-  /* ── INFO BLOCK (dark) ── */
+  /* ── INFO BLOCK ── */
   .info-block {
-    background: var(--charcoal);
-    color: var(--warm-white);
+    background: var(--linen);
+    color: var(--charcoal);
+    border-top: 1px solid var(--linen-deep);
     padding: 48px 52px;
     margin-top: 52px;
     display: grid;
@@ -424,7 +429,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 300;
-    color: var(--warm-white);
+    color: var(--charcoal);
     letter-spacing: 0.02em;
     display: block;
     line-height: 1.1;
@@ -433,7 +438,7 @@
 
   .info-block .info-item .sub {
     font-size: 12px;
-    color: rgba(201,185,154,0.4);
+    color: rgba(44,37,32,0.45);
     line-height: 1.65;
     display: block;
     font-style: italic;
@@ -459,14 +464,14 @@
 
   /* ── NEWSLETTER STRIP ── */
   .nl-strip {
-    background: var(--charcoal);
+    background: var(--linen);
     padding: 40px 52px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 32px;
-    border-top: 1px solid rgba(201,185,154,0.1);
-    border-bottom: 1px solid rgba(201,185,154,0.1);
+    border-top: 1px solid var(--linen-deep);
+    border-bottom: 1px solid var(--linen-deep);
   }
   .nl-strip-text { flex: 1; }
   .nl-strip-label {
@@ -482,7 +487,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 26px;
     font-weight: 300;
-    color: var(--warm-white);
+    color: var(--charcoal);
     line-height: 1.2;
     margin-bottom: 6px;
   }
@@ -490,14 +495,14 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 14px;
     font-style: italic;
-    color: rgba(253,250,247,0.38);
+    color: rgba(44,37,32,0.5);
     line-height: 1.55;
   }
   .nl-btn {
     display: inline-block;
     background: transparent;
-    border: 1px solid rgba(201,185,154,0.45);
-    color: var(--sand);
+    border: 1px solid rgba(92,74,53,0.35);
+    color: var(--bark);
     font-family: 'Jost', sans-serif;
     font-size: 9px;
     font-weight: 500;
@@ -509,9 +514,9 @@
     transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
   .nl-btn:hover {
-    background: rgba(201,185,154,0.12);
-    border-color: var(--sand);
-    color: var(--warm-white);
+    background: rgba(92,74,53,0.07);
+    border-color: var(--bark);
+    color: var(--charcoal);
   }
   /* Cover subscribe button */
   .cover-nl-btn {
@@ -594,9 +599,10 @@
   }
 
   .bottle-card {
-    background: var(--charcoal);
+    background: var(--warm-white);
     padding: 28px 26px;
     position: relative;
+    border: 1px solid var(--linen-deep);
     border-bottom: 2px solid var(--sand);
   }
 
@@ -604,7 +610,7 @@
     font-size: 9px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: rgba(201,185,154,0.5);
+    color: var(--moss);
     margin-bottom: 10px;
     display: block;
   }
@@ -613,7 +619,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
     font-weight: 300;
-    color: var(--warm-white);
+    color: var(--charcoal);
     line-height: 1.15;
     margin-bottom: 8px;
   }
@@ -621,7 +627,7 @@
   .bottle-card .desc {
     font-size: 12px;
     line-height: 1.6;
-    color: rgba(201,185,154,0.5);
+    color: rgba(44,37,32,0.45);
     margin-bottom: 14px;
   }
 
@@ -634,14 +640,14 @@
   .bottle-card .glass-price {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
-    color: var(--sand);
+    color: var(--bark);
   }
 
   .bottle-card .bottle-price {
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(201,185,154,0.4);
+    color: rgba(44,37,32,0.35);
   }
 
   .bottle-card .badge {
@@ -655,12 +661,94 @@
     font-weight: 500;
   }
 
+  /* ── INSTAGRAM SECTION ── */
+  .ig-section {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    background: var(--linen);
+    border-top: 1px solid var(--linen-deep);
+  }
+  .ig-header {
+    padding: 52px 48px 52px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--linen-deep);
+  }
+  .ig-eyebrow {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Jost', sans-serif; font-size: 9px;
+    letter-spacing: 0.38em; text-transform: uppercase;
+    color: var(--moss); margin-bottom: 18px;
+  }
+  .ig-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: 42px; color: var(--charcoal); line-height: 1.05;
+    margin-bottom: 14px; letter-spacing: -0.01em;
+  }
+  .ig-title em { color: var(--bark); font-style: italic; }
+  .ig-sub {
+    font-family: 'Cormorant Garamond', serif; font-size: 15px;
+    font-style: italic; color: rgba(44,37,32,0.45);
+    line-height: 1.65; margin-bottom: 28px;
+  }
+  .ig-follow-btn {
+    display: inline-block; background: transparent;
+    border: 1px solid rgba(92,74,53,0.3); color: var(--bark);
+    font-family: 'Jost', sans-serif; font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 13px 20px; text-decoration: none; align-self: flex-start;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .ig-follow-btn:hover { border-color: var(--bark); background: rgba(92,74,53,0.06); color: var(--charcoal); }
+  .ig-post {
+    position: relative; display: block;
+    overflow: hidden; background: var(--linen-deep);
+    text-decoration: none;
+  }
+  .ig-post-featured {
+    width: 100%; height: 100%; min-height: 320px;
+  }
+  .ig-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: none;
+    transition: transform 0.5s ease;
+  }
+  .ig-img[src]:not([src=""]) { display: block; }
+  .ig-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: rgba(201,185,154,0.18);
+  }
+  .ig-img[src]:not([src=""]) ~ .ig-placeholder { display: none; }
+  .ig-post-overlay {
+    position: absolute; inset: 0;
+    background: rgba(14,11,9,0.4);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .ig-post-overlay span {
+    font-family: 'Jost', sans-serif; font-size: 9px;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(253,250,247,0.85);
+  }
+  .ig-post:hover .ig-post-overlay { opacity: 1; }
+  .ig-post:hover .ig-img { transform: scale(1.03); }
+  @media (max-width: 860px) {
+    .ig-section { grid-template-columns: 1fr; }
+    .ig-header { padding: 40px 24px 28px; border-right: none; border-bottom: 1px solid rgba(201,185,154,0.08); }
+    .ig-post-featured { min-height: 260px; }
+  }
+
   /* ── FOOTER ── */
   .page-footer {
     text-align: center;
     padding: 36px 60px;
-    background: var(--charcoal);
-    color: rgba(201,185,154,0.45);
+    background: var(--linen-deep);
+    color: rgba(44,37,32,0.45);
     font-size: 10px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -716,10 +804,10 @@
     background: #2f2b26;
   }
   .bottle-card.orderable.in-order {
-    box-shadow: inset 0 -3px 0 var(--sand), 0 0 0 1px rgba(201,185,154,0.5);
-    background: #35302a;
+    box-shadow: inset 0 -3px 0 var(--moss), 0 0 0 1px rgba(122,139,106,0.35);
+    background: #F0EDE6;
   }
-  .bottle-card .add-hint { color: rgba(201,185,154,0.6); }
+  .bottle-card .add-hint { color: rgba(92,74,53,0.45); }
 
   /* ── ORDER PANEL ── */
   #order-panel {
@@ -1043,6 +1131,45 @@
 
   .tab-page { display: none; }
   .tab-page.active { display: block; }
+  #tab-cleaning {
+    min-height: calc(100vh - 56px);
+    flex-direction: column;
+  }
+  #tab-cleaning.active {
+    display: flex;
+  }
+  #tab-cleaning .page-footer { margin-top: auto; }
+
+  /* Housekeeping image space */
+  .hk-image-space {
+    width: 100%;
+    height: 260px;
+    background: var(--linen);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(201,185,154,0.15);
+    flex-shrink: 0;
+  }
+  .hk-image-space img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .hk-image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 12px;
+    color: rgba(201,185,154,0.3);
+  }
+  .hk-image-placeholder span {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+  }
 
   /* CLEANING PAGE */
   .csvc-item {
@@ -1077,26 +1204,26 @@
   .csvc-name-es { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; margin-top: 2px; }
   .csvc-desc { font-size: 12px; color: #8a8a7a; margin-top: 3px; line-height: 1.5; font-family: 'Jost', sans-serif; font-weight: 300; }
   #cleaning-form {
-    background: var(--charcoal); padding: 40px 52px;
-    border-top: 1px solid rgba(201,185,154,0.15); display: none;
+    background: var(--linen); padding: 40px 52px;
+    border-top: 1px solid var(--linen-deep); display: none;
     margin: 0;
   }
   #cleaning-form.visible { display: block; }
-  .cf-label { font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--sand); font-family: 'Jost', sans-serif; margin-bottom: 8px; display: block; }
-  .cf-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--warm-white); margin-bottom: 20px; }
+  .cf-label { font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--moss); font-family: 'Jost', sans-serif; margin-bottom: 8px; display: block; }
+  .cf-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--charcoal); margin-bottom: 20px; }
   .cf-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-  .cf-tag { background: rgba(122,139,106,0.18); border: 1px solid rgba(122,139,106,0.3); color: #a8c8a0; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 12px; }
+  .cf-tag { background: rgba(122,139,106,0.1); border: 1px solid rgba(122,139,106,0.25); color: var(--moss); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 12px; }
   .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
   .cf-group { display: flex; flex-direction: column; gap: 5px; }
-  .cf-group label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(201,185,154,0.45); font-family: 'Jost', sans-serif; }
-  .cf-group input { background: rgba(201,185,154,0.07); border: 1px solid rgba(201,185,154,0.15); color: var(--warm-white); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; padding: 9px 12px; outline: none; width: 100%; }
-  .cf-group input::placeholder { color: rgba(201,185,154,0.2); }
-  .cf-group input:focus { border-color: rgba(201,185,154,0.45); }
+  .cf-group label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(44,37,32,0.45); font-family: 'Jost', sans-serif; }
+  .cf-group input { background: var(--warm-white); border: 1px solid var(--linen-deep); color: var(--charcoal); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; padding: 9px 12px; outline: none; width: 100%; }
+  .cf-group input::placeholder { color: rgba(44,37,32,0.25); }
+  .cf-group input:focus { border-color: var(--moss); }
   #cf-status { font-size: 11px; font-family: 'Jost', sans-serif; font-weight: 300; min-height: 18px; margin-bottom: 12px; text-align: center; }
   .cf-btns { display: flex; gap: 10px; }
   .cf-btn-send { flex: 1; background: var(--moss); border: none; color: var(--warm-white); font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; padding: 13px 16px; cursor: pointer; }
   .cf-btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
-  .cf-btn-clear { background: rgba(201,185,154,0.08); border: 1px solid rgba(201,185,154,0.18); color: rgba(201,185,154,0.45); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 13px 16px; cursor: pointer; }
+  .cf-btn-clear { background: transparent; border: 1px solid var(--linen-deep); color: rgba(44,37,32,0.4); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 13px 16px; cursor: pointer; }
   @media (max-width: 640px) {
     #cleaning-form { padding: 28px 24px; }
     .cf-row { grid-template-columns: 1fr; }
@@ -2490,6 +2617,44 @@
   }
 
   /* ── DASHBOARD VIEW ── */
+  .dash-weather {
+    text-align:center; padding:18px 0 16px;
+    border-bottom:1px solid rgba(201,185,154,0.08); margin-bottom:18px;
+  }
+  .dash-weather-temp {
+    font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300;
+    color:var(--warm-white); line-height:1; letter-spacing:-0.02em;
+  }
+  .dash-weather-loc {
+    font-family:'Jost',sans-serif; font-size:8px; letter-spacing:0.42em;
+    text-transform:uppercase; color:rgba(201,185,154,0.35); margin-top:8px;
+  }
+  .dash-weather-desc {
+    font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic;
+    color:rgba(201,185,154,0.45); margin-top:3px;
+  }
+  .dash-tier {
+    background:rgba(201,185,154,0.04); border:1px solid rgba(201,185,154,0.09);
+    padding:16px 20px; margin-bottom:18px;
+  }
+  .dash-tier-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .dash-tier-name {
+    font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:400; letter-spacing:0.02em;
+  }
+  .dash-tier-label {
+    font-family:'Jost',sans-serif; font-size:7px; letter-spacing:0.35em;
+    text-transform:uppercase; color:rgba(201,185,154,0.3);
+  }
+  .dash-tier-bar {
+    height:1.5px; background:rgba(201,185,154,0.09); border-radius:1px;
+    overflow:hidden; margin-bottom:8px;
+  }
+  .dash-tier-fill { height:100%; border-radius:1px; transition:width 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .dash-tier-next {
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.2em;
+    text-transform:uppercase; color:rgba(201,185,154,0.25);
+  }
+
   .dash-greeting {
     font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300;
     color:var(--warm-white); line-height:1.1;
@@ -2548,6 +2713,32 @@
   }
 
   /* ── ADMIN VIEW ── */
+  .admin-tier-select {
+    background:rgba(201,185,154,0.06); border:1px solid rgba(201,185,154,0.14);
+    color:rgba(253,250,247,0.7); font-family:'Jost',sans-serif; font-size:9px;
+    letter-spacing:0.18em; text-transform:uppercase; padding:4px 8px;
+    cursor:pointer; outline:none; appearance:none; -webkit-appearance:none;
+    border-radius:0; min-width:120px;
+  }
+  .admin-tier-select option { background:#2A2520; }
+  .admin-preview-btn {
+    background:none; border:1px solid rgba(201,185,154,0.14); cursor:pointer;
+    font-family:'Jost',sans-serif; font-size:7px; letter-spacing:0.28em;
+    text-transform:uppercase; padding:4px 10px; color:rgba(201,185,154,0.35);
+    transition:all 0.15s;
+  }
+  .admin-preview-btn.on {
+    border-color:rgba(122,139,106,0.4); color:var(--moss);
+    background:rgba(122,139,106,0.08);
+  }
+  .dash-preview-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(122,139,106,0.1); border:1px solid rgba(122,139,106,0.25);
+    padding:5px 12px; margin-bottom:14px;
+    font-family:'Jost',sans-serif; font-size:7.5px; letter-spacing:0.32em;
+    text-transform:uppercase; color:var(--moss);
+  }
+
   .admin-header {
     background:rgba(192,57,43,0.08); border:1px solid rgba(192,57,43,0.18);
     padding:10px 16px; display:flex; align-items:center; gap:10px;
@@ -2577,6 +2768,350 @@
     .p-row { grid-template-columns:1fr; }
   }
 
+  /* ══ CHECK IN WIZARD ══ */
+  .tab-btn-checkin.active { border-bottom-color: var(--bark) !important; }
+
+  /* ── Offering tiles (landing page) ── */
+  .offering-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--linen-deep);
+  }
+  @media (max-width: 900px) {
+    .offering-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .offering-grid { grid-template-columns: 1fr; }
+  }
+  .offering-tile {
+    background: var(--warm-white);
+    padding: 44px 32px 40px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .offering-tile:hover { background: var(--cream); }
+  .offering-tile-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px; color: var(--moss);
+    margin-bottom: 24px; letter-spacing: 0.05em;
+  }
+  .offering-tile-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 300;
+    color: var(--charcoal); line-height: 1.1;
+    margin-bottom: 16px; flex: 1;
+  }
+  .offering-tile-title em { font-style: italic; color: var(--bark); }
+  .offering-tile-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px; font-weight: 300;
+    color: rgba(44,37,32,0.4); line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .offering-tile-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--bark);
+  }
+
+  /* ── Story section (landing page) ── */
+  .story-section {
+    background: var(--charcoal);
+    padding: 100px 64px;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+  }
+  @media (max-width: 600px) {
+    .story-section { padding: 72px 28px; }
+  }
+
+  #tab-checkin {
+    min-height: calc(100vh - 56px);
+    background: var(--cream);
+  }
+
+  /* Wizard hero */
+  .ci-hero {
+    background: var(--charcoal);
+    padding: 64px 64px 52px;
+    border-bottom: 1px solid rgba(201,185,154,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .ci-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(92,74,53,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ci-hero-eyebrow {
+    font-size: 9px; letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--moss); font-family: 'Jost', sans-serif;
+    display: block; margin-bottom: 18px;
+  }
+  .ci-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 300; color: var(--warm-white);
+    line-height: 1.05; margin-bottom: 12px;
+  }
+  .ci-hero-title em { font-style: italic; color: var(--sand); }
+  .ci-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-style: italic;
+    color: rgba(253,250,247,0.4); line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* Progress bar */
+  .ci-progress {
+    background: var(--linen);
+    border-bottom: 1px solid var(--linen-deep);
+    padding: 0 64px;
+    display: flex;
+    align-items: stretch;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .ci-progress::-webkit-scrollbar { display: none; }
+  .ci-step-indicator {
+    display: flex; align-items: center; gap: 10px;
+    padding: 18px 20px 16px;
+    border-bottom: 2px solid transparent;
+    flex-shrink: 0;
+    cursor: default;
+    transition: border-color 0.2s;
+  }
+  .ci-step-indicator.active { border-bottom-color: var(--bark); }
+  .ci-step-indicator.done { border-bottom-color: var(--moss); }
+  .ci-step-num {
+    width: 22px; height: 22px;
+    border: 1px solid rgba(44,37,32,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Jost', sans-serif; font-size: 10px;
+    color: rgba(44,37,32,0.35); flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .ci-step-indicator.active .ci-step-num {
+    background: var(--bark); border-color: var(--bark);
+    color: var(--warm-white);
+  }
+  .ci-step-indicator.done .ci-step-num {
+    background: var(--moss); border-color: var(--moss);
+    color: var(--warm-white); font-size: 11px;
+  }
+  .ci-step-label {
+    font-family: 'Jost', sans-serif; font-size: 9px;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(44,37,32,0.35); white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .ci-step-indicator.active .ci-step-label { color: var(--bark); }
+  .ci-step-indicator.done .ci-step-label { color: var(--moss); }
+
+  /* Step panels */
+  .ci-panel { display: none; }
+  .ci-panel.active { display: block; }
+
+  /* Form area */
+  .ci-form-area {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 52px 64px 64px;
+  }
+  .ci-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300;
+    color: var(--bark); margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .ci-section-title em { font-style: italic; }
+  .ci-section-sub {
+    font-size: 12px; color: rgba(44,37,32,0.45);
+    font-family: 'Jost', sans-serif; font-weight: 300;
+    margin-bottom: 36px; line-height: 1.65;
+  }
+
+  /* Guest block */
+  .ci-guest-block {
+    background: var(--warm-white);
+    border: 1px solid var(--linen-deep);
+    border-top: 2px solid var(--bark);
+    padding: 28px 32px 24px;
+    margin-bottom: 20px;
+  }
+  .ci-guest-block-title {
+    font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase;
+    color: var(--moss); font-family: 'Jost', sans-serif;
+    margin-bottom: 20px; display: block;
+  }
+
+  /* Form row */
+  .ci-row {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .ci-row-2 { grid-template-columns: 1fr 1fr; }
+  .ci-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .ci-row-4 { grid-template-columns: 2fr 2fr 1fr; }
+  .ci-row-doc { grid-template-columns: 1fr 2fr; }
+
+  .ci-group { display: flex; flex-direction: column; gap: 5px; }
+  .ci-group label {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(44,37,32,0.4); font-family: 'Jost', sans-serif;
+  }
+  .ci-group input, .ci-group select {
+    background: var(--cream);
+    border: 1px solid var(--linen-deep);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px; font-weight: 300;
+    padding: 10px 12px;
+    outline: none; width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .ci-group input::placeholder { color: rgba(44,37,32,0.2); }
+  .ci-group input:focus, .ci-group select:focus { border-color: var(--bark); }
+  .ci-group select { cursor: pointer; background-image: none; }
+
+  /* Optional guest toggle */
+  .ci-add-guest-btn {
+    width: 100%; background: transparent;
+    border: 1px dashed rgba(92,74,53,0.25);
+    color: rgba(92,74,53,0.5);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 14px; cursor: pointer;
+    transition: all 0.18s;
+    margin-bottom: 20px;
+  }
+  .ci-add-guest-btn:hover {
+    border-color: var(--bark); color: var(--bark);
+    background: rgba(92,74,53,0.03);
+  }
+
+  /* Navigation buttons */
+  .ci-nav {
+    display: flex; gap: 12px; margin-top: 36px;
+    justify-content: space-between; align-items: center;
+  }
+  .ci-btn-back {
+    background: transparent;
+    border: 1px solid var(--linen-deep);
+    color: rgba(44,37,32,0.4);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 13px 28px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ci-btn-back:hover { border-color: rgba(44,37,32,0.3); color: var(--charcoal); }
+  .ci-btn-next {
+    background: var(--bark); border: none;
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 13px 36px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .ci-btn-next:hover { background: #4e3b28; }
+  .ci-btn-submit {
+    background: var(--moss); border: none;
+    color: var(--warm-white);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 13px 40px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .ci-btn-submit:hover { background: #5c6e4e; }
+  .ci-btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Status */
+  #ci-status {
+    font-size: 12px; font-family: 'Jost', sans-serif;
+    font-weight: 300; min-height: 18px;
+    text-align: center; margin-bottom: 8px;
+  }
+  #ci-status.success { color: var(--moss); }
+  #ci-status.error   { color: #c88a8a; }
+  #ci-status.info    { color: rgba(44,37,32,0.5); }
+
+  /* Review summary */
+  .ci-review-block {
+    background: var(--warm-white);
+    border: 1px solid var(--linen-deep);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  .ci-review-label {
+    font-size: 8px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--moss); font-family: 'Jost', sans-serif;
+    display: block; margin-bottom: 12px;
+  }
+  .ci-review-row {
+    display: flex; gap: 12px;
+    font-size: 13px; color: var(--charcoal);
+    margin-bottom: 6px; line-height: 1.5;
+  }
+  .ci-review-key {
+    color: rgba(44,37,32,0.4);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px; min-width: 120px;
+    flex-shrink: 0;
+  }
+  .ci-review-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: var(--charcoal);
+    font-weight: 300;
+  }
+
+  /* Success screen */
+  .ci-success {
+    display: none;
+    text-align: center;
+    padding: 80px 64px;
+  }
+  .ci-success.active { display: block; }
+  .ci-success-icon {
+    width: 64px; height: 64px;
+    border: 1.5px solid var(--moss);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--moss);
+    margin: 0 auto 28px;
+  }
+  .ci-success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300;
+    color: var(--bark); margin-bottom: 16px;
+  }
+  .ci-success-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-style: italic;
+    color: rgba(44,37,32,0.45); line-height: 1.7;
+    max-width: 420px; margin: 0 auto;
+  }
+
+  @media (max-width: 700px) {
+    .ci-hero { padding: 48px 24px 36px; }
+    .ci-progress { padding: 0 12px; }
+    .ci-form-area { padding: 36px 24px 48px; }
+    .ci-row-2, .ci-row-3, .ci-row-4 { grid-template-columns: 1fr; }
+    .ci-guest-block { padding: 20px 20px 16px; }
+    .ci-success { padding: 52px 24px; }
+  }
+
 </style>
 </head>
 <body>
@@ -2584,26 +3119,29 @@
 <!-- TAB BAR -->
 <div id="tab-bar">
 
-  <!-- LEFT: logo only (appears on scroll) -->
+  <!-- LEFT: empty (logo removed) -->
   <div id="tab-nav-left">
-    <div id="tab-logo" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" title="Home">
+    <div id="tab-logo" onclick="switchTab('home'); window.scrollTo({top:0,behavior:'smooth'});" title="Home">
       <img src="data:image/png;base64,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" alt="MB Luxury Living" class="mb-logo-img" />
     </div>
   </div>
 
   <!-- CENTRE: all nav tabs -->
   <div id="tab-nav-centre">
-    <button class="tab-btn active" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" id="tab-btn-menu">
-      <span class="tab-es" data-i18n="tab-menu-primary">Room Service</span>
-    </button>
     <button class="tab-btn" onclick="switchTab('cleaning')" id="tab-btn-cleaning">
       <span class="tab-es" data-i18n="tab-cleaning-primary">Housekeeping</span>
+    </button>
+    <button class="tab-btn" onclick="switchTab('menu'); window.scrollTo({top:0,behavior:'smooth'});" id="tab-btn-menu">
+      <span class="tab-es" data-i18n="tab-menu-primary">Room Service</span>
     </button>
     <button class="tab-btn" onclick="switchTab('surrounding')" id="tab-btn-surrounding">
       <span class="tab-es" data-i18n="tab-surrounding-primary">Surrounding</span>
     </button>
     <button class="tab-btn" onclick="switchTab('tips')" id="tab-btn-tips">
       <span class="tab-es" data-i18n="tab-tips-primary">Tips & Tricks</span>
+    </button>
+    <button class="tab-btn tab-btn-checkin" onclick="switchTab('checkin')" id="tab-btn-checkin">
+      <span class="tab-es">Check In</span>
     </button>
   </div>
 
@@ -2654,7 +3192,7 @@
 
 </div>
 
-<div id="tab-menu" class="tab-page active">
+<div id="tab-home" class="tab-page active">
 
 <!-- ═══════════ COVER ═══════════ -->
 <div class="cover" id="cover-split">
@@ -2664,11 +3202,11 @@
   <!-- Once uploaded, delete the <img> fallback and uncomment the video tag -->
   <!-- <video class="cover-video" autoplay muted loop playsinline src="video.mp4"></video> -->
 
-  <!-- Photo fallback until video is added -->
+  <!-- Beach palms cover photo -->
   <img class="cover-photo-img"
-       src="IMG_5900.jpeg"
-       alt="Calle Pou · Villajoyosa"
-       onerror="this.style.display='none'" />
+       src="beach-palms.jpg"
+       alt=""
+       onerror="this.src='IMG_5900.jpeg'" />
 
   <!-- Dark overlay -->
   <div class="cover-photo-overlay"></div>
@@ -2690,65 +3228,100 @@
 
   <!-- Sub-nav — bottom strip -->
   <nav class="cover-nav">
-    <button class="cover-nav-btn" onclick="document.getElementById('cover-intro').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-welcome">Welcome</button>
-    <button class="cover-nav-btn" onclick="document.getElementById('section-01').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-breakfast">Breakfast</button>
-    <button class="cover-nav-btn" onclick="document.getElementById('section-02').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-tea">Tea & Coffee</button>
-    <button class="cover-nav-btn" onclick="document.getElementById('section-03').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-champagne">Champagne</button>
-    <button class="cover-nav-btn" onclick="document.getElementById('section-05').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-picnic">Picnic</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('cover-intro').scrollIntoView({behavior:'smooth'})">Welcome</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('offering-overview').scrollIntoView({behavior:'smooth'})">Our Offering</button>
+    <button class="cover-nav-btn" onclick="document.getElementById('story-section').scrollIntoView({behavior:'smooth'})">Our Story</button>
+    <button class="cover-nav-btn" onclick="switchTab('menu'); setTimeout(function(){document.getElementById('section-01').scrollIntoView({behavior:'smooth'})},50);">Room Service</button>
   </nav>
 
 </div>
 
-<!-- ═══════════ INTRO PAGE — Breakfast with Champagne ═══════════ -->
+<!-- ═══════════ WELCOME INTRO ═══════════ -->
 <div id="cover-intro" style="
-  background: var(--charcoal);
-  padding: 100px 64px 90px;
+  background: var(--warm-white);
+  padding: 110px 64px 100px;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
-  border-bottom: 1px solid rgba(201,185,154,0.1);
+  border-bottom: 1px solid var(--linen-deep);
   min-height: 60vh;
 ">
   <span class="reveal" style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.48em;text-transform:uppercase;color:var(--moss);display:block;margin-bottom:24px;">
-    Calle Pou &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca
+    MB Luxury Living &nbsp;·&nbsp; Villajoyosa &nbsp;·&nbsp; Costa Blanca
   </span>
-  <h1 class="reveal split-title" data-i18n-html="intro-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,88px);font-weight:300;color:var(--warm-white);line-height:0.95;letter-spacing:-0.02em;margin:0 0 28px;">
-    <span class="word">Breakfast&nbsp;</span><span class="word"></span><span class="word"><em style="color:var(--sand);">with Champagne</em></span>
+  <h1 class="reveal split-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,88px);font-weight:300;color:var(--charcoal);line-height:0.95;letter-spacing:-0.02em;margin:0 0 28px;">
+    <span class="word">A private&nbsp;</span><span class="word">retreat&nbsp;</span><span class="word"></span><span class="word"><em style="color:var(--bark);">by the sea</em></span>
   </h1>
-  <div class="reveal" style="width:40px;height:1px;background:rgba(201,185,154,0.3);margin:0 auto 28px;"></div>
-  <p class="reveal" data-i18n-html="intro-sub" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.85;max-width:480px;margin:0;">
-    A morning celebration at the table.
+  <div class="reveal" style="width:40px;height:1px;background:var(--linen-deep);margin:0 auto 28px;"></div>
+  <p class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;color:rgba(44,37,32,0.45);line-height:1.85;max-width:520px;margin:0;">
+    An intimate luxury villa in the heart of the old town, steps from the Mediterranean. Everything you need — nothing you don't.
   </p>
 </div>
 
-<!-- ═══════════ VIDEO SECTION ═══════════ -->
-<div class="video-wrapper" id="video-wrapper">
-  <div class="video-sticky" id="video-sticky">
+<!-- ═══════════ OFFERING OVERVIEW ═══════════ -->
+<div id="offering-overview" style="background:var(--linen-deep);padding:1px;">
+  <div class="offering-grid">
 
-    <!-- ▶ TO ADD YOUR VIDEO:
-         1. Upload your video file named  video.mp4  to the same GitHub folder as index.html
-         2. Delete the entire <div class="video-ph">...</div> block below
-         3. Uncomment the next line: -->
-    <!-- <video autoplay muted loop playsinline src="video.mp4"></video> -->
-
-    <div class="video-ph" id="video-ph">
-      <div class="video-ph-ring"></div>
-      <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(201,185,154,0.35);">Upload video.mp4 alongside index.html</span>
-      <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(201,185,154,0.2);">Then delete this block and uncomment the video tag above</span>
+    <div class="offering-tile reveal" onclick="switchTab('cleaning')">
+      <div class="offering-tile-num">01</div>
+      <div class="offering-tile-title">Housekeeping<br><em>&amp; Comfort</em></div>
+      <div class="offering-tile-sub">Fresh towels, room cleaning, amenities — request anything, anytime.</div>
+      <div class="offering-tile-link">Request service →</div>
     </div>
 
-    <div class="video-caption">
-      <div>
-        <span class="video-caption-eyebrow">Calle Pou · Villajoyosa · Spain</span>
-        <div class="video-caption-title">The table,<br><em>set for you</em></div>
-      </div>
-      <div class="video-caption-sub">
-        Every morning, fresh from the kitchen. Every detail, placed with intention.
-      </div>
+    <div class="offering-tile reveal" onclick="switchTab('menu'); setTimeout(function(){document.getElementById('section-01').scrollIntoView({behavior:'smooth'})},50);">
+      <div class="offering-tile-num">02</div>
+      <div class="offering-tile-title">Room<br><em>Service</em></div>
+      <div class="offering-tile-sub">Breakfast, champagne, teas, and a curated beach picnic basket — delivered to you.</div>
+      <div class="offering-tile-link">View menu →</div>
+    </div>
+
+    <div class="offering-tile reveal" onclick="switchTab('surrounding')">
+      <div class="offering-tile-num">03</div>
+      <div class="offering-tile-title">Explore the<br><em>Surrounding</em></div>
+      <div class="offering-tile-sub">Discover Villajoyosa, the Costa Blanca coastline, and everything nearby.</div>
+      <div class="offering-tile-link">Explore →</div>
+    </div>
+
+    <div class="offering-tile reveal" onclick="switchTab('tips')">
+      <div class="offering-tile-num">04</div>
+      <div class="offering-tile-title">Tips<br><em>&amp; Tricks</em></div>
+      <div class="offering-tile-sub">The WiFi code, the AC remote, the secret beach — everything you need to know.</div>
+      <div class="offering-tile-link">Read the guide →</div>
+    </div>
+
+    <div class="offering-tile reveal" onclick="switchTab('checkin')">
+      <div class="offering-tile-num">05</div>
+      <div class="offering-tile-title">Guest<br><em>Check In</em></div>
+      <div class="offering-tile-sub">Complete your guest information in a few easy steps before arrival.</div>
+      <div class="offering-tile-link">Check in →</div>
     </div>
 
   </div>
 </div>
+
+<!-- ═══════════ STORY / HISTORY ═══════════ -->
+<div id="story-section" class="story-section">
+  <span class="reveal" style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.48em;text-transform:uppercase;color:var(--moss);display:block;margin-bottom:28px;">
+    Our Story &nbsp;·&nbsp; Nuestra Historia
+  </span>
+  <h2 class="reveal split-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,80px);font-weight:300;color:var(--warm-white);line-height:0.95;letter-spacing:-0.02em;margin:0 0 40px;">
+    <span class="word">Calle Pou,&nbsp;</span><span class="word"></span><span class="word"><em style="color:var(--sand);">Villajoyosa</em></span>
+  </h2>
+  <div class="reveal" style="width:40px;height:1px;background:rgba(201,185,154,0.25);margin:0 auto 44px;"></div>
+  <p class="reveal" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:rgba(201,185,154,0.65);line-height:1.9;max-width:560px;margin:0 0 32px;">
+    Tucked into a centuries-old street in the historic centre of Villajoyosa, Calle Pou is a lovingly restored old town appartment where traditional Valencian architecture meets contemporary comfort.
+  </p>
+  <p class="reveal" style="font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:rgba(201,185,154,0.35);line-height:1.85;max-width:480px;margin:0 0 44px;">
+    La Vila Joiosa — the joyful town — has welcomed travellers, fishermen, and chocolate makers for over two thousand years. Today, MB Luxury Living brings its warmth and character to those who seek something beyond the ordinary: a private sanctuary, steps from the sea.
+  </p>
+  <div class="reveal" style="width:40px;height:1px;background:rgba(201,185,154,0.15);margin:0 auto 40px;"></div>
+  <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(201,185,154,0.2);">Calle Pou · 03570 Villajoyosa · España</span>
+</div>
+
+</div><!-- /tab-home -->
+
+<div id="tab-menu" class="tab-page">
 
 <!-- ═══════════ 01 — EL DESAYUNO ═══════════ -->
 <div class="page" id="section-01">
@@ -2769,7 +3342,7 @@
             <div class="menu-item-name-en">Fresh Oysters</div>
             <div class="menu-item-name-es">Ostras Frescas</div>
           </div>
-          <div class="menu-item-price">—,—</div>
+          <div class="menu-item-price">5,5 p.p</div>
         </div>
         <div class="menu-item-desc">
           Gallegas Nº 3 · 2 piezas por persona · Vinagreta de chalotas · Limón de Murcia
@@ -2787,7 +3360,7 @@
             <div class="menu-item-name-en">Artisan Oven Bread</div>
             <div class="menu-item-name-es">Pan Artesano del Horno</div>
           </div>
-          <div class="menu-item-price">—,—</div>
+          <div class="menu-item-price">4,5</div>
         </div>
         <div class="menu-item-desc">
           Pan de masa madre · Barra andaluza · Coca de aceite de oliva virgen extra · Horneado cada mañana
@@ -2804,7 +3377,7 @@
             <div class="menu-item-name-en">Accompaniments & Spreads</div>
             <div class="menu-item-name-es">Acompañamientos & Untables</div>
           </div>
-          <div class="menu-item-price">—,—</div>
+          <div class="menu-item-price">11,5</div>
         </div>
         <div class="menu-item-desc">
           Grated tomato with extra virgin olive oil · Herb butter · Orange blossom honey · Seasonal jams<br>
@@ -2823,7 +3396,7 @@
             <div class="menu-item-name-en">Seasonal Selection</div>
             <div class="menu-item-name-es">De Temporada</div>
           </div>
-          <div class="menu-item-price">—,—</div>
+          <div class="menu-item-price">17,5</div>
         </div>
         <div class="menu-item-desc">
           Frutas del mercado local · Granola de frutos secos andaluces
@@ -3143,7 +3716,38 @@
     <div class="nl-strip-title" data-i18n="nl-title">Letters from Calle Pou</div>
     <div class="nl-strip-sub">Seasonal menus, local stories from Villajoyosa &amp; early access to special offers — delivered quietly to your inbox.<br>Menús de temporada, historias locales y acceso anticipado a ofertas especiales.</div>
   </div>
-  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank" class="nl-btn" data-i18n="nl-btn">Subscribe</a>
+  <a href="https://YOUR-BEEHIIV-LINK.beehiiv.com/subscribe" target="_blank" class="nl-btn" data-i18n="nl-btn">Sign up for inspiration</a>
+</div>
+
+<!-- ═══════════ INSTAGRAM ═══════════ -->
+<div class="ig-section">
+
+  <div class="ig-header">
+    <div class="ig-eyebrow">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+      </svg>
+      <span>@mbluxuryliving.villa</span>
+    </div>
+    <h2 class="ig-title">What's<br><em>New</em></h2>
+    <p class="ig-sub">Latest from Villajoyosa — follow along for seasonal moments, local finds &amp; behind the scenes.</p>
+    <a class="ig-follow-btn" href="https://instagram.com/mbluxuryliving.villa" target="_blank" rel="noopener">
+      Follow on Instagram &nbsp;&rarr;
+    </a>
+  </div>
+
+  <!-- ── Latest post ── set src="your-image.jpg" and href="https://instagram.com/p/your-post-id" -->
+  <a class="ig-post ig-post-featured" href="https://instagram.com/mbluxuryliving.villa" target="_blank" rel="noopener">
+    <img src="" alt="Latest post · @mbluxuryliving.villa" class="ig-img">
+    <div class="ig-placeholder">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+      <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;margin-top:10px;color:rgba(201,185,154,0.25)">Latest Post</span>
+    </div>
+    <div class="ig-post-overlay"><span>View on Instagram</span></div>
+  </a>
+
 </div>
 
 <!-- ═══════════ FOOTER ═══════════ -->
@@ -3158,10 +3762,22 @@
 <!-- TAB: CLEANING -->
 <div id="tab-cleaning" class="tab-page">
 
-  <div style="background:var(--charcoal);padding:52px 52px 40px;border-bottom:1px solid rgba(201,185,154,0.15);">
+  <div style="background:var(--warm-white);padding:52px 52px 40px;border-bottom:1px solid var(--linen-deep);">
     <span data-i18n="hk-eyebrow" style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:10px;">Housekeeping &nbsp;·&nbsp; Servicio de Limpieza</span>
-    <h2 data-i18n-html="hk-title" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--warm-white);line-height:1.1;margin-bottom:12px;">Housekeeping<br><em>&amp; Comfort</em></h2>
-    <p data-i18n-html="hk-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.45);line-height:1.6;">Select what you need and we will be with you shortly.</p>
+    <h2 data-i18n-html="hk-title" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;color:var(--charcoal);line-height:1.1;margin-bottom:12px;">Housekeeping<br><em style="color:var(--bark);">&amp; Comfort</em></h2>
+    <p data-i18n-html="hk-desc" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(44,37,32,0.45);line-height:1.6;">Select what you need and we will be with you shortly.</p>
+  </div>
+
+  <div class="hk-image-space">
+    <!-- To add a photo: replace the placeholder below with <img src="your-image.jpg" alt="Housekeeping"> -->
+    <div class="hk-image-placeholder">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <span>Photo</span>
+    </div>
   </div>
 
   <div style="background:var(--cream);">
@@ -4389,6 +5005,335 @@
 
 </div><!-- /tab-surrounding -->
 
+<!-- ═══════════ CHECK IN WIZARD ═══════════ -->
+<div id="tab-checkin" class="tab-page">
+
+  <!-- Hero -->
+  <div class="ci-hero">
+    <span class="ci-hero-eyebrow">MB Luxury Living · Villajoyosa</span>
+    <h2 class="ci-hero-title">Guest <em>Check In</em></h2>
+    <p class="ci-hero-sub">Please complete your guest information form. This takes about 2 minutes and guides you through each step.</p>
+  </div>
+
+  <!-- Step progress -->
+  <div class="ci-progress" id="ci-progress">
+    <div class="ci-step-indicator active" id="ci-ind-1">
+      <div class="ci-step-num">1</div>
+      <span class="ci-step-label">Reservation</span>
+    </div>
+    <div class="ci-step-indicator" id="ci-ind-2">
+      <div class="ci-step-num">2</div>
+      <span class="ci-step-label">Guests</span>
+    </div>
+    <div class="ci-step-indicator" id="ci-ind-3">
+      <div class="ci-step-num">3</div>
+      <span class="ci-step-label">Contact</span>
+    </div>
+    <div class="ci-step-indicator" id="ci-ind-4">
+      <div class="ci-step-num">4</div>
+      <span class="ci-step-label">Review</span>
+    </div>
+  </div>
+
+  <!-- ── STEP 1: Reservation Info ── -->
+  <div class="ci-panel active" id="ci-step-1">
+    <div class="ci-form-area">
+      <div class="ci-section-title">Reservation <em>Details</em></div>
+      <p class="ci-section-sub">Please enter your reservation code and dates as provided in your booking confirmation.</p>
+
+      <div class="ci-guest-block">
+        <span class="ci-guest-block-title">Booking Information</span>
+        <div class="ci-row">
+          <div class="ci-group">
+            <label for="ci-reservation-code">Reservation Code</label>
+            <input type="text" id="ci-reservation-code" placeholder="e.g. MB-2025-0042" />
+          </div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group">
+            <label for="ci-checkin-date">Check In Date</label>
+            <input type="date" id="ci-checkin-date" />
+          </div>
+          <div class="ci-group">
+            <label for="ci-checkout-date">Check Out Date</label>
+            <input type="date" id="ci-checkout-date" />
+          </div>
+        </div>
+      </div>
+
+      <div class="ci-nav">
+        <span></span>
+        <button class="ci-btn-next" onclick="ciNext(1)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: All Guests ── -->
+  <div class="ci-panel" id="ci-step-2">
+    <div class="ci-form-area">
+      <div class="ci-section-title">Guest <em>Information</em></div>
+      <p class="ci-section-sub">Please complete Guest 1. Add additional guests using the button below each entry.</p>
+
+      <!-- Guest 1 (always shown) -->
+      <div class="ci-guest-block" id="ci-g1-block">
+        <span class="ci-guest-block-title">Guest #1</span>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group">
+            <label for="ci-g1-last">Last Name</label>
+            <input type="text" id="ci-g1-last" placeholder="Last name" />
+          </div>
+          <div class="ci-group">
+            <label for="ci-g1-first">First Name</label>
+            <input type="text" id="ci-g1-first" placeholder="First name" />
+          </div>
+        </div>
+        <div class="ci-row ci-row-doc">
+          <div class="ci-group">
+            <label for="ci-g1-doctype">Document Type</label>
+            <select id="ci-g1-doctype">
+              <option value="">Select…</option>
+              <option value="Passport">Passport</option>
+              <option value="ID">ID Card</option>
+            </select>
+          </div>
+          <div class="ci-group">
+            <label for="ci-g1-id">Document Number</label>
+            <input type="text" id="ci-g1-id" placeholder="Document number" />
+          </div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group">
+            <label for="ci-g1-email">Mail we can reach you</label>
+            <input type="email" id="ci-g1-email" placeholder="email@example.com" />
+          </div>
+          <div class="ci-group">
+            <label for="ci-g1-gender">Gender</label>
+            <select id="ci-g1-gender">
+              <option value="">Select…</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group">
+            <label for="ci-g1-phone">Phone Number</label>
+            <input type="tel" id="ci-g1-phone" placeholder="+34 600 000 000" />
+          </div>
+        </div>
+      </div>
+      <button class="ci-add-guest-btn" id="ci-add-g2" onclick="ciShowGuest(2)">+ Add another guest</button>
+
+      <!-- Guest 2 -->
+      <div class="ci-guest-block" id="ci-g2-block" style="display:none;">
+        <span class="ci-guest-block-title">Guest #2</span>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g2-last">Last Name</label><input type="text" id="ci-g2-last" placeholder="Last name" /></div>
+          <div class="ci-group"><label for="ci-g2-first">First Name</label><input type="text" id="ci-g2-first" placeholder="First name" /></div>
+        </div>
+        <div class="ci-row ci-row-doc">
+          <div class="ci-group"><label for="ci-g2-doctype">Document Type</label>
+            <select id="ci-g2-doctype"><option value="">Select…</option><option value="Passport">Passport</option><option value="ID">ID Card</option></select>
+          </div>
+          <div class="ci-group"><label for="ci-g2-id">Document Number</label><input type="text" id="ci-g2-id" placeholder="Document number" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g2-email">Mail we can reach you</label><input type="email" id="ci-g2-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g2-gender">Gender</label>
+            <select id="ci-g2-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g2-phone">Phone Number</label><input type="tel" id="ci-g2-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+      </div>
+      <button class="ci-add-guest-btn" id="ci-add-g3" onclick="ciShowGuest(3)" style="display:none;">+ Add another guest</button>
+
+      <!-- Guest 3 -->
+      <div class="ci-guest-block" id="ci-g3-block" style="display:none;">
+        <span class="ci-guest-block-title">Guest #3</span>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g3-last">Last Name</label><input type="text" id="ci-g3-last" placeholder="Last name" /></div>
+          <div class="ci-group"><label for="ci-g3-first">First Name</label><input type="text" id="ci-g3-first" placeholder="First name" /></div>
+        </div>
+        <div class="ci-row ci-row-doc">
+          <div class="ci-group"><label for="ci-g3-doctype">Document Type</label>
+            <select id="ci-g3-doctype"><option value="">Select…</option><option value="Passport">Passport</option><option value="ID">ID Card</option></select>
+          </div>
+          <div class="ci-group"><label for="ci-g3-id">Document Number</label><input type="text" id="ci-g3-id" placeholder="Document number" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g3-email">Mail we can reach you</label><input type="email" id="ci-g3-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g3-gender">Gender</label>
+            <select id="ci-g3-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g3-phone">Phone Number</label><input type="tel" id="ci-g3-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+      </div>
+      <button class="ci-add-guest-btn" id="ci-add-g4" onclick="ciShowGuest(4)" style="display:none;">+ Add another guest</button>
+
+      <!-- Guest 4 -->
+      <div class="ci-guest-block" id="ci-g4-block" style="display:none;">
+        <span class="ci-guest-block-title">Guest #4</span>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g4-last">Last Name</label><input type="text" id="ci-g4-last" placeholder="Last name" /></div>
+          <div class="ci-group"><label for="ci-g4-first">First Name</label><input type="text" id="ci-g4-first" placeholder="First name" /></div>
+        </div>
+        <div class="ci-row ci-row-doc">
+          <div class="ci-group"><label for="ci-g4-doctype">Document Type</label>
+            <select id="ci-g4-doctype"><option value="">Select…</option><option value="Passport">Passport</option><option value="ID">ID Card</option></select>
+          </div>
+          <div class="ci-group"><label for="ci-g4-id">Document Number</label><input type="text" id="ci-g4-id" placeholder="Document number" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g4-email">Mail we can reach you</label><input type="email" id="ci-g4-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g4-gender">Gender</label>
+            <select id="ci-g4-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g4-phone">Phone Number</label><input type="tel" id="ci-g4-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+      </div>
+      <button class="ci-add-guest-btn" id="ci-add-g5" onclick="ciShowGuest(5)" style="display:none;">+ Add another guest</button>
+
+      <!-- Guest 5 -->
+      <div class="ci-guest-block" id="ci-g5-block" style="display:none;">
+        <span class="ci-guest-block-title">Guest #5</span>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g5-last">Last Name</label><input type="text" id="ci-g5-last" placeholder="Last name" /></div>
+          <div class="ci-group"><label for="ci-g5-first">First Name</label><input type="text" id="ci-g5-first" placeholder="First name" /></div>
+        </div>
+        <div class="ci-row ci-row-doc">
+          <div class="ci-group"><label for="ci-g5-doctype">Document Type</label>
+            <select id="ci-g5-doctype"><option value="">Select…</option><option value="Passport">Passport</option><option value="ID">ID Card</option></select>
+          </div>
+          <div class="ci-group"><label for="ci-g5-id">Document Number</label><input type="text" id="ci-g5-id" placeholder="Document number" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g5-email">Mail we can reach you</label><input type="email" id="ci-g5-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g5-gender">Gender</label>
+            <select id="ci-g5-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g5-phone">Phone Number</label><input type="tel" id="ci-g5-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+      </div>
+      <button class="ci-add-guest-btn" id="ci-add-g6" onclick="ciShowGuest(6)" style="display:none;">+ Add another guest</button>
+
+      <!-- Guest 6 -->
+      <div class="ci-guest-block" id="ci-g6-block" style="display:none;">
+        <span class="ci-guest-block-title">Guest #6</span>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g6-last">Last Name</label><input type="text" id="ci-g6-last" placeholder="Last name" /></div>
+          <div class="ci-group"><label for="ci-g6-first">First Name</label><input type="text" id="ci-g6-first" placeholder="First name" /></div>
+        </div>
+        <div class="ci-row ci-row-doc">
+          <div class="ci-group"><label for="ci-g6-doctype">Document Type</label>
+            <select id="ci-g6-doctype"><option value="">Select…</option><option value="Passport">Passport</option><option value="ID">ID Card</option></select>
+          </div>
+          <div class="ci-group"><label for="ci-g6-id">Document Number</label><input type="text" id="ci-g6-id" placeholder="Document number" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g6-email">Mail we can reach you</label><input type="email" id="ci-g6-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g6-gender">Gender</label>
+            <select id="ci-g6-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g6-phone">Phone Number</label><input type="tel" id="ci-g6-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+      </div>
+
+      <div class="ci-nav">
+        <button class="ci-btn-back" onclick="ciBack(2)">← Back</button>
+        <button class="ci-btn-next" onclick="ciNext(2)">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: Contact & Address ── -->
+  <div class="ci-panel" id="ci-step-3">
+    <div class="ci-form-area">
+      <div class="ci-section-title">Contact &amp; <em>Address</em></div>
+      <p class="ci-section-sub">Required for pre-departure communications. Please provide at least one email address.</p>
+
+      <div class="ci-guest-block">
+        <span class="ci-guest-block-title">Email</span>
+        <div class="ci-row">
+          <div class="ci-group">
+            <label for="ci-email">Primary Email Address(es)</label>
+            <input type="email" id="ci-email" placeholder="your@email.com" />
+          </div>
+        </div>
+      </div>
+
+      <div class="ci-guest-block">
+        <span class="ci-guest-block-title">Primary Mailing Address</span>
+        <div class="ci-row">
+          <div class="ci-group">
+            <label for="ci-addr1-street">Street Address</label>
+            <input type="text" id="ci-addr1-street" placeholder="Street address (or P.O. Box + shipping address below)" />
+          </div>
+        </div>
+        <div class="ci-row ci-row-3">
+          <div class="ci-group">
+            <label for="ci-addr1-city">City</label>
+            <input type="text" id="ci-addr1-city" placeholder="City" />
+          </div>
+          <div class="ci-group">
+            <label for="ci-addr1-state">State / Region</label>
+            <input type="text" id="ci-addr1-state" placeholder="State" />
+          </div>
+          <div class="ci-group">
+            <label for="ci-addr1-zip">ZIP / Postal Code</label>
+            <input type="text" id="ci-addr1-zip" placeholder="ZIP" />
+          </div>
+        </div>
+      </div>
+
+      <div class="ci-nav">
+        <button class="ci-btn-back" onclick="ciBack(3)">← Back</button>
+        <button class="ci-btn-next" onclick="ciNext(3)">Review →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: Review & Submit ── -->
+  <div class="ci-panel" id="ci-step-4">
+    <div class="ci-form-area">
+      <div class="ci-section-title"><em>Review</em> &amp; Submit</div>
+      <p class="ci-section-sub">Please review your information before submitting. Your completed form will be sent directly to us.</p>
+
+      <div id="ci-review-content"></div>
+
+      <div id="ci-status" class="info"></div>
+      <div class="ci-nav">
+        <button class="ci-btn-back" onclick="ciBack(4)">← Back</button>
+        <button class="ci-btn-submit" id="ci-submit-btn" onclick="ciSubmit()">Submit Check In</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUCCESS ── -->
+  <div class="ci-success" id="ci-success">
+    <div class="ci-success-icon">✓</div>
+    <div class="ci-success-title">Welcome, <em>you're checked in.</em></div>
+    <p class="ci-success-sub">Your guest information has been received. We look forward to welcoming you to Calle Pou, Villajoyosa.</p>
+  </div>
+
+  <!-- footer -->
+  <div class="page-footer" style="margin-top:auto;">
+    <span>MB Luxury Living</span>
+    <span>Guest Check In</span>
+  </div>
+
+</div><!-- /tab-checkin -->
+
  ═══════════ -->
 <div id="order-panel">
   <div class="order-panel-head">
@@ -4766,11 +5711,295 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
 
   // TAB SWITCHING
   function switchTab(tab) {
+    var tabEl = document.getElementById('tab-' + tab);
+    if (!tabEl) return;
+    var btnEl = document.getElementById('tab-btn-' + tab);
     document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    document.getElementById('tab-btn-' + tab).classList.add('active');
+    tabEl.classList.add('active');
+    if (btnEl) btnEl.classList.add('active');
     window.scrollTo(0, 0);
+  }
+
+  // ══ CHECK IN WIZARD ══
+  let ciCurrentStep = 1;
+  const CI_TOTAL_STEPS = 4;
+
+  function ciGoTo(step) {
+    // Hide all panels
+    for (let i = 1; i <= CI_TOTAL_STEPS; i++) {
+      const panel = document.getElementById('ci-step-' + i);
+      const ind   = document.getElementById('ci-ind-' + i);
+      if (panel) panel.classList.remove('active');
+      if (ind) {
+        ind.classList.remove('active');
+        if (i < step) ind.classList.add('done');
+        else ind.classList.remove('done');
+      }
+    }
+    const target = document.getElementById('ci-step-' + step);
+    const indTarget = document.getElementById('ci-ind-' + step);
+    if (target) target.classList.add('active');
+    if (indTarget) { indTarget.classList.add('active'); indTarget.classList.remove('done'); }
+
+    // Success panel
+    document.getElementById('ci-success').classList.remove('active');
+
+    ciCurrentStep = step;
+    window.scrollTo({ top: document.getElementById('ci-progress').offsetTop - 56, behavior: 'smooth' });
+
+    // Build review on step 6
+    if (step === 4) ciBuildReview();
+  }
+
+  function ciNext(from) {
+    if (from === 2) {
+      const first = document.getElementById('ci-g1-first').value.trim();
+      const last  = document.getElementById('ci-g1-last').value.trim();
+      if (!first || !last) {
+        alert('Please enter at least the first and last name for Guest 1.');
+        return;
+      }
+    } else if (from === 3) {
+      const email = document.getElementById('ci-email').value.trim();
+      if (!email) {
+        alert('Please enter a primary email address.');
+        return;
+      }
+    }
+    ciGoTo(from + 1);
+  }
+
+  function ciBack(from) {
+    ciGoTo(from - 1);
+  }
+
+  function ciShowGuest(n) {
+    document.getElementById('ci-g' + n + '-block').style.display = 'block';
+    // The add button for guest n (which triggered this) — hide it
+    const addBtn = document.getElementById('ci-add-g' + n);
+    if (addBtn) addBtn.style.display = 'none';
+    // Show the add button for the next guest (if exists and not g1's own button)
+    if (n < 6) {
+      const nextBtn = document.getElementById('ci-add-g' + (n + 1));
+      if (nextBtn) nextBtn.style.display = 'block';
+    }
+  }
+
+  function ciVal(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  function ciGuestLine(n) {
+    const first = ciVal('ci-g' + n + '-first');
+    const last  = ciVal('ci-g' + n + '-last');
+    if (!first && !last) return null;
+    const doctype = ciVal('ci-g' + n + '-doctype');
+    const id      = ciVal('ci-g' + n + '-id');
+    const email   = ciVal('ci-g' + n + '-email');
+    const gender  = ciVal('ci-g' + n + '-gender');
+    const phone   = ciVal('ci-g' + n + '-phone');
+    let line = `Guest ${n}: ${last}, ${first}`;
+    if (doctype && id) line += ` · ${doctype}: ${id}`;
+    else if (id)       line += ` · Doc: ${id}`;
+    if (gender) line += ` · ${gender}`;
+    if (email)  line += `\n  Email: ${email}`;
+    if (phone)  line += ` · Phone: ${phone}`;
+    return line;
+  }
+
+  function ciBuildReview() {
+    const container = document.getElementById('ci-review-content');
+    container.innerHTML = '';
+
+    function addBlock(label, rows) {
+      const block = document.createElement('div');
+      block.className = 'ci-review-block';
+      const lbl = document.createElement('span');
+      lbl.className = 'ci-review-label';
+      lbl.textContent = label;
+      block.appendChild(lbl);
+      rows.forEach(([key, val]) => {
+        if (!val) return;
+        const row = document.createElement('div');
+        row.className = 'ci-review-row';
+        row.innerHTML = `<span class="ci-review-key">${key}</span><span class="ci-review-val">${val}</span>`;
+        block.appendChild(row);
+      });
+      container.appendChild(block);
+    }
+
+    addBlock('Reservation', [
+      ['Reservation Code', ciVal('ci-reservation-code')],
+      ['Check In',  ciVal('ci-checkin-date')],
+      ['Check Out', ciVal('ci-checkout-date')]
+    ]);
+
+    // Guests
+    for (let n = 1; n <= 6; n++) {
+      const first = ciVal('ci-g' + n + '-first');
+      const last  = ciVal('ci-g' + n + '-last');
+      if (!first && !last) continue;
+      const doctype = ciVal('ci-g' + n + '-doctype');
+      const id      = ciVal('ci-g' + n + '-id');
+      addBlock('Guest ' + n, [
+        ['Name', `${last}, ${first}`],
+        ['Document Type', doctype],
+        ['Document Number', id],
+        ['Gender', ciVal('ci-g' + n + '-gender')],
+        ['Email', ciVal('ci-g' + n + '-email')],
+        ['Phone', ciVal('ci-g' + n + '-phone')]
+      ]);
+    }
+
+    const addr1 = [ciVal('ci-addr1-street'), ciVal('ci-addr1-city'), ciVal('ci-addr1-state'), ciVal('ci-addr1-zip')].filter(Boolean).join(', ');
+    addBlock('Contact & Address', [
+      ['Email', ciVal('ci-email')],
+      ['Mailing Address', addr1]
+    ]);
+  }
+
+  function ciBuildCSV() {
+    const now        = new Date().toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short' });
+    const resCode    = ciVal('ci-reservation-code');
+    const checkinDt  = ciVal('ci-checkin-date');
+    const checkoutDt = ciVal('ci-checkout-date');
+    const contactEmail = ciVal('ci-email');
+    const addr1 = [ciVal('ci-addr1-street'), ciVal('ci-addr1-city'), ciVal('ci-addr1-state'), ciVal('ci-addr1-zip')].filter(Boolean).join(', ');
+
+    const headers = ['Submitted','Reservation Code','Check In','Check Out','Guest #','Last Name','First Name','Document Type','Document Number','Gender','Guest Email','Guest Phone','Contact Email','Mailing Address'];
+    const rows = [];
+
+    for (let n = 1; n <= 6; n++) {
+      const first = ciVal('ci-g' + n + '-first');
+      const last  = ciVal('ci-g' + n + '-last');
+      if (!first && !last) continue;
+      rows.push([
+        now,
+        resCode,
+        checkinDt,
+        checkoutDt,
+        n,
+        last,
+        first,
+        ciVal('ci-g' + n + '-doctype'),
+        ciVal('ci-g' + n + '-id'),
+        ciVal('ci-g' + n + '-gender'),
+        ciVal('ci-g' + n + '-email'),
+        ciVal('ci-g' + n + '-phone'),
+        contactEmail,
+        addr1
+      ]);
+    }
+
+    if (rows.length === 0) {
+      rows.push([now, resCode, checkinDt, checkoutDt, '', '', '', '', '', '', '', '', contactEmail, addr1]);
+    }
+
+    const escape = v => {
+      const s = String(v ?? '');
+      return s.includes(',') || s.includes('"') || s.includes('\n') ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+    const csvLines = [headers, ...rows].map(row => row.map(escape).join(','));
+    return '\uFEFF' + csvLines.join('\r\n'); // BOM for Excel UTF-8
+  }
+
+  function ciBuildTelegramMessage() {
+    const now = new Date().toLocaleString('en-GB', { dateStyle: 'long', timeStyle: 'short' });
+    let msg = `🏨 *GUEST CHECK IN · MB LUXURY LIVING*\n`;
+    msg += `─────────────────────\n`;
+    msg += `📅 Submitted: ${now}\n`;
+    msg += `🏠 Calle Pou · Villajoyosa · Costa Blanca\n`;
+    msg += `─────────────────────\n`;
+
+    const resCode    = ciVal('ci-reservation-code');
+    const checkinDt  = ciVal('ci-checkin-date');
+    const checkoutDt = ciVal('ci-checkout-date');
+    if (resCode)    msg += `🔑 Reservation Code: *${resCode}*\n`;
+    if (checkinDt)  msg += `📅 Check In:  ${checkinDt}\n`;
+    if (checkoutDt) msg += `📅 Check Out: ${checkoutDt}\n`;
+    msg += `\n`;
+
+    for (let n = 1; n <= 6; n++) {
+      const first = ciVal('ci-g' + n + '-first');
+      const last  = ciVal('ci-g' + n + '-last');
+      if (!first && !last) continue;
+      msg += `👤 *Guest ${n}:* ${last}, ${first}\n`;
+      const doctype = ciVal('ci-g' + n + '-doctype');
+      const id      = ciVal('ci-g' + n + '-id');
+      const gender  = ciVal('ci-g' + n + '-gender');
+      const email   = ciVal('ci-g' + n + '-email');
+      const phone   = ciVal('ci-g' + n + '-phone');
+      if (doctype && id) msg += `   ${doctype}: ${id}\n`;
+      else if (id)       msg += `   Doc: ${id}\n`;
+      if (gender) msg += `   Gender: ${gender}\n`;
+      if (email)  msg += `   Email: ${email}\n`;
+      if (phone)  msg += `   Phone: ${phone}\n`;
+    }
+
+    const email  = ciVal('ci-email');
+    const addr1  = [ciVal('ci-addr1-street'), ciVal('ci-addr1-city'), ciVal('ci-addr1-state'), ciVal('ci-addr1-zip')].filter(Boolean).join(', ');
+
+    msg += `─────────────────────\n`;
+    if (email) msg += `📧 Email: ${email}\n`;
+    if (addr1) msg += `📮 Mailing Address: ${addr1}\n`;
+    msg += `─────────────────────\n`;
+    msg += `_Sent via Guest Check In · Calle Pou App_`;
+    return msg;
+  }
+
+  async function ciSubmit() {
+    const btn = document.getElementById('ci-submit-btn');
+    const statusEl = document.getElementById('ci-status');
+
+    btn.disabled = true;
+    statusEl.className = 'info';
+    statusEl.textContent = 'Sending your information…';
+
+    if (TELEGRAM_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'PASTE_YOUR_CHAT_ID_HERE') {
+      statusEl.className = 'error';
+      statusEl.textContent = '⚠️ Telegram not configured — contact MB Luxury Living directly.';
+      btn.disabled = false;
+      return;
+    }
+
+    const msg = ciBuildTelegramMessage();
+    const csv = ciBuildCSV();
+    const now = new Date().toISOString().slice(0,10);
+    try {
+      // Send text message
+      const resMsg = await fetch('https://api.telegram.org/bot' + TELEGRAM_TOKEN + '/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg, parse_mode: 'Markdown' })
+      });
+      const dataMsg = await resMsg.json();
+      if (!dataMsg.ok) throw new Error(dataMsg.description || 'Message send failed');
+
+      // Send CSV as Excel-compatible document
+      const formData = new FormData();
+      formData.append('chat_id', TELEGRAM_CHAT_ID);
+      formData.append('caption', '📊 Guest check-in data (Excel)');
+      formData.append('document', new Blob([csv], { type: 'text/csv;charset=utf-8' }), `checkin_${now}.csv`);
+      await fetch('https://api.telegram.org/bot' + TELEGRAM_TOKEN + '/sendDocument', {
+        method: 'POST',
+        body: formData
+      });
+
+      // Show success screen
+      document.querySelectorAll('.ci-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.ci-step-indicator').forEach(ind => {
+        ind.classList.remove('active');
+        ind.classList.add('done');
+      });
+      document.getElementById('ci-success').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      statusEl.className = 'error';
+      statusEl.textContent = 'Could not send — please try again or contact help@mbluxuryliving.com';
+      btn.disabled = false;
+    }
   }
 
   // CLEANING SERVICE
@@ -5260,7 +6489,7 @@ var T = {
     'info-request-val':       'With pleasure',
     'nl-label':               'Stay in Touch',
     'nl-title':               'Letters from Calle Pou',
-    'nl-btn':                 'Subscribe',
+    'nl-btn':                 'Sign up for inspiration',
     'order-title':            'Your Order',
     'hk-eyebrow':             'Housekeeping',
     'hk-title':               'Housekeeping<br><em>&amp; Comfort</em>',
@@ -5395,7 +6624,7 @@ var T = {
     'info-request-val':       'Mit Vergnügen',
     'nl-label':               'Bleiben Sie informiert',
     'nl-title':               'Briefe aus Calle Pou',
-    'nl-btn':                 'Abonnieren',
+    'nl-btn':                 'Für Inspiration anmelden',
     'order-title':            'Ihre Bestellung',
     'hk-eyebrow':             'Housekeeping',
     'hk-title':               'Housekeeping<br><em>&amp; Komfort</em>',
@@ -5530,7 +6759,7 @@ var T = {
     'info-request-val':       'Con mucho gusto',
     'nl-label':               'Mantenerse al Día',
     'nl-title':               'Cartas desde Calle Pou',
-    'nl-btn':                 'Suscribirse',
+    'nl-btn':                 'Recibir inspiración',
     'order-title':            'Su Pedido',
     'hk-eyebrow':             'Servicio de Limpieza',
     'hk-title':               'Limpieza<br><em>&amp; Confort</em>',
@@ -5665,7 +6894,7 @@ var T = {
     'info-request-val':       'Avec plaisir',
     'nl-label':               'Rester informé',
     'nl-title':               'Lettres de Calle Pou',
-    'nl-btn':                 'S\'abonner',
+    'nl-btn':                 'S\'inscrire pour l\'inspiration',
     'order-title':            'Votre Commande',
     'hk-eyebrow':             'Ménage',
     'hk-title':               'Ménage<br><em>&amp; Confort</em>',
@@ -5800,7 +7029,7 @@ var T = {
     'info-request-val':       'Med glede',
     'nl-label':               'Hold deg oppdatert',
     'nl-title':               'Brev fra Calle Pou',
-    'nl-btn':                 'Abonner',
+    'nl-btn':                 'Meld deg på inspirasjon',
     'order-title':            'Din Bestilling',
     'hk-eyebrow':             'Rengjøring',
     'hk-title':               'Rengjøring<br><em>&amp; Komfort</em>',
@@ -6135,11 +7364,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- DASHBOARD -->
       <div class="p-view" id="pview-dash">
+        <!-- Weather greeting -->
+        <div class="dash-weather" id="dash-weather">
+          <div class="dash-weather-temp" id="dash-weather-temp">—</div>
+          <div class="dash-weather-loc">Villajoyosa &nbsp;·&nbsp; Costa Blanca</div>
+          <div class="dash-weather-desc" id="dash-weather-desc">&nbsp;</div>
+        </div>
+
+        <div id="dash-preview-badge" class="dash-preview-badge" style="display:none">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview Access
+        </div>
         <div class="dash-greeting">Hello, <em id="dash-name">Member</em></div>
         <div class="dash-points-bar">
           <div><div class="dash-pts-num" id="dash-pts">0</div><div class="dash-pts-label">MB Points</div></div>
           <div class="dash-pts-info">Earn points with every<br>purchase at Calle Pou</div>
         </div>
+
+        <!-- Tier badge -->
+        <div class="dash-tier" id="dash-tier">
+          <div class="dash-tier-row">
+            <div class="dash-tier-name" id="dash-tier-name">Member</div>
+            <div class="dash-tier-label">Status</div>
+          </div>
+          <div class="dash-tier-bar"><div class="dash-tier-fill" id="dash-tier-fill" style="width:0%"></div></div>
+          <div class="dash-tier-next" id="dash-tier-next"></div>
+        </div>
+
         <div class="dash-section-title">Purchases &amp; points earned</div>
         <div class="dash-items" id="dash-purchases"></div>
         <div class="dash-section-title">Pending requests</div>
@@ -6156,7 +7407,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="dash-section-title">Registered members</div>
         <div style="overflow-x:auto">
           <table class="admin-table" id="admin-table">
-            <thead><tr><th>Name</th><th>Email</th><th>Joined</th><th>Points</th><th>Code</th></tr></thead>
+            <thead><tr><th>Name</th><th>Email</th><th>Joined</th><th>Points</th><th>Tier</th><th>Preview</th><th>Code</th></tr></thead>
             <tbody id="admin-tbody"></tbody>
           </table>
         </div>
@@ -6254,11 +7505,60 @@ function doJoin(){
   setTimeout(renderDash,900);
 }
 
+function getTierInfo(pts, override) {
+  var overrideMap = {
+    'Silver':          { name:'Silver',          color:'#b0b8c1',               fillColor:'#b0b8c1',                                    next:'Tier set by admin', pct:100 },
+    'Frequent Booker': { name:'Frequent Booker', color:'var(--moss)',            fillColor:'var(--moss)',                                 next:'Tier set by admin', pct:100 },
+    'HON Circle':      { name:'HON Circle',      color:'#D4AF6A',               fillColor:'linear-gradient(90deg,#C9B99A,#D4AF6A)',      next:'Top tier — HON Circle', pct:100 }
+  };
+  if (override && overrideMap[override]) return overrideMap[override];
+  if (pts >= 50) return { name:'HON Circle',     color:'#D4AF6A',               fillColor:'linear-gradient(90deg,#C9B99A,#D4AF6A)',      next:'Top tier — HON Circle', pct:100 };
+  if (pts >= 20) return { name:'Frequent Booker',color:'var(--moss)',            fillColor:'var(--moss)',                                 next:'HON Circle at 50 pts · '+(50-pts)+' to go', pct:Math.round((pts-20)/30*100) };
+  if (pts >= 5)  return { name:'Silver',         color:'#b0b8c1',               fillColor:'#b0b8c1',                                    next:'Frequent Booker at 20 pts · '+(20-pts)+' to go', pct:Math.round((pts-5)/15*100) };
+  return                { name:'Member',         color:'rgba(201,185,154,0.45)',fillColor:'rgba(201,185,154,0.3)',                       next:'Silver at 5 pts · '+(5-pts)+' to go', pct:Math.round(pts/5*100) };
+}
+
+async function fetchWeather() {
+  try {
+    var r = await fetch('https://wttr.in/Villajoyosa?format=%t|%C', {cache:'no-store'});
+    if (!r.ok) throw new Error();
+    var txt = await r.text(); // "+22°C|Partly cloudy"
+    var parts = txt.trim().split('|');
+    document.getElementById('dash-weather-temp').textContent = parts[0] ? parts[0].replace('+','') : '—';
+    document.getElementById('dash-weather-desc').textContent = parts[1] ? parts[1].trim() : '';
+  } catch(e) {
+    document.getElementById('dash-weather-temp').textContent = '—';
+    document.getElementById('dash-weather-desc').textContent = '';
+  }
+}
+
 function renderDash(){
+  // Always re-read from localStorage so admin changes (tier, preview) are reflected immediately
+  var fresh = mbGetMembers().find(function(m){ return m.email === mbCurrentUser.email; });
+  if (fresh) mbCurrentUser = fresh;
+
   document.getElementById('ptab-dash').style.display='';
   document.getElementById('ptab-admin').style.display='none';
   document.getElementById('dash-name').textContent=mbCurrentUser.first;
-  document.getElementById('dash-pts').textContent=(mbCurrentUser.points||0).toLocaleString();
+  var pts = mbCurrentUser.points || 0;
+  document.getElementById('dash-pts').textContent=pts.toLocaleString();
+
+  // Preview badge
+  var pbadge = document.getElementById('dash-preview-badge');
+  if (pbadge) pbadge.style.display = mbCurrentUser.preview ? 'inline-flex' : 'none';
+
+  // Tier
+  var tier = getTierInfo(pts, mbCurrentUser.tierOverride || null);
+  var nameEl = document.getElementById('dash-tier-name');
+  var fillEl = document.getElementById('dash-tier-fill');
+  nameEl.textContent = tier.name;
+  nameEl.style.color = tier.color;
+  fillEl.style.background = tier.fillColor;
+  fillEl.style.width = tier.pct + '%';
+  document.getElementById('dash-tier-next').textContent = tier.next;
+
+  // Weather
+  fetchWeather();
   var all=mbGetActivity();
   var mine=all.filter(function(a){return a.email===mbCurrentUser.email;});
   var purch=mine.filter(function(a){return a.type==='purchase';});
@@ -6270,16 +7570,58 @@ function renderDash(){
   showPView('dash');
 }
 
+function adminRowHtml(m) {
+  var tierOpts = ['','Silver','Frequent Booker','HON Circle'];
+  var cur = m.tierOverride || '';
+  var autoTier = getTierInfo(m.points||0).name;
+  var sel = '<select class="admin-tier-select" onchange="adminSetTier(\''+m.email+'\',this.value)">';
+  tierOpts.forEach(function(t){
+    sel += '<option value="'+t+'"'+(t===cur?' selected':'')+'>'+( t===''?'Auto ('+autoTier+')':t )+'</option>';
+  });
+  sel += '</select>';
+  var prevOn = !!m.preview;
+  var prevBtn = '<button class="admin-preview-btn'+(prevOn?' on':'')+'" onclick="adminTogglePreview(\''+m.email+'\')">'+(prevOn?'On':'Off')+'</button>';
+  return '<tr>'
+    +'<td>'+m.first+' '+m.last+'</td>'
+    +'<td style="font-size:12px;font-family:\'Jost\',sans-serif;letter-spacing:0.05em">'+m.email+'</td>'
+    +'<td>'+m.joined+'</td>'
+    +'<td class="admin-pts-cell">'+(m.points||0)+'</td>'
+    +'<td>'+sel+'</td>'
+    +'<td>'+prevBtn+'</td>'
+    +'<td>'+m.code+'</td>'
+    +'</tr>';
+}
+
 function renderAdmin(){
   document.getElementById('ptab-admin').style.display='';
   document.getElementById('ptab-dash').style.display='none';
   var members=mbGetMembers();
   var all=mbGetActivity();
   var tb=document.getElementById('admin-tbody');
-  tb.innerHTML=members.length?members.map(function(m){return '<tr><td>'+m.first+' '+m.last+'</td><td>'+m.email+'</td><td>'+m.joined+'</td><td class="admin-pts-cell">'+(m.points||0)+'</td><td>'+m.code+'</td></tr>';}).join(''):'<tr><td colspan="5" style="color:rgba(201,185,154,0.25);font-style:italic;padding:16px 12px">No members yet.</td></tr>';
+  tb.innerHTML=members.length
+    ? members.map(adminRowHtml).join('')
+    : '<tr><td colspan="7" style="color:rgba(201,185,154,0.25);font-style:italic;padding:16px 12px">No members yet.</td></tr>';
   var aEl=document.getElementById('admin-activity');
   aEl.innerHTML=all.length?all.slice().reverse().map(function(a){return '<div class="dash-item"><span class="dash-item-name">'+a.item+'</span><span class="dash-item-date">'+a.email+' · '+a.date+'</span><span class="dash-item-pts">'+(a.pts?'+'+a.pts+' pts':'')+'</span><span class="dash-item-status '+(a.status||'done')+'">'+(a.status||'done')+'</span></div>';}).join(''):'<div class="dash-empty">No activity yet.</div>';
   showPView('admin');
+}
+
+function adminSetTier(email, tierOverride) {
+  var members = mbGetMembers();
+  var m = members.find(function(x){ return x.email===email; });
+  if (!m) return;
+  m.tierOverride = tierOverride || null;
+  mbSaveMembers(members);
+  renderAdmin();
+}
+
+function adminTogglePreview(email) {
+  var members = mbGetMembers();
+  var m = members.find(function(x){ return x.email===email; });
+  if (!m) return;
+  m.preview = !m.preview;
+  mbSaveMembers(members);
+  renderAdmin();
 }
 
 function doLogout(){
