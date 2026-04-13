@@ -4118,6 +4118,19 @@
       <div class="tips-pill-sub" data-i18n="tips-waste-sub">&amp; Insects</div>
     </button>
 
+    <button class="tips-pill" onclick="selectTip('safe')" id="tip-pill-safe">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 9v-2M12 17v-2M9 12H7M17 12h-2"/>
+          <circle cx="12" cy="12" r="1" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label">Safe</div>
+      <div class="tips-pill-sub">In-Room</div>
+    </button>
+
   </div>
 
   <!-- ══ PANEL: SONOS SPEAKER ══ -->
@@ -4861,6 +4874,222 @@
 
 </div><!-- /tip-panel-waste -->
 
+<!-- ══ PANEL: IN-ROOM SAFE ══ -->
+<div class="tips-panel" id="tip-panel-safe">
+
+  <!-- Hero -->
+  <div class="tips-hero">
+    <div class="tips-badge"><span class="tips-badge-dot"></span>Bedroom · In-Room Safe</div>
+    <div class="tips-hero-title reveal">Your <em>In-Room Safe</em></div>
+    <div class="tips-hero-desc reveal">Secure your valuables — passports, cash, jewellery. The keypad has digits 1–9, a return button bottom-left, and a key button bottom-right.</div>
+    <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+      <span class="scroll-cue-label">Scroll</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </div>
+
+  <!-- Keypad diagram -->
+  <div style="background:var(--charcoal); padding:40px 64px; border-bottom:1px solid rgba(201,185,154,0.08); display:flex; align-items:center; gap:64px; flex-wrap:wrap;" class="reveal">
+    <!-- Keypad visual -->
+    <div style="flex-shrink:0;">
+      <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);margin-bottom:16px;">Keypad Layout</div>
+      <div style="display:grid;grid-template-columns:repeat(3,44px);gap:6px;">
+        <!-- Row 1 -->
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">1</div>
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">2</div>
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">3</div>
+        <!-- Row 2 -->
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">4</div>
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">5</div>
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">6</div>
+        <!-- Row 3 -->
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">7</div>
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">8</div>
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.07);border:1px solid rgba(201,185,154,0.15);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-size:16px;font-weight:500;color:var(--sand);">9</div>
+        <!-- Row 4: return + key -->
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(201,185,154,0.04);border:1px solid rgba(201,185,154,0.1);display:flex;align-items:center;justify-content:center;color:rgba(201,185,154,0.5);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+        </div>
+        <div style="width:44px;height:44px;"></div>
+        <div style="width:44px;height:44px;border-radius:6px;background:rgba(58,125,68,0.12);border:1px solid rgba(58,125,68,0.3);display:flex;align-items:center;justify-content:center;color:#3a7d44;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="15" r="4"/><path d="M12 15h8M16 11v4"/></svg>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;padding:0 2px;">
+        <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(201,185,154,0.35);">← Return</div>
+        <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(58,125,68,0.6);">Key →</div>
+      </div>
+    </div>
+    <!-- Legend -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:36px;height:36px;border-radius:6px;background:rgba(201,185,154,0.04);border:1px solid rgba(201,185,154,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(201,185,154,0.5)" stroke-width="1.8" stroke-linecap="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,185,154,0.45);margin-bottom:3px;">Return — bottom left</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(253,250,247,0.55);">Enter programming mode to change your code</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div style="width:36px;height:36px;border-radius:6px;background:rgba(58,125,68,0.12);border:1px solid rgba(58,125,68,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7d44" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="15" r="4"/><path d="M12 15h8M16 11v4"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(58,125,68,0.7);margin-bottom:3px;">Key — bottom right</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;color:rgba(253,250,247,0.55);">Activate &amp; confirm — used to open the safe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notice -->
+  <div class="tips-notice reveal">
+    <span class="tips-notice-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </span>
+    <div class="tips-notice-text">
+      <strong>Default code is 7777.</strong> We recommend setting your own personal code on arrival. If you forget your code, please contact us and we will assist you.
+    </div>
+  </div>
+
+  <!-- ── Opening the safe ── -->
+  <div class="tips-method">
+    <div class="tips-method-header reveal">
+      <div class="tips-method-letter green">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+          <circle cx="8" cy="15" r="4"/><path d="M12 15h8M16 11v4"/>
+        </svg>
+      </div>
+      <div class="tips-method-title-wrap">
+        <div class="tips-method-title">Opening the Safe</div>
+        <div class="tips-method-sub">Press key · Enter code · Press key · Pull handle</div>
+      </div>
+    </div>
+
+    <div class="reveal-stagger">
+      <div class="tips-step">
+        <div class="tips-step-num">1</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Press the key button</div>
+          <div class="tips-step-desc">Press the <strong>key symbol (bottom right)</strong> once to wake and activate the keypad.</div>
+          <span class="tips-step-tag" style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="15" r="3"/><path d="M11 15h7M15 12v3"/></svg>
+            Bottom-right key button
+          </span>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">2</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Enter your code</div>
+          <div class="tips-step-desc">Type your code on the number keys (1–9). <strong>Default code: 7 · 7 · 7 · 7</strong></div>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">3</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Press the key button again</div>
+          <div class="tips-step-desc">Press the <strong>key symbol</strong> to confirm. You will hear a beep and a click.</div>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">4</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Pull the handle open</div>
+          <div class="tips-step-desc">The door is now unlocked — <strong>pull the handle</strong> to open.</div>
+          <span class="tips-step-tag" style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Beep + click = unlocked
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="tips-divider reveal"><span>Change your code</span></div>
+
+  <!-- ── Changing the code ── -->
+  <div class="tips-method">
+    <div class="tips-method-header reveal">
+      <div class="tips-method-letter">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="tips-method-title-wrap">
+        <div class="tips-method-title">Setting a Personal Code</div>
+        <div class="tips-method-sub">Recommended on arrival · Replace the default 7777</div>
+      </div>
+    </div>
+
+    <div class="reveal-stagger">
+      <div class="tips-step">
+        <div class="tips-step-num">1</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Press the return button</div>
+          <div class="tips-step-desc">Press the <strong>return button (bottom left)</strong> to enter programming mode.</div>
+          <span class="tips-step-tag" style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+            Bottom-left return button
+          </span>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">2</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Enter the current code</div>
+          <div class="tips-step-desc">Type the <strong>current code</strong> (default: 7777), then press the <strong>key button</strong> to confirm.</div>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">3</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Enter your new code</div>
+          <div class="tips-step-desc">Type your chosen <strong>new code</strong> (any combination of 1–9). Use 4 digits minimum.</div>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">4</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Confirm with the key button</div>
+          <div class="tips-step-desc">Press the <strong>key button</strong> to save. A beep confirms your new code is set. <strong>Test it before closing the door.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key info bar -->
+  <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;">
+      The safe is located in the <strong>bedroom wardrobe</strong> — on the upper shelf.
+    </div>
+    <div style="flex-shrink:0; text-align:right;">
+      <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:var(--moss);margin-bottom:6px;">Need help?</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(253,250,247,0.4);">Contact us anytime<br>via WhatsApp</div>
+    </div>
+  </div>
+
+  <!-- Success banner -->
+  <div class="tips-success reveal">
+    <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(58,125,68,0.15);border:1.5px solid rgba(58,125,68,0.35);flex-shrink:0;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7d44" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </span>
+    <div class="tips-success-text"><strong style="color:#3a7d44;">Your valuables are secure.</strong> The safe is fully private — only you know your code.</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <span>Calle Pou · Villajoyosa</span>
+    <span>Tips &amp; Tricks</span>
+    <span>In-Room Safe</span>
+  </div>
+
+</div><!-- /tip-panel-safe -->
+
 
 
 </div><!-- /tab-tips -->
@@ -5327,8 +5556,8 @@
         </div>
         <div class="ci-row ci-row-2">
           <div class="ci-group">
-            <label for="ci-g1-email">Mail we can reach you</label>
-            <input type="email" id="ci-g1-email" placeholder="email@example.com" />
+            <label for="ci-g1-nationality">Nationality</label>
+            <input type="text" id="ci-g1-nationality" placeholder="e.g. German, Spanish, British" />
           </div>
           <div class="ci-group">
             <label for="ci-g1-gender">Gender</label>
@@ -5338,6 +5567,12 @@
               <option value="F">Female</option>
               <option value="Other">Other</option>
             </select>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group">
+            <label for="ci-g1-email">Mail we can reach you</label>
+            <input type="email" id="ci-g1-email" placeholder="email@example.com" />
           </div>
         </div>
         <div class="ci-row">
@@ -5363,10 +5598,13 @@
           <div class="ci-group"><label for="ci-g2-id">Document Number</label><input type="text" id="ci-g2-id" placeholder="Document number" /></div>
         </div>
         <div class="ci-row ci-row-2">
-          <div class="ci-group"><label for="ci-g2-email">Mail we can reach you</label><input type="email" id="ci-g2-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g2-nationality">Nationality</label><input type="text" id="ci-g2-nationality" placeholder="e.g. German, Spanish, British" /></div>
           <div class="ci-group"><label for="ci-g2-gender">Gender</label>
             <select id="ci-g2-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
           </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g2-email">Mail we can reach you</label><input type="email" id="ci-g2-email" placeholder="email@example.com" /></div>
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g2-phone">Phone Number</label><input type="tel" id="ci-g2-phone" placeholder="+34 600 000 000" /></div>
@@ -5388,10 +5626,13 @@
           <div class="ci-group"><label for="ci-g3-id">Document Number</label><input type="text" id="ci-g3-id" placeholder="Document number" /></div>
         </div>
         <div class="ci-row ci-row-2">
-          <div class="ci-group"><label for="ci-g3-email">Mail we can reach you</label><input type="email" id="ci-g3-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g3-nationality">Nationality</label><input type="text" id="ci-g3-nationality" placeholder="e.g. German, Spanish, British" /></div>
           <div class="ci-group"><label for="ci-g3-gender">Gender</label>
             <select id="ci-g3-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
           </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g3-email">Mail we can reach you</label><input type="email" id="ci-g3-email" placeholder="email@example.com" /></div>
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g3-phone">Phone Number</label><input type="tel" id="ci-g3-phone" placeholder="+34 600 000 000" /></div>
@@ -5413,10 +5654,13 @@
           <div class="ci-group"><label for="ci-g4-id">Document Number</label><input type="text" id="ci-g4-id" placeholder="Document number" /></div>
         </div>
         <div class="ci-row ci-row-2">
-          <div class="ci-group"><label for="ci-g4-email">Mail we can reach you</label><input type="email" id="ci-g4-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g4-nationality">Nationality</label><input type="text" id="ci-g4-nationality" placeholder="e.g. German, Spanish, British" /></div>
           <div class="ci-group"><label for="ci-g4-gender">Gender</label>
             <select id="ci-g4-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
           </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g4-email">Mail we can reach you</label><input type="email" id="ci-g4-email" placeholder="email@example.com" /></div>
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g4-phone">Phone Number</label><input type="tel" id="ci-g4-phone" placeholder="+34 600 000 000" /></div>
@@ -5438,10 +5682,13 @@
           <div class="ci-group"><label for="ci-g5-id">Document Number</label><input type="text" id="ci-g5-id" placeholder="Document number" /></div>
         </div>
         <div class="ci-row ci-row-2">
-          <div class="ci-group"><label for="ci-g5-email">Mail we can reach you</label><input type="email" id="ci-g5-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g5-nationality">Nationality</label><input type="text" id="ci-g5-nationality" placeholder="e.g. German, Spanish, British" /></div>
           <div class="ci-group"><label for="ci-g5-gender">Gender</label>
             <select id="ci-g5-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
           </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g5-email">Mail we can reach you</label><input type="email" id="ci-g5-email" placeholder="email@example.com" /></div>
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g5-phone">Phone Number</label><input type="tel" id="ci-g5-phone" placeholder="+34 600 000 000" /></div>
@@ -5463,10 +5710,13 @@
           <div class="ci-group"><label for="ci-g6-id">Document Number</label><input type="text" id="ci-g6-id" placeholder="Document number" /></div>
         </div>
         <div class="ci-row ci-row-2">
-          <div class="ci-group"><label for="ci-g6-email">Mail we can reach you</label><input type="email" id="ci-g6-email" placeholder="email@example.com" /></div>
+          <div class="ci-group"><label for="ci-g6-nationality">Nationality</label><input type="text" id="ci-g6-nationality" placeholder="e.g. German, Spanish, British" /></div>
           <div class="ci-group"><label for="ci-g6-gender">Gender</label>
             <select id="ci-g6-gender"><option value="">Select…</option><option value="M">Male</option><option value="F">Female</option><option value="Other">Other</option></select>
           </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-group"><label for="ci-g6-email">Mail we can reach you</label><input type="email" id="ci-g6-email" placeholder="email@example.com" /></div>
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g6-phone">Phone Number</label><input type="tel" id="ci-g6-phone" placeholder="+34 600 000 000" /></div>
@@ -6084,6 +6334,7 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
       const id      = ciVal('ci-g' + n + '-id');
       addBlock('Guest ' + n, [
         ['Name', `${last}, ${first}`],
+        ['Nationality', ciVal('ci-g' + n + '-nationality')],
         ['Document Type', doctype],
         ['Document Number', id],
         ['Gender', ciVal('ci-g' + n + '-gender')],
@@ -6107,7 +6358,7 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     const contactEmail = ciVal('ci-email');
     const addr1 = [ciVal('ci-addr1-street'), ciVal('ci-addr1-city'), ciVal('ci-addr1-state'), ciVal('ci-addr1-zip')].filter(Boolean).join(', ');
 
-    const headers = ['Submitted','Reservation Code','Check In','Check Out','Guest #','Last Name','First Name','Document Type','Document Number','Gender','Guest Email','Guest Phone','Contact Email','Mailing Address'];
+    const headers = ['Submitted','Reservation Code','Check In','Check Out','Guest #','Last Name','First Name','Nationality','Document Type','Document Number','Gender','Guest Email','Guest Phone','Contact Email','Mailing Address'];
     const rows = [];
 
     for (let n = 1; n <= 6; n++) {
@@ -6122,6 +6373,7 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
         n,
         last,
         first,
+        ciVal('ci-g' + n + '-nationality'),
         ciVal('ci-g' + n + '-doctype'),
         ciVal('ci-g' + n + '-id'),
         ciVal('ci-g' + n + '-gender'),
@@ -6133,7 +6385,7 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     }
 
     if (rows.length === 0) {
-      rows.push([now, resCode, checkinDt, checkoutDt, '', '', '', '', '', '', '', '', contactEmail, addr1]);
+      rows.push([now, resCode, checkinDt, checkoutDt, '', '', '', '', '', '', '', '', '', contactEmail, addr1]);
     }
 
     const escape = v => {
@@ -6165,11 +6417,13 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
       const last  = ciVal('ci-g' + n + '-last');
       if (!first && !last) continue;
       msg += `👤 *Guest ${n}:* ${last}, ${first}\n`;
+      const nationality = ciVal('ci-g' + n + '-nationality');
       const doctype = ciVal('ci-g' + n + '-doctype');
       const id      = ciVal('ci-g' + n + '-id');
       const gender  = ciVal('ci-g' + n + '-gender');
       const email   = ciVal('ci-g' + n + '-email');
       const phone   = ciVal('ci-g' + n + '-phone');
+      if (nationality) msg += `   Nationality: ${nationality}\n`;
       if (doctype && id) msg += `   ${doctype}: ${id}\n`;
       else if (id)       msg += `   Doc: ${id}\n`;
       if (gender) msg += `   Gender: ${gender}\n`;
