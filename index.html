@@ -1659,7 +1659,7 @@
     flex-shrink: 0;
   }
   .tips-method-letter.green { background: #3a7d44; }
-  .tips-method-title-wrap {}
+  .tips-method-title-wrap { display: flex; flex-direction: column; }
   .tips-method-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 26px;
@@ -2103,6 +2103,7 @@
     outline: none;
     transition: border-color 0.2s;
     -webkit-appearance: none;
+    appearance: none;
   }
   #arrival-code-input::placeholder {
     color: rgba(201,185,154,0.2);
@@ -2398,6 +2399,7 @@
     outline: none;
     transition: border-color 0.2s;
     -webkit-appearance: none;
+    appearance: none;
   }
   .portal-field input::placeholder { color: rgba(201,185,154,0.18); }
   .portal-field input:focus { border-color: rgba(201,185,154,0.4); }
@@ -2579,7 +2581,7 @@
     background:rgba(201,185,154,0.04); border:1px solid rgba(201,185,154,0.14);
     color:var(--warm-white); font-family:'Jost',sans-serif; font-size:12px;
     letter-spacing:0.06em; padding:12px 16px; outline:none;
-    transition:border-color 0.2s; -webkit-appearance:none; border-radius:0;
+    transition:border-color 0.2s; -webkit-appearance:none; appearance:none; border-radius:0;
   }
   .p-field input::placeholder { color:rgba(201,185,154,0.16); }
   .p-field input:focus { border-color:rgba(201,185,154,0.38); }
@@ -2815,6 +2817,97 @@
     font-family: 'Jost', sans-serif;
     font-size: 9px; letter-spacing: 0.3em;
     text-transform: uppercase; color: var(--bark);
+  }
+
+  /* ══ EXPLORE FEATURE ══ */
+  .explore-feature {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    min-height: 500px;
+    border-bottom: 1px solid var(--linen-deep);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .explore-feature-media {
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+  }
+  .explore-feature-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .explore-feature:hover .explore-feature-img { transform: scale(1.04); }
+  .explore-feature-media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(44,37,32,0) 55%,
+      rgba(253,250,247,0.06) 100%
+    );
+    pointer-events: none;
+  }
+  .explore-feature-right {
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--warm-white);
+    border-left: 1px solid var(--linen-deep);
+    transition: background 0.4s;
+  }
+  .explore-feature:hover .explore-feature-right { background: var(--linen); }
+  .explore-feature-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.44em;
+    text-transform: uppercase;
+    color: rgba(44,37,32,0.3);
+    margin-bottom: 32px;
+  }
+  .explore-feature-num { color: var(--sand-light); }
+  .explore-feature-sep { color: var(--linen-deep); }
+  .explore-feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3.8vw, 54px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 0.97;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .explore-feature-title em { font-style: italic; color: var(--bark); }
+  .explore-feature-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(44,37,32,0.45);
+    line-height: 1.82;
+    margin-bottom: 36px;
+  }
+  .explore-feature-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(44,37,32,0.38);
+    transition: color 0.22s, gap 0.22s;
+  }
+  .explore-feature:hover .explore-feature-cta { color: var(--bark); gap: 16px; }
+  @media (max-width: 860px) {
+    .explore-feature { grid-template-columns: 1fr; }
+    .explore-feature-media { min-height: 280px; }
+    .explore-feature-right { border-left: none; border-top: 1px solid var(--linen-deep); padding: 52px 32px; }
   }
 
   /* ── Story section (landing page) ── */
@@ -3298,33 +3391,20 @@
 
   /* ══ HOUSEKEEPING FEATURE TILE ══ */
   .hk-feature {
-    position: relative;
     background: var(--charcoal);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 340px;
+    min-height: 380px;
     border-bottom: 1px solid rgba(201,185,154,0.08);
     cursor: pointer;
-    overflow: hidden;
-    transition: background 0.35s ease;
+    transition: background 0.4s ease;
   }
-  .hk-feature:hover { background: #1e1a17; }
-  .hk-feature-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(201,185,154,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,185,154,0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-  }
+  .hk-feature:hover { background: #1c1814; }
   .hk-feature-left {
-    position: relative;
-    z-index: 1;
-    padding: 56px 52px 56px 64px;
+    padding: 72px 56px 72px 72px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     border-right: 1px solid rgba(201,185,154,0.08);
   }
   .hk-feature-eyebrow {
@@ -3333,216 +3413,397 @@
     gap: 10px;
     font-family: 'Jost', sans-serif;
     font-size: 8px;
-    letter-spacing: 0.42em;
+    letter-spacing: 0.44em;
     text-transform: uppercase;
-    color: var(--moss);
-    margin-bottom: 20px;
+    color: rgba(201,185,154,0.35);
+    margin-bottom: 32px;
   }
-  .hk-feature-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    color: rgba(201,185,154,0.4);
-    letter-spacing: 0.05em;
-  }
-  .hk-feature-sep { color: rgba(201,185,154,0.2); }
+  .hk-feature-num { color: rgba(201,185,154,0.25); }
+  .hk-feature-sep { color: rgba(201,185,154,0.15); }
   .hk-feature-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 4vw, 56px);
+    font-size: clamp(38px, 4.2vw, 60px);
     font-weight: 300;
     color: var(--warm-white);
-    line-height: 1.0;
-    letter-spacing: -0.01em;
-    margin: 0 0 20px;
+    line-height: 0.97;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    flex: 1;
   }
   .hk-feature-title em { color: var(--sand); font-style: italic; }
   .hk-feature-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-style: italic;
-    color: rgba(201,185,154,0.5);
-    line-height: 1.75;
-    max-width: 360px;
-    margin: 0 0 32px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(201,185,154,0.42);
+    line-height: 1.8;
+    max-width: 320px;
+    margin: 0 0 40px;
   }
   .hk-feature-cta {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     font-family: 'Jost', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.38em;
+    font-size: 8px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: var(--sand);
-    border-bottom: 1px solid rgba(201,185,154,0.25);
-    padding-bottom: 6px;
-    width: fit-content;
-    transition: color 0.2s, border-color 0.2s, gap 0.2s;
+    color: rgba(201,185,154,0.45);
+    transition: color 0.22s, gap 0.22s;
   }
-  .hk-feature:hover .hk-feature-cta {
-    color: rgba(253,250,247,0.9);
-    border-color: rgba(201,185,154,0.5);
-    gap: 14px;
-  }
-  /* Right panel — service cards */
+  .hk-feature:hover .hk-feature-cta { color: var(--sand); gap: 16px; }
+  /* Right panel — typographic service list */
   .hk-feature-right {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-  .hk-card {
-    padding: 36px 36px 32px;
-    border-bottom: 1px solid rgba(201,185,154,0.07);
-    border-right: 1px solid rgba(201,185,154,0.07);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: background 0.25s;
+    justify-content: center;
   }
-  .hk-card:nth-child(2n) { border-right: none; }
-  .hk-card:nth-child(3), .hk-card:nth-child(4) { border-bottom: none; }
-  .hk-feature:hover .hk-card:hover { background: rgba(201,185,154,0.03); }
-  .hk-card-icon {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    border: 1px solid rgba(201,185,154,0.15);
-    background: rgba(201,185,154,0.05);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--sand);
-    transition: border-color 0.2s, background 0.2s;
-    flex-shrink: 0;
+  .hk-service-row {
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    padding: 28px 56px;
+    border-bottom: 1px solid rgba(201,185,154,0.07);
+    transition: background 0.18s;
   }
-  .hk-feature:hover .hk-card-icon {
-    border-color: rgba(201,185,154,0.3);
-    background: rgba(201,185,154,0.09);
-  }
-  .hk-card-label {
+  .hk-service-row:last-child { border-bottom: none; }
+  .hk-feature:hover .hk-service-row:hover { background: rgba(201,185,154,0.025); }
+  .hk-service-roman {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
+    font-size: 12px;
     font-weight: 300;
-    color: var(--warm-white);
-    line-height: 1.1;
+    color: rgba(201,185,154,0.2);
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    width: 18px;
   }
-  .hk-card-sub {
+  .hk-service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 300;
+    color: rgba(253,250,247,0.88);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .hk-service-detail {
     font-family: 'Jost', sans-serif;
-    font-size: 8px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(201,185,154,0.3);
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(201,185,154,0.32);
+    letter-spacing: 0.06em;
   }
   @media (max-width: 860px) {
     .hk-feature { grid-template-columns: 1fr; }
-    .hk-feature-left { border-right: none; border-bottom: 1px solid rgba(201,185,154,0.08); padding: 44px 32px; }
-    .hk-feature-right { grid-template-columns: 1fr 1fr; }
-    .hk-card { padding: 28px 24px; }
-  }
-  @media (max-width: 500px) {
-    .hk-feature-right { grid-template-columns: 1fr 1fr; }
-    .hk-card { padding: 22px 18px; }
-    .hk-card-label { font-size: 15px; }
+    .hk-feature-left { border-right: none; border-bottom: 1px solid rgba(201,185,154,0.08); padding: 52px 32px; }
+    .hk-service-row { padding: 22px 32px; }
   }
 
-  /* ══ AVAILABILITY TICKER ══ */
-  .avail-ticker {
-    position: relative;
-    background: #0e0d0c;
-    border-bottom: 1px solid rgba(201,185,154,0.1);
-    overflow: hidden;
-    height: 44px;
+  /* ══ ROOM SERVICE / CONCIERGE FEATURE ══ */
+  .rs-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 380px;
+    border-bottom: 1px solid var(--linen-deep);
+    cursor: pointer;
+    transition: background 0.4s;
+    background: var(--warm-white);
+  }
+  .rs-feature:hover { background: var(--linen); }
+  .rs-feature-left {
+    padding: 72px 56px 72px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--linen-deep);
+  }
+  .rs-feature-eyebrow {
     display: flex;
     align-items: center;
-    z-index: 10;
-  }
-  .avail-ticker-label {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 20px 0 18px;
-    height: 100%;
-    background: var(--bark);
-    position: relative;
-    z-index: 2;
-  }
-  .avail-ticker-label::after {
-    content: '';
-    position: absolute;
-    right: -10px; top: 0;
-    width: 0; height: 0;
-    border-top: 44px solid var(--bark);
-    border-right: 10px solid transparent;
-  }
-  .avail-ticker-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(253,250,247,0.9);
-    animation: ticker-pulse 1.6s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-  .avail-ticker-label-text {
+    gap: 10px;
     font-family: 'Jost', sans-serif;
     font-size: 8px;
-    letter-spacing: 0.42em;
+    letter-spacing: 0.44em;
     text-transform: uppercase;
-    color: rgba(253,250,247,0.92);
-    white-space: nowrap;
-    font-weight: 500;
+    color: rgba(44,37,32,0.3);
+    margin-bottom: 32px;
   }
-  .avail-ticker-track {
+  .rs-feature-num { color: var(--sand-light); }
+  .rs-feature-sep { color: var(--linen-deep); }
+  .rs-feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 4.2vw, 60px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 0.97;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
     flex: 1;
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
   }
-  .avail-ticker-inner {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    white-space: nowrap;
-    animation: ticker-scroll 32s linear infinite;
-    will-change: transform;
+  .rs-feature-title em { font-style: italic; color: var(--bark); }
+  .rs-feature-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(44,37,32,0.45);
+    line-height: 1.82;
+    max-width: 320px;
+    margin-bottom: 40px;
   }
-  .avail-ticker-inner:hover { animation-play-state: paused; }
-  .avail-ticker-item {
+  .rs-feature-cta {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 0 40px;
+    gap: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(44,37,32,0.38);
+    transition: color 0.22s, gap 0.22s;
   }
-  .avail-ticker-date {
+  .rs-feature:hover .rs-feature-cta { color: var(--bark); gap: 16px; }
+  .rs-feature-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .rs-menu-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 26px 56px;
+    border-bottom: 1px solid var(--linen-deep);
+    transition: background 0.18s;
+  }
+  .rs-menu-row:last-child { border-bottom: none; }
+  .rs-feature:hover .rs-menu-row:hover { background: rgba(92,74,53,0.03); }
+  .rs-menu-label {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--sand);
-    letter-spacing: 0.04em;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--charcoal);
+    letter-spacing: -0.01em;
+    margin-bottom: 5px;
   }
-  .avail-ticker-tag {
+  .rs-menu-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(44,37,32,0.38);
+    letter-spacing: 0.06em;
+  }
+  .rs-menu-tag {
     font-family: 'Jost', sans-serif;
     font-size: 7px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.34em;
     text-transform: uppercase;
-    color: rgba(58,125,68,0.85);
-    background: rgba(58,125,68,0.1);
-    border: 1px solid rgba(58,125,68,0.25);
-    padding: 2px 8px;
-    border-radius: 2px;
+    color: rgba(44,37,32,0.28);
+    flex-shrink: 0;
+    margin-left: 20px;
   }
-  .avail-ticker-sep {
-    font-size: 10px;
-    color: rgba(201,185,154,0.2);
-    padding: 0 8px;
+  @media (max-width: 860px) {
+    .rs-feature { grid-template-columns: 1fr; }
+    .rs-feature-left { border-right: none; border-bottom: 1px solid var(--linen-deep); padding: 52px 32px; }
+    .rs-menu-row { padding: 20px 32px; }
   }
-  @keyframes ticker-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+
   @keyframes ticker-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50%       { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* ══ AIRBNB BOOKING CTA ══ */
+  .book-cta {
+    background: var(--linen);
+    border-bottom: 1px solid var(--linen-deep);
+    padding: 80px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+  .book-cta-left { max-width: 540px; }
+  .book-cta-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.48em;
+    text-transform: uppercase;
+    color: var(--moss);
+    display: block;
+    margin-bottom: 20px;
+  }
+  .book-cta-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 4.8vw, 66px);
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 0.97;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  .book-cta-headline em {
+    font-style: italic;
+    color: var(--bark);
+  }
+  .book-cta-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(44,37,32,0.5);
+    line-height: 1.75;
+    max-width: 400px;
+  }
+  .book-cta-right {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+  }
+  .book-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--charcoal);
+    color: var(--sand);
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.22s, gap 0.22s;
+    white-space: nowrap;
+  }
+  .book-cta-btn:hover {
+    background: #1a1512;
+    gap: 18px;
+  }
+  .book-cta-btn svg { transition: transform 0.22s; flex-shrink: 0; }
+  .book-cta-btn:hover svg { transform: translateX(4px); }
+  .book-cta-note {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: rgba(44,37,32,0.32);
+  }
+  @media (max-width: 700px) {
+    .book-cta { flex-direction: column; align-items: flex-start; padding: 56px 28px; gap: 36px; }
+    .book-cta-right { align-items: flex-start; width: 100%; }
+    .book-cta-btn { width: 100%; justify-content: space-between; }
+  }
+
+  /* ══ FLOATING RESERVE BAR ══ */
+  .float-reserve {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    z-index: 8900;
+    background: rgba(253,250,247,0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--linen-deep);
+    box-shadow: 0 -4px 32px rgba(44,37,32,0.08);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.48s cubic-bezier(0.16,1,0.3,1), opacity 0.36s ease;
+    pointer-events: none;
+  }
+  .float-reserve.fr-visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .float-reserve-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 14px 32px;
+  }
+  .float-reserve-dates {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .fr-date-field {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    transition: opacity 0.32s ease, transform 0.32s ease;
+  }
+  .fr-date-field.fr-fade {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  .fr-day {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal);
+    letter-spacing: 0.01em;
+  }
+  .fr-rest {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(44,37,32,0.5);
+    letter-spacing: 0.06em;
+  }
+  .fr-date-divider {
+    width: 20px;
+    height: 1px;
+    background: var(--linen-deep);
+    flex-shrink: 0;
+  }
+  .float-reserve-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .fr-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 22px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    border: 1px solid var(--charcoal);
+    transition: background 0.2s, color 0.2s;
+  }
+  .fr-btn-ghost:hover {
+    background: var(--charcoal);
+    color: var(--warm-white);
+  }
+  .fr-btn-solid {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 22px;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    text-decoration: none;
+    background: var(--charcoal);
+    border: 1px solid var(--charcoal);
+    transition: background 0.2s;
+  }
+  .fr-btn-solid:hover { background: #1a1512; border-color: #1a1512; }
+  @media (max-width: 600px) {
+    .float-reserve-inner { gap: 20px; padding: 12px 20px; }
+    .float-reserve-dates { gap: 16px; }
+    .fr-btn-ghost { display: none; }
   }
 
 </style>
@@ -3664,65 +3925,30 @@
     <button class="cover-nav-btn" onclick="document.getElementById('cover-intro').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-welcome">Welcome</button>
     <button class="cover-nav-btn" onclick="document.getElementById('offering-overview').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-offering">Our Offering</button>
     <button class="cover-nav-btn" onclick="document.getElementById('story-section').scrollIntoView({behavior:'smooth'})" data-i18n="cover-nav-story">Our Story</button>
-    <button class="cover-nav-btn" onclick="switchTab('menu'); setTimeout(function(){document.getElementById('section-01').scrollIntoView({behavior:'smooth'})},50);" data-i18n="tab-menu-primary">Room Service</button>
   </nav>
 
 </div>
 
-<!-- ═══════════ AVAILABILITY TICKER ═══════════ -->
-<div class="avail-ticker">
-  <div class="avail-ticker-label">
-    <span class="avail-ticker-dot"></span>
-    <span class="avail-ticker-label-text">Still Free</span>
+
+<!-- ═══════════ BOOKING CTA ═══════════ -->
+<section class="book-cta reveal">
+  <div class="book-cta-left">
+    <span class="book-cta-label">Reserve Your Stay</span>
+    <h2 class="book-cta-headline">Find Your <em>Perfect</em><br>Stay</h2>
+    <p class="book-cta-sub">Browse real-time availability and book directly through Airbnb. Instant confirmation, full transparency — your dates, your terms.</p>
   </div>
-  <div class="avail-ticker-track">
-    <!-- Content is doubled so the scroll loops seamlessly -->
-    <div class="avail-ticker-inner">
-      <!-- Set 1 -->
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">May 6 – 9</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">May 20 – 25</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">June 16 – 23</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">August 3 – 9</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-      <!-- Set 2 — mirror for seamless loop -->
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">May 6 – 9</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">May 20 – 25</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">June 16 – 23</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-      <div class="avail-ticker-item">
-        <span class="avail-ticker-date">August 3 – 9</span>
-        <span class="avail-ticker-tag">Available</span>
-      </div>
-      <span class="avail-ticker-sep">◆</span>
-    </div>
+  <div class="book-cta-right">
+    <a class="book-cta-btn"
+       href="https://www.airbnb.co.uk/rooms/29628949?unique_share_id=85d1b123-e0ef-4c6c-9fa3-2571830d9c76"
+       target="_blank" rel="noopener noreferrer">
+      Check Availability
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+    <span class="book-cta-note">Opens on Airbnb &nbsp;·&nbsp; Real-time calendar</span>
   </div>
-</div>
+</section>
 
 <!-- ═══════════ WELCOME INTRO ═══════════ -->
 <div id="cover-intro" style="
@@ -3752,88 +3978,157 @@
   <!-- ── 01 HOUSEKEEPING FEATURE ── -->
   <div class="hk-feature reveal" onclick="switchTab('cleaning')" role="button" tabindex="0">
 
-    <!-- Background texture grid -->
-    <div class="hk-feature-bg"></div>
-
     <!-- Left: editorial copy -->
     <div class="hk-feature-left">
-      <div class="hk-feature-eyebrow">
-        <span class="hk-feature-num">01</span>
-        <span class="hk-feature-sep">·</span>
-        <span>Concierge Services</span>
+      <div>
+        <div class="hk-feature-eyebrow">
+          <span class="hk-feature-num">01</span>
+          <span class="hk-feature-sep">·</span>
+          <span>Concierge Services</span>
+        </div>
+        <h2 class="hk-feature-title">Housekeeping<br><em>&amp; Comfort</em></h2>
+        <p class="hk-feature-desc">Everything to make your stay effortless — handled quietly, on your schedule.</p>
       </div>
-      <h2 class="hk-feature-title">Housekeeping<br><em>&amp; Comfort</em></h2>
-      <p class="hk-feature-desc">Everything to make your stay effortless. Fresh linen, daily cleaning, restocked amenities — handled quietly, on your schedule.</p>
       <div class="hk-feature-cta">
         <span>Request a service</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </div>
 
-    <!-- Right: service cards -->
+    <!-- Right: typographic service list -->
     <div class="hk-feature-right">
 
-      <div class="hk-card">
-        <div class="hk-card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-            <path d="M3 22V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v16"/><path d="M3 22h18"/><path d="M9 11v8"/><path d="M15 11v8"/>
-            <path d="M3 9h18"/>
-          </svg>
+      <div class="hk-service-row">
+        <span class="hk-service-roman">I</span>
+        <div>
+          <div class="hk-service-name">Towels &amp; Linen</div>
+          <div class="hk-service-detail">Changed daily · Fresh sets on request</div>
         </div>
-        <div class="hk-card-label">Towels &amp; Linen</div>
-        <div class="hk-card-sub">Fresh on request</div>
       </div>
 
-      <div class="hk-card">
-        <div class="hk-card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-            <path d="M3 3l18 18"/><path d="M8.5 2.5A5 5 0 0 1 17 6v4l3 3-3 3v1a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-1L4 13l3-3V6a5 5 0 0 1 1.5-3.5z"/>
-          </svg>
+      <div class="hk-service-row">
+        <span class="hk-service-roman">II</span>
+        <div>
+          <div class="hk-service-name">Room Cleaning</div>
+          <div class="hk-service-detail">Daily or at a time that suits you</div>
         </div>
-        <div class="hk-card-label">Room Cleaning</div>
-        <div class="hk-card-sub">Daily or scheduled</div>
       </div>
 
-      <div class="hk-card">
-        <div class="hk-card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
+      <div class="hk-service-row">
+        <span class="hk-service-roman">III</span>
+        <div>
+          <div class="hk-service-name">Amenities</div>
+          <div class="hk-service-detail">Restocked every morning without asking</div>
         </div>
-        <div class="hk-card-label">Amenities</div>
-        <div class="hk-card-sub">Restocked daily</div>
       </div>
 
-      <div class="hk-card">
-        <div class="hk-card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
+      <div class="hk-service-row">
+        <span class="hk-service-roman">IV</span>
+        <div>
+          <div class="hk-service-name">Special Requests</div>
+          <div class="hk-service-detail">Anything, anytime — with pleasure</div>
         </div>
-        <div class="hk-card-label">Special Requests</div>
-        <div class="hk-card-sub">Anything, anytime</div>
       </div>
 
     </div>
 
   </div>
 
-  <!-- ── Tiles 02–05 ── -->
-  <div class="offering-grid" style="grid-template-columns:repeat(4,1fr);">
+  <!-- ── 02 ROOM SERVICE / CONCIERGE FEATURE ── -->
+  <div class="rs-feature reveal" style="display:none;" onclick="switchTab('menu'); setTimeout(function(){document.getElementById('section-01').scrollIntoView({behavior:'smooth'})},50);" role="button" tabindex="0">
 
-    <div class="offering-tile reveal" onclick="switchTab('menu'); setTimeout(function(){document.getElementById('section-01').scrollIntoView({behavior:'smooth'})},50);">
-      <div class="offering-tile-num">02</div>
-      <div class="offering-tile-title">Room<br><em>Service</em></div>
-      <div class="offering-tile-sub">Breakfast, champagne, teas, and a curated beach picnic basket — delivered to you.</div>
-      <div class="offering-tile-link">View menu →</div>
+    <!-- Left: editorial copy -->
+    <div class="rs-feature-left">
+      <div>
+        <div class="rs-feature-eyebrow">
+          <span class="rs-feature-num">02</span>
+          <span class="rs-feature-sep">·</span>
+          <span>In-Room Dining</span>
+        </div>
+        <h2 class="rs-feature-title">Private<br><em>Room Service</em></h2>
+        <p class="rs-feature-desc">A curated menu delivered to your door. From a leisurely breakfast to an evening champagne — everything prepared fresh, on your time.</p>
+      </div>
+      <div class="rs-feature-cta">
+        <span>View the menu</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
     </div>
 
-    <div class="offering-tile reveal" onclick="switchTab('surrounding')">
-      <div class="offering-tile-num">03</div>
-      <div class="offering-tile-title">Explore the<br><em>Surrounding</em></div>
-      <div class="offering-tile-sub">Discover Villajoyosa, the Costa Blanca coastline, and everything nearby.</div>
-      <div class="offering-tile-link">Explore →</div>
+    <!-- Right: typographic menu rows -->
+    <div class="rs-feature-right">
+
+      <div class="rs-menu-row">
+        <div>
+          <div class="rs-menu-label">Breakfast</div>
+          <div class="rs-menu-sub">Oysters · Bread · Spreads · Seasonal fruit</div>
+        </div>
+        <span class="rs-menu-tag">Daily</span>
+      </div>
+
+      <div class="rs-menu-row">
+        <div>
+          <div class="rs-menu-label">Teas &amp; Coffee</div>
+          <div class="rs-menu-sub">Specialty coffee · Herbal · Sencha · Earl Grey</div>
+        </div>
+        <span class="rs-menu-tag">Morning</span>
+      </div>
+
+      <div class="rs-menu-row">
+        <div>
+          <div class="rs-menu-label">Champagne &amp; Cava</div>
+          <div class="rs-menu-sub">Ruinart · Moët · Gramona · By glass or bottle</div>
+        </div>
+        <span class="rs-menu-tag">All day</span>
+      </div>
+
+      <div class="rs-menu-row">
+        <div>
+          <div class="rs-menu-label">Beach Picnic</div>
+          <div class="rs-menu-sub">Curated basket · Chilled · Ready for the shore</div>
+        </div>
+        <span class="rs-menu-tag">On request</span>
+      </div>
+
     </div>
+
+  </div>
+
+  <!-- ── 03 EXPLORE THE SURROUNDING FEATURE ── -->
+  <div class="explore-feature reveal" onclick="switchTab('surrounding')" role="button" tabindex="0">
+
+    <!-- Left: image / video -->
+    <div class="explore-feature-media">
+      <img class="explore-feature-img"
+           src="PuigCampana.jpeg"
+           alt="Puig Campana · Costa Blanca"
+           onerror="this.src='beach-palms.jpg'" />
+      <div class="explore-feature-media-overlay"></div>
+    </div>
+
+    <!-- Right: editorial text -->
+    <div class="explore-feature-right">
+      <div>
+        <div class="explore-feature-eyebrow">
+          <span class="explore-feature-num">03</span>
+          <span class="explore-feature-sep">·</span>
+          <span>Nature &amp; Landscape</span>
+        </div>
+        <h2 class="explore-feature-title">Into the<br><em>Wild Coast</em></h2>
+        <p class="explore-feature-desc">The Serra Gelada Natural Park begins just minutes away — sheer limestone cliffs falling into translucent water, untouched coastal trails, and a stillness the towns never quite have. Inland, the Algar waterfalls and the ridgeline of the Sierra de Aitana offer a different kind of escape. Villajoyosa and Altea are close for evenings out, but the landscape is the real reason to come.</p>
+      </div>
+
+      <div style="flex:1;"></div>
+
+      <div class="explore-feature-cta">
+        <span>Discover more</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Tiles 04–05 ── -->
+  <div class="offering-grid" style="grid-template-columns:repeat(2,1fr);">
 
     <div class="offering-tile reveal" onclick="switchTab('tips')">
       <div class="offering-tile-num">04</div>
@@ -8529,6 +8824,80 @@ document.addEventListener('DOMContentLoaded',function(){
     else{var u=mbGetMembers().find(function(m){return m.email===sess;});if(u)mbCurrentUser=u;}
   }
 });
+</script>
+
+<!-- ═══════════ FLOATING RESERVE BAR ═══════════ -->
+<div id="float-reserve" class="float-reserve" role="complementary" aria-label="Reserve your stay">
+  <div class="float-reserve-inner">
+    <div class="float-reserve-dates">
+      <div class="fr-date-field" id="fr-checkin">
+        <span class="fr-day" id="fr-checkin-day">6</span>
+        <span class="fr-rest" id="fr-checkin-rest">May 2026</span>
+      </div>
+      <div class="fr-date-divider"></div>
+      <div class="fr-date-field" id="fr-checkout">
+        <span class="fr-day" id="fr-checkout-day">9</span>
+        <span class="fr-rest" id="fr-checkout-rest">May 2026</span>
+      </div>
+    </div>
+    <div class="float-reserve-actions">
+      <a class="fr-btn-ghost"
+         href="https://www.airbnb.co.uk/rooms/29628949?unique_share_id=85d1b123-e0ef-4c6c-9fa3-2571830d9c76"
+         target="_blank" rel="noopener noreferrer">Book</a>
+      <a class="fr-btn-solid"
+         href="https://www.airbnb.co.uk/rooms/29628949?unique_share_id=85d1b123-e0ef-4c6c-9fa3-2571830d9c76"
+         target="_blank" rel="noopener noreferrer">Request</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var bar         = document.getElementById('float-reserve');
+  var checkinEl   = document.getElementById('fr-checkin');
+  var checkoutEl  = document.getElementById('fr-checkout');
+  var ciDay       = document.getElementById('fr-checkin-day');
+  var ciRest      = document.getElementById('fr-checkin-rest');
+  var coDay       = document.getElementById('fr-checkout-day');
+  var coRest      = document.getElementById('fr-checkout-rest');
+  if (!bar) return;
+
+  // Each entry: [check-in day, check-in month+year, check-out day, check-out month+year]
+  var dates = [
+    ['6',  'May 2026',    '9',  'May 2026'],
+    ['20', 'May 2026',    '25', 'May 2026'],
+    ['16', 'June 2026',   '23', 'June 2026'],
+    ['3',  'August 2026', '9',  'August 2026']
+  ];
+  var idx = 0;
+
+  function setDates(d) {
+    ciDay.textContent  = d[0];
+    ciRest.textContent = d[1];
+    coDay.textContent  = d[2];
+    coRest.textContent = d[3];
+  }
+
+  // Show when scrolled past the cover
+  function onScroll() {
+    var st = window.scrollY || document.documentElement.scrollTop;
+    bar.classList.toggle('fr-visible', st > 140);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Cycle dates — fade both fields together, longer pause between cycles
+  setInterval(function() {
+    checkinEl.classList.add('fr-fade');
+    checkoutEl.classList.add('fr-fade');
+    setTimeout(function() {
+      idx = (idx + 1) % dates.length;
+      setDates(dates[idx]);
+      checkinEl.classList.remove('fr-fade');
+      checkoutEl.classList.remove('fr-fade');
+    }, 330);
+  }, 7000);
+})();
 </script>
 
 </body>
