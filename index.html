@@ -2195,6 +2195,67 @@
   }
 
 
+  /* ── Float reserve hidden on specific tabs ── */
+  body.fr-tab-suppress .float-reserve {
+    transform: translateY(100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* ── ARRIVAL ACCORDION ── */
+  .arr-accordion {
+    border-top: 1px solid var(--light-line);
+    background: var(--warm-white);
+  }
+  .arr-accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 28px 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    text-align: left;
+    border-bottom: 1px solid transparent;
+    transition: background 0.2s ease;
+  }
+  .arr-accordion-trigger:hover { background: rgba(44,37,32,0.025); }
+  .arr-accordion-trigger.open { border-bottom-color: var(--light-line); }
+  .arr-accordion-trigger-left { display: flex; align-items: center; gap: 20px; }
+  .arr-accordion-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--bark);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .arr-accordion-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.2;
+  }
+  .arr-accordion-sublabel {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(44,37,32,0.35);
+    margin-top: 3px;
+  }
+  .arr-accordion-chevron {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    color: rgba(44,37,32,0.3);
+    transition: transform 0.36s cubic-bezier(0.16,1,0.3,1);
+  }
+  .arr-accordion-trigger.open .arr-accordion-chevron { transform: rotate(180deg); }
+  .arr-accordion-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .arr-accordion-body.open { max-height: 2400px; }
+
   /* ── MEMBER PORTAL OVERLAY ── */
   #member-portal {
     display: none;
@@ -4128,17 +4189,24 @@
   </div>
 
   <!-- ── Tiles 04–05 ── -->
-  <div class="offering-grid" style="grid-template-columns:repeat(2,1fr);">
+  <div class="offering-grid" style="grid-template-columns:repeat(3,1fr);">
+
+    <div class="offering-tile reveal" onclick="switchTab('tips'); setTimeout(function(){ selectTip('arrival'); }, 80);">
+      <div class="offering-tile-num">04</div>
+      <div class="offering-tile-title">Arrival<br><em>Guide</em></div>
+      <div class="offering-tile-sub">How to reach the apartment, the key box code, and everything for your first hour.</div>
+      <div class="offering-tile-link">Open guide →</div>
+    </div>
 
     <div class="offering-tile reveal" onclick="switchTab('tips')">
-      <div class="offering-tile-num">04</div>
+      <div class="offering-tile-num">05</div>
       <div class="offering-tile-title">Tips<br><em>&amp; Tricks</em></div>
       <div class="offering-tile-sub">The WiFi code, the AC remote, the secret beach — everything you need to know.</div>
       <div class="offering-tile-link">Read the guide →</div>
     </div>
 
     <div class="offering-tile reveal" onclick="switchTab('checkin')">
-      <div class="offering-tile-num">05</div>
+      <div class="offering-tile-num">06</div>
       <div class="offering-tile-title">Guest<br><em>Check In</em></div>
       <div class="offering-tile-sub">Complete your guest information in a few easy steps before arrival.</div>
       <div class="offering-tile-link">Check in →</div>
@@ -4984,6 +5052,93 @@
       </div>
     </div>
 
+    <!-- ── Getting Here ── -->
+
+        <!-- Taxi instructions — light panel -->
+        <div style="background:var(--linen); padding:44px 52px; border-top:1px solid var(--linen-deep);">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;">
+            <div>
+              <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:18px;">From Alicante Airport · ALC</span>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);font-weight:300;color:var(--charcoal);line-height:1.15;margin-bottom:18px;">Getting<br><em>to the Apartment</em></div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(44,37,32,0.48);line-height:1.85;">
+                The fastest option from Alicante Airport is a taxi. The journey takes around 40–50 minutes along the AP-7 motorway directly into the old town.
+              </div>
+              <div style="display:flex;gap:28px;margin-top:24px;padding-top:24px;border-top:1px solid var(--linen-deep);">
+                <div>
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--charcoal);">~45 min</div>
+                  <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.22em;color:rgba(44,37,32,0.35);text-transform:uppercase;margin-top:3px;">Drive from ALC</div>
+                </div>
+                <div style="width:1px;background:var(--linen-deep);"></div>
+                <div>
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--charcoal);">~€55–70</div>
+                  <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.22em;color:rgba(44,37,32,0.35);text-transform:uppercase;margin-top:3px;">Estimated fare</div>
+                </div>
+                <div style="width:1px;background:var(--linen-deep);"></div>
+                <div>
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--charcoal);">AP-7</div>
+                  <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.22em;color:rgba(44,37,32,0.35);text-transform:uppercase;margin-top:3px;">Motorway</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.38);margin-bottom:14px;">Tell the taxi driver</div>
+              <div style="border:1px solid var(--linen-deep); padding:24px 28px; background:var(--warm-white);">
+                <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--charcoal);line-height:1.4;">Casco Antiguo Villajoyosa,<br>Plaça de l'Església</div>
+                <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.18em;color:rgba(44,37,32,0.35);margin-top:14px;border-top:1px solid var(--linen-deep);padding-top:14px;">Driver drops you at the church square · 2 min walk to the apartment</div>
+                <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--linen-deep);">
+                  <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(44,37,32,0.3);margin-bottom:6px;">Or give the full address</div>
+                  <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--charcoal);">Calle Pou 11<br>03570 Villajoyosa</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div style="background:var(--cream); border-top:1px solid var(--light-line); padding:36px 52px 0;">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:16px;">Old Town · Villajoyosa</div>
+          <div style="border:1px solid var(--light-line); overflow:hidden; position:relative;">
+            <iframe
+              title="Route to Calle Pou, Villajoyosa"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.2406%2C38.5014%2C-0.2246%2C38.5094&layer=mapnik&marker=38.505420%2C-0.232620"
+              style="width:100%; height:340px; border:none; display:block; filter:sepia(12%) saturate(85%);"
+              loading="lazy"
+              referrerpolicy="no-referrer">
+            </iframe>
+            <a href="https://www.openstreetmap.org/?mlat=38.505420&mlon=-0.232620#map=17/38.505420/-0.232620"
+               target="_blank" rel="noopener noreferrer"
+               style="position:absolute;bottom:10px;right:10px;background:rgba(44,37,32,0.78);color:rgba(253,250,247,0.75);font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 11px;text-decoration:none;backdrop-filter:blur(6px);">
+              Open in maps ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Walking steps -->
+        <div style="background:var(--cream); padding:32px 52px 44px; border-top:1px solid var(--light-line);">
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:20px;">On foot from the plaza · 2 min</div>
+          <div class="tips-step">
+            <div class="tips-step-num">1</div>
+            <div class="tips-step-body">
+              <div class="tips-step-title">Start at Plaça de l'Església</div>
+              <div class="tips-step-desc">Face the church. Walk along its side — you will pass two bars on your right.</div>
+            </div>
+          </div>
+          <div class="tips-step">
+            <div class="tips-step-num">2</div>
+            <div class="tips-step-body">
+              <div class="tips-step-title">Head towards Restaurant Droca</div>
+              <div class="tips-step-desc">Continue straight on that same street in the direction of Restaurant Droca, following the narrow lane.</div>
+            </div>
+          </div>
+          <div class="tips-step">
+            <div class="tips-step-num">3</div>
+            <div class="tips-step-body">
+              <div class="tips-step-title">Arrive at the apartment</div>
+              <div class="tips-step-desc">After roughly 50 metres the apartment is on your <strong>left</strong> — look for the wooden door with the key box mounted to its left.<br><span style="display:inline-block;margin-top:8px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span></div>
+            </div>
+          </div>
+        </div>
+
     <!-- ── Enter the apartment ── -->
     <div class="tips-method">
       <div class="tips-method-header reveal">
@@ -5061,6 +5216,24 @@
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 03</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Red-dot switch</div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Next to the main entrance on the left. The switch with the <span style="color:var(--sand);">red dot</span> turns off all electronics except the fridge. Use it when leaving.</div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 04</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">To the beach</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Walk down to the promenade and turn left. The main town beach is about 3 minutes on foot.</div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 05</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Supermarket</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">A Consum supermarket is a short walk away on the main road — open daily including Sundays.</div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
+          <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 06</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Checkout</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Please leave by 11:00 on your departure day — or contact us for a later time. Return the keys to the key box and pull the door closed.</div>
         </div>
 
       </div>
@@ -6872,6 +7045,8 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     if (btnEl) btnEl.classList.add('active');
     window.scrollTo(0, 0);
     updateNav();
+    // Hide floating reserve bar on check-in and tips pages
+    document.body.classList.toggle('fr-tab-suppress', tab === 'checkin' || tab === 'tips');
   }
 
   // ══ CHECK IN WIZARD ══
@@ -8354,6 +8529,62 @@ async function sha256(str) {
     .join('');
 }
 
+// ── Arrival session auto-lock (7 min inactivity) ──
+var _arrLockTimer = null;
+var _ARRIVAL_TIMEOUT = 7 * 60 * 1000; // 7 minutes
+var _arrActivityBound = false;
+
+function _resetArrivalTimer() {
+  clearTimeout(_arrLockTimer);
+  _arrLockTimer = setTimeout(_autoLockArrival, _ARRIVAL_TIMEOUT);
+}
+
+function _autoLockArrival() {
+  var content = document.getElementById('arrival-content');
+  var lock    = document.getElementById('arrival-lock');
+  if (!content || content.style.display === 'none') return; // already locked
+  content.style.transition = 'opacity 0.4s ease';
+  content.style.opacity = '0';
+  setTimeout(function() {
+    content.style.display = 'none';
+    content.style.opacity = '';
+    lock.style.display = '';
+    lock.style.opacity = '0';
+    lock.style.transition = 'opacity 0.4s ease';
+    setTimeout(function() { lock.style.opacity = '1'; }, 10);
+    try { sessionStorage.removeItem('arrival_unlocked'); } catch(e) {}
+    var inp = document.getElementById('arrival-code-input');
+    if (inp) inp.value = '';
+    // Stop activity listeners
+    var evts = ['scroll','mousemove','keydown','touchstart','click'];
+    evts.forEach(function(e){ document.removeEventListener(e, _resetArrivalTimer); });
+    _arrActivityBound = false;
+  }, 400);
+}
+
+function _startArrivalSession() {
+  if (_arrActivityBound) return;
+  _arrActivityBound = true;
+  var evts = ['scroll','mousemove','keydown','touchstart','click'];
+  evts.forEach(function(e){ document.addEventListener(e, _resetArrivalTimer, { passive: true }); });
+  _resetArrivalTimer();
+}
+
+function toggleArrAccordion() {
+  var btn  = document.getElementById('arr-acc-btn');
+  var body = document.getElementById('arr-acc-body');
+  var open = btn.classList.contains('open');
+  if (open) {
+    btn.classList.remove('open');
+    body.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  } else {
+    btn.classList.add('open');
+    body.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
 function unlockArrival() {
   var lock    = document.getElementById('arrival-lock');
   var content = document.getElementById('arrival-content');
@@ -8363,6 +8594,7 @@ function unlockArrival() {
     lock.style.display = 'none';
     content.style.display = 'block';
     try { sessionStorage.setItem('arrival_unlocked', ARRIVAL_HASH); } catch(e) {}
+    _startArrivalSession();
     // Trigger animations
     var panel = document.getElementById('tip-panel-arrival');
     if (!panel) return;
@@ -8430,6 +8662,7 @@ function checkArrivalCode() {
         var content = document.getElementById('arrival-content');
         if (lock)    lock.style.display = 'none';
         if (content) content.style.display = 'block';
+        _startArrivalSession();
       }
     } catch(e) {}
   });
