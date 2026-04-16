@@ -2838,7 +2838,7 @@
   /* ── Offering tiles (landing page) ── */
   .offering-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--linen-deep);
   }
@@ -3867,6 +3867,127 @@
     .fr-btn-ghost { display: none; }
   }
 
+
+  /* ══════════════════════════════════════
+     MOBILE OPTIMISATIONS — iPhone / Android
+     All queries ≤ 640px unless noted
+  ══════════════════════════════════════ */
+
+  /* ── Tab bar: make centre nav scrollable on small phones ── */
+  @media (max-width: 640px) {
+    #tab-nav-centre {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+    }
+    #tab-nav-centre::-webkit-scrollbar { display: none; }
+    /* Shrink right-side controls to save space */
+    #lang-switcher { padding: 0 12px; }
+    #member-btn { width: 34px; margin-right: 0; }
+  }
+
+  /* ── Cover intro padding ── */
+  @media (max-width: 640px) {
+    #cover-intro { padding: 72px 24px 64px !important; }
+  }
+
+  /* ── Page footer: stack vertically ── */
+  @media (max-width: 640px) {
+    .page-footer {
+      flex-direction: column;
+      gap: 6px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+  }
+
+  /* ── Arrival — Getting Here: taxi panel ── */
+  @media (max-width: 640px) {
+    .arr-getting-here { padding: 32px 20px !important; }
+    .arr-taxi-grid    { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .arr-taxi-stats   { gap: 14px !important; flex-wrap: wrap; }
+  }
+
+  /* ── Arrival — Map panel ── */
+  @media (max-width: 640px) {
+    .arr-map-panel    { padding: 24px 20px 0 !important; }
+  }
+
+  /* ── Arrival — Walking steps panel ── */
+  @media (max-width: 640px) {
+    .arr-walking-panel { padding: 24px 20px 36px !important; }
+  }
+
+  /* ── Arrival — WiFi section ── */
+  @media (max-width: 640px) {
+    .arr-wifi-section { padding: 36px 20px !important; }
+    .arr-wifi-grid    { grid-template-columns: 1fr !important; gap: 20px !important; }
+  }
+
+  /* ── Arrival — Useful Tips section ── */
+  @media (max-width: 640px) {
+    .arr-tips-section { padding: 36px 20px !important; }
+    .arr-tips-grid    { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+  }
+  @media (max-width: 400px) {
+    .arr-tips-grid    { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── Arrival — Waste bins: 4-col → 2-col on mobile ── */
+  @media (max-width: 640px) {
+    .arr-waste-bins-grid { grid-template-columns: 1fr 1fr !important; }
+    /* restore inner border for 2-col layout */
+    .arr-waste-bins-grid > div:nth-child(2n) { border-right: none !important; }
+    .arr-waste-bins-grid > div { border-bottom: 1px solid var(--light-line); }
+    .arr-waste-bins-grid > div:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  @media (max-width: 640px) {
+    .arr-waste-footer {
+      padding: 22px 20px !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+    }
+    .arr-waste-footer > div:last-child { text-align: left !important; }
+  }
+
+  /* ── OSM iframe: taller on mobile for better usability ── */
+  @media (max-width: 640px) {
+    .arr-map-panel iframe { height: 260px !important; }
+  }
+
+  /* ── Prevent iOS auto-zoom on input focus (font-size < 16px triggers zoom) ── */
+  @media (max-width: 640px) {
+    #arrival-code-input,
+    #menu-code-input,
+    .cf-group input,
+    .cf-group select,
+    .ci-group input,
+    .ci-group select,
+    .p-field input,
+    .p-field select,
+    .portal-field input {
+      font-size: 16px;
+    }
+  }
+
+  /* ── Touch targets: ensure min 44px tap height on interactive items ── */
+  @media (max-width: 640px) {
+    .cover-nav-btn { min-height: 44px; }
+    .tab-btn       { min-height: 44px; }
+    .tips-pill     { min-height: 64px; }
+    .ci-btn-next, .ci-btn-back, .ci-btn-submit { min-height: 44px; }
+    .cf-btn-send, .cf-btn-clear                { min-height: 44px; }
+  }
+
+  /* ── Arrival lock screen: tighter padding on small phones ── */
+  @media (max-width: 400px) {
+    #arrival-lock { padding: 40px 24px; }
+  }
+
+
 </style>
 </head>
 <body>
@@ -4189,7 +4310,7 @@
   </div>
 
   <!-- ── Tiles 04–05 ── -->
-  <div class="offering-grid" style="grid-template-columns:repeat(3,1fr);">
+  <div class="offering-grid">
 
     <div class="offering-tile reveal" onclick="switchTab('tips'); setTimeout(function(){ selectTip('arrival'); }, 80);">
       <div class="offering-tile-num">04</div>
@@ -5055,15 +5176,15 @@
     <!-- ── Getting Here ── -->
 
         <!-- Taxi instructions — light panel -->
-        <div style="background:var(--linen); padding:44px 52px; border-top:1px solid var(--linen-deep);">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;">
+        <div class="arr-getting-here" style="background:var(--linen); padding:44px 52px; border-top:1px solid var(--linen-deep);">
+          <div class="arr-taxi-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;">
             <div>
               <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:18px;">From Alicante Airport · ALC</span>
               <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);font-weight:300;color:var(--charcoal);line-height:1.15;margin-bottom:18px;">Getting<br><em>to the Apartment</em></div>
               <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(44,37,32,0.48);line-height:1.85;">
                 The fastest option from Alicante Airport is a taxi. The journey takes around 40–50 minutes along the AP-7 motorway directly into the old town.
               </div>
-              <div style="display:flex;gap:28px;margin-top:24px;padding-top:24px;border-top:1px solid var(--linen-deep);">
+              <div class="arr-taxi-stats" style="display:flex;gap:28px;margin-top:24px;padding-top:24px;border-top:1px solid var(--linen-deep);">
                 <div>
                   <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--charcoal);">~45 min</div>
                   <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.22em;color:rgba(44,37,32,0.35);text-transform:uppercase;margin-top:3px;">Drive from ALC</div>
@@ -5095,7 +5216,7 @@
         </div>
 
         <!-- Map -->
-        <div style="background:var(--cream); border-top:1px solid var(--light-line); padding:36px 52px 0;">
+        <div class="arr-map-panel" style="background:var(--cream); border-top:1px solid var(--light-line); padding:36px 52px 0;">
           <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:16px;">Old Town · Villajoyosa</div>
           <div style="border:1px solid var(--light-line); overflow:hidden; position:relative;">
             <iframe
@@ -5114,7 +5235,7 @@
         </div>
 
         <!-- Walking steps -->
-        <div style="background:var(--cream); padding:32px 52px 44px; border-top:1px solid var(--light-line);">
+        <div class="arr-walking-panel" style="background:var(--cream); padding:32px 52px 44px; border-top:1px solid var(--light-line);">
           <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:20px;">On foot from the plaza · 2 min</div>
           <div class="tips-step">
             <div class="tips-step-num">1</div>
@@ -5178,8 +5299,8 @@
     </div>
 
     <!-- ── WiFi ── -->
-    <div style="background:var(--charcoal); padding:48px 64px; border-top:1px solid rgba(201,185,154,0.1); border-bottom:1px solid rgba(201,185,154,0.1);" class="reveal">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+    <div class="arr-wifi-section reveal" style="background:var(--charcoal); padding:48px 64px; border-top:1px solid rgba(201,185,154,0.1); border-bottom:1px solid rgba(201,185,154,0.1);">
+      <div class="arr-wifi-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
         <div>
           <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:16px;">Wi-Fi · Unlimited High Speed</span>
           <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--warm-white);line-height:1.0;margin-bottom:6px;">Pou_Wifi</div>
@@ -5196,9 +5317,9 @@
     </div>
 
     <!-- ── Useful Tips ── -->
-    <div style="background:var(--charcoal); padding:52px 64px; border-top:1px solid rgba(201,185,154,0.1);" class="reveal-stagger">
+    <div class="arr-tips-section reveal-stagger" style="background:var(--charcoal); padding:52px 64px; border-top:1px solid rgba(201,185,154,0.1);">
       <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:32px;">Good to Know · Useful Tips</span>
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px;">
+      <div class="arr-tips-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px;">
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 01</div>
@@ -5257,7 +5378,7 @@
       </div>
 
       <!-- Bin type diagram — Apple-style visual cards -->
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--light-line);" class="reveal-stagger">
+      <div class="arr-waste-bins-grid reveal-stagger" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--light-line);">
 
         <!-- Glass -->
         <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
@@ -5316,7 +5437,7 @@
       </div>
 
       <!-- Key rule -->
-      <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
+      <div class="arr-waste-footer reveal" style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;">
         <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;" data-i18n-html="waste-location">
           Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.
         </div>
@@ -5632,7 +5753,7 @@
       </div>
 
       <!-- Bin type diagram — Apple-style visual cards -->
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--light-line);" class="reveal-stagger">
+      <div class="arr-waste-bins-grid reveal-stagger" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-top:1px solid var(--light-line);">
 
         <!-- Glass -->
         <div style="padding:32px 24px 36px; border-right:1px solid var(--light-line); text-align:center;">
@@ -5691,7 +5812,7 @@
       </div>
 
       <!-- Key rule -->
-      <div style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;" class="reveal">
+      <div class="arr-waste-footer reveal" style="background:var(--charcoal); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:32px;">
         <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--warm-white);line-height:1.6;" data-i18n-html="waste-location">
           Bins are on the <strong>opposite side of the main street</strong> — a short walk from the apartment.
         </div>
