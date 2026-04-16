@@ -2507,6 +2507,21 @@
   }
 
 
+  /* ── ARRIVAL PIN ICON ── */
+  #arrival-pin-btn {
+    background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 40px;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.3s;
+    flex-shrink: 0;
+    margin-right: 0;
+    padding: 0;
+  }
+  #tab-bar.nav-scrolled #arrival-pin-btn { color: rgba(42,37,32,0.38); }
+  #arrival-pin-btn:hover { color: rgba(255,255,255,0.95); }
+  #tab-bar.nav-scrolled #arrival-pin-btn:hover { color: var(--bark); }
+
   /* ── MEMBER ICON ── */
   #member-btn {
     background: none; border: none; cursor: pointer;
@@ -3886,6 +3901,7 @@
     /* Shrink right-side controls to save space */
     #lang-switcher { padding: 0 12px; }
     #member-btn { width: 34px; margin-right: 0; }
+    #arrival-pin-btn { width: 26px; }
   }
 
   /* ── Cover intro padding ── */
@@ -4023,6 +4039,12 @@
 
   <!-- RIGHT: member icon + language switcher -->
   <div id="tab-nav-right">
+
+    <button id="arrival-pin-btn" onclick="goToArrival()" aria-label="Arrival Guide" title="Arrival Guide">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2a7 7 0 0 0-7 7c0 4.9 7 13 7 13s7-8.1 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+      </svg>
+    </button>
 
     <button id="member-btn" onclick="openMemberPortal()" aria-label="Member portal">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -4312,7 +4334,7 @@
   <!-- ── Tiles 04–05 ── -->
   <div class="offering-grid">
 
-    <div class="offering-tile reveal" onclick="switchTab('tips'); setTimeout(function(){ selectTip('arrival'); }, 80);">
+    <div class="offering-tile reveal" onclick="goToArrival()">
       <div class="offering-tile-num">04</div>
       <div class="offering-tile-title">Arrival<br><em>Guide</em></div>
       <div class="offering-tile-sub">How to reach the apartment, the key box code, and everything for your first hour.</div>
@@ -4935,17 +4957,6 @@
       <div class="tips-pill-sub" data-i18n="tips-sonos-sub">Speaker</div>
     </button>
 
-    <button class="tips-pill" onclick="selectTip('arrival')" id="tip-pill-arrival">
-      <div class="tips-pill-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-      </div>
-      <div class="tips-pill-label" data-i18n="tips-arrival-label">Arrival</div>
-      <div class="tips-pill-sub" data-i18n="tips-arrival-sub">Guide</div>
-    </button>
-
     <button class="tips-pill" onclick="selectTip('tech')" id="tip-pill-tech">
       <div class="tips-pill-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
@@ -5122,8 +5133,8 @@
 
   </div><!-- /tip-panel-sonos -->
 
-  <!-- ══ PANEL: ARRIVAL GUIDE ══ -->
-  <div class="tips-panel" id="tip-panel-arrival">
+  <!-- ══ ARRIVAL GUIDE (moved to own tab on load) ══ -->
+  <div id="tab-arrival" class="tab-page">
 
     <!-- ── LOCK SCREEN ── -->
     <div id="arrival-lock">
@@ -5456,7 +5467,7 @@
     </div>
 
     </div><!-- /arrival-content -->
-  </div><!-- /tip-panel-arrival -->
+  </div><!-- /tab-arrival -->
   <!-- ══ PANEL: TECH — AC & TV ══ -->
   <div class="tips-panel" id="tip-panel-tech">
 
@@ -6302,8 +6313,8 @@
     </div>
     <div class="surr-card">
       <img class="surr-card-img"
-        src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80"
-        alt="Local market"
+        src="Mercat.JPG"
+        alt="Mercado Central"
         onerror="this.style.background='#1a1510';this.style.display='none'" />
       <div class="surr-card-overlay"></div>
       <div class="surr-card-dist">Tue &amp; Sat</div>
@@ -7155,6 +7166,16 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     }
   }
 
+  // ARRIVAL PIN — navigate straight to the password field
+  function goToArrival() {
+    switchTab('arrival');
+    var el = document.getElementById('arrival-code-input');
+    if (el) {
+      el.scrollIntoView({ block: 'center' });
+      el.focus();
+    }
+  }
+
   // TAB SWITCHING
   function switchTab(tab) {
     var tabEl = document.getElementById('tab-' + tab);
@@ -7167,7 +7188,7 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     window.scrollTo(0, 0);
     updateNav();
     // Hide floating reserve bar on check-in and tips pages
-    document.body.classList.toggle('fr-tab-suppress', tab === 'checkin' || tab === 'tips');
+    document.body.classList.toggle('fr-tab-suppress', tab === 'checkin' || tab === 'tips' || tab === 'arrival');
   }
 
   // ══ CHECK IN WIZARD ══
@@ -7842,6 +7863,12 @@ var ioGlobal;
   document.addEventListener('DOMContentLoaded', function() {
     observeAll();
     updateNav();
+    // Move #tab-arrival out of #tab-tips so it works as a proper sibling tab-page
+    var arrTab  = document.getElementById('tab-arrival');
+    var tipsTab = document.getElementById('tab-tips');
+    if (arrTab && tipsTab && tipsTab.parentNode) {
+      tipsTab.parentNode.insertBefore(arrTab, tipsTab.nextSibling);
+    }
   });
 
   var origSwitch = window.switchTab;
@@ -8717,7 +8744,7 @@ function unlockArrival() {
     try { sessionStorage.setItem('arrival_unlocked', ARRIVAL_HASH); } catch(e) {}
     _startArrivalSession();
     // Trigger animations
-    var panel = document.getElementById('tip-panel-arrival');
+    var panel = document.getElementById('tab-arrival');
     if (!panel) return;
     var sel = '.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-stagger,.split-title';
     panel.querySelectorAll(sel).forEach(function(el) { el.classList.remove('visible'); });
