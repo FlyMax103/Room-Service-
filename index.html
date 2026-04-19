@@ -1110,7 +1110,7 @@
   }
   .tab-btn .tab-es {
     font-family: 'Jost', sans-serif;
-    font-size: 8.5px; font-weight: 500;
+    font-size: 10px; font-weight: 500;
     letter-spacing: 0.3em; text-transform: uppercase;
     white-space: nowrap;
     color: rgba(255,255,255,0.8);
@@ -1119,7 +1119,7 @@
   #tab-bar.nav-scrolled .tab-btn .tab-es { color: var(--charcoal); opacity: 0.7; }
   .tab-btn .tab-en {
     font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 10px;
+    font-style: italic; font-size: 11px;
     white-space: nowrap;
     color: rgba(255,255,255,0.3);
     transition: color 0.4s;
@@ -2511,7 +2511,7 @@
   #arrival-pin-btn {
     background: none; border: none; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    width: 32px; height: 40px;
+    width: 42px; height: 44px;
     color: rgba(255,255,255,0.5);
     transition: color 0.3s;
     flex-shrink: 0;
@@ -2526,7 +2526,7 @@
   #member-btn {
     background: none; border: none; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px;
+    width: 50px; height: 44px;
     color: rgba(255,255,255,0.65);
     transition: color 0.3s;
     flex-shrink: 0; margin-right: 2px;
@@ -3888,8 +3888,23 @@
      All queries ≤ 640px unless noted
   ══════════════════════════════════════ */
 
+  /* ── Tablet: slightly more compact than desktop ── */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    #tab-bar    { height: 62px; }
+    #tab-logo   { max-height: 62px; }
+    .tab-btn    { height: 62px; padding: 0 14px; }
+    #tab-logo .mb-logo-img { height: 40px; }
+    .tab-btn .tab-es { font-size: 9px; }
+    #arrival-pin-btn { width: 38px; height: 44px; }
+    #member-btn      { width: 44px; height: 44px; }
+  }
+
   /* ── Tab bar: make centre nav scrollable on small phones ── */
   @media (max-width: 640px) {
+    #tab-bar    { height: 56px; }
+    #tab-logo   { max-height: 56px; }
+    .tab-btn    { height: 56px; }
+    #tab-logo .mb-logo-img { height: 30px; }
     #tab-nav-centre {
       overflow-x: auto;
       overflow-y: hidden;
@@ -3899,9 +3914,9 @@
     }
     #tab-nav-centre::-webkit-scrollbar { display: none; }
     /* Shrink right-side controls to save space */
-    #lang-switcher { padding: 0 12px; }
-    #member-btn { width: 34px; margin-right: 0; }
-    #arrival-pin-btn { width: 26px; }
+    #lang-switcher { padding: 0 10px; }
+    #member-btn { width: 36px; height: 44px; margin-right: 0; }
+    #arrival-pin-btn { width: 30px; height: 44px; }
   }
 
   /* ── Cover intro padding ── */
@@ -3917,6 +3932,13 @@
       padding: 28px 24px;
       text-align: center;
     }
+  }
+
+  /* ── Arrival — Departure checklist ── */
+  @media (max-width: 640px) {
+    .arr-dep-grid { grid-template-columns: 1fr !important; }
+    .arr-dep-grid > div { border-right: none !important; border-bottom: 1px solid var(--light-line); }
+    .arr-dep-grid > div:last-child { border-bottom: none !important; }
   }
 
   /* ── Arrival — Getting Here: taxi panel ── */
@@ -4041,13 +4063,13 @@
   <div id="tab-nav-right">
 
     <button id="arrival-pin-btn" onclick="goToArrival()" aria-label="Arrival Guide" title="Arrival Guide">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2a7 7 0 0 0-7 7c0 4.9 7 13 7 13s7-8.1 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
       </svg>
     </button>
 
     <button id="member-btn" onclick="openMemberPortal()" aria-label="Member portal">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
         <circle cx="12" cy="7" r="4"/>
       </svg>
@@ -5172,12 +5194,12 @@
     <!-- Hero -->
     <div class="tips-hero">
       <div class="tips-badge"><span class="tips-badge-dot"></span>Calle Pou · Villajoyosa</div>
-      <div class="tips-hero-title reveal">Welcome to<br><em>Calle Pou</em></div>
-      <div class="tips-hero-desc reveal">
+      <div class="tips-hero-title reveal" data-i18n-html="arr-hero-title">Welcome to<br><em>Calle Pou</em></div>
+      <div class="tips-hero-desc reveal" data-i18n="arr-hero-desc">
         Welcome to our beautifully renovated apartment. We hope you had a pleasant journey. Everything you need to feel at home — from your first step through the door.
       </div>
       <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
-        <span class="scroll-cue-label">Scroll</span>
+        <span class="scroll-cue-label" data-i18n="cover-scroll">Scroll</span>
         <div class="scroll-cue-line"></div>
       </div>
     </div>
@@ -5185,9 +5207,9 @@
     <!-- ── Location & Arrival ── -->
     <div class="reveal" style="background:var(--warm-white); padding:72px 64px; border-top:1px solid var(--light-line);">
       <div style="max-width:760px;">
-        <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:20px;">Location &amp; Arrival</span>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:300;color:var(--charcoal);line-height:1.15;margin:0 0 28px;">Your Arrival into the<br><em>Old Town of Villajoyosa</em></h2>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(44,37,32,0.55);line-height:1.85;max-width:540px;margin:0 0 36px;">The apartment is located in the old Town of Villajoyosa and is reachable by Plane, Train or Car. On request we can organise a transfer.</p>
+        <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:20px;" data-i18n="arr-loc-eyebrow">Location &amp; Arrival</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:300;color:var(--charcoal);line-height:1.15;margin:0 0 28px;" data-i18n-html="arr-loc-title">Your Arrival into the<br><em>Old Town of Villajoyosa</em></h2>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(44,37,32,0.55);line-height:1.85;max-width:540px;margin:0 0 36px;" data-i18n="arr-loc-desc">The apartment is located in the old Town of Villajoyosa and is reachable by Plane, Train or Car. On request we can organise a transfer.</p>
         <div style="display:inline-flex;align-items:center;gap:14px;padding:20px 28px;background:var(--linen);border:1px solid var(--linen-deep);">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--moss);flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2a7 7 0 0 0-7 7c0 4.9 7 13 7 13s7-8.1 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
@@ -5218,24 +5240,24 @@
 
         <!-- Right: warm welcome + arrival description -->
         <div style="background:var(--charcoal); padding:72px 64px; display:flex; flex-direction:column; justify-content:center;">
-          <span style="font-size:9px;letter-spacing:0.5em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:28px;">Getting Here · ALC</span>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.8vw,54px);font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:30px;">Welcome to<br><em>Villajoyosa</em></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.48);line-height:1.95;margin-bottom:36px;">
+          <span style="font-size:9px;letter-spacing:0.5em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:28px;" data-i18n="arr-gh-eyebrow">Getting Here · ALC</span>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.8vw,54px);font-weight:300;color:var(--warm-white);line-height:1.1;margin-bottom:30px;" data-i18n-html="arr-gh-title">Welcome to<br><em>Villajoyosa</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(253,250,247,0.48);line-height:1.95;margin-bottom:36px;" data-i18n="arr-gh-desc">
             We are so glad you are coming. Villajoyosa is a small, sun-warmed town on the Costa Blanca — full of colour, history, and the gentle rhythm of the Mediterranean. Your apartment sits right in the heart of the old town, steps from the sea. The journey here is part of the experience.
           </div>
           <!-- Key figures -->
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid rgba(201,185,154,0.12); padding-top:32px; gap:0;">
             <div style="padding-right:24px; border-right:1px solid rgba(201,185,154,0.1);">
               <div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--warm-white);line-height:1;">45 min</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,185,154,0.28);margin-top:6px;">By taxi</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,185,154,0.28);margin-top:6px;" data-i18n="arr-stat-taxi">By taxi</div>
             </div>
             <div style="padding:0 24px; border-right:1px solid rgba(201,185,154,0.1);">
               <div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--warm-white);line-height:1;">€55–70</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,185,154,0.28);margin-top:6px;">Est. fare</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,185,154,0.28);margin-top:6px;" data-i18n="arr-stat-fare">Est. fare</div>
             </div>
             <div style="padding-left:24px;">
               <div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--warm-white);line-height:1;">3</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,185,154,0.28);margin-top:6px;">Ways to arrive</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,185,154,0.28);margin-top:6px;" data-i18n="arr-stat-ways">Ways to arrive</div>
             </div>
           </div>
         </div>
@@ -5247,54 +5269,54 @@
 
         <div style="display:grid; grid-template-columns:200px 1fr 160px; align-items:center; padding:36px 64px; border-bottom:1px solid var(--light-line); gap:48px;">
           <div>
-            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);margin-bottom:7px;">Recommended</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--charcoal);">Taxi</div>
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);margin-bottom:7px;" data-i18n="arr-taxi-tag">Recommended</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--charcoal);" data-i18n="arr-taxi-mode">Taxi</div>
           </div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.44);line-height:1.8;">From the ALC arrivals hall — no booking needed. Direct along the AP-7 motorway.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.44);line-height:1.8;" data-i18n="arr-taxi-desc">From the ALC arrivals hall — no booking needed. Direct along the AP-7 motorway.</div>
           <div style="display:flex; gap:24px; justify-content:flex-end;">
             <div style="text-align:right;">
               <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--charcoal);">~45 min</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;">Duration</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;" data-i18n="arr-dur-label">Duration</div>
             </div>
             <div style="text-align:right;">
               <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--charcoal);">€55–70</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;">Fare</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;" data-i18n="arr-fare-label">Fare</div>
             </div>
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns:200px 1fr 160px; align-items:center; padding:36px 64px; border-bottom:1px solid var(--light-line); gap:48px;">
           <div>
-            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(44,37,32,0.22);margin-bottom:7px;">TRAM · L1</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--charcoal);">Train</div>
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(44,37,32,0.22);margin-bottom:7px;" data-i18n="arr-train-tag">TRAM · L1</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--charcoal);" data-i18n="arr-train-mode">Train</div>
           </div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.44);line-height:1.8;">TRAM Line 1 Alicante → Benidorm, alight Villajoyosa. Ten minutes on foot to the old town.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.44);line-height:1.8;" data-i18n="arr-train-desc">TRAM Line 1 Alicante → Benidorm, alight Villajoyosa. Ten minutes on foot to the old town.</div>
           <div style="display:flex; gap:24px; justify-content:flex-end;">
             <div style="text-align:right;">
               <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--charcoal);">~55 min</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;">Duration</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;" data-i18n="arr-dur-label">Duration</div>
             </div>
             <div style="text-align:right;">
               <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--charcoal);">~€3–5</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;">Fare</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;" data-i18n="arr-fare-label">Fare</div>
             </div>
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns:200px 1fr 160px; align-items:center; padding:36px 64px; border-bottom:1px solid var(--light-line); gap:48px;">
           <div>
-            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(44,37,32,0.22);margin-bottom:7px;">Self-drive</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--charcoal);">Car</div>
+            <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(44,37,32,0.22);margin-bottom:7px;" data-i18n="arr-car-tag">Self-drive</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--charcoal);" data-i18n="arr-car-mode">Car</div>
           </div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.44);line-height:1.8;">Rent at ALC, take the AP-7 south. Free street parking near the apartment.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.44);line-height:1.8;" data-i18n="arr-car-desc">Rent at ALC, take the AP-7 south. Free street parking near the apartment.</div>
           <div style="display:flex; gap:24px; justify-content:flex-end;">
             <div style="text-align:right;">
               <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--charcoal);">~45 min</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;">Duration</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;" data-i18n="arr-dur-label">Duration</div>
             </div>
             <div style="text-align:right;">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--charcoal);">Free</div>
-              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;">Parking</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--charcoal);" data-i18n="arr-car-parking">Free</div>
+              <div style="font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.18em;color:rgba(44,37,32,0.28);text-transform:uppercase;margin-top:3px;" data-i18n="arr-parking-label">Parking</div>
             </div>
           </div>
         </div>
@@ -5305,14 +5327,14 @@
       <div style="display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--light-line);">
 
         <div style="padding:52px 64px; background:var(--warm-white); border-right:1px solid var(--light-line);">
-          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(44,37,32,0.28);margin-bottom:20px;">Tell the taxi driver</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(44,37,32,0.58);line-height:1.95;">"Please drive to <strong style="font-style:normal;color:var(--charcoal);">Casco Antiguo</strong> in Villajoyosa, to <strong style="font-style:normal;color:var(--charcoal);">Plaza Iglesia</strong>. Facing the church entrance, go past it towards <strong style="font-style:normal;color:var(--charcoal);">Restaurant Droca</strong> and continue for about 50 metres — you will see <strong style="font-style:normal;color:var(--charcoal);">Calle Pou 11</strong>."</div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(44,37,32,0.28);margin-bottom:20px;" data-i18n="arr-taxi-instr-label">Tell the taxi driver</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(44,37,32,0.58);line-height:1.95;" data-i18n-html="arr-taxi-instr-quote">"Please drive to <strong style="font-style:normal;color:var(--charcoal);">Casco Antiguo</strong> in Villajoyosa, to <strong style="font-style:normal;color:var(--charcoal);">Plaza Iglesia</strong>. Facing the church entrance, go past it towards <strong style="font-style:normal;color:var(--charcoal);">Restaurant Droca</strong> and continue for about 50 metres — you will see <strong style="font-style:normal;color:var(--charcoal);">Calle Pou 11</strong>."</div>
         </div>
 
         <div style="padding:52px 64px; background:var(--linen); display:flex; flex-direction:column; justify-content:center;">
-          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);margin-bottom:18px;">Private Transfer</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,2.6vw,38px);font-weight:300;color:var(--charcoal);line-height:1.15;margin-bottom:16px;">We can arrange a<br><em>transfer on request</em></div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.42);line-height:1.85;">Simply reach out before your arrival and we will organise everything for you.</div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);margin-bottom:18px;" data-i18n="arr-transfer-label">Private Transfer</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,2.6vw,38px);font-weight:300;color:var(--charcoal);line-height:1.15;margin-bottom:16px;" data-i18n-html="arr-transfer-title">We can arrange a<br><em>transfer on request</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.42);line-height:1.85;" data-i18n="arr-transfer-desc">Simply reach out before your arrival and we will organise everything for you.</div>
         </div>
 
       </div>
@@ -5321,7 +5343,7 @@
 
         <!-- Map -->
         <div class="arr-map-panel" style="background:var(--cream); border-top:1px solid var(--light-line); padding:36px 52px 0;">
-          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:16px;">Old Town · Villajoyosa</div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:16px;" data-i18n="arr-map-label">Old Town · Villajoyosa</div>
           <div style="border:1px solid var(--light-line); overflow:hidden; position:relative;">
             <iframe
               title="Route to Calle Pou, Villajoyosa"
@@ -5332,7 +5354,7 @@
             </iframe>
             <a href="https://www.openstreetmap.org/?mlat=38.505390&mlon=-0.232597#map=17/38.505390/-0.232597"
                target="_blank" rel="noopener noreferrer"
-               style="position:absolute;bottom:10px;right:10px;background:rgba(44,37,32,0.78);color:rgba(253,250,247,0.75);font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 11px;text-decoration:none;backdrop-filter:blur(6px);">
+               style="position:absolute;bottom:10px;right:10px;background:rgba(44,37,32,0.78);color:rgba(253,250,247,0.75);font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 11px;text-decoration:none;backdrop-filter:blur(6px);" data-i18n="arr-map-open">
               Open in maps ↗
             </a>
           </div>
@@ -5340,26 +5362,26 @@
 
         <!-- Walking steps -->
         <div class="arr-walking-panel" style="background:var(--cream); padding:32px 52px 44px; border-top:1px solid var(--light-line);">
-          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:20px;">On foot from the plaza · 2 min</div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(44,37,32,0.35);margin-bottom:20px;" data-i18n="arr-walk-label">On foot from the plaza · 2 min</div>
           <div class="tips-step">
             <div class="tips-step-num">1</div>
             <div class="tips-step-body">
-              <div class="tips-step-title">Start at Plaça de l'Església</div>
-              <div class="tips-step-desc">Face the church. Walk along its side — you will pass two bars on your right.</div>
+              <div class="tips-step-title" data-i18n="arr-step1-title">Start at Plaça de l'Església</div>
+              <div class="tips-step-desc" data-i18n="arr-step1-desc">Face the church. Walk along its side — you will pass two bars on your right.</div>
             </div>
           </div>
           <div class="tips-step">
             <div class="tips-step-num">2</div>
             <div class="tips-step-body">
-              <div class="tips-step-title">Head towards Restaurant Droca</div>
-              <div class="tips-step-desc">Continue straight on that same street in the direction of Restaurant Droca, following the narrow lane.</div>
+              <div class="tips-step-title" data-i18n="arr-step2-title">Head towards Restaurant Droca</div>
+              <div class="tips-step-desc" data-i18n="arr-step2-desc">Continue straight on that same street in the direction of Restaurant Droca, following the narrow lane.</div>
             </div>
           </div>
           <div class="tips-step">
             <div class="tips-step-num">3</div>
             <div class="tips-step-body">
-              <div class="tips-step-title">Arrive at the apartment</div>
-              <div class="tips-step-desc">After roughly 50 metres the apartment is on your <strong>left</strong> — look for the wooden door with the key box mounted to its left.<br><span style="display:inline-block;margin-top:8px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span></div>
+              <div class="tips-step-title" data-i18n="arr-step3-title">Arrive at the apartment</div>
+              <div class="tips-step-desc" data-i18n-html="arr-step3-desc">After roughly 50 metres the apartment is on your <strong>left</strong> — look for the wooden door with the key box mounted to its left.<br><span style="display:inline-block;margin-top:8px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span></div>
             </div>
           </div>
         </div>
@@ -5427,38 +5449,38 @@
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 01</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n-html="waste-roach-headline">No insects</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Do not leave any food waste on the kitchen counter. This prevents ants and similar insects.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n-html="waste-ant-headline">No food on the<br><em style="color:var(--sand);">kitchen counter</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;" data-i18n="tip01-desc">Even small crumbs attract ants quickly. Clear the counter after every meal and store food in sealed containers or in the fridge.</div>
         </div>
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 02</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Keep doors closed</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Do not leave doors open unattended to avoid cockroaches flying into the apartment.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n-html="waste-roach-headline">Keep doors<br><em style="color:var(--sand);">closed</em></div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;" data-i18n="tip02-desc">Never leave terrace or entrance doors open unattended. Flying cockroaches enter easily on warm evenings — a closed door is all it takes.</div>
         </div>
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 03</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Red-dot switch</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Next to the main entrance on the left. The switch with the <span style="color:var(--sand);">red dot</span> turns off all electronics except the fridge. Use it when leaving.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n="tip03-title">Red-dot switch</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;" data-i18n-html="tip03-desc">Next to the main entrance on the left. The switch with the <span style="color:var(--sand);">red dot</span> turns off all electronics except the fridge. Use it when leaving.</div>
         </div>
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 04</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">To the beach</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Walk down to the promenade and turn left. The main town beach is about 3 minutes on foot.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n="tip04-title">To the beach</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;" data-i18n="tip04-desc">Walk down to the promenade and turn left. The main town beach is about 3 minutes on foot.</div>
         </div>
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 05</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Supermarket</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">A Consum supermarket is a short walk away on the main road — open daily including Sundays.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n="tip05-title">Supermarket</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;" data-i18n="tip05-desc">A Spar supermarket is a short walk away on the main road — open daily including Sundays.</div>
         </div>
 
         <div style="border-top:1px solid rgba(201,185,154,0.15); padding-top:24px;">
           <div style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;margin-bottom:12px;">Tip 06</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;">Checkout</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;">Please leave by 11:00 on your departure day — or contact us for a later time. Return the keys to the key box and pull the door closed.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm-white);margin-bottom:10px;" data-i18n="tip06-title">Keys & Lock Box</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(253,250,247,0.38);line-height:1.75;" data-i18n="tip06-desc">On departure, return the keys to the small box left of the wooden door — the same box you used on arrival. Pull the door shut behind you.</div>
         </div>
 
       </div>
@@ -5551,6 +5573,47 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- ── Departure Checklist ── -->
+    <div class="reveal" style="background:var(--warm-white); border-top:1px solid var(--light-line); padding:52px 64px;">
+      <span style="font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:24px;" data-i18n="dep-eyebrow">Departure · Check-Out</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:300;color:var(--charcoal);line-height:1.15;margin:0 0 40px;" data-i18n-html="dep-title">Three things<br><em>before you leave</em></h2>
+      <div class="arr-dep-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; border:1px solid var(--light-line);">
+
+        <!-- Check-out time -->
+        <div style="padding:36px 32px; border-right:1px solid var(--light-line);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--bark);line-height:1;margin-bottom:16px;">11:00</div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(44,37,32,0.4);margin-bottom:10px;" data-i18n="dep-checkout-label">Check-out time</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.5);line-height:1.75;" data-i18n="dep-checkout-desc">Please leave the apartment by 11:00. Contact us if you need a later check-out — we are happy to help where possible.</div>
+        </div>
+
+        <!-- Dishwasher -->
+        <div style="padding:36px 32px; border-right:1px solid var(--light-line);">
+          <div style="width:52px;height:52px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;border:1px solid var(--light-line);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--bark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="18" rx="2"/>
+              <path d="M8 7h1M8 12h1M15 7h1M15 12h1M6 17h12"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(44,37,32,0.4);margin-bottom:10px;" data-i18n="dep-dish-label">Dishwasher</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.5);line-height:1.75;" data-i18n="dep-dish-desc">Start the dishwasher before you leave so the dishes are clean and ready for the next guests.</div>
+        </div>
+
+        <!-- Take out trash -->
+        <div style="padding:36px 32px;">
+          <div style="width:52px;height:52px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;border:1px solid var(--light-line);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--bark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+              <path d="M10 11v6M14 11v6M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+            </svg>
+          </div>
+          <div style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(44,37,32,0.4);margin-bottom:10px;" data-i18n="dep-trash-label">Waste</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(44,37,32,0.5);line-height:1.75;" data-i18n="dep-trash-desc">Please take all trash out of the apartment before leaving and deposit it in the bins across the main street.</div>
+        </div>
+
+      </div>
     </div>
 
     <div class="page-footer">
@@ -8158,6 +8221,62 @@ var T = {
     'tips-tech-sub':   'AC & TV',
     'tips-arrival-label': 'Arrival',
     'tips-arrival-sub': 'Guide',
+    'arr-hero-title':          'Welcome to<br><em>Calle Pou</em>',
+    'arr-hero-desc':           'Welcome to our beautifully renovated apartment. We hope you had a pleasant journey. Everything you need to feel at home — from your first step through the door.',
+    'arr-loc-eyebrow':         'Location & Arrival',
+    'arr-loc-title':           'Your Arrival into the<br><em>Old Town of Villajoyosa</em>',
+    'arr-loc-desc':            'The apartment is located in the old Town of Villajoyosa and is reachable by Plane, Train or Car. On request we can organise a transfer.',
+    'arr-gh-eyebrow':          'Getting Here · ALC',
+    'arr-gh-title':            'Welcome to<br><em>Villajoyosa</em>',
+    'arr-gh-desc':             'We are so glad you are coming. Villajoyosa is a small, sun-warmed town on the Costa Blanca — full of colour, history, and the gentle rhythm of the Mediterranean. Your apartment sits right in the heart of the old town, steps from the sea. The journey here is part of the experience.',
+    'arr-stat-taxi':           'By taxi',
+    'arr-stat-fare':           'Est. fare',
+    'arr-stat-ways':           'Ways to arrive',
+    'arr-taxi-tag':            'Recommended',
+    'arr-taxi-mode':           'Taxi',
+    'arr-taxi-desc':           'From the ALC arrivals hall — no booking needed. Direct along the AP-7 motorway.',
+    'arr-train-tag':           'TRAM · L1',
+    'arr-train-mode':          'Train',
+    'arr-train-desc':          'TRAM Line 1 Alicante → Benidorm, alight Villajoyosa. Ten minutes on foot to the old town.',
+    'arr-car-tag':             'Self-drive',
+    'arr-car-mode':            'Car',
+    'arr-car-desc':            'Rent at ALC, take the AP-7 south. Free street parking near the apartment.',
+    'arr-car-parking':         'Free',
+    'arr-dur-label':           'Duration',
+    'arr-fare-label':          'Fare',
+    'arr-parking-label':       'Parking',
+    'arr-taxi-instr-label':    'Tell the taxi driver',
+    'arr-taxi-instr-quote':    '"Please drive to <strong style="font-style:normal;color:var(--charcoal);">Casco Antiguo</strong> in Villajoyosa, to <strong style="font-style:normal;color:var(--charcoal);">Plaza Iglesia</strong>. Facing the church entrance, go past it towards <strong style="font-style:normal;color:var(--charcoal);">Restaurant Droca</strong> and continue for about 50 metres — you will see <strong style="font-style:normal;color:var(--charcoal);">Calle Pou 11</strong>."',
+    'arr-transfer-label':      'Private Transfer',
+    'arr-transfer-title':      'We can arrange a<br><em>transfer on request</em>',
+    'arr-transfer-desc':       'Simply reach out before your arrival and we will organise everything for you.',
+    'arr-map-label':           'Old Town · Villajoyosa',
+    'arr-map-open':            'Open in maps ↗',
+    'arr-walk-label':          'On foot from the plaza · 2 min',
+    'arr-step1-title':         'Start at Plaça de l\'Església',
+    'arr-step1-desc':          'Face the church. Walk along its side — you will pass two bars on your right.',
+    'arr-step2-title':         'Head towards Restaurant Droca',
+    'arr-step2-desc':          'Continue straight on that same street in the direction of Restaurant Droca, following the narrow lane.',
+    'arr-step3-title':         'Arrive at the apartment',
+    'arr-step3-desc':          'After roughly 50 metres the apartment is on your <strong>left</strong> — look for the wooden door with the key box mounted to its left.<br><span style="display:inline-block;margin-top:8px;font-family:\'Jost\',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span>',
+    'tip01-desc':    'Even small crumbs attract ants quickly. Clear the counter after every meal and store food in sealed containers or in the fridge.',
+    'tip02-desc':    'Never leave terrace or entrance doors open unattended. Flying cockroaches enter easily on warm evenings — a closed door is all it takes.',
+    'tip03-title':   'Red-dot switch',
+    'tip03-desc':    'Next to the main entrance on the left. The switch with the <span style="color:var(--sand);">red dot</span> turns off all electronics except the fridge. Use it when leaving.',
+    'tip04-title':   'To the beach',
+    'tip04-desc':    'Walk down to the promenade and turn left. The main town beach is about 3 minutes on foot.',
+    'tip05-title':   'Supermarket',
+    'tip05-desc':    'A Spar supermarket is a short walk away on the main road — open daily including Sundays.',
+    'tip06-title':   'Keys & Lock Box',
+    'tip06-desc':    'On departure, return the keys to the small box left of the wooden door — the same box you used on arrival. Pull the door shut behind you.',
+    'dep-eyebrow':         'Departure · Check-Out',
+    'dep-title':           'Three things<br><em>before you leave</em>',
+    'dep-checkout-label':  'Check-out time',
+    'dep-checkout-desc':   'Please leave the apartment by 11:00. Contact us if you need a later check-out — we are happy to help where possible.',
+    'dep-dish-label':      'Dishwasher',
+    'dep-dish-desc':       'Start the dishwasher before you leave so the dishes are clean and ready for the next guests.',
+    'dep-trash-label':     'Waste',
+    'dep-trash-desc':      'Please take all trash out of the apartment before leaving and deposit it in the bins across the main street.',
   },
   'de': {
     'tab-menu-primary':       'Room Service',
@@ -8295,6 +8414,62 @@ var T = {
     'tips-tech-sub':   'AC & TV',
     'tips-arrival-label': 'Ankunft',
     'tips-arrival-sub': 'Guide',
+    'arr-hero-title':          'Willkommen in<br><em>Calle Pou</em>',
+    'arr-hero-desc':           'Willkommen in unserer wunderschön renovierten Wohnung. Wir hoffen, Sie hatten eine angenehme Reise. Alles, was Sie brauchen, um sich wie zu Hause zu fühlen — vom ersten Schritt an der Tür.',
+    'arr-loc-eyebrow':         'Lage & Ankunft',
+    'arr-loc-title':           'Ihre Ankunft in der<br><em>Altstadt von Villajoyosa</em>',
+    'arr-loc-desc':            'Die Wohnung befindet sich in der Altstadt von Villajoyosa und ist per Flugzeug, Zug oder Auto erreichbar. Auf Wunsch können wir einen Transfer organisieren.',
+    'arr-gh-eyebrow':          'Anreise · ALC',
+    'arr-gh-title':            'Willkommen in<br><em>Villajoyosa</em>',
+    'arr-gh-desc':             'Wir freuen uns sehr, dass Sie kommen. Villajoyosa ist ein kleines, sonnenwarmes Städtchen an der Costa Blanca — voller Farben, Geschichte und dem sanften Rhythmus des Mittelmeers. Ihre Wohnung liegt mitten im Herzen der Altstadt, nur wenige Schritte vom Meer. Die Reise hierher ist Teil des Erlebnisses.',
+    'arr-stat-taxi':           'Per Taxi',
+    'arr-stat-fare':           'Ca. Preis',
+    'arr-stat-ways':           'Anreisemögl.',
+    'arr-taxi-tag':            'Empfohlen',
+    'arr-taxi-mode':           'Taxi',
+    'arr-taxi-desc':           'Ab dem ALC Ankunftsbereich — keine Buchung notwendig. Direkt über die AP-7 Autobahn.',
+    'arr-train-tag':           'TRAM · L1',
+    'arr-train-mode':          'Zug',
+    'arr-train-desc':          'TRAM Linie 1 Alicante → Benidorm, Ausstieg Villajoyosa. Zehn Minuten zu Fuß in die Altstadt.',
+    'arr-car-tag':             'Mietauto',
+    'arr-car-mode':            'Auto',
+    'arr-car-desc':            'Miete am ALC, nehmen Sie die AP-7 Richtung Süden. Kostenlose Straßenparkplätze in der Nähe.',
+    'arr-car-parking':         'Kostenlos',
+    'arr-dur-label':           'Dauer',
+    'arr-fare-label':          'Preis',
+    'arr-parking-label':       'Parken',
+    'arr-taxi-instr-label':    'Dem Taxifahrer sagen',
+    'arr-taxi-instr-quote':    '„Bitte fahren Sie zum <strong style="font-style:normal;color:var(--charcoal);">Casco Antiguo</strong> in Villajoyosa, zur <strong style="font-style:normal;color:var(--charcoal);">Plaza Iglesia</strong>. Stehen Sie vor dem Kircheneingang, gehen Sie an ihr vorbei in Richtung <strong style="font-style:normal;color:var(--charcoal);">Restaurant Droca</strong> und fahren Sie noch etwa 50 Meter weiter — dort sehen Sie die <strong style="font-style:normal;color:var(--charcoal);">Calle Pou 11</strong>."',
+    'arr-transfer-label':      'Privattransfer',
+    'arr-transfer-title':      'Wir können einen<br><em>Transfer organisieren</em>',
+    'arr-transfer-desc':       'Kontaktieren Sie uns einfach vor Ihrer Ankunft und wir organisieren alles für Sie.',
+    'arr-map-label':           'Altstadt · Villajoyosa',
+    'arr-map-open':            'In Karte öffnen ↗',
+    'arr-walk-label':          'Zu Fuß vom Platz · 2 Min',
+    'arr-step1-title':         'Start an der Plaça de l\'Església',
+    'arr-step1-desc':          'Blicken Sie zur Kirche. Gehen Sie an ihrer Seite entlang — Sie passieren zwei Bars auf Ihrer rechten Seite.',
+    'arr-step2-title':         'Richtung Restaurant Droca',
+    'arr-step2-desc':          'Gehen Sie geradeaus auf derselben Straße in Richtung Restaurant Droca, folgen Sie der engen Gasse.',
+    'arr-step3-title':         'Ankunft an der Wohnung',
+    'arr-step3-desc':          'Nach etwa 50 Metern ist die Wohnung auf Ihrer <strong>linken Seite</strong> — achten Sie auf die Holztür mit dem Schlüsselkasten links davon.<br><span style="display:inline-block;margin-top:8px;font-family:\'Jost\',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span>',
+    'tip01-desc':    'Schon kleine Krümel ziehen schnell Ameisen an. Theke nach jeder Mahlzeit reinigen und Lebensmittel verschlossen im Kühlschrank aufbewahren.',
+    'tip02-desc':    'Terrassen- und Eingangstüren niemals unbeaufsichtigt offen lassen. Fliegende Kakerlaken dringen an warmen Abenden leicht ein — eine geschlossene Tür genügt.',
+    'tip03-title':   'Roter Schalter',
+    'tip03-desc':    'Links neben dem Haupteingang. Der Schalter mit dem <span style="color:var(--sand);">roten Punkt</span> schaltet alle Elektrogeräte außer dem Kühlschrank aus. Beim Verlassen benutzen.',
+    'tip04-title':   'Zum Strand',
+    'tip04-desc':    'Zur Promenade hinuntergehen und links abbiegen. Der Hauptstadtstrand ist etwa 3 Minuten zu Fuß entfernt.',
+    'tip05-title':   'Supermarkt',
+    'tip05-desc':    'Ein Spar Supermarkt ist ein kurzer Spaziergang entfernt an der Hauptstraße — täglich geöffnet, auch sonntags.',
+    'tip06-title':   'Schlüssel & Schlüsselbox',
+    'tip06-desc':    'Geben Sie bei der Abreise die Schlüssel in das kleine Kästchen links neben der Holztür zurück — dasselbe Kästchen wie bei der Ankunft. Tür hinter sich schließen.',
+    'dep-eyebrow':         'Abreise · Check-out',
+    'dep-title':           'Drei Dinge<br><em>vor der Abreise</em>',
+    'dep-checkout-label':  'Abreisezeit',
+    'dep-checkout-desc':   'Bitte verlassen Sie die Wohnung bis 11:00 Uhr. Melden Sie sich bei uns, wenn Sie einen späteren Check-out benötigen — wir helfen gerne, soweit es möglich ist.',
+    'dep-dish-label':      'Geschirrspüler',
+    'dep-dish-desc':       'Starten Sie den Geschirrspüler vor der Abreise, damit das Geschirr für die nächsten Gäste sauber und bereit ist.',
+    'dep-trash-label':     'Abfall',
+    'dep-trash-desc':      'Bitte nehmen Sie alle Abfälle vor der Abreise mit und entsorgen Sie diese in den Behältern auf der anderen Seite der Hauptstraße.',
   },
   'es': {
     'tab-menu-primary':       'Room Service',
@@ -8432,6 +8607,62 @@ var T = {
     'tips-tech-sub':   'AC & TV',
     'tips-arrival-label': 'Llegada',
     'tips-arrival-sub': 'Guía',
+    'arr-hero-title':          'Bienvenidos a<br><em>Calle Pou</em>',
+    'arr-hero-desc':           'Bienvenidos a nuestro precioso apartamento renovado. Esperamos que hayan tenido un viaje agradable. Todo lo que necesitan para sentirse como en casa — desde el primer paso.',
+    'arr-loc-eyebrow':         'Ubicación y Llegada',
+    'arr-loc-title':           'Su Llegada al<br><em>Casco Antiguo de Villajoyosa</em>',
+    'arr-loc-desc':            'El apartamento está ubicado en el casco antiguo de Villajoyosa y se puede llegar en avión, tren o coche. Bajo petición podemos organizar un traslado.',
+    'arr-gh-eyebrow':          'Cómo Llegar · ALC',
+    'arr-gh-title':            'Bienvenidos a<br><em>Villajoyosa</em>',
+    'arr-gh-desc':             'Nos alegra mucho que vengan. Villajoyosa es un pequeño pueblo cálido y soleado en la Costa Blanca — lleno de color, historia y el suave ritmo del Mediterráneo. Su apartamento está en el corazón del casco antiguo, a pasos del mar. El viaje hasta aquí es parte de la experiencia.',
+    'arr-stat-taxi':           'En taxi',
+    'arr-stat-fare':           'Precio aprox.',
+    'arr-stat-ways':           'Formas de llegar',
+    'arr-taxi-tag':            'Recomendado',
+    'arr-taxi-mode':           'Taxi',
+    'arr-taxi-desc':           'Desde la terminal de llegadas del ALC — sin reserva previa. Directo por la autopista AP-7.',
+    'arr-train-tag':           'TRAM · L1',
+    'arr-train-mode':          'Tren',
+    'arr-train-desc':          'TRAM Línea 1 Alicante → Benidorm, bajada en Villajoyosa. Diez minutos a pie hasta el casco antiguo.',
+    'arr-car-tag':             'Coche propio',
+    'arr-car-mode':            'Coche',
+    'arr-car-desc':            'Alquile en el ALC, tome la AP-7 dirección sur. Aparcamiento gratuito en la calle cerca del apartamento.',
+    'arr-car-parking':         'Gratis',
+    'arr-dur-label':           'Duración',
+    'arr-fare-label':          'Precio',
+    'arr-parking-label':       'Aparcamiento',
+    'arr-taxi-instr-label':    'Diga al taxista',
+    'arr-taxi-instr-quote':    '«Por favor, lléveme al <strong style="font-style:normal;color:var(--charcoal);">Casco Antiguo</strong> de Villajoyosa, a la <strong style="font-style:normal;color:var(--charcoal);">Plaza Iglesia</strong>. De cara a la entrada de la iglesia, pase junto a ella hacia el <strong style="font-style:normal;color:var(--charcoal);">Restaurante Droca</strong> y continúe unos 50 metros — verá la <strong style="font-style:normal;color:var(--charcoal);">Calle Pou 11</strong>.»',
+    'arr-transfer-label':      'Traslado Privado',
+    'arr-transfer-title':      'Podemos organizar<br><em>un traslado privado</em>',
+    'arr-transfer-desc':       'Simplemente contáctenos antes de su llegada y organizaremos todo por usted.',
+    'arr-map-label':           'Casco Antiguo · Villajoyosa',
+    'arr-map-open':            'Abrir en mapa ↗',
+    'arr-walk-label':          'A pie desde la plaza · 2 min',
+    'arr-step1-title':         'Inicio en la Plaça de l\'Església',
+    'arr-step1-desc':          'Mire hacia la iglesia. Camine por su lado — pasará dos bares a su derecha.',
+    'arr-step2-title':         'Dirección Restaurante Droca',
+    'arr-step2-desc':          'Continúe recto por esa misma calle en dirección al Restaurante Droca, siguiendo el callejón estrecho.',
+    'arr-step3-title':         'Llegada al apartamento',
+    'arr-step3-desc':          'Después de unos 50 metros el apartamento está a su <strong>izquierda</strong> — busque la puerta de madera con la caja de llaves a su izquierda.<br><span style="display:inline-block;margin-top:8px;font-family:\'Jost\',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span>',
+    'tip01-desc':    'Incluso las migas pequeñas atraen hormigas rápidamente. Limpie la encimera después de cada comida y guarde los alimentos en recipientes sellados o en la nevera.',
+    'tip02-desc':    'No deje nunca las puertas de la terraza o entrada abiertas sin vigilancia. Las cucarachas voladoras entran fácilmente en noches cálidas — una puerta cerrada es suficiente.',
+    'tip03-title':   'Interruptor punto rojo',
+    'tip03-desc':    'A la izquierda junto a la entrada principal. El interruptor con el <span style="color:var(--sand);">punto rojo</span> apaga todos los aparatos excepto la nevera. Úselo al salir.',
+    'tip04-title':   'A la playa',
+    'tip04-desc':    'Baje al paseo marítimo y gire a la izquierda. La playa principal del pueblo está a unos 3 minutos a pie.',
+    'tip05-title':   'Supermercado',
+    'tip05-desc':    'Un supermercado Spar está a un corto paseo en la carretera principal — abierto todos los días incluidos domingos.',
+    'tip06-title':   'Llaves y caja de llaves',
+    'tip06-desc':    'Al salir, devuelva las llaves a la pequeña caja a la izquierda de la puerta de madera — la misma que usó al llegar. Cierre bien la puerta al salir.',
+    'dep-eyebrow':         'Salida · Check-out',
+    'dep-title':           'Tres cosas<br><em>antes de salir</em>',
+    'dep-checkout-label':  'Hora de salida',
+    'dep-checkout-desc':   'Por favor, salga del apartamento antes de las 11:00. Contáctenos si necesita un check-out más tarde — haremos lo posible por ayudarle.',
+    'dep-dish-label':      'Lavavajillas',
+    'dep-dish-desc':       'Ponga en marcha el lavavajillas antes de salir para que los platos estén limpios para los próximos huéspedes.',
+    'dep-trash-label':     'Basura',
+    'dep-trash-desc':      'Por favor, lleve toda la basura fuera del apartamento antes de irse y deposítela en los contenedores al otro lado de la calle principal.',
   },
   'fr': {
     'tab-menu-primary':       'Room Service',
@@ -8569,6 +8800,62 @@ var T = {
     'tips-tech-sub':   'AC & TV',
     'tips-arrival-label': 'Arrivée',
     'tips-arrival-sub': 'Guide',
+    'arr-hero-title':          'Bienvenue à<br><em>Calle Pou</em>',
+    'arr-hero-desc':           'Bienvenue dans notre magnifique appartement rénové. Nous espérons que vous avez fait bon voyage. Tout ce qu\'il vous faut pour vous sentir chez vous — dès le premier pas.',
+    'arr-loc-eyebrow':         'Emplacement & Arrivée',
+    'arr-loc-title':           'Votre Arrivée dans la<br><em>Vieille Ville de Villajoyosa</em>',
+    'arr-loc-desc':            'L\'appartement est situé dans la vieille ville de Villajoyosa et est accessible en avion, en train ou en voiture. Sur demande, nous pouvons organiser un transfert.',
+    'arr-gh-eyebrow':          'Comment Arriver · ALC',
+    'arr-gh-title':            'Bienvenue à<br><em>Villajoyosa</em>',
+    'arr-gh-desc':             'Nous sommes ravis que vous veniez. Villajoyosa est une petite ville ensoleillée sur la Costa Blanca — pleine de couleurs, d\'histoire et du doux rythme de la Méditerranée. Votre appartement se trouve au cœur de la vieille ville, à quelques pas de la mer. Le voyage jusqu\'ici fait partie de l\'expérience.',
+    'arr-stat-taxi':           'En taxi',
+    'arr-stat-fare':           'Tarif estimé',
+    'arr-stat-ways':           'Façons d\'arriver',
+    'arr-taxi-tag':            'Recommandé',
+    'arr-taxi-mode':           'Taxi',
+    'arr-taxi-desc':           'Depuis le hall des arrivées d\'ALC — sans réservation. Direct par l\'autoroute AP-7.',
+    'arr-train-tag':           'TRAM · L1',
+    'arr-train-mode':          'Train',
+    'arr-train-desc':          'TRAM Ligne 1 Alicante → Benidorm, descendre à Villajoyosa. Dix minutes à pied vers la vieille ville.',
+    'arr-car-tag':             'Voiture',
+    'arr-car-mode':            'Voiture',
+    'arr-car-desc':            'Louer à ALC, prendre l\'AP-7 vers le sud. Stationnement gratuit dans la rue près de l\'appartement.',
+    'arr-car-parking':         'Gratuit',
+    'arr-dur-label':           'Durée',
+    'arr-fare-label':          'Tarif',
+    'arr-parking-label':       'Parking',
+    'arr-taxi-instr-label':    'Dites au chauffeur',
+    'arr-taxi-instr-quote':    '« Veuillez me conduire au <strong style="font-style:normal;color:var(--charcoal);">Casco Antiguo</strong> de Villajoyosa, à la <strong style="font-style:normal;color:var(--charcoal);">Plaza Iglesia</strong>. Face à l\'entrée de l\'église, passez devant elle en direction du <strong style="font-style:normal;color:var(--charcoal);">Restaurant Droca</strong> et continuez environ 50 mètres — vous verrez le <strong style="font-style:normal;color:var(--charcoal);">Calle Pou 11</strong>. »',
+    'arr-transfer-label':      'Transfert Privé',
+    'arr-transfer-title':      'Nous pouvons organiser<br><em>un transfert sur demande</em>',
+    'arr-transfer-desc':       'Contactez-nous avant votre arrivée et nous nous occupons de tout.',
+    'arr-map-label':           'Vieille Ville · Villajoyosa',
+    'arr-map-open':            'Ouvrir dans la carte ↗',
+    'arr-walk-label':          'À pied depuis la plaza · 2 min',
+    'arr-step1-title':         'Départ à la Plaça de l\'Església',
+    'arr-step1-desc':          'Faites face à l\'église. Marchez le long de son côté — vous passerez deux bars sur votre droite.',
+    'arr-step2-title':         'En direction du Restaurant Droca',
+    'arr-step2-desc':          'Continuez tout droit dans cette même rue en direction du Restaurant Droca, en suivant la ruelle étroite.',
+    'arr-step3-title':         'Arrivée à l\'appartement',
+    'arr-step3-desc':          'Après environ 50 mètres, l\'appartement est sur votre <strong>gauche</strong> — cherchez la porte en bois avec le boîtier à clés à sa gauche.<br><span style="display:inline-block;margin-top:8px;font-family:\'Jost\',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span>',
+    'tip01-desc':    'Même de petites miettes attirent rapidement des fourmis. Nettoyez le plan de travail après chaque repas et rangez les aliments dans des récipients fermés ou au réfrigérateur.',
+    'tip02-desc':    'Ne laissez jamais les portes de terrasse ou d\'entrée ouvertes sans surveillance. Les cafards volants entrent facilement les soirs chauds — une porte fermée suffit.',
+    'tip03-title':   'Interrupteur point rouge',
+    'tip03-desc':    'À gauche de l\'entrée principale. L\'interrupteur avec le <span style="color:var(--sand);">point rouge</span> éteint tous les appareils sauf le réfrigérateur. Utilisez-le en partant.',
+    'tip04-title':   'Vers la plage',
+    'tip04-desc':    'Descendez vers la promenade et tournez à gauche. La plage principale de la ville est à environ 3 minutes à pied.',
+    'tip05-title':   'Supermarché',
+    'tip05-desc':    'Un supermarché Spar est à quelques minutes à pied sur la rue principale — ouvert tous les jours y compris le dimanche.',
+    'tip06-title':   'Clés & boîtier',
+    'tip06-desc':    'Au départ, remettez les clés dans la petite boîte à gauche de la porte en bois — la même que lors de votre arrivée. Fermez bien la porte derrière vous.',
+    'dep-eyebrow':         'Départ · Check-out',
+    'dep-title':           'Trois choses<br><em>avant de partir</em>',
+    'dep-checkout-label':  'Heure de départ',
+    'dep-checkout-desc':   'Veuillez quitter l\'appartement avant 11h00. Contactez-nous si vous avez besoin d\'un départ tardif — nous ferons notre possible.',
+    'dep-dish-label':      'Lave-vaisselle',
+    'dep-dish-desc':       'Lancez le lave-vaisselle avant de partir afin que la vaisselle soit propre et prête pour les prochains clients.',
+    'dep-trash-label':     'Déchets',
+    'dep-trash-desc':      'Veuillez emporter tous les déchets hors de l\'appartement avant de partir et les déposer dans les bacs en face de la rue principale.',
   },
   'no': {
     'tab-menu-primary':       'Room Service',
@@ -8706,6 +8993,62 @@ var T = {
     'tips-tech-sub':   'AC & TV',
     'tips-arrival-label': 'Ankomst',
     'tips-arrival-sub': 'Guide',
+    'arr-hero-title':          'Velkommen til<br><em>Calle Pou</em>',
+    'arr-hero-desc':           'Velkommen til vår nydelig renoverte leilighet. Vi håper du hadde en behagelig reise. Alt du trenger for å føle deg hjemme — fra første steg gjennom døren.',
+    'arr-loc-eyebrow':         'Beliggenhet & Ankomst',
+    'arr-loc-title':           'Din Ankomst til<br><em>Gamlebyen i Villajoyosa</em>',
+    'arr-loc-desc':            'Leiligheten ligger i gamlebyen i Villajoyosa og er tilgjengelig med fly, tog eller bil. På forespørsel kan vi organisere transport.',
+    'arr-gh-eyebrow':          'Kom deg hit · ALC',
+    'arr-gh-title':            'Velkommen til<br><em>Villajoyosa</em>',
+    'arr-gh-desc':             'Vi er så glade for at du kommer. Villajoyosa er en liten, soldrenkt by på Costa Blanca — full av farger, historie og Middelhavets rolige rytme. Leiligheten din ligger midt i hjertet av gamlebyen, noen skritt fra havet. Reisen hit er en del av opplevelsen.',
+    'arr-stat-taxi':           'Med taxi',
+    'arr-stat-fare':           'Ca. pris',
+    'arr-stat-ways':           'Reisemåter',
+    'arr-taxi-tag':            'Anbefalt',
+    'arr-taxi-mode':           'Taxi',
+    'arr-taxi-desc':           'Fra ALC ankomsthallen — ingen bestilling nødvendig. Direkte langs AP-7 motorveien.',
+    'arr-train-tag':           'TRAM · L1',
+    'arr-train-mode':          'Tog',
+    'arr-train-desc':          'TRAM Linje 1 Alicante → Benidorm, gå av i Villajoyosa. Ti minutter til fots til gamlebyen.',
+    'arr-car-tag':             'Leiebil',
+    'arr-car-mode':            'Bil',
+    'arr-car-desc':            'Lei på ALC, ta AP-7 sørover. Gratis gateparkering nær leiligheten.',
+    'arr-car-parking':         'Gratis',
+    'arr-dur-label':           'Varighet',
+    'arr-fare-label':          'Pris',
+    'arr-parking-label':       'Parkering',
+    'arr-taxi-instr-label':    'Si til taxisjåføren',
+    'arr-taxi-instr-quote':    '«Kjør til <strong style="font-style:normal;color:var(--charcoal);">Casco Antiguo</strong> i Villajoyosa, til <strong style="font-style:normal;color:var(--charcoal);">Plaza Iglesia</strong>. Stå overfor kirkeinngangen, gå forbi den mot <strong style="font-style:normal;color:var(--charcoal);">Restaurant Droca</strong> og fortsett ca. 50 meter — der ser du <strong style="font-style:normal;color:var(--charcoal);">Calle Pou 11</strong>.»',
+    'arr-transfer-label':      'Privat Transport',
+    'arr-transfer-title':      'Vi kan ordne<br><em>transport på forespørsel</em>',
+    'arr-transfer-desc':       'Ta kontakt før ankomst, så ordner vi alt for deg.',
+    'arr-map-label':           'Gamlebyen · Villajoyosa',
+    'arr-map-open':            'Åpne i kart ↗',
+    'arr-walk-label':          'Til fots fra plassen · 2 min',
+    'arr-step1-title':         'Start ved Plaça de l\'Església',
+    'arr-step1-desc':          'Stå med ansiktet mot kirken. Gå langs siden av den — du passerer to barer på høyre side.',
+    'arr-step2-title':         'Mot Restaurant Droca',
+    'arr-step2-desc':          'Fortsett rett frem på samme gate i retning av Restaurant Droca, følg den smale gaten.',
+    'arr-step3-title':         'Fremme ved leiligheten',
+    'arr-step3-desc':          'Etter ca. 50 meter er leiligheten på din <strong>venstre side</strong> — se etter tredøren med nøkkelboksen til venstre for den.<br><span style="display:inline-block;margin-top:8px;font-family:\'Jost\',sans-serif;font-size:9px;letter-spacing:0.15em;color:rgba(44,37,32,0.38);">Calle Pou 11 · 03570 Villajoyosa</span>',
+    'tip01-desc':    'Selv små smuler tiltrekker maur raskt. Rengjør benken etter hvert måltid og oppbevar mat i forseglede beholdere eller i kjøleskapet.',
+    'tip02-desc':    'La aldri terrasse- eller inngangsdørene stå åpne uten tilsyn. Flygende kakerlakker kommer lett inn på varme kvelder — en lukket dør er alt som trengs.',
+    'tip03-title':   'Rød-punkt-bryter',
+    'tip03-desc':    'Til venstre ved hovedinngangen. Bryteren med den <span style="color:var(--sand);">røde prikken</span> slår av alle elektriske apparater bortsett fra kjøleskapet. Bruk den når du forlater leiligheten.',
+    'tip04-title':   'Til stranden',
+    'tip04-desc':    'Gå ned til promenaden og sving til venstre. Byens hovedstrand er ca. 3 minutters gange.',
+    'tip05-title':   'Supermarked',
+    'tip05-desc':    'Et Spar supermarked ligger en kort spasertur unna på hovedveien — åpent daglig inkludert søndager.',
+    'tip06-title':   'Nøkler og nøkkelboks',
+    'tip06-desc':    'Legg nøklene tilbake i den lille boksen til venstre for tredøren ved avreise — samme boks som ved ankomst. Lukk døren godt etter deg.',
+    'dep-eyebrow':         'Avreise · Utsjekk',
+    'dep-title':           'Tre ting<br><em>før du reiser</em>',
+    'dep-checkout-label':  'Utsjekkstid',
+    'dep-checkout-desc':   'Vennligst forlat leiligheten innen 11:00. Ta kontakt om du trenger sen utsjekk — vi hjelper gjerne der det er mulig.',
+    'dep-dish-label':      'Oppvaskmaskin',
+    'dep-dish-desc':       'Start oppvaskmaskinen før du drar slik at oppvasken er ren og klar for neste gjest.',
+    'dep-trash-label':     'Avfall',
+    'dep-trash-desc':      'Ta med alt søppel ut av leiligheten før du reiser og lever det i søppeldunkene på andre siden av hovedgaten.',
   }
 };
 
