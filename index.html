@@ -6713,6 +6713,16 @@
             <input type="tel" id="ci-g1-phone" placeholder="+34 600 000 000" />
           </div>
         </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group">
+            <label for="ci-g1-dob">Date of Birth</label>
+            <input type="date" id="ci-g1-dob" />
+          </div>
+          <div class="ci-group">
+            <label for="ci-g1-doc-expiry">Document Expiry Date</label>
+            <input type="date" id="ci-g1-doc-expiry" />
+          </div>
+        </div>
       </div>
       <button class="ci-add-guest-btn" id="ci-add-g2" onclick="ciShowGuest(2)">+ Add another guest</button>
 
@@ -6740,6 +6750,10 @@
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g2-phone">Phone Number</label><input type="tel" id="ci-g2-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g2-dob">Date of Birth</label><input type="date" id="ci-g2-dob" /></div>
+          <div class="ci-group"><label for="ci-g2-doc-expiry">Document Expiry Date</label><input type="date" id="ci-g2-doc-expiry" /></div>
         </div>
       </div>
       <button class="ci-add-guest-btn" id="ci-add-g3" onclick="ciShowGuest(3)" style="display:none;">+ Add another guest</button>
@@ -6769,6 +6783,10 @@
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g3-phone">Phone Number</label><input type="tel" id="ci-g3-phone" placeholder="+34 600 000 000" /></div>
         </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g3-dob">Date of Birth</label><input type="date" id="ci-g3-dob" /></div>
+          <div class="ci-group"><label for="ci-g3-doc-expiry">Document Expiry Date</label><input type="date" id="ci-g3-doc-expiry" /></div>
+        </div>
       </div>
       <button class="ci-add-guest-btn" id="ci-add-g4" onclick="ciShowGuest(4)" style="display:none;">+ Add another guest</button>
 
@@ -6796,6 +6814,10 @@
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g4-phone">Phone Number</label><input type="tel" id="ci-g4-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g4-dob">Date of Birth</label><input type="date" id="ci-g4-dob" /></div>
+          <div class="ci-group"><label for="ci-g4-doc-expiry">Document Expiry Date</label><input type="date" id="ci-g4-doc-expiry" /></div>
         </div>
       </div>
       <button class="ci-add-guest-btn" id="ci-add-g5" onclick="ciShowGuest(5)" style="display:none;">+ Add another guest</button>
@@ -6825,6 +6847,10 @@
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g5-phone">Phone Number</label><input type="tel" id="ci-g5-phone" placeholder="+34 600 000 000" /></div>
         </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g5-dob">Date of Birth</label><input type="date" id="ci-g5-dob" /></div>
+          <div class="ci-group"><label for="ci-g5-doc-expiry">Document Expiry Date</label><input type="date" id="ci-g5-doc-expiry" /></div>
+        </div>
       </div>
       <button class="ci-add-guest-btn" id="ci-add-g6" onclick="ciShowGuest(6)" style="display:none;">+ Add another guest</button>
 
@@ -6852,6 +6878,10 @@
         </div>
         <div class="ci-row">
           <div class="ci-group"><label for="ci-g6-phone">Phone Number</label><input type="tel" id="ci-g6-phone" placeholder="+34 600 000 000" /></div>
+        </div>
+        <div class="ci-row ci-row-2">
+          <div class="ci-group"><label for="ci-g6-dob">Date of Birth</label><input type="date" id="ci-g6-dob" /></div>
+          <div class="ci-group"><label for="ci-g6-doc-expiry">Document Expiry Date</label><input type="date" id="ci-g6-doc-expiry" /></div>
         </div>
       </div>
 
@@ -7393,6 +7423,23 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
         alert('Please enter at least the first and last name for Guest 1.');
         return;
       }
+      for (let n = 1; n <= 6; n++) {
+        const block = document.getElementById('ci-g' + n + '-block');
+        if (!block || block.style.display === 'none') continue;
+        const gFirst = document.getElementById('ci-g' + n + '-first').value.trim();
+        const gLast  = document.getElementById('ci-g' + n + '-last').value.trim();
+        if (!gFirst && !gLast) continue;
+        const dob    = document.getElementById('ci-g' + n + '-dob').value;
+        const expiry = document.getElementById('ci-g' + n + '-doc-expiry').value;
+        if (!dob) {
+          alert('Please enter the date of birth for Guest ' + n + '.');
+          return;
+        }
+        if (!expiry) {
+          alert('Please enter the document expiry date for Guest ' + n + '.');
+          return;
+        }
+      }
     } else if (from === 3) {
       const email = document.getElementById('ci-email').value.trim();
       if (!email) {
@@ -7408,11 +7455,27 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
   }
 
   function ciShowGuest(n) {
+    const prev = n - 1;
+    const fields = [
+      ['ci-g' + prev + '-first',      'First Name'],
+      ['ci-g' + prev + '-last',       'Last Name'],
+      ['ci-g' + prev + '-doctype',    'Document Type'],
+      ['ci-g' + prev + '-id',         'Document Number'],
+      ['ci-g' + prev + '-nationality','Nationality'],
+      ['ci-g' + prev + '-gender',     'Gender'],
+      ['ci-g' + prev + '-dob',        'Date of Birth'],
+      ['ci-g' + prev + '-doc-expiry', 'Document Expiry Date'],
+    ];
+    for (const [id, label] of fields) {
+      const el = document.getElementById(id);
+      if (!el || !el.value.trim()) {
+        alert('Please fill in "' + label + '" for Guest ' + prev + ' before adding another guest.');
+        return;
+      }
+    }
     document.getElementById('ci-g' + n + '-block').style.display = 'block';
-    // The add button for guest n (which triggered this) — hide it
     const addBtn = document.getElementById('ci-add-g' + n);
     if (addBtn) addBtn.style.display = 'none';
-    // Show the add button for the next guest (if exists and not g1's own button)
     if (n < 6) {
       const nextBtn = document.getElementById('ci-add-g' + (n + 1));
       if (nextBtn) nextBtn.style.display = 'block';
@@ -7430,12 +7493,16 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     if (!first && !last) return null;
     const doctype = ciVal('ci-g' + n + '-doctype');
     const id      = ciVal('ci-g' + n + '-id');
+    const dob     = ciVal('ci-g' + n + '-dob');
+    const expiry  = ciVal('ci-g' + n + '-doc-expiry');
     const email   = ciVal('ci-g' + n + '-email');
     const gender  = ciVal('ci-g' + n + '-gender');
     const phone   = ciVal('ci-g' + n + '-phone');
     let line = `Guest ${n}: ${last}, ${first}`;
+    if (dob)           line += ` · DOB: ${dob}`;
     if (doctype && id) line += ` · ${doctype}: ${id}`;
     else if (id)       line += ` · Doc: ${id}`;
+    if (expiry)        line += ` · Expiry: ${expiry}`;
     if (gender) line += ` · ${gender}`;
     if (email)  line += `\n  Email: ${email}`;
     if (phone)  line += ` · Phone: ${phone}`;
@@ -7478,9 +7545,11 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
       const id      = ciVal('ci-g' + n + '-id');
       addBlock('Guest ' + n, [
         ['Name', `${last}, ${first}`],
+        ['Date of Birth', ciVal('ci-g' + n + '-dob')],
         ['Nationality', ciVal('ci-g' + n + '-nationality')],
         ['Document Type', doctype],
         ['Document Number', id],
+        ['Document Expiry', ciVal('ci-g' + n + '-doc-expiry')],
         ['Gender', ciVal('ci-g' + n + '-gender')],
         ['Email', ciVal('ci-g' + n + '-email')],
         ['Phone', ciVal('ci-g' + n + '-phone')]
@@ -7502,7 +7571,7 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     const contactEmail = ciVal('ci-email');
     const addr1 = [ciVal('ci-addr1-street'), ciVal('ci-addr1-city'), ciVal('ci-addr1-state'), ciVal('ci-addr1-zip')].filter(Boolean).join(', ');
 
-    const headers = ['Submitted','Reservation Code','Check In','Check Out','Guest #','Last Name','First Name','Nationality','Document Type','Document Number','Gender','Guest Email','Guest Phone','Contact Email','Mailing Address'];
+    const headers = ['Submitted','Reservation Code','Check In','Check Out','Guest #','Last Name','First Name','Date of Birth','Nationality','Document Type','Document Number','Document Expiry','Gender','Guest Email','Guest Phone','Contact Email','Mailing Address'];
     const rows = [];
 
     for (let n = 1; n <= 6; n++) {
@@ -7517,9 +7586,11 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
         n,
         last,
         first,
+        ciVal('ci-g' + n + '-dob'),
         ciVal('ci-g' + n + '-nationality'),
         ciVal('ci-g' + n + '-doctype'),
         ciVal('ci-g' + n + '-id'),
+        ciVal('ci-g' + n + '-doc-expiry'),
         ciVal('ci-g' + n + '-gender'),
         ciVal('ci-g' + n + '-email'),
         ciVal('ci-g' + n + '-phone'),
@@ -7564,12 +7635,16 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
       const nationality = ciVal('ci-g' + n + '-nationality');
       const doctype = ciVal('ci-g' + n + '-doctype');
       const id      = ciVal('ci-g' + n + '-id');
+      const dob     = ciVal('ci-g' + n + '-dob');
+      const expiry  = ciVal('ci-g' + n + '-doc-expiry');
       const gender  = ciVal('ci-g' + n + '-gender');
       const email   = ciVal('ci-g' + n + '-email');
       const phone   = ciVal('ci-g' + n + '-phone');
+      if (dob)       msg += `   Date of Birth: ${dob}\n`;
       if (nationality) msg += `   Nationality: ${nationality}\n`;
       if (doctype && id) msg += `   ${doctype}: ${id}\n`;
       else if (id)       msg += `   Doc: ${id}\n`;
+      if (expiry)    msg += `   Doc Expiry: ${expiry}\n`;
       if (gender) msg += `   Gender: ${gender}\n`;
       if (email)  msg += `   Email: ${email}\n`;
       if (phone)  msg += `   Phone: ${phone}\n`;
