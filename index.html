@@ -6657,7 +6657,7 @@
   <div class="ci-panel" id="ci-step-2">
     <div class="ci-form-area">
       <div class="ci-section-title">Guest <em>Information</em></div>
-      <p class="ci-section-sub">Please complete Guest 1. Add additional guests using the button below each entry.</p>
+      <p class="ci-section-sub">Please complete Guest 1. Date of birth and document expiry date are required for every guest. Add additional guests using the button below — all fields must be filled before a new guest can be added.</p>
 
       <!-- Guest 1 (always shown) -->
       <div class="ci-guest-block" id="ci-g1-block">
@@ -7416,7 +7416,17 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
   }
 
   function ciNext(from) {
-    if (from === 2) {
+    if (from === 1) {
+      const ciDate = document.getElementById('ci-checkin-date').value;
+      const coDate = document.getElementById('ci-checkout-date').value;
+      if (!ciDate) { alert('Please enter your check-in date.'); return; }
+      if (!coDate) { alert('Please enter your check-out date.'); return; }
+      const diffDays = (new Date(coDate) - new Date(ciDate)) / 86400000;
+      if (diffDays < 1) {
+        alert('Check-out must be at least one day after check-in. Same-day stays are not possible.');
+        return;
+      }
+    } else if (from === 2) {
       const first = document.getElementById('ci-g1-first').value.trim();
       const last  = document.getElementById('ci-g1-last').value.trim();
       if (!first || !last) {
