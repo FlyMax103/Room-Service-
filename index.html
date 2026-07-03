@@ -30,6 +30,7 @@
     font-weight: 300;
     font-size: 15px;
     line-height: 1.8;
+    padding-bottom: 40px;
   }
 
   /* ── COVER ── */
@@ -3273,6 +3274,57 @@
     max-width: 420px; margin: 0 auto;
   }
 
+  /* Consent checkbox block */
+  .ci-consent-block {
+    background: var(--warm-white);
+    border: 1px solid var(--linen-deep);
+    border-left: 3px solid var(--moss);
+    padding: 18px 24px;
+    margin-bottom: 20px;
+  }
+  .ci-consent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .ci-consent-checkbox {
+    width: 18px; height: 18px;
+    accent-color: var(--moss);
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+  .ci-consent-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px; font-weight: 300;
+    color: var(--charcoal); line-height: 1.65;
+    cursor: pointer;
+  }
+  .ci-consent-label strong { font-weight: 500; color: var(--bark); }
+  .ci-consent-expand-btn {
+    background: none; border: none; padding: 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--moss); cursor: pointer;
+    margin-top: 8px; display: inline-flex;
+    align-items: center; gap: 5px;
+    text-decoration: none;
+  }
+  .ci-consent-expand-btn:hover { color: var(--bark); }
+  .ci-consent-full {
+    display: none;
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: var(--cream);
+    border: 1px solid var(--linen-deep);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px; font-weight: 300;
+    color: rgba(44,37,32,0.6); line-height: 1.8;
+    max-height: 160px; overflow-y: auto;
+  }
+  .ci-consent-full.open { display: block; }
+
   @media (max-width: 700px) {
     .ci-hero { padding: 48px 24px 36px; }
     .ci-progress { padding: 0 12px; }
@@ -3774,7 +3826,7 @@
   /* ══ FLOATING RESERVE BAR ══ */
   .float-reserve {
     position: fixed;
-    bottom: 0;
+    bottom: 40px;
     left: 0; right: 0;
     z-index: 8900;
     background: rgba(253,250,247,0.97);
@@ -5017,6 +5069,16 @@
       <div class="tips-pill-sub">In-Room</div>
     </button>
 
+    <button class="tips-pill" onclick="selectTip('fridge')" id="tip-pill-fridge">
+      <div class="tips-pill-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/>
+        </svg>
+      </div>
+      <div class="tips-pill-label">Fridge</div>
+      <div class="tips-pill-sub">Ice Maker</div>
+    </button>
+
   </div>
 
   <!-- ══ PANEL: SONOS SPEAKER ══ -->
@@ -6223,6 +6285,123 @@
 </div><!-- /tip-panel-safe -->
 
 
+<!-- ══ PANEL: FRIDGE · ICE MAKER ══ -->
+<div class="tips-panel" id="tip-panel-fridge">
+
+  <!-- Hero -->
+  <div class="tips-hero">
+    <div class="tips-badge"><span class="tips-badge-dot"></span>Kitchen · Fridge Ice Maker</div>
+    <div class="tips-hero-title reveal">Ice Maker <em>Symbol</em></div>
+    <div class="tips-hero-desc reveal">A quick guide to the ice maker indicator light on the fridge — what it means and how to restart it.</div>
+    <div class="scroll-cue dark reveal" style="align-self:flex-start; margin-top:36px;">
+      <span class="scroll-cue-label">Scroll</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </div>
+
+  <!-- Icon explainer -->
+  <div style="background:var(--charcoal); padding:40px 64px; border-bottom:1px solid rgba(201,185,154,0.08); display:flex; align-items:center; gap:52px; flex-wrap:wrap;" class="reveal">
+    <div style="flex-shrink:0; text-align:center;">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(120,180,220,0.12);border:1.5px solid rgba(120,180,220,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(120,200,240,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v8M12 14v8M4.93 4.93l5.66 5.66M13.41 13.41l5.66 5.66M2 12h8M14 12h8M4.93 19.07l5.66-5.66M13.41 10.59l5.66-5.66"/>
+        </svg>
+      </div>
+      <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(120,200,240,0.6);">❄ Ice Symbol</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:10px;height:10px;border-radius:50%;background:rgba(120,200,240,0.85);flex-shrink:0;margin-top:5px;box-shadow:0 0 6px rgba(120,200,240,0.6);"></div>
+        <div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(120,200,240,0.6);margin-bottom:4px;">Symbol illuminated · light on</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--warm-white);line-height:1.55;">The ice maker is <strong style="color:rgba(120,200,240,0.85);">disabled</strong> — no ice cubes will be produced or dispensed.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:10px;height:10px;border-radius:50%;background:rgba(201,185,154,0.15);border:1px solid rgba(201,185,154,0.2);flex-shrink:0;margin-top:5px;"></div>
+        <div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,185,154,0.4);margin-bottom:4px;">Symbol not illuminated · light off</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--warm-white);line-height:1.55;">The ice maker is <strong style="color:var(--moss);">active</strong> — ice cubes are being produced normally.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notice -->
+  <div class="tips-notice reveal">
+    <span class="tips-notice-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </span>
+    <div class="tips-notice-text">
+      <strong>Ice symbol illuminated?</strong> The ice maker has been switched off. Simply press the ice symbol button once to de-illuminate it — the ice maker will restart and begin producing ice cubes again.
+    </div>
+  </div>
+
+  <!-- Steps -->
+  <div class="tips-method">
+    <div class="tips-method-header reveal">
+      <div class="tips-method-letter" style="background:rgba(60,120,160,0.55);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v8M12 14v8M4.93 4.93l5.66 5.66M13.41 13.41l5.66 5.66M2 12h8M14 12h8M4.93 19.07l5.66-5.66M13.41 10.59l5.66-5.66"/>
+        </svg>
+      </div>
+      <div class="tips-method-title-wrap">
+        <div class="tips-method-title">Restarting the Ice Maker</div>
+        <div class="tips-method-sub">Press once to toggle · Symbol off = ice maker running</div>
+      </div>
+    </div>
+
+    <div class="reveal-stagger">
+      <div class="tips-step">
+        <div class="tips-step-num">1</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Check the ice symbol</div>
+          <div class="tips-step-desc">Look at the ice maker button on the fridge panel. If the <strong>❄ symbol is illuminated (light on)</strong>, the ice maker is currently disabled.</div>
+          <span class="tips-step-tag" style="display:inline-flex;align-items:center;gap:6px;background:rgba(120,180,220,0.1);border-color:rgba(120,180,220,0.25);color:rgba(120,200,240,0.75);">
+            ❄ Illuminated = disabled
+          </span>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">2</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Press the ice symbol button</div>
+          <div class="tips-step-desc">Press the <strong>❄ button</strong> once. The indicator light will go off.</div>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="tips-step-num">3</div>
+        <div class="tips-step-body">
+          <div class="tips-step-title">Ice maker restarts</div>
+          <div class="tips-step-desc">Once the light is off, the ice maker is active again and will begin producing ice cubes. <strong>Allow some time</strong> for the first batch to be ready.</div>
+          <span class="tips-step-tag" style="display:inline-flex;align-items:center;gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Light off = producing ice
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success banner -->
+  <div class="tips-success reveal">
+    <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(58,125,68,0.15);border:1.5px solid rgba(58,125,68,0.35);flex-shrink:0;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7d44" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </span>
+    <div class="tips-success-text"><strong style="color:#3a7d44;">Ice is on the way.</strong> The fridge will produce a fresh batch — it may take 1–2 hours for the first cubes.</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <span>Calle Pou · Villajoyosa</span>
+    <span>Tips &amp; Tricks</span>
+    <span>Fridge · Ice Maker</span>
+  </div>
+
+</div><!-- /tip-panel-fridge -->
+
 
 </div><!-- /tab-tips -->
 
@@ -6885,6 +7064,30 @@
         </div>
       </div>
 
+      <!-- Data consent -->
+      <div class="ci-consent-block">
+        <div class="ci-consent-row">
+          <input type="checkbox" class="ci-consent-checkbox" id="ci-consent" />
+          <label class="ci-consent-label" for="ci-consent">
+            I confirm that I have read and agree that the information I enter here will be used <strong>exclusively</strong> to complete the mandatory <strong>Hospedajes Form</strong> required by Spanish law. The data will not be shared with third parties or used for any other purpose.
+          </label>
+        </div>
+        <button class="ci-consent-expand-btn" onclick="ciToggleConsent(event)" aria-expanded="false">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" id="ci-consent-chevron"><polyline points="6 9 12 15 18 9"/></svg>
+          <span id="ci-consent-btn-text">Read full text</span>
+        </button>
+        <div class="ci-consent-full" id="ci-consent-full">
+          <p><strong>Purpose of data collection</strong><br>
+          The personal data you provide in this check-in form — including full name, date of birth, nationality, document type, document number, document expiry date, and gender — is collected solely for the purpose of completing the Hospedajes (guest registration) form as required under Spanish Royal Decree 933/2021 and related regulations governing the hosting of tourists and travellers.</p>
+          <br>
+          <p><strong>Data use</strong><br>
+          Your data will be transmitted to the responsible Spanish authorities (Ministerio del Interior / Policía Nacional) via the Hospedajes platform. It will not be used for marketing, profiling, or any purpose beyond the legal registration requirement.</p>
+          <br>
+          <p><strong>Data retention</strong><br>
+          Guest data is retained for the period required by applicable law and then securely deleted. You may request access to or deletion of your data at any time by contacting us via the details provided in the property information.</p>
+        </div>
+      </div>
+
       <div class="ci-nav">
         <button class="ci-btn-back" onclick="ciBack(2)">← Back</button>
         <button class="ci-btn-next" onclick="ciNext(2)">Continue →</button>
@@ -6969,6 +7172,72 @@
   </div>
 
 </div><!-- /tab-checkin -->
+
+
+<!-- ════════════════════════════════════════
+     TAB: IMPRESSUM
+     ════════════════════════════════════════ -->
+<div id="tab-impressum" class="tab-page">
+
+  <!-- Hero -->
+  <div style="background:var(--charcoal);padding:64px 64px 52px;border-bottom:1px solid rgba(201,185,154,0.1);position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-40%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(92,74,53,0.10) 0%,transparent 70%);pointer-events:none;"></div>
+    <span style="font-size:9px;letter-spacing:0.45em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:18px;">MB Luxury Living · Legal Notice</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,62px);font-weight:300;color:var(--warm-white);line-height:1.05;margin-bottom:12px;">Impressum</h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(253,250,247,0.4);line-height:1.7;max-width:520px;">Angaben gemäß § 5 TMG · Information required by German Telemedia Act</p>
+  </div>
+
+  <!-- Content -->
+  <div style="max-width:780px;margin:0 auto;padding:52px 64px 80px;">
+
+    <!-- Responsible person -->
+    <div style="background:var(--warm-white);border:1px solid var(--linen-deep);border-top:2px solid var(--bark);padding:36px 40px;margin-bottom:24px;">
+      <span style="font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:24px;">Verantwortlicher · Responsible Person</span>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--bark);margin-bottom:18px;line-height:1.2;">Markus Bucksch</p>
+      <div style="font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:var(--charcoal);line-height:2.1;">
+        <div>Am Reitplatz 3</div>
+        <div>65812 Bad Soden am Taunus</div>
+        <div>Germany</div>
+      </div>
+    </div>
+
+    <!-- Property -->
+    <div style="background:var(--warm-white);border:1px solid var(--linen-deep);padding:28px 40px;margin-bottom:24px;">
+      <span style="font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:20px;">Property</span>
+      <div style="font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:var(--charcoal);line-height:2.1;">
+        <div>MB Luxury Living · Calle Pou</div>
+        <div>Calle del Pou · 03570 Villajoyosa (La Vila Joiosa)</div>
+        <div>Alicante · España</div>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div style="background:var(--warm-white);border:1px solid var(--linen-deep);padding:28px 40px;margin-bottom:24px;">
+      <span style="font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:var(--moss);font-family:'Jost',sans-serif;display:block;margin-bottom:20px;">Haftungsausschluss · Disclaimer</span>
+      <p style="font-family:'Jost',sans-serif;font-size:12px;font-weight:300;color:rgba(44,37,32,0.55);line-height:1.85;">
+        Die Inhalte dieser Seite wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Diese Website dient ausschließlich der Information von Gästen der Ferienwohnung Calle Pou, Villajoyosa.
+      </p>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--linen-deep);">
+        <p style="font-family:'Jost',sans-serif;font-size:12px;font-weight:300;color:rgba(44,37,32,0.55);line-height:1.85;">
+          The contents of this page were created with due care. However, we cannot accept liability for the accuracy, completeness or timeliness of the content. This website serves exclusively to inform guests of the holiday apartment Calle Pou, Villajoyosa.
+        </p>
+      </div>
+    </div>
+
+    <!-- Back link -->
+    <button onclick="switchTab('home');window.scrollTo(0,0);" style="background:transparent;border:1px solid var(--linen-deep);color:rgba(44,37,32,0.4);font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;padding:13px 28px;cursor:pointer;transition:all 0.15s;" onmouseover="this.style.borderColor='rgba(44,37,32,0.3)';this.style.color='var(--charcoal)'" onmouseout="this.style.borderColor='var(--linen-deep)';this.style.color='rgba(44,37,32,0.4)'">← Back to Home</button>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="page-footer">
+    <span>MB Luxury Living</span>
+    <span>Legal Notice · Impressum</span>
+    <span>Markus Bucksch</span>
+  </div>
+
+</div><!-- /tab-impressum -->
+
 
  ═══════════ -->
 <div id="order-panel">
@@ -7381,7 +7650,7 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
     window.scrollTo(0, 0);
     updateNav();
     // Hide floating reserve bar on check-in and tips pages
-    document.body.classList.toggle('fr-tab-suppress', tab === 'checkin' || tab === 'tips' || tab === 'arrival');
+    document.body.classList.toggle('fr-tab-suppress', tab === 'checkin' || tab === 'tips' || tab === 'arrival' || tab === 'impressum');
   }
 
   // ══ CHECK IN WIZARD ══
@@ -7450,6 +7719,11 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
           return;
         }
       }
+      const consent = document.getElementById('ci-consent');
+      if (!consent || !consent.checked) {
+        alert('Please confirm the data protection consent before continuing.');
+        return;
+      }
     } else if (from === 3) {
       const email = document.getElementById('ci-email').value.trim();
       if (!email) {
@@ -7462,6 +7736,17 @@ var ARRIVAL_HASH = "8974167fd58871106a5a2564d8dd2140b6194999cec85c0252d2a8cfe7b6
 
   function ciBack(from) {
     ciGoTo(from - 1);
+  }
+
+  function ciToggleConsent(e) {
+    e.preventDefault();
+    var full    = document.getElementById('ci-consent-full');
+    var chevron = document.getElementById('ci-consent-chevron');
+    var btnText = document.getElementById('ci-consent-btn-text');
+    var open    = full.classList.toggle('open');
+    chevron.style.transform = open ? 'rotate(180deg)' : '';
+    btnText.textContent     = open ? 'Hide full text' : 'Read full text';
+    e.currentTarget.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
   function ciShowGuest(n) {
@@ -9848,6 +10133,22 @@ document.addEventListener('DOMContentLoaded',function(){
   }, 7000);
 })();
 </script>
+
+<!-- ── Persistent Impressum footer ── -->
+<div id="impressum-bar" style="
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9000;
+  background: var(--charcoal);
+  border-top: 1px solid rgba(201,185,154,0.1);
+  padding: 10px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+">
+  <span style="font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(201,185,154,0.2);">© 2025 MB Luxury Living · Markus Bucksch</span>
+  <button onclick="switchTab('impressum');window.scrollTo(0,0);" style="background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(201,185,154,0.38);padding:4px 0;transition:color 0.2s;" onmouseover="this.style.color='rgba(201,185,154,0.8)'" onmouseout="this.style.color='rgba(201,185,154,0.38)'">Impressum</button>
+</div>
 
 </body>
 </html>
